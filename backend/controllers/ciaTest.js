@@ -8,7 +8,7 @@ const openai = new OpenAI({
     apiKey: "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",
 });
 
-let mesg= [{role: "system", content: "You are a ML specialist at an online educational website. Help the user in any case he needs"}]
+let mesg= [{role: "system", content: "You are a master prompt genertator for other instances of chatgpt provided a field name generate a prompt for a system role call for another chatgpt instance."}]
 
 app.get('/', async (req, res) => {
     mesg.push({ role: "user", content: String(req.body.ques) });
