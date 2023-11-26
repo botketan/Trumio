@@ -191,7 +191,7 @@ const studentSchema = mongoose.Schema({
     //********Disputes*********/
     disputes:{
         type:Object
-    }
+    },
 });
 
 export const student = mongoose.model("student", studentSchema);
