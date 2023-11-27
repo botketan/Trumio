@@ -7,7 +7,8 @@ const communitySchema = mongoose.Schema({
     required: true,
     },
   userId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: `user`,
     required: true,
     },
   isPublished: {
