@@ -3,17 +3,16 @@ import { post } from "../models/post.js";
 
 
 export const updatePost=async(req,res)=>{
-    const Post=await post.findById(req.params.id);
+    const Post=await post.findById(req.body.id);
     if(!Post){
-        res.status(404);
-        throw new Error("Post not found");
+        res.status(404).send("Post not found");
     }
-    const updatedPost=await Post.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        {new:true}
-    )
-    res.status(200).json(updatedPost);
+    if (req.body.content) Post.content = req.body.content;
+    if (req.body.coverImage) Post.coverImage = req.body.coverImage;
+    if (req.body.icon) Post.icon = req.body.icon;
+    if (req.body.title) Post.title = req.body.title;
+    await Post.save();
+    res.status(200).json(Post);
 };
 
 
