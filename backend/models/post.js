@@ -22,7 +22,7 @@ const postSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: `post`,
     required: true,
-    default:NULL
+    default:null
     },
   community: {
     type: mongoose.Schema.Types.ObjectId,
