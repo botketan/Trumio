@@ -17,7 +17,7 @@ export const updatePost=async(req,res)=>{
 
 
 export const deletePost = async (req, res) => {
-  const post_id = req.params.id;
+  const post_id = req.body.id;
   try {
     await deletePostRecursive(post_id);
   } catch (error) {
@@ -31,16 +31,11 @@ const deletePostRecursive = async (post_id) => {
     if (!postget) {
       throw new Error("Post not found");
     }
-    post.find({parentPost:post_id},function(err,docs){
-      if(err){
-          console.log(err);
-      }
-      else{
-          docs.forEach(function(doc){
-              deletePostRecursive(doc._id);
-              console.log(doc._id);
-          })
-      }})
+    const posts = await post.find({parentPost:post_id})
+    posts.forEach(element => {
+        deletePostRecursive(element._id);
+        console.log(element._id);
+    });
     await post.findByIdAndDelete(post_id);
 }
 
