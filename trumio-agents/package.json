@@ -1,6 +1,6 @@
 {
-  "name": "trial",
-  "displayName": "trial",
+  "name": "trumio",
+  "displayName": "trumio",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -16,11 +16,11 @@
       "activitybar": [
           {
               "id": "CustomContainer",
-              "title": "Your Extension",
+              "title": "Trumio Chat Bot",
               "icon": "media/icon.svg"
           }
       ]
-  },
+    },
     "views": {
       "CustomContainer": [
           {
@@ -30,6 +30,17 @@
               "canToggleVisibility": true
           }
       ]
+    },
+    "commands": [{
+      "command": "trumio.CodeExplanation",
+      "title": "CodeExplanation"
+    }],
+    "menus": {
+      "editor/context": [{
+          "when": "editorTextFocus",
+          "command": "trumio.CodeExplanation",
+          "group": "navigation"
+      }]
     }
   },
   "scripts": {

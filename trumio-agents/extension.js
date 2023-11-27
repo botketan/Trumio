@@ -7,6 +7,45 @@ function activate(context) {
     context.subscriptions.push(
         vscode.window.registerWebviewViewProvider(ChatViewProvider.viewType, provider)
     );
+
+	let disposable = vscode.commands.registerCommand('trumio.CodeExplanation', async function () { //Code Explanation View
+        const editor = vscode.window.activeTextEditor;
+        if (editor) {
+            const selectedText = editor.document.getText(editor.selection);
+
+            const panel = vscode.window.createWebviewPanel(
+                'webView',
+                'Code Summarizer',
+                vscode.ViewColumn.Beside,
+                {}
+            );
+
+            // Here you would typically set the HTML content for your webview
+            // For React, you'd link to your bundled JS file
+
+			const gpt = await generate(`Generate an explanation for this:${selectedText}`) // GPT Response
+            panel.webview.html = getWebviewContent(gpt);
+        }
+    });
+
+    context.subscriptions.push(disposable);
+}
+
+function getWebviewContent(selectedText) {
+    return `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WebView</title>
+    </head>
+    <body>
+        <h1>Code Explanation</h1>
+        <p>${selectedText}</p>
+        <!-- Include your React bundle here -->
+        <script src="path/to/your/bundle.js"></script>
+    </body>
+    </html>`;
 }
 
 class ChatViewProvider {
@@ -21,7 +60,7 @@ class ChatViewProvider {
             localResourceRoots: [vscode.Uri.joinPath(this._extensionUri, 'media')] // Path
         };
 		
-        webviewView.webview.html = this.getHtmlForWebview(webviewView.webview); // Link HTML
+        webviewView.webview.html = this.getChatBotWebview(webviewView.webview); // Link HTML
 
         webviewView.webview.onDidReceiveMessage( // Linking frontend to backend (If webview got some message)
 			async message => {
@@ -39,7 +78,7 @@ class ChatViewProvider {
 				);
 			}
 			
-			getHtmlForWebview(webview) { // HTML for the extension's view
+			getChatBotWebview(webview) { // HTML for the chatbot's view
 
 				const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'script.js')); 
 				// Link Script file
