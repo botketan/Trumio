@@ -23,7 +23,7 @@ function activate(context) {
             // Here you would typically set the HTML content for your webview
             // For React, you'd link to your bundled JS file
 
-			const gpt = await generate(`Generate an explanation for this:${selectedText}`) // GPT Response
+			const gpt = await generate(`Summarize this piece of code : ${selectedText}`) // GPT Response
             panel.webview.html = getWebviewContent(gpt);
         }
     });
@@ -31,19 +31,22 @@ function activate(context) {
     context.subscriptions.push(disposable);
 }
 
-function getWebviewContent(selectedText) {
+function getWebviewContent(selectedText) { // HTML for webview
+
+    const webstyleUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'webStyle.css'));
+
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="${webstyleUri}" rel="stylesheet">
         <title>WebView</title>
     </head>
     <body>
         <h1>Code Explanation</h1>
         <p>${selectedText}</p>
         <!-- Include your React bundle here -->
-        <script src="path/to/your/bundle.js"></script>
     </body>
     </html>`;
 }
@@ -80,15 +83,21 @@ class ChatViewProvider {
 			
 			getChatBotWebview(webview) { // HTML for the chatbot's view
 
+                // Link Script and Style files.
+
 				const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'script.js')); 
-				// Link Script file
-				const nonce = getNonce();
+				const styleUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'botStyle.css'));
+
+                const nonce = getNonce();
 				
 				return `<!DOCTYPE html>
 				<html lang="en">
 					<head>
 						<meta charset="UTF-8">
 						<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+                        <link href="${styleUri}" rel="stylesheet">
+
 						<title>Chat Bot</title>
 					</head>
 					<body>
