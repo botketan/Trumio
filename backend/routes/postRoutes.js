@@ -9,6 +9,9 @@ router.post("/getbyparent", getbyparent);
 router.get("/postid",getById);
 router.get("/community",getByCommunity);
 
+import {deletePost} from "../controllers/posts.js";
+
+router.delete("/", deletePost);
 
 router.post('/create',create);
 export default router;
