@@ -5,6 +5,7 @@ import AdminBroMongoose from "admin-bro-mongoose";
 import { dummyModel } from "../models/dummy.js";
 import {user} from "../models/user.js";
 import {post} from "../models/post.js";
+import {community} from "../models/community.js";
 
 AdminBro.registerAdapter(AdminBroMongoose);
 const getAdminRouter = (db, mainRouter) => {
@@ -35,6 +36,14 @@ const getAdminRouter = (db, mainRouter) => {
           },
         },
         resource: post,
+        options: {
+          properties: {
+            _id: {
+              isTitle: true,
+            },
+          },
+        },
+        resource: community,
         options: {
           properties: {
             _id: {
