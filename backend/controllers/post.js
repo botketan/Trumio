@@ -75,8 +75,12 @@ export const getbyparent = async (req, res) => {
 
 export const getById = async (req,res) =>{
     const {postId,userId}=req.body;
-    const data = await post.findById({postId});
-    if (data.isPublished || data.userId===userId){
+    const data = await post.findById(postId);
+    if (!data) {
+        res.status(404).send("Post not found.");
+        return;
+    }
+    if (data.isPublished || data.userId.equals(userId)){
         res.status(200).send(data);
     }
 }
