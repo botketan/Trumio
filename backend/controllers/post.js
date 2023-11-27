@@ -91,3 +91,15 @@ export const getByCommunity = async (req,res) =>{
     res.status(200).send(data);
 }
 
+
+export const published = async(req,res)=>{
+    const  {postId} = req.body;
+
+    const update = await post.findById(postId)
+    update.isPublished = true;
+    update.contentPublished = update.content;
+    await update.save();
+    res.status(200).json({update});
+
+
+}
