@@ -7,6 +7,7 @@ import { connectDB } from "./config/configdb.js";
 import getAdminRouter from "./config/adminbro.js";
 import ciaRouter from "./routes/ciaRoutes.js";
 import userRouter from "./routes/userRoutes.js";
+import postRouter from "./routes/postRoutes.js";
 dotenv.config();
 
 let db = await connectDB();
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 app.use('/admin', getAdminRouterPromise);
 app.use('/cia', ciaRouter);
 app.use('/user', userRouter);
+app.use('/post', postRouter);
 
 
 app.listen(process.env.PORT || 8080, () => {

@@ -6,11 +6,11 @@ const communitySchema = mongoose.Schema({
     type: String,
     required: true,
     },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: `user`,
-    required: true,
-    },
+  // userId: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: `user`,
+  //   required: true,
+  //   },
   isPublished: {
     type: Boolean,
     required: true,

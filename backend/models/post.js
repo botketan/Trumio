@@ -4,13 +4,13 @@ const postSchema = mongoose.Schema({
   // schema of post model
   title: {
     type: String,
-    required: true,
+    default:"Untitled",
     },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: `user`,
     required: true,
-    default:NULL
+    default:null
     },
   isPublished: {
     type: Boolean,
@@ -20,18 +20,19 @@ const postSchema = mongoose.Schema({
   parentPost: {
     type: mongoose.Schema.Types.ObjectId,
     ref: `post`,
-    required: true,
-    default:NULL
+    default:null
     },
   community: {
     type: mongoose.Schema.Types.ObjectId,
     ref: `community`,
-    required: true,
-    default:NULL
+    required: true
     },
   content: {
     type: String,
     },
+  contentPublished: {
+      type: String,
+      },
   coverImage: {
     type: String,
     },
