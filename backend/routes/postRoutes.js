@@ -1,7 +1,5 @@
 import express from "express";
-import { updatePost } from "../controllers/post";
-import {create} from "../controllers/post.js"
-import { getByCommunity,getbyparent,getById,deletePost } from "../controllers/post.js";
+import { getByCommunity,getbyparent,getById,deletePost,updatePost,create } from "../controllers/post.js";
 
 
 const router = express.Router();
