@@ -7,22 +7,27 @@ const postSchema = mongoose.Schema({
     required: true,
     },
   userId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: `user`,
     required: true,
+    default:NULL
     },
   isPublished: {
     type: Boolean,
     required: true,
+    default:false
     },
   parentPost: {
     type: mongoose.Schema.Types.ObjectId,
     ref: `post`,
     required: true,
+    default:NULL
     },
   community: {
     type: mongoose.Schema.Types.ObjectId,
     ref: `community`,
     required: true,
+    default:NULL
     },
   content: {
     type: String,
