@@ -10,7 +10,7 @@ router.get("/postid",getById);
 router.get("/community",getByCommunity);
 router.delete("/", deletePost);
 router.post('/create',create);
-router.get('/publish', published);
+router.post('/publish', published);
 
 
 export default router;
