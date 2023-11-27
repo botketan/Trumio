@@ -1,0 +1,54 @@
+{
+  "name": "trial",
+  "displayName": "trial",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+          {
+              "id": "CustomContainer",
+              "title": "Your Extension",
+              "icon": "media/icon.svg"
+          }
+      ]
+  },
+    "views": {
+      "CustomContainer": [
+          {
+              "type": "webview",
+              "id": "chatView",
+              "name": "Chat",
+              "canToggleVisibility": true
+          }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.84.0",
+    "@types/mocha": "^10.0.3",
+    "@types/node": "18.x",
+    "eslint": "^8.52.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2",
+    "@vscode/test-electron": "^2.3.6"
+  },
+  "dependencies": {
+    "openai": "^4.0.0",
+    "react": "^18.2.0"
+  }
+}
