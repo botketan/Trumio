@@ -2,7 +2,7 @@ import { user } from "../models/user.js";
 import { post } from "../models/post.js";
 
 export const create=async(req,res)=>{
-    const {title,userId,parentPost,community}=req.body;
+    const {userId,parentPost,community}=req.body;
     try{
         const userExisted=await user.findOne({userId});
         if(userExisted){
