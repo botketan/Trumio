@@ -4,7 +4,6 @@ const postSchema = mongoose.Schema({
   // schema of post model
   title: {
     type: String,
-    required: true,
     default:"Untitled",
     },
   userId: {

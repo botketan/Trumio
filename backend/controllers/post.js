@@ -91,6 +91,10 @@ export const published = async(req,res)=>{
     const  {postId} = req.body;
 
     const update = await post.findById(postId)
+    if(!update) {
+        res.status(404).send("Post not found");
+        return;
+    }
     update.isPublished = true;
     update.contentPublished = update.content;
     await update.save();
