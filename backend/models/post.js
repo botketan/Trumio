@@ -5,6 +5,7 @@ const postSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
+    default:"Untitled",
     },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -26,8 +27,7 @@ const postSchema = mongoose.Schema({
   community: {
     type: mongoose.Schema.Types.ObjectId,
     ref: `community`,
-    required: true,
-    default:NULL
+    required: true
     },
   content: {
     type: String,
