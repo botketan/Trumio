@@ -21,7 +21,6 @@ const postSchema = mongoose.Schema({
   parentPost: {
     type: mongoose.Schema.Types.ObjectId,
     ref: `post`,
-    required: true,
     default:null
     },
   community: {

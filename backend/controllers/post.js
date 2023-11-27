@@ -47,12 +47,17 @@ const deletePostRecursive = async (post_id) => {
 
 
 export const create=async(req,res)=>{
-    const {userId,parentPost,community}=req.body;
+    const {userId,community}=req.body;
+    const parentPost = req.body.parentPost;
+
     try{
-        const userExisted=await user.findOne({userId});
+        const userExisted=await user.findById(userId);
         if(userExisted){
-            const newPost= await post.create({userId,parentPost,community});
+            const newPost= new post({userId,parentPost,community});
+            await newPost.save();
             return res.status(200).json({newPost});
+        } else {
+            return res.status(400);
         }
     }catch(e){
         console.log(e)
