@@ -59,15 +59,15 @@ export const create=async(req,res)=>{
 }
 
 export const getbyparent = async (req, res) => {
-    const { parentDocument } = req.body.parentDocument ;
-  
+    const { parentId} = req.body ;
+    const parent = await post.findById(parentId)
     const userId = req.body.userid;
   
     const documents = await post.find({
-      parentDocument,
+      parentPost:parent._id
     })
     const newArray=documents.filter((document)=>{
-        document.userId===userId || document.isPublished;
+        document.userId.equals(userId) || document.isPublished;
     })
     
     res.send(newArray);
@@ -85,8 +85,8 @@ export const getById = async (req,res) =>{
     }
 }
 export const getByCommunity = async (req,res) =>{
-    const {communityID } = req.body;
-    const data = await post.find({community:communityID,parentPost:NULL});
+    const {communityId} = req.body;
+    const data = await post.find({community:communityId,parentPost:null});
     res.status(200).send(data);
 }
 

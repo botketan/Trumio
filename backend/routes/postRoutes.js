@@ -7,7 +7,7 @@ const router = express.Router();
 router.put("/update", updatePost);
 router.post("/getbyparent", getbyparent);
 router.post("/postid",getById);
-router.get("/community",getByCommunity);
+router.post("/community",getByCommunity);
 router.delete("/", deletePost);
 router.post('/create',create);
 router.post('/publish', published);
