@@ -1,6 +1,17 @@
 import express from "express";
-import { getByCommunity,getbyparent,getById,deletePost,updatePost,create,published } from "../controllers/post.js";
+import { getByCommunity,
+    getbyparent,
+    getById,
+    deletePost,
+    updatePost,
+    create,
+    published,
+    uploadCoverImage,
+    uploadIcon } from "../controllers/post.js";
+import multer from "multer";
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 const router = express.Router();
 
@@ -11,6 +22,8 @@ router.post("/community",getByCommunity);
 router.delete("/", deletePost);
 router.post('/create',create);
 router.post('/publish', published);
+router.post('/uploadCover', upload.single('file'),uploadCoverImage);
+router.post('/uploadIcon', upload.single('file'),uploadIcon);
 
 
 export default router;

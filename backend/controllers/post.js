@@ -1,6 +1,15 @@
 import { user } from "../models/user.js";
 import { post } from "../models/post.js";
+import dotenv from "dotenv";
+import {v2 as cloudinary} from "cloudinary";
+import streamifier from "streamifier";
 
+
+cloudinary.config({ 
+    cloud_name: 'dymzmlh4w', 
+    api_key: '138446594816435', 
+    api_secret: 'MrM28Qo0PuyyBxqpZ5YhptB2_FI' 
+  });
 
 export const updatePost=async(req,res)=>{
     const Post=await post.findById(req.body.id);
@@ -103,6 +112,53 @@ export const published = async(req,res)=>{
     update.contentPublished = update.content;
     await update.save();
     res.status(200).json({update});
-
-
 }
+
+
+export const uploadCoverImage = async (req, res) => {
+    const { postId } = req.body;
+    const file = req.file;
+    const postUpdate = await post.findById(postId);
+    if (!postUpdate|| !file) {
+      res.status(404).send("Post not found or file not present");
+      return;
+    }
+    let cld_upload_stream = cloudinary.uploader.upload_stream(
+          
+        async (error,result) =>{
+            if(error){
+                console.log(error);
+                return res.status(400).json({error});
+            }
+           postUpdate.coverImage = result.secure_url;
+           await postUpdate.save();
+           return res.status(200).json(postUpdate);
+       }
+       );
+   
+    streamifier.createReadStream(req.file.buffer).pipe(cld_upload_stream);
+};
+
+export const uploadIcon = async (req, res) => {
+    const { postId } = req.body;
+    const file = req.file;
+    const postUpdate = await post.findById(postId);
+    if (!postUpdate|| !file) {
+      res.status(404).send("Post not found or file not present");
+      return;
+    }
+    let cld_upload_stream = cloudinary.uploader.upload_stream(
+          
+        async (error,result) =>{
+            if(error){
+                console.log(error);
+                return res.status(400).json({error});
+            }
+           postUpdate.icon = result.secure_url;
+           await postUpdate.save();
+           return res.status(200).json(postUpdate);
+       }
+       );
+   
+    streamifier.createReadStream(req.file.buffer).pipe(cld_upload_stream);
+};
