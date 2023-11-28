@@ -33,14 +33,12 @@ function activate(context) {
 
 function getWebviewContent(selectedText) { // HTML for webview
 
-    const webstyleUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'webStyle.css'));
-
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="${webstyleUri}" rel="stylesheet">
+        <link href="./media/webStyle.css" rel="stylesheet">
         <title>WebView</title>
     </head>
     <body>
