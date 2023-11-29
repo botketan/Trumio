@@ -1,32 +1,49 @@
-/* Reset some default styles */
-body, h1, p {
-    margin: 0;
-    padding: 0;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1e1e1e;
+    color: #ecf0f1;
+    margin: 20px;
 }
 
-/* Set dark mode styles */
-body {
-    background-color: #1a1a1a;
-    color: #1ff;
-}
-
-/* Container styling */
-body {
-    font-family: 'Arial', sans-serif;
+.container {
     max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
+    margin: 0 auto;
 }
 
-/* Heading styles */
 h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #ffffff; /* White line between heading and paragraph */
+    color: #3498db;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
 }
 
-/* Paragraph styles */
 p {
-    font-size: 16px;
-    margin-bottom: 20px;
+    color: #bdc3c7;
+    line-height: 1.6;
+}
+
+/* Style for highlighting code summary and errors in dark mode */
+.code-summary {
+    background-color: #1e1e1e;
+    color: #ecf0f1;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.errors {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 14px;
+    }
 }
