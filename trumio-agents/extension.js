@@ -37,7 +37,9 @@ function activate(context) {
         const gpt_error = await generate(
           `Let me know if there are any syntactical errors in this peice of code : ${selectedText}`
         );
-        panel.webview.html = getWebviewContent(gpt_summary, gpt_error);
+        const webstyleUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(context.extensionUri, 'media', 'webStyle.css'));
+        // console.log(webstyleUri);
+        panel.webview.html = getWebviewContent(gpt_summary, gpt_error, webstyleUri);
       }
     }
   );
@@ -75,17 +77,17 @@ function activate(context) {
 
 // CODE SUMMARIZER FUNCTIONALITY
 
-function getWebviewContent(gpt_summary, gpt_error) {
+function getWebviewContent(gpt_summary, gpt_error, webstyleUri) {
   // HTML for webview
 
-    // const webstyleUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'webStyle.css'));
+    
 
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="./media/webStyle.css" rel="stylesheet">
+        <link href="${webstyleUri}" rel="stylesheet">
         <title>WebView</title>
     </head>
     <body>

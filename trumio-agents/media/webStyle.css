@@ -1,6 +1,32 @@
-*{
+/* Reset some default styles */
+body, h1, p {
     margin: 0;
     padding: 0;
-    box-sizing: 0;
-    font-family: sans-serif;
+}
+
+/* Set dark mode styles */
+body {
+    background-color: #1a1a1a;
+    color: #1ff;
+}
+
+/* Container styling */
+body {
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Heading styles */
+h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ffffff; /* White line between heading and paragraph */
+}
+
+/* Paragraph styles */
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
 }
