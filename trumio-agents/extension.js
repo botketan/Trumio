@@ -11,6 +11,8 @@ function activate(context) {
     )
   );
 
+    // Code Explanation Functionality
+
   let disposable = vscode.commands.registerCommand(
     "trumio.CodeExplanation",
     async function () {
@@ -29,18 +31,51 @@ function activate(context) {
         // Here you would typically set the HTML content for your webview
         // For React, you'd link to your bundled JS file
 
-        const gpt = await generate(
+        const gpt_summary = await generate(
           `Summarize this piece of code : ${selectedText}`
         ); // GPT Response
-        panel.webview.html = getWebviewContent(gpt);
+        const gpt_error = await generate(
+          `Let me know if there are any syntactical errors in this peice of code : ${selectedText}`
+        );
+        panel.webview.html = getWebviewContent(gpt_summary, gpt_error);
+      }
+    }
+  );
+
+    // Add Comments Functionality
+
+  let disposable2 = vscode.commands.registerCommand(
+    "trumio.AddComments",
+    async function () {
+      //Add Comments Functionality
+      
+      const editor = vscode.window.activeTextEditor;
+      if (editor) {
+        const readobj = await readSelectedText();
+
+        const gpt = await generate( // GPT Prompt
+          `You are given a code and its file type below. All you need to do is to generate crisp comments for the code. You are supporsed to read the whole code first and then using the file type given, generate multiline - comments for the code in that language itself. For eg, use // {your comment} for C++ or ''' {Your Comment} ''' for python.
+          Remember, these are supposed to be really crisp and short while containing the important information mainly in regard with what it is trying to do. Don't include anything else other than the code's functionality. Don't include the language of the code either.
+
+          Code: ${readobj.selectedText}
+
+          File Type: ${readobj.fileType}`
+        ); // GPT Response
+
+        console.log(gpt);
+
+        writeToEditor(readobj,gpt+'\n');
       }
     }
   );
 
   context.subscriptions.push(disposable);
+  context.subscriptions.push(disposable2);
 }
 
-function getWebviewContent(selectedText) {
+// CODE SUMMARIZER FUNCTIONALITY
+
+function getWebviewContent(gpt_summary, gpt_error) {
   // HTML for webview
 
     // const webstyleUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'webStyle.css'));
@@ -54,12 +89,76 @@ function getWebviewContent(selectedText) {
         <title>WebView</title>
     </head>
     <body>
-        <h1>Code Explanation</h1>
-        <p>${selectedText}</p>
+        <h1>Code Summary</h1>
+        <p>${gpt_summary}</p>
+        <h1>Errors</h1>
+        <p>${gpt_error}</p>
         <!-- Include your React bundle here -->
     </body>
     </html>`;
 }
+
+// ADD COMMENT FUNCTIONALITY
+
+async function readSelectedText() { // Read selected text and the following paramters (needed for writing operation)
+  const activeEditor = vscode.window.activeTextEditor;
+
+  const selection = activeEditor.selection;
+
+  const document = activeEditor.document;
+  const startPosition = activeEditor.selection.start;
+  const selectedText = document.getText(selection);
+  let position = startPosition;
+  const fileType = document.languageId;
+
+  return {
+    selection: selection,
+    document: document,
+    selectedText: selectedText,
+    position: position,
+    fileType: fileType,
+  };
+};
+
+async function insertCharacter(document, position, char) { // Insert a single character
+  const edit = new vscode.WorkspaceEdit();
+  edit.insert(document.uri, position, char);
+  await vscode.workspace.applyEdit(edit);
+}
+
+async function writeToEditor(readobj,text) { // Write the whole text to the editor
+  let document = readobj.document;
+  let position = readobj.position;
+  let delay = 10
+  let line = position.line - 1;
+  if (line === -1){
+    line = 0;
+  }
+  let character = position.character;
+
+  for (const char of text) {
+    if (char === "\n") {
+      await insertCharacter(
+        document,
+        new vscode.Position(line, character),
+        char
+      );
+      line++;
+      character = 0;
+    } 
+    else {
+      await insertCharacter(
+        document,
+        new vscode.Position(line, character),
+        char
+      );
+      character++;
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+  }
+};
+
+// CHAT BOT FUNCTIONALITY
 
 class ChatViewProvider {
   constructor(extensionUri) {
@@ -108,48 +207,41 @@ class ChatViewProvider {
     const nonce = getNonce();
 
     return `<!DOCTYPE html>
-            <html lang="en">
-            <head>
+    <html lang="en">
+        <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Trumio-Agent</title>
             <link href="${styleUri}" rel="stylesheet">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
             <script nonce="${nonce}" src="${scriptUri}"></script>
-            </head>
-            <body class="show-chatbot">
+        </head>
+        
+        <body class="show-chatbot">
             <button class="chatbot-toggler">
-            <span class="material-symbols-outlined">mode_comment</span>
-            <span class="material-symbols-outlined">close</span>
+                <span class="material-symbols-outlined">mode_comment</span>
+                <span class="material-symbols-outlined">close</span>
             </button>
             <div class="chatbot">
-            <header>
-            <h2>ChatBot</h2>
-            <span class="material-symbols-outlined">close</span>
-            
-            </header>
-            <ul class="chatbox">
-            <li class="chat incoming">
-                <span class="material-symbols-outlined">smart_toy</span>
-                <p>Hi there <br> How can I help you today?</p>
-                </li>
-                <!-- <li class="chat outgoing">
-                <p>Lorem ipsum dolor sit amet consectetur.</p>
-                </li>
-                <li class="chat incoming">
-                <span class="material-symbols-outlined">smart_toy</span>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia, nemo?</p>
-                </li> -->
+                <header>
+                    <h2>ChatBot</h2>
+                    <span class="material-symbols-outlined">close</span>
+                </header>
+    
+                <ul class="chatbox">
+                    <li class="chat incoming">
+                        <span class="material-symbols-outlined">smart_toy</span>
+                        <p>Hi there <br> How can I help you today?</p>
+                    </li>
                 </ul>
+    
                 <div class="chat-input">
-                <textarea placeholder="Enter a messege... " required></textarea>
-                <span id="send-btn" class="material-symbols-outlined">send</span>
+                    <textarea placeholder="Enter a messege... " required></textarea>
+                    <span id="send-btn" class="material-symbols-outlined">send</span>
                 </div>
-                </div>
-                </body>
-                    </html>
-            <!DOCTYPE html>
-                `;
+            </div>
+        </body>
+    </html>`;
   }
 }
 

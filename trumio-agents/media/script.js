@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // apppend the user's message to the chatbox
         chatbox.appendChild(createChatLi(userMessage ,"outgoing"));
-        vscode.postMessage({ // POst message to vs code's "extension.js" page
+        vscode.postMessage({ // Post message to vs code's "extension.js" page
             command: 'submit',
             text: userMessage
         });
