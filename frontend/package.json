@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@blocknote/core": "^0.9.6",
+    "@blocknote/react": "^0.9.6",
+    "@heathmont/moon-core-tw": "^10.11.0",
+    "@heathmont/moon-icons-tw": "^9.28.6",
+    "@heathmont/moon-themes-tw": "^10.11.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -34,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.5"
   }
 }
