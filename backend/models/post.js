@@ -10,11 +10,9 @@ const postSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: `user`,
     required: true,
-    default:null
     },
   isPublished: {
     type: Boolean,
-    required: true,
     default:false
     },
   parentPost: {
@@ -25,7 +23,6 @@ const postSchema = mongoose.Schema({
   community: {
     type: mongoose.Schema.Types.ObjectId,
     ref: `community`,
-    required: true
     },
   content: {
     type: String,
