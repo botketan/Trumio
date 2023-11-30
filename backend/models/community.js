@@ -6,24 +6,33 @@ const communitySchema = mongoose.Schema({
     type: String,
     required: true,
     },
-  // userId: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: `user`,
-  //   required: true,
-  //   },
-  isPublished: {
+  islocal: {
     type: Boolean,
-    required: true,
+    default:false,
     },
-  content: {
-    type: String,
-    },
+  userAdmins: [
+    {
+      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: `user`,
+    }
+  ],
   coverImage: {
     type: String,
     },
   icon: {
     type: String,
     },
+  chatsChannel: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: `chatchannel`,
+    required: true
+  }],
+  postChannels: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: `post`,
+    required: true
+  }],
 });
 
 export const community = mongoose.model("community", communitySchema);
