@@ -33,12 +33,21 @@
     },
     "commands": [{
       "command": "trumio.CodeExplanation",
-      "title": "CodeExplanation"
+      "title": "Code Explanation"
+    },
+    {
+      "command": "trumio.AddComments",
+      "title": "Add Commments"
     }],
     "menus": {
       "editor/context": [{
           "when": "editorTextFocus",
           "command": "trumio.CodeExplanation",
+          "group": "navigation"
+      },
+      {
+          "when": "editorTextFocus",
+          "command": "trumio.AddComments",
           "group": "navigation"
       }]
     }

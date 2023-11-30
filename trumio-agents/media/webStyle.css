@@ -1,6 +1,49 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: 0;
-    font-family: sans-serif;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1e1e1e;
+    color: #ecf0f1;
+    margin: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #3498db;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #bdc3c7;
+    line-height: 1.6;
+}
+
+/* Style for highlighting code summary and errors in dark mode */
+.code-summary {
+    background-color: #1e1e1e;
+    color: #ecf0f1;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.errors {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 14px;
+    }
 }
