@@ -6,10 +6,11 @@ import streamifier from "streamifier";
 
 
 cloudinary.config({ 
-    cloud_name: 'dymzmlh4w', 
-    api_key: '138446594816435', 
-    api_secret: 'MrM28Qo0PuyyBxqpZ5YhptB2_FI' 
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.API_KEY, 
+    api_secret: process.env.API_SECRET 
   });
+
 
 export const updatePost=async(req,res)=>{
     const Post=await post.findById(req.body.id);
