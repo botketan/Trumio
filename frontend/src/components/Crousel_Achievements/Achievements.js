@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../index.css';
+import './Achievements.css';
 const Achievements = ({ heading, description, status, image }) => {
     return (
         <div className="thumbs-up-topper">

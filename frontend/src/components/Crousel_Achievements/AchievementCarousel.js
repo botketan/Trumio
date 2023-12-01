@@ -1,13 +1,13 @@
 import React from 'react';
-import '../../index.css';
+import './Achievements.css';
 import { Carousel } from '@heathmont/moon-core-tw';
 import {
   ControlsChevronLeftSmall,
   ControlsChevronRightSmall,
 } from '@heathmont/moon-icons-tw';
-import Achievements from './Achievements';
+import Achievements from './Achievements.js';
 
-const Crousel = ({ items }) => {
+const AchievementCarousel = ({ items }) => {
     return (
         <Carousel>
         {() => (
@@ -35,4 +35,4 @@ const Crousel = ({ items }) => {
     );
 }
 
-export default Crousel;
+export default AchievementCarousel;

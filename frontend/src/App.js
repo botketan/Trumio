@@ -2,9 +2,21 @@ import logo from './logo.svg';
 // import './App.css';
 import Post from './components/Post';
 import Achievements from "./components/Crousel_Achievements/Achievements";
-import Crousel from "./components/Crousel_Achievements/Crousel"
+import AchievementCarousel from "./components/Crousel_Achievements/AchievementCarousel"
+import MentorCard from './components/MentorCard';
 
 function App() {
+  const cardObject = {
+    imageUrl : "https://statusneo.com/wp-content/uploads/2023/02/MicrosoftTeams-image551ad57e01403f080a9df51975ac40b6efba82553c323a742b42b1c71c1e45f1.jpg",
+    name : "Devesh Sutahr",
+    country : "IN",
+    job :"Web Developer",
+    jobLocation : "Delhi",
+    noOfSessions : 5,
+    reviews : 4.4,
+    experience : 2,
+    avgAttendance : 80
+  }
   const items1=[
     {
       heading:"hello",
@@ -69,10 +81,11 @@ function App() {
     }
   ]
   return (
-    
-    <Crousel items={items1} />
- 
-  
+    <>
+    <AchievementCarousel items={items1} />
+    <Post />
+    <MentorCard cardData={cardObject} />
+    </>
   );
 }
 
