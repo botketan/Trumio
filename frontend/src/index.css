@@ -14,3 +14,40 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Crousel Achievements CSS Starts */
+
+.thumbs-up-topper {
+  display: block;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+  height: 15vw;
+  width: 15vw;
+  position: relative;
+  padding: 20px 20px 20px 20px;
+}
+
+.image-container {
+  height: 5vw;
+  width: 5vw;
+}
+
+.image-container img {
+  float: left;
+  margin-right: 10px;
+}
+
+
+.description {
+  color: gray;
+}
+
+.days-left {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: blue;
+}
+
+/* Crousel Achievements CSS Ends */
