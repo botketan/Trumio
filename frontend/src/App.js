@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import Card from './components/card';
 import './App.css';
 
 function App() {
+  const props={
+    name:"Manas Roy",
+    userId:"@Manas24",
+    // profilePic:"helloWorld",
+    work:"Software Developer",
+    education:"IIT Guwahati",
+    tier:"Pioneer",
+    sparks:574896,
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Card props={props}/>
     </div>
   );
 }
