@@ -8,6 +8,8 @@ import getAdminRouter from "./config/adminbro.js";
 import ciaRouter from "./routes/ciaRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import postRouter from "./routes/postRoutes.js";
+import mentorRouter from "./routes/mentorRoutes.js";
+import communityRouter from "./routes/communityRoutes.js";
 dotenv.config();
 
 let db = await connectDB();
@@ -23,6 +25,8 @@ app.use('/admin', getAdminRouterPromise);
 app.use('/cia', ciaRouter);
 app.use('/user', userRouter);
 app.use('/post', postRouter);
+app.use('/community', communityRouter);
+app.use('/mentor', mentorRouter);
 
 
 app.listen(process.env.PORT || 8080, () => {
