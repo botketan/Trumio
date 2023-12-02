@@ -7,6 +7,7 @@ import ProfileCard from '../components/ProfileCard'
 import GamificationAchievements from '../components/GamificationAchievements'
 import GamificationProfile from '../components/GamificationProfile'
 import NoteList from '../components/noteList/noteList'
+import Leaderboard from '../components/Leaderboard/Leaderboard.js'
 
 function Home() {
   const cardInfo = [
