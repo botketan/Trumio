@@ -16,6 +16,8 @@ const AchievementCarousel = ({ items }) => {
                     description={item.description}
                     status={item.status}
                     image={item.image}
+                    sparks={item.sparks}
+                    isFlex={false}
                 />
             ))}
             </Carousel.Reel>
