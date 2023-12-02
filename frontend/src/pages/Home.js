@@ -88,6 +88,8 @@ function Home() {
         education:"IIT Guwahati",
         tier:"Pioneer",
         sparks:574896,
+        advanceTowards:"Visionary",
+        points:"350",
       }
   return (
     <>
