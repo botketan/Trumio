@@ -3,6 +3,7 @@ import Mentor from './Mentor'
 import Post from '../components/Post'
 import AchievementCarousel from '../components/Crousel_Achievements/AchievementCarousel'
 import ProfileCard from '../components/ProfileCard'
+import NoteList from '../components/noteList/noteList'
 
 function Home() {
     const cardObject = {
@@ -97,6 +98,7 @@ function Home() {
         <Post /> 
         <AchievementCarousel items={items1} /> 
         <ProfileCard props={props}/>
+        <NoteList/>
     </>
   )
 }
