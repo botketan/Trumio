@@ -10,6 +10,10 @@ let mesg= [{role: "system", content: "You are a master task creators given a pro
 
 export const createProject = async (req, res) => {
     const { title, description, userId,milestones } = req.body;
+    const userExisting = await user.findById(userId);
+    if(!userExisting){
+        return res.status(404).json({message: "User not found"});
+    }
     const newProject = new project({ title, description, userId });
     newProject.milestones = [];
     milestones.projectDescription = description;
@@ -30,7 +34,9 @@ export const createProject = async (req, res) => {
         newProject.milestones.push({title: String(key), task: task,progress:0});
     }
     try {
+        userExisting.projects.push(newProject._id);
         await newProject.save();
+        await userExisting.save();
         res.status(201).json(newProject);
     } catch (error) {
         res.status(409).json({ message: error.message });
