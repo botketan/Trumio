@@ -1,0 +1,30 @@
+.notes-card-box {
+    display: flex;
+    flex-direction: column;
+    border: 1px #E2E2E2 solid;
+    border-radius: 10px;
+    height: 15vw;
+    width: 15vw;
+    position: relative;
+    padding: 1vw 1vw 1vw 1vw; 
+}
+
+.heading {
+    font-size: 16px; 
+    line-height: 18px;
+    font-weight: 600; 
+}
+
+.update {
+    position: absolute;
+    bottom: 1vw; 
+    font-size: 14px;
+    color: #7c7a78;
+}
+
+.content {
+    font-size: 14px; 
+    line-height: 18px; 
+    color: #7c7a78;
+    margin-top: 10px;
+}
