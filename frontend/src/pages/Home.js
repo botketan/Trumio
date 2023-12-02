@@ -7,6 +7,20 @@ import ProfileCard from '../components/ProfileCard'
 import NoteList from '../components/noteList/noteList'
 
 function Home() {
+  const cardInfo = [
+    { Name: "Priyansh Mathur", rank: "1", sparks: "265" },
+    { Name: "Priyansh Mathur", rank: "2", sparks: "265" },
+    { Name: "Priyansh Mathur", rank: "3", sparks: "265" },
+    { Name: "Priyansh Mathur", rank: "4", sparks: "265" },
+    { Name: "Priyansh Mathur", rank: "1", sparks: "265" },
+    { Name: "Priyansh Mathur", rank: "2", sparks: "265" },
+    { Name: "Priyansh Mathur", rank: "3", sparks: "265" },
+    { Name: "Priyansh Mathur", rank: "4", sparks: "265" },
+    { Name: "Priyansh Mathur", rank: "1", sparks: "265" },
+    { Name: "Priyansh Mathur", rank: "2", sparks: "265" },
+    { Name: "Priyansh Mathur", rank: "3", sparks: "265" },
+    { Name: "Priyansh Mathur", rank: "4", sparks: "265" },
+  ];
     const cardObject = {
         imageUrl : "https://statusneo.com/wp-content/uploads/2023/02/MicrosoftTeams-image551ad57e01403f080a9df51975ac40b6efba82553c323a742b42b1c71c1e45f1.jpg",
         name : "Devesh Sutahr",
@@ -117,6 +131,7 @@ function Home() {
         <ProfileCard props={props}/>
         <NoteList/>
         <AchievementExpand items={items1} />
+         <Leaderboard cardInfo={cardInfo} />
     </>
   )
 }
