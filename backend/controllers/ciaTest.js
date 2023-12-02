@@ -3,7 +3,7 @@ import chats from '../models/chats.js';
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-    apiKey: "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",
+    apiKey: process.env.OPENAI_API_KEY,
 });
 
 let mesg= [{role: "system", content: "You are a master prompt genertator for other instances of chatgpt provided a field name generate a system prompt to be given in a api call for another chatgpt instance. For example if you are provied field name Machine Learning then the response should be like \"You are an expert at Machine learning at a online eductaional website. Help the students with their queries \""}]
