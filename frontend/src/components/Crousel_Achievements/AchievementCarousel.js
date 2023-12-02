@@ -3,6 +3,7 @@ import { Carousel } from '@heathmont/moon-core-tw';
 import Achievements from './Achievements.js';
 import { ControlsChevronLeftSmall, ControlsChevronRightSmall } from '@heathmont/moon-icons-tw';
 
+
 const AchievementCarousel = ({ items }) => {
     return (
         <Carousel step={3}>
@@ -18,6 +19,8 @@ const AchievementCarousel = ({ items }) => {
                     description={item.description}
                     status={item.status}
                     image={item.image}
+                    sparks={item.sparks}
+                    isFlex={false}
                 />
               </Carousel.Item>
             ))}
