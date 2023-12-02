@@ -1,42 +1,12 @@
 import React from 'react'
-import Mentor from './Mentor'
-import Post from '../components/Post'
-import AchievementCarousel from '../components/Crousel_Achievements/AchievementCarousel'
-import AchievementExpand from '../components/Crousel_Achievements/AchievementExpand'
-import ProfileCard from '../components/ProfileCard'
-import GamificationAchievements from '../components/GamificationAchievements'
 import GamificationProfile from '../components/GamificationProfile'
-import NoteList from '../components/noteList/noteList'
-import Leaderboard from '../components/Leaderboard/Leaderboard.js'
-import NotesComponent from '../components/NotesComponent/NotesComponent.js'
+import GamificationAchievements from '../components/GamificationAchievements'
+import AchievementExpand from '../components/Crousel_Achievements/AchievementExpand'
+import Navbar from '../components/Navbar'
+import Leaderboard from '../components/Leaderboard/Leaderboard'
 
-function Home() {
-  const cardInfo = [
-    { Name: "Priyansh Mathur", rank: "1", sparks: "265" },
-    { Name: "Priyansh Mathur", rank: "2", sparks: "265" },
-    { Name: "Priyansh Mathur", rank: "3", sparks: "265" },
-    { Name: "Priyansh Mathur", rank: "4", sparks: "265" },
-    { Name: "Priyansh Mathur", rank: "1", sparks: "265" },
-    { Name: "Priyansh Mathur", rank: "2", sparks: "265" },
-    { Name: "Priyansh Mathur", rank: "3", sparks: "265" },
-    { Name: "Priyansh Mathur", rank: "4", sparks: "265" },
-    { Name: "Priyansh Mathur", rank: "1", sparks: "265" },
-    { Name: "Priyansh Mathur", rank: "2", sparks: "265" },
-    { Name: "Priyansh Mathur", rank: "3", sparks: "265" },
-    { Name: "Priyansh Mathur", rank: "4", sparks: "265" },
-  ];
-    const cardObject = {
-        imageUrl : "https://statusneo.com/wp-content/uploads/2023/02/MicrosoftTeams-image551ad57e01403f080a9df51975ac40b6efba82553c323a742b42b1c71c1e45f1.jpg",
-        name : "Devesh Sutahr",
-        country : "IN",
-        job :"Web Developer",
-        jobLocation : "Delhi",
-        noOfSessions : 5,
-        reviews : 4.4,
-        experience : 2,
-        avgAttendance : 80
-      }
-      const items1=[
+const Gamification = () => {
+    const items1=[
         {
           heading:"hello",
           description:"hello",
@@ -114,19 +84,7 @@ function Home() {
           sparks:"25 Sparks",
         }
       ]
-    
-      const props={
-        name:"Manas Roy",
-        userId:"@Manas24",
-        // profilePic:"helloWorld",
-        work:"Software Developer",
-        education:"IIT Guwahati",
-        tier:"Pioneer",
-        sparks:574896,
-        advanceTowards:"Visionary",
-        points:"350",
-      }
-    const achievements= [
+      const achievements= [
         {
             title: "Hello",
             date: "12/12/12",
@@ -146,39 +104,37 @@ function Home() {
             points: 100
         }
     ]
-    const Noteslist=[
-      {
-          title:"Exploring ML",
-          description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
-      },
-      {
-        title:"Exploring ML",
-        description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
-    },
-    {
-        title:"Exploring ML",
-        description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
-    },
-    {
-      title:"Exploring ML",
-      description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
-    },
-    ]
+    const cardInfo = [
+        { Name: "Priyansh Mathur", rank: "1", sparks: "265", imageLink: "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" },
+        { Name: "Priyansh Mathur", rank: "2", sparks: "265", imageLink: "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" },
+        { Name: "Priyansh Mathur", rank: "3", sparks: "265", imageLink: "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" },
+        { Name: "Priyansh Mathur", rank: "4", sparks: "265", imageLink: "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" },
+        { Name: "Priyansh Mathur", rank: "1", sparks: "265", imageLink: "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" },
+        { Name: "Priyansh Mathur", rank: "2", sparks: "265", imageLink: "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" },
+        { Name: "Priyansh Mathur", rank: "3", sparks: "265", imageLink: "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" },
+        { Name: "Priyansh Mathur", rank: "4", sparks: "265", imageLink: "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" },
+        { Name: "Priyansh Mathur", rank: "1", sparks: "265", imageLink: "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" },
+        { Name: "Priyansh Mathur", rank: "2", sparks: "265", imageLink: "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" },
+        { Name: "Priyansh Mathur", rank: "3", sparks: "265", imageLink: "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" },
+        { Name: "Priyansh Mathur", rank: "4", sparks: "265", imageLink: "https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" },
+      ];
   return (
     <>
-        <Mentor /> 
-        <GamificationAchievements achievements={achievements} />
-        <GamificationProfile />
-        <Post /> 
-        <AchievementCarousel items={items1} />
-        
-        <ProfileCard props={props}/>
-        <NoteList/>
-        <AchievementExpand items={items1} />
-         <Leaderboard cardInfo={cardInfo} />
-         <NotesComponent noteslist={Noteslist}/>
+        <Navbar/>
+        <div className='px-20 flex gap-4 py-4'>
+            <div className='flex flex-col gap-4 w-[60vw] py-4'>
+                <GamificationProfile />
+                <AchievementExpand items={items1}/>
+                <GamificationAchievements achievements={achievements}/>
+            </div>
+            <div className='w-[100%]'>
+                <Leaderboard cardInfo={cardInfo} />
+            </div>
+
+        </div>
+    
     </>
   )
 }
 
-export default Home
+export default Gamification

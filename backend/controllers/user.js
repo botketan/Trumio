@@ -28,7 +28,7 @@ export const signup = async (req, res) => {
 export const getUser = async (req, res) => {
     const { userId } = req.body;
     try {
-        const userget = await user.findById(userId);
+        const userget = await user.findById(userId).populate('projects');
         if (!userget) {
             res.status(404).send("User not found");
         }

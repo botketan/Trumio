@@ -42,8 +42,11 @@ export default function Post() {
   // Creates a new editor instance.
   const editor = useBlockNote({
     slashMenuItems: customSlashMenuItemList,
+    onEditorContentChange: (editor) => {
+      console.log(JSON.stringify(editor.topLevelBlocks));
+    }
   });
-
+  console.log(editor);
   // Renders the editor instance.
   return <BlockNoteView editor={editor} />;
 }
