@@ -11,15 +11,12 @@ const userSchema = mongoose.Schema({
       },
     userName: {
         type: String,
-        required: true,
       },
     position: {
         type: String,
-        required: true,
     },
     college: {
         type: String,
-        required: true,
     },
     icon: {
         type: String,
