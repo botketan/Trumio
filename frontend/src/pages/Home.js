@@ -8,6 +8,7 @@ import GamificationAchievements from '../components/GamificationAchievements'
 import GamificationProfile from '../components/GamificationProfile'
 import NoteList from '../components/noteList/noteList'
 import Leaderboard from '../components/Leaderboard/Leaderboard.js'
+import NotesComponent from '../components/NotesComponent/NotesComponent.js'
 
 function Home() {
   const cardInfo = [
@@ -145,6 +146,24 @@ function Home() {
             points: 100
         }
     ]
+    const Noteslist=[
+      {
+          title:"Exploring ML",
+          description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
+      },
+      {
+        title:"Exploring ML",
+        description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
+    },
+    {
+        title:"Exploring ML",
+        description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
+    },
+    {
+      title:"Exploring ML",
+      description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
+    },
+    ]
   return (
     <>
         <Mentor /> 
@@ -157,6 +176,7 @@ function Home() {
         <NoteList/>
         <AchievementExpand items={items1} />
          <Leaderboard cardInfo={cardInfo} />
+         <NotesComponent noteslist={Noteslist}/>
     </>
   )
 }
