@@ -3,11 +3,10 @@ import './Achievements.css';
 import { Carousel } from '@heathmont/moon-core-tw';
 import Achievements from './Achievements.js';
 
+
 const AchievementCarousel = ({ items }) => {
     return (
         <Carousel>
-        {() => (
-          <>
             <Carousel.Reel>
             {items.map((item, index) => (
                 <Achievements
@@ -21,8 +20,7 @@ const AchievementCarousel = ({ items }) => {
                 />
             ))}
             </Carousel.Reel>
-          </>
-        )}
+
       </Carousel>
     );
 }
