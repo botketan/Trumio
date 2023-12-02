@@ -4,6 +4,7 @@ import Post from '../components/Post'
 import AchievementCarousel from '../components/Crousel_Achievements/AchievementCarousel'
 import AchievementExpand from '../components/Crousel_Achievements/AchievementExpand'
 import ProfileCard from '../components/ProfileCard'
+import NoteList from '../components/noteList/noteList'
 
 function Home() {
     const cardObject = {
@@ -104,6 +105,8 @@ function Home() {
         education:"IIT Guwahati",
         tier:"Pioneer",
         sparks:574896,
+        advanceTowards:"Visionary",
+        points:"350",
       }
   return (
     <>
@@ -112,6 +115,7 @@ function Home() {
         <AchievementCarousel items={items1} />
         
         <ProfileCard props={props}/>
+        <NoteList/>
         <AchievementExpand items={items1} />
     </>
   )
