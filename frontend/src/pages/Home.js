@@ -3,6 +3,8 @@ import Mentor from './Mentor'
 import Post from '../components/Post'
 import AchievementCarousel from '../components/Crousel_Achievements/AchievementCarousel'
 import ProfileCard from '../components/ProfileCard'
+import GamificationAchievements from '../components/GamificationAchievements'
+import GamificationProfile from '../components/GamificationProfile'
 
 function Home() {
     const cardObject = {
@@ -89,9 +91,31 @@ function Home() {
         tier:"Pioneer",
         sparks:574896,
       }
+    const achievements= [
+        {
+            title: "Hello",
+            date: "12/12/12",
+            description: "Hello",
+            points: 100
+        },
+        {
+            title: "Hello",
+            date: "12/12/12",
+            description: "Hello",
+            points: 100
+        },
+        {
+            title: "Hello",
+            date: "12/12/12",
+            description: "Hello",
+            points: 100
+        }
+    ]
   return (
     <>
         <Mentor /> 
+        <GamificationAchievements achievements={achievements} />
+        <GamificationProfile />
         <Post /> 
         <AchievementCarousel items={items1} /> 
         <ProfileCard props={props}/>
