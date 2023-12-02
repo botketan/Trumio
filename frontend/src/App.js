@@ -1,6 +1,8 @@
 import logo from './logo.svg';
-// import './App.css';
-import Post from './components/Post';
+import './App.css';
+import Post from './components/Post.js';
+import Navbar from './components/Navbar.js';
+import { BrowserRouter as Router,Route, Switch } from 'react-router-dom';
 import Achievements from "./components/Crousel_Achievements/Achievements";
 import AchievementCarousel from "./components/Crousel_Achievements/AchievementCarousel"
 import MentorCard from './components/MentorCard';
@@ -93,6 +95,9 @@ function App() {
   }
   return (
     <>
+    <Router>
+        <Navbar/>
+    </Router>
     <AchievementCarousel items={items1} />
     <Post />
     <MentorCard cardData={cardObject} />
