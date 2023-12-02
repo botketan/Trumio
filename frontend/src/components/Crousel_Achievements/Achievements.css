@@ -12,8 +12,11 @@
   }
   
   .image-container {
-    height: 5vw;
-    width: 5vw;
+    height: 56px;
+    width: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .image-container img {
@@ -55,9 +58,9 @@
     position: relative;
     border: 1px solid gray;
     border-radius: 12px;
-    padding: 20px 20px 20px 20px;
+    padding: 16px 16px 16px 16px;
     height: 20vh;
-    width:30vw;
+    width:25vw;
   }
 
 

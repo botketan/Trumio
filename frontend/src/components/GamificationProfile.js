@@ -10,7 +10,7 @@ const GamificationProfile = () => {
   // Profile component
   const Profile = ({ name, handle, avatar }) => (
     <div className="flex flex-col items-center space-x-4">
-      <img src={avatar} alt={`${name}'s avatar`} className="w-10 h-10 rounded-full" />
+      <img src={avatar} alt={`${name}'s avatar`} className="w-16 h-16 rounded-full" />
       <div>
         <div className="font-semibold">{name}</div>
         <div className="text-sm text-gray-500">{handle}</div>
@@ -27,11 +27,11 @@ const GamificationProfile = () => {
   );
 
   return (
-    <div className="p-6 bg-white rounded-2xl shadow-xl flex items-center justify-between">
+    <div className="p-6 bg-white rounded-2xl shadow-lg flex items-center justify-between">
       <Profile 
         name="Vidya Sagar" 
         handle="@vidya2242" 
-        avatar="path-to-your-avatar-image" // Replace with actual image path
+        avatar="https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" // Replace with actual image path
       />
       <Card 
         title="Pioneer" 

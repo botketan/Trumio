@@ -8,7 +8,7 @@ const AchievementExpand = ({ items }) => {
     const visibleItems = isExpanded ? items : items.slice(0, 4);
 
     return (
-        <div className="relative bg-white rounded-xl border border-neutral-200" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', width: '65vw', padding: '20px 20px 20px 20px' }}>
+        <div className="relative bg-white rounded-xl shadow-lg border border-neutral-200" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', width: '100%', padding: '20px 20px 20px 20px' }}>
             <div className="w-[816px] h-8 pl-2 justify-between items-center inline-flex" style={{paddingBottom : "10px"}}>
                 <div className="text-black text-base font-normal font-['DM Sans'] leading-normal">Your Badges</div>
                 <div className="px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
