@@ -4,6 +4,7 @@ import Post from './components/Post';
 import Achievements from "./components/Crousel_Achievements/Achievements";
 import AchievementCarousel from "./components/Crousel_Achievements/AchievementCarousel"
 import MentorCard from './components/MentorCard';
+import ProfileCard from './components/ProfileCard';
 
 function App() {
   const cardObject = {
@@ -80,11 +81,22 @@ function App() {
       image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
     }
   ]
+
+  const props={
+    name:"Manas Roy",
+    userId:"@Manas24",
+    // profilePic:"helloWorld",
+    work:"Software Developer",
+    education:"IIT Guwahati",
+    tier:"Pioneer",
+    sparks:574896,
+  }
   return (
     <>
     <AchievementCarousel items={items1} />
     <Post />
     <MentorCard cardData={cardObject} />
+    <ProfileCard props={props}/>
     </>
   );
 }
