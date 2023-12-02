@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import MentorCard from "../components/Mentor/MentorCard";
 
+
 // useEffect(() => {
 //   window.scrollTo(0, 0)
 // }, [])
