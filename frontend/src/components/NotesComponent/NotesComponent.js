@@ -3,7 +3,7 @@ import NotesCard from "./NotesCard";
 
 export default function NotesComponent({noteslist}) {
     return (
-    <div className="container mx-auto my-auto w-[816px] h-[478px]">
+    <div className="container mx-auto my-auto h-[478px] bg-white rounded-xl shadow border border-neutral-200 p-4">
             <div className="w-[816px] h-8 pl-2 justify-between items-center inline-flex">
                 <div className="text-zinc-600 text-base font-normal font-['DM Sans'] ">Notes</div>
                     <div className="justify-start items-center gap-2 flex">
