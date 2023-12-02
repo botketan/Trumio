@@ -2,6 +2,7 @@ import React from 'react'
 import Mentor from './Mentor'
 import Post from '../components/Post'
 import AchievementCarousel from '../components/Crousel_Achievements/AchievementCarousel'
+import AchievementExpand from '../components/Crousel_Achievements/AchievementExpand'
 import ProfileCard from '../components/ProfileCard'
 
 function Home() {
@@ -21,62 +22,77 @@ function Home() {
           heading:"hello",
           description:"hello",
           status:"hello",
+          
           image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
+          sparks:"25 Sparks",
+        },{
+          heading:"hello",
+          description:"hello",
+          status:"hello",
+          
+          image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
+          sparks:"25 Sparks",
+        },{
+          heading:"hello",
+          description:"hello",
+          status:"hello",
+          
+          image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
+          sparks:"25 Sparks",
         },{
           heading:"hello",
           description:"hello",
           status:"hello",
           image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
+          sparks:"25 Sparks",
         },{
           heading:"hello",
           description:"hello",
           status:"hello",
           image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
+          sparks:"25 Sparks",
         },{
           heading:"hello",
           description:"hello",
           status:"hello",
           image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
+          sparks:"25 Sparks",
         },{
           heading:"hello",
           description:"hello",
           status:"hello",
           image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
+          sparks:"25 Sparks",
         },{
           heading:"hello",
           description:"hello",
           status:"hello",
           image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
+          sparks:"25 Sparks",
         },{
           heading:"hello",
           description:"hello",
           status:"hello",
           image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
+          sparks:"25 Sparks",
         },{
           heading:"hello",
           description:"hello",
           status:"hello",
           image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
+          sparks:"25 Sparks",
         },{
           heading:"hello",
           description:"hello",
           status:"hello",
           image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
+          sparks:"25 Sparks",
         },{
           heading:"hello",
           description:"hello",
           status:"hello",
           image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
-        },{
-          heading:"hello",
-          description:"hello",
-          status:"hello",
-          image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
-        },{
-          heading:"hello",
-          description:"hello",
-          status:"hello",
-          image:"https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg",
+          sparks:"25 Sparks",
         }
       ]
     
@@ -93,8 +109,10 @@ function Home() {
     <>
         <Mentor /> 
         <Post /> 
-        <AchievementCarousel items={items1} /> 
+        <AchievementCarousel items={items1} />
+        
         <ProfileCard props={props}/>
+        <AchievementExpand items={items1} />
     </>
   )
 }
