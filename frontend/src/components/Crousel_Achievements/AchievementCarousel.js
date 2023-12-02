@@ -1,10 +1,6 @@
 import React from 'react';
 import './Achievements.css';
 import { Carousel } from '@heathmont/moon-core-tw';
-import {
-  ControlsChevronLeftSmall,
-  ControlsChevronRightSmall,
-} from '@heathmont/moon-icons-tw';
 import Achievements from './Achievements.js';
 
 const AchievementCarousel = ({ items }) => {
@@ -12,9 +8,6 @@ const AchievementCarousel = ({ items }) => {
         <Carousel>
         {() => (
           <>
-            <Carousel.LeftArrow>
-              <ControlsChevronLeftSmall />
-            </Carousel.LeftArrow>
             <Carousel.Reel>
             {items.map((item, index) => (
                 <Achievements
@@ -26,9 +19,6 @@ const AchievementCarousel = ({ items }) => {
                 />
             ))}
             </Carousel.Reel>
-            <Carousel.RightArrow>
-              <ControlsChevronRightSmall />
-            </Carousel.RightArrow>
           </>
         )}
       </Carousel>
