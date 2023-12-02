@@ -25,6 +25,11 @@ const mentorSchema = mongoose.Schema({
             enum:['Development','Design','Marketing','Business','Data Science','Other']
         }
     ],
+    availability:[
+        {
+            type:Date
+        }
+    ]
 });
 
 export const mentor = mongoose.model("mentor", mentorSchema);

@@ -91,3 +91,26 @@ export const updateIcon = async (req, res) => {
         res.status(409).json({ message: error.message });
     }
 };
+
+export const updateAvailability = async (req, res) => {
+    const {mentorId,availability} = req.body;
+    console.log(availability);
+    try {
+        const newMentor = await mentor.findById(mentorId);
+        if(!newMentor){
+            return res.status(404).send("Mentor not found");
+        }
+        if(!newMentor.availability){
+            newMentor.availability = [];
+        }
+        await availability.forEach((item) => {
+            console.log(new Date(item));
+            newMentor.availability.push(new Date(item));
+        });
+        console.log(newMentor.availability);
+        await newMentor.save();
+        return res.status(201).json(newMentor);
+    } catch (error) {
+        res.status(409).json({ message: error.message });
+    }
+};

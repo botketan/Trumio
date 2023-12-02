@@ -10,6 +10,7 @@ import userRouter from "./routes/userRoutes.js";
 import postRouter from "./routes/postRoutes.js";
 import mentorRouter from "./routes/mentorRoutes.js";
 import communityRouter from "./routes/communityRoutes.js";
+import projectRouter from "./routes/projectRoutes.js";
 dotenv.config();
 
 let db = await connectDB();
@@ -27,7 +28,7 @@ app.use('/user', userRouter);
 app.use('/post', postRouter);
 app.use('/community', communityRouter);
 app.use('/mentor', mentorRouter);
-
+app.use('/project', projectRouter);
 
 app.listen(process.env.PORT || 8080, () => {
   console.log(`Listening on port ${process.env.PORT || 8080}`);
