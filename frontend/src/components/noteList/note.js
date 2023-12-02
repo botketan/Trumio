@@ -1,7 +1,7 @@
 import { Other3DotsHorizontal } from '@heathmont/moon-icons-tw';
 const note=({props})=>{
     return <>
-        <div className="container p-4 border-2 py-2 rounded-md" style={{height:"66px",width:"330px"}}>
+        <div className="container p-4 border-2 py-2 rounded-md mb-2" style={{height:"66px",width:"330px"}}>
             <div className='flex justify-between items-center overflow-hidden'>
                 <div>
                     <div className='overflow-hidden' style={{height:"24px", width:"214x"}}>
