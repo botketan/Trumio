@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dropdown Menus with Checkboxes</title>
+        <link href="${styleUri}" rel="stylesheet">
+        <script src="${scriptUri}" defer></script>
+    </head>
+    <body>
+        <div class="dropdown" id="projects">
+            <button class="dropbtn">Project</button>
+            <div class="dropdown-content">
+                <label><input type="checkbox"> Project-1</label>
+            </div>
+        </div>
+    
+        <ul class="milestones-list">
+            <li class="milestone-dropdown">
+                <div class="dropdown">
+                    <button class="dropbtn">Milestone-1</button>
+                    <div class="dropdown-content">
+                        <label>
+                            <input type="checkbox" onclick="handleCheckbox('Milestone-1 Option 1')">Finalise App Wireframes
+                        </label>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    
+    </body>
+    </html>

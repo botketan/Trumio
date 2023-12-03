@@ -1,6 +1,7 @@
 
 import chats from '../models/chats.js';
 import OpenAI from "openai";
+import { user } from '../models/user.js';
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -10,6 +11,12 @@ let mesg= [{role: "system", content: "You are a master prompt genertator for oth
 
 
 export const createChat=  async (req, res) => {
+    const {userId} = req.body;
+    const userExisting = await user.findById(userId);
+    if(!userExisting)
+    {
+        return res.status(404).json({message:"User Not found"});
+    }
     mesg.push({ role: "user", content: String(req.body.botname) });
     const chatCompletion = await openai.chat.completions.create({
         messages: mesg,
@@ -19,12 +26,19 @@ export const createChat=  async (req, res) => {
     console.log(chatCompletion);
     let newchat = new chats();
     newchat.messages.push({role: "system", content: chatCompletion.choices[0].message.content});
-    newchat.save();
+    newchat.botname=String(req.body.botname);
+    await newchat.save();
+    if(!userExisting.chatIds)
+    {
+        userExisting.chatIds=[];
+    }
+    userExisting.chatIds.push(newchat._id);
+    await userExisting.save();
     res.status(200).json({message: chatCompletion.choices[0].message.content, id: newchat._id});
   };
 
 export const postChat = async (req, res) => {
-      let chat = await chats.findById(req.params.id);
+      let chat = await chats.findById(req.body.chatId);
       let mes= chat.messages;
       mes = mes.map((m)=>{
           return {
@@ -42,5 +56,7 @@ export const postChat = async (req, res) => {
     chat.save();
     res.status(200).json({message: chatCompletion.choices[0].message.content});
 };
+
+
 
 

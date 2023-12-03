@@ -1,11 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import MentorCard from "../components/MentorCard";
-
-// useEffect(() => {
-//   window.scrollTo(0, 0)
-// }, [])
+import MentorCard from "../components/Mentor/MentorCard";
 
 function Mentor() {
     const [selected,setSelected]=useState("")

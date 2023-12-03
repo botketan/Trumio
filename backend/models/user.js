@@ -12,6 +12,9 @@ const userSchema = mongoose.Schema({
     userName: {
         type: String,
       },
+    name: {
+        type: String,
+      },
     position: {
         type: String,
     },
@@ -49,6 +52,12 @@ const userSchema = mongoose.Schema({
           ref: 'project'
         }
       ],
+      chatIds:[
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'chats'
+        }
+      ]
 });
 
 export const user = mongoose.model("user", userSchema);

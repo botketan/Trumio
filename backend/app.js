@@ -11,6 +11,7 @@ import postRouter from "./routes/postRoutes.js";
 import mentorRouter from "./routes/mentorRoutes.js";
 import communityRouter from "./routes/communityRoutes.js";
 import projectRouter from "./routes/projectRoutes.js";
+import cors from "cors";
 dotenv.config();
 
 let db = await connectDB();
@@ -20,6 +21,7 @@ const getAdminRouterPromise= getAdminRouter(db);
 app.use(cookieParser('secret'));
 app.use(morgan("dev"));
 app.use(bodyParser.json());
+app.use(cors());
 
 // Routes
 app.use('/admin', getAdminRouterPromise);
