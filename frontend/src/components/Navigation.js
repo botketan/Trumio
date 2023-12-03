@@ -12,13 +12,13 @@ const Navigation = ({ click, setClick }) => {
   };
 
   return (
-    <nav className="flex items-center justify-between my-1 shadow-sm shadow-gray-300 bg-white-800 text-gray-500 p-4">
-      <img
-        className="w-10 ml-5"
-        src="C:\Users\PRIYANSH MATHUR\Downloads\download.png"
-        alt="image"
-      />
+    <nav className="flex items-center justify-between my-1 shadow-lg bg-white-800 text-gray-500 p-2">
       <div className="flex justify-start items-center">
+        <img
+          className="w-[120px] ml-5 h-12"
+          src="/trumio_logo.png" // Replace with actual image path
+          alt="image"
+        />
         <span
           to="/Dashboard"
           onClick={() => handleClick("Dashboard")}
@@ -128,16 +128,17 @@ const Navigation = ({ click, setClick }) => {
             <NotificationsBell className="text-moon-24" />
           </span>
         </span>
-      </div>
-      <div className=" justify-end items-center">
+      
+      <div className="flex flex-col gap-0 justify-center items-end">
         <h4 className="justify-start">Priyansh Mathur</h4>
         <span className="text-xs justify-end"> Noob </span>
       </div>
       <img
-        className="ml-4 rounded-full"
-        src="C:\Users\PRIYANSH MATHUR\Downloads\download.png"
+        className="ml-4 rounded-full h-10 w-10"
+        src="https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg"
         alt="image"
       />
+      </div>
     </nav>
   );
 };

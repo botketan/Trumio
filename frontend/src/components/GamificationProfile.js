@@ -1,5 +1,6 @@
 import { GenericInfo } from '@heathmont/moon-icons-tw';
 import React from 'react';
+import "./Gamification.css"
 // import 'tailwindcss/tailwind.css'; // make sure TailwindCSS is imported
 
 const GamificationProfile = () => {
@@ -10,9 +11,9 @@ const GamificationProfile = () => {
 
   // Profile component
   const Profile = ({ name, handle, avatar }) => (
-    <div className="flex flex-col items-center space-x-4">
-      <img src={avatar} alt={`${name}'s avatar`} className="w-16 h-16 rounded-full" />
-      <div>
+    <div className="flex flex-col justify-center items-center space-x-4 mt-[-50px]">
+      <img src={avatar} alt={`${name}'s avatar`} className="w-18 ml-5 h-18 rounded-full border-4 border-white" />
+      <div className='flex flex-col items-center justify-center'>
         <div className="font-semibold">{name}</div>
         <div className="text-sm text-gray-500">{handle}</div>
       </div>
@@ -21,8 +22,8 @@ const GamificationProfile = () => {
 // bg-gradient-to-r from-blue-200 via-blue-100 to-blue-50
   // Card component for tier and sparks
   const Card = ({ title, value, text }) => (
-    <div className='h-28 border border-neutral-200 border-solid rounded-xl flex flex-col items-start'>
-        <div className={`w-56 h-20 px-4 pt-2.5 pb-3.5 ${gradientBlue} rounded-xl border border-blue-300 border-opacity-40 justify-between items-center inline-flex gap-4`}>
+    <div className='w-56 h-24 border border-neutral-200 border-solid rounded-xl flex flex-col items-start'>
+        <div className={`w-56 h-20 ml-[-12px] mt-[-12px] px-4 pt-2.5 pb-3.5 badge rounded-xl border border-blue-300 border-opacity-40 justify-between items-center inline-flex gap-4`}>
             <div className='flex flex-col gap-2'>
                 <div className="text-sm">{title}</div>
                 <div className='inline-flex gap-2'>
@@ -41,11 +42,12 @@ const GamificationProfile = () => {
   );
 
   return (
-    <div className="p-6 bg-white rounded-2xl shadow-lg flex items-center justify-between">
+    <div className="p-6 bg-white rounded-2xl border border-neutral-200 shadow-lg flex items-center justify-between">
+
       <Profile 
         name="Vidya Sagar" 
         handle="@vidya2242" 
-        avatar="https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg" // Replace with actual image path
+        avatar="/Avatar.png" // Replace with actual image path
       />
       <Card 
         title="Tier" 

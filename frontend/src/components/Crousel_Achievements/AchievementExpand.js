@@ -29,8 +29,8 @@ const AchievementExpand = ({ items }) => {
                     />
                 </div>
             ))}
-            <div className={isExpanded ? "w-[100%] h-[0px] left-0 top-[96%] absolute border border-neutral-200" : "w-[100%] h-[0px] left-0 top-[88%] absolute border border-neutral-200"}></div>
             <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+            <div className={"w-[100%] h-[0px] left-0 bottom-[56px] absolute border border-neutral-200 flex items-center justify-center"}></div>
                 <button onClick={() => setIsExpanded(!isExpanded)}>
                 <div className="text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">{isExpanded ? 'Collapse' : 'Expand'}</div>
                 </button>

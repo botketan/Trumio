@@ -11,8 +11,8 @@ const AchievementItem = ({ title, description, date, points }) => (
         <div className="text-sm text-gray-500">{description}</div>
       </div>
     </div>
-    <div className='flex-col'>
-    <div className="text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">{points} Sparks</div>
+    <div className='flex-col justify-end items-end'>
+        <div className="text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal flex justify-end">{points} Sparks</div>
         <div className="text-sm text-gray-500 self-start md:self-center">{date}</div>
     </div>
   </div>

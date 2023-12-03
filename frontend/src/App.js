@@ -10,6 +10,7 @@ import ProfileCard from './components/ProfileCard';
 import Mentor from './pages/Mentor.js';
 import Home from './pages/Home.js';
 import Notes from './pages/Notes.js';
+import Gamification from './pages/Gamification.js';
 
 function App() {
   
@@ -17,11 +18,11 @@ function App() {
     <>
     <Router>
       <Routes>
-        <Route path="/" element={<Notes />} />
-        {/* <Route exact path="/mentor" element={<Mentor />} />
-        <Route exact path="/development" element={<Mentor />} />
-        <Route exact path="/design" element={<AchievementCarousel items={items1} />} />
-        <Route exact path="/marketing" element={<ProfileCard props={props}/>} /> */}
+        <Route path="/" element={<Home />} />
+        {/* {/* <Route exact path="/mentor" element={<Mentor />} /> */}
+        <Route exact path="/Notes" element={<Notes />} />
+        <Route exact path="/Gamification" element={<Gamification  />} />
+        <Route exact path="/Mentor" element={<Mentor />} /> 
       </Routes>
     
     </Router>

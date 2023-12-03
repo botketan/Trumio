@@ -169,7 +169,7 @@ function Home() {
     <>
        
         <Mentor /> 
-        <Navigation/>
+        <Navigation />
         <GamificationAchievements achievements={achievements} />
         <GamificationProfile />
         <Post /> 

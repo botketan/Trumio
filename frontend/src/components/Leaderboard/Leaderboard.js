@@ -1,12 +1,13 @@
 import LeaderboardCards from "./LeaderboardCards";
 import "./Leaderboard.css"
+import { Button } from "@heathmont/moon-core-tw";
 const Leaderboard = ({ cardInfo }) => {
     return (
        <>
             <div className="container text-center mx-auto my-4 h-1/2 px-2 py-2 shadow-xl rounded-md border-2 border-gray-200 overflow-y-scroll">
             <div className="flex justify-between items-center ">
                 <h3 className="px-5">Leaderboard</h3>
-                <button className="button text-blue-600 font-semibold flex items-center bg-blue-200 px-6 py-3 rounded-md cursor-pointer ">Expand</button>
+                <Button className="button text-blue-600 font-semibold bg-blue-100 px-3 py-2 rounded-xl cursor-pointer ">Expand</Button>
             </div>
 
 
