@@ -2,6 +2,7 @@ import {
   BlockNoteView,
   getDefaultReactSlashMenuItems,
   ReactSlashMenuItem,
+  lightDefaultTheme,
   useBlockNote,
 } from "@blocknote/react";
 import "@blocknote/core/style.css";
@@ -38,15 +39,40 @@ const customSlashMenuItemList = [
   insertEmbedPostItem,
 ];
 
+function traverse(blocks){
+  let s ="";
+  if (Array.isArray(blocks) && blocks.length) {
+    blocks.map((block)=>{
+      console.log(block);
+      if(block.content)
+      {
+        block.content.forEach((content) => {
+          s+=content.text +" ";
+        });
+      }
+      s+= traverse(block.children);
+    });
+    return s;
+  }
+  return "";
+
+}
+
 export default function Post() {
   // Creates a new editor instance.
   const editor = useBlockNote({
     slashMenuItems: customSlashMenuItemList,
     onEditorContentChange: (editor) => {
-      console.log(JSON.stringify(editor.topLevelBlocks));
+      // editor.forEachBlock((block) => {
+      //   block.content.forEach((content) => {
+      //     console.log(content.text)
+      //   });
+      // });
+      console.log(traverse(editor.topLevelBlocks))
+      console.log(editor.topLevelBlocks);
     }
   });
   console.log(editor);
   // Renders the editor instance.
-  return <BlockNoteView editor={editor} />;
+  return <BlockNoteView editor={editor}  theme={lightDefaultTheme} className="h-[100%] w-[100%]" />;
 }
