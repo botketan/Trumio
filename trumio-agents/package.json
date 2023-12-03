@@ -18,6 +18,11 @@
               "id": "CustomContainer",
               "title": "Trumio Chat Bot",
               "icon": "media/icon.svg"
+          },
+          {
+              "id": "MileStoneTrack",
+              "title": "Milestone Tracker",
+              "icon": "media/icon.svg"
           }
       ]
     },
@@ -29,6 +34,14 @@
               "name": "Chat",
               "canToggleVisibility": true
           }
+      ],
+      "MileStoneTrack": [
+        {
+            "type": "webview",
+            "id": "mileStoneView",
+            "name": "Milestone Tracker",
+            "canToggleVisibility": true
+        }
       ]
     },
     "commands": [{

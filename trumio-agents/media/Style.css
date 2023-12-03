@@ -1,0 +1,27 @@
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+nav{
+    background: #55d6aa;
+}
+
+nav ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    justify-content: space-evenly;
+}
+
+nav li{
+    display: inline-block;
+    text-align: center;
+    padding: 15px;
+}
+
+nav a{
+    color:black;
+    text-decoration: none;
+    text-transform: uppercase;
+}
