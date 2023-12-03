@@ -9,6 +9,7 @@ import MentorCard from './components/Mentor/MentorCard.js';
 import ProfileCard from './components/ProfileCard';
 import Mentor from './pages/Mentor.js';
 import Home from './pages/Home.js';
+import ExpertAgents from './components/expertAgents.js';
 import Notes from './pages/Notes.js';
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
     <>
     <Router>
       <Routes>
-        <Route path="/" element={<Notes />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/expert" element={<ExpertAgents/>} />
         {/* <Route exact path="/mentor" element={<Mentor />} />
         <Route exact path="/development" element={<Mentor />} />
         <Route exact path="/design" element={<AchievementCarousel items={items1} />} />
