@@ -12,6 +12,9 @@ const userSchema = mongoose.Schema({
     userName: {
         type: String,
       },
+    name: {
+        type: String,
+      },
     position: {
         type: String,
     },
