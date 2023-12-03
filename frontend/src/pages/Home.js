@@ -9,6 +9,7 @@ import GamificationProfile from '../components/GamificationProfile'
 import NoteList from '../components/noteList/noteList'
 import Leaderboard from '../components/Leaderboard/Leaderboard.js'
 import NotesComponent from '../components/NotesComponent/NotesComponent.js'
+import Navigation from '../components/Navigation.js'
 
 function Home() {
   const cardInfo = [
@@ -166,7 +167,9 @@ function Home() {
     ]
   return (
     <>
+       
         <Mentor /> 
+        <Navigation/>
         <GamificationAchievements achievements={achievements} />
         <GamificationProfile />
         <Post /> 
