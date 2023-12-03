@@ -39,6 +39,7 @@ dependencies:
   moon_design:
     git:
       url: https://github.com/coingaming/moon_flutter.git
+  dio: ^5.4.0
 
 dev_dependencies:
   flutter_test:
