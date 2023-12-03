@@ -2,18 +2,27 @@ const vscode = require("vscode");
 const generate = require("./API/LLMChain"); // For the Chat Bot
 
 function activate(context) {
-  const provider = new ChatViewProvider(context.extensionUri); // Link Chat View Provider
+  const chatprovider = new ChatViewProvider(context.extensionUri); // Link Chat View Provider
 
   context.subscriptions.push(
     vscode.window.registerWebviewViewProvider(
       ChatViewProvider.viewType,
-      provider
+      chatprovider
+    )
+  );
+
+  const msprovider = new MileStoneProvider(context.extensionUri);
+
+  context.subscriptions.push(
+    vscode.window.registerWebviewViewProvider(
+      MileStoneProvider.viewType,
+      msprovider
     )
   );
 
     // Code Explanation Functionality
 
-  let disposable = vscode.commands.registerCommand(
+  let disposable1 = vscode.commands.registerCommand(
     "trumio.CodeExplanation",
     async function () {
       //Code Explanation View
@@ -37,7 +46,7 @@ function activate(context) {
         const gpt_error = await generate(
           `Let me know if there are any syntactical errors in this peice of code : ${selectedText}`
         );
-        const webstyleUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(context.extensionUri, 'media', 'webStyle.css'));
+        const webstyleUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(context.extensionUri, 'media','web','webStyle.css'));
         // console.log(webstyleUri);
         panel.webview.html = getWebviewContent(gpt_summary, gpt_error, webstyleUri);
       }
@@ -71,7 +80,7 @@ function activate(context) {
     }
   );
 
-  context.subscriptions.push(disposable);
+  context.subscriptions.push(disposable1);
   context.subscriptions.push(disposable2);
 }
 
@@ -79,8 +88,6 @@ function activate(context) {
 
 function getWebviewContent(gpt_summary, gpt_error, webstyleUri) {
   // HTML for webview
-
-    
 
     return `<!DOCTYPE html>
     <html lang="en">
@@ -200,10 +207,10 @@ class ChatViewProvider {
     // Link Script and Style files.
 
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "script.js")
+      vscode.Uri.joinPath(this._extensionUri, "media",'bot',"botScript.js")
     );
     const styleUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "botStyle.css")
+      vscode.Uri.joinPath(this._extensionUri, "media",'bot',"botStyle.css")
     );
 
     const nonce = getNonce();
@@ -248,6 +255,91 @@ class ChatViewProvider {
 }
 
 ChatViewProvider.viewType = "chatView";
+
+// MILE STONES TRACKER
+
+class MileStoneProvider {
+  constructor(extensionUri) {
+    this._extensionUri = extensionUri;
+  }
+
+  resolveWebviewView(webviewView, context, _token) {
+    this._view = webviewView;
+    webviewView.webview.options = {
+      enableScripts: true,
+      localResourceRoots: [vscode.Uri.joinPath(this._extensionUri, "media")], // Path
+    };
+
+    webviewView.webview.html = this.getMSTrackerWebview(webviewView.webview); // Link HTML
+
+    webviewView.webview.onDidReceiveMessage(
+      // Linking frontend to backend (If webview got some message)
+      async (message) => {
+        switch (message.command) {
+          case "submit":
+            console.log(`Message from You: ${message.text}`);
+
+            const gpt = await generate(message.text); // GPT Response (Promise)
+            webviewView.webview.postMessage({command:"response",text:gpt}); // Send GPT Response to webview
+            console.log(`Message from GPT : ${gpt}`);
+            break;
+        }
+      },
+      undefined,
+      context.subscriptions
+    );
+  }
+
+  getMSTrackerWebview(webview) {
+    // HTML for the chatbot's view
+
+    // Link Script and Style files.
+
+    const scriptUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "media","milestone","msScript.js")
+    );
+    const styleUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "media","milestone","msStyle.css")
+    );
+
+    const nonce = getNonce();
+
+    return `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dropdown Menus with Checkboxes</title>
+        <link href="${styleUri}" rel="stylesheet">
+        <script nonce="${nonce}" src="${scriptUri}"></script>
+    </head>
+    <body>
+        <div class="dropdown" id="projects">
+            <button class="dropbtn">Project</button>
+            <div class="dropdown-content">
+                <label><input type="checkbox"> Project-1</label>
+            </div>
+        </div>
+    
+        <ul class="milestones-list">
+            <li class="milestone-dropdown">
+                <div class="dropdown">
+                    <button class="dropbtn">Milestone-1</button>
+                    <div class="dropdown-content">
+                        <label>
+                            <input type="checkbox" onclick="handleCheckbox('Milestone-1 Option 1')">Finalise App Wireframes
+                        </label>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    
+    </body>
+    </html>`;
+  }
+}
+
+MileStoneProvider.viewType = "mileStoneView";
 
 function getNonce() {
   // For security

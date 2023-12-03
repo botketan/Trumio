@@ -1,0 +1,108 @@
+/* styles.css */
+
+/* Style the projects dropdown */
+#projects .dropdown {
+    position: relative;
+    display: none;
+    padding: 12px 16px;
+    justify-content: space-between;
+    align-items: center;
+    height: 66px; /* Set the height to 66px */
+    border-radius: 4px;
+    border: 1px solid var(--main-beerus, #E2E2E2);
+    background: var(--main-gohan, #FFF);
+}
+
+/* Style the dropdown button */
+#projects .dropbtn {
+    background-color: var(--main-gohan, #FFF);
+    color: black;
+    padding: 12px 16px; /* Reset padding */
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Style the dropdown content (hidden by default) */
+#projects .dropdown-content {
+    display: none;
+    background-color: var(--main-gohan, #FFF);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    width: 100%; /* Full width */
+}
+
+/* Style the dropdown options */
+#projects .dropdown-content label {
+    display: block;
+    padding: 12px 16px;
+    cursor: pointer;
+    color: black;
+}
+
+/* Change color on hover */
+#projects .dropdown-content label:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+#projects:hover .dropdown-content {
+    display: block;
+}
+
+
+/* Style the milestones list */
+.milestones-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Style each dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    background-color: #E2E2E2;
+    border-radius: 8px;
+    margin: 10px; /* Black margin */
+}
+
+/* Style the dropdown button */
+.dropbtn {
+    background-color: #E2E2E2;
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #E2E2E2;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8px;
+}
+
+/* Style the dropdown options */
+.dropdown-content label {
+    display: block;
+    padding: 12px 16px;
+    cursor: pointer;
+    color: black;
+}
+
+/* Change color on hover */
+.dropdown-content label:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}

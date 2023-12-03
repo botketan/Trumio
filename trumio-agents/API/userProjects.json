@@ -1,0 +1,39 @@
+[
+    {
+        "title": "DevRev", 
+        
+        "description": "Build a website that can has a single button and a counter displayed on the screen. The only functionality of the button being that, when clicked, the counter increases by 1",
+        
+        "milestones":[
+            {
+                "title":"Foundations",
+                "progress":100,
+                "task":
+                [
+                    {"title":"Do the foundations",
+                    "iscompleted":true
+                    }
+                ]
+            }
+        ]
+    },
+
+    {
+        "title": "Trumio", 
+        
+        "description": "Build a website that can has a single button and a counter displayed on the screen. The only functionality of the button being that, when clicked, the counter increases by 1",
+        
+        "milestones":[
+            {
+                "title":"Frontend",
+                "progress":0,
+                "task":
+                [
+                    {"title":"Do the frontend",
+                    "iscompleted":false
+                    }
+                ]
+            }
+        ]
+    }
+]
