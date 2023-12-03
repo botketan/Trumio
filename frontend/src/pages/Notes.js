@@ -1,18 +1,39 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import NoteList from "../components/noteList/noteList.js";
 import Post from "../components/Post.js";
 import Navbar from "../components/Navbar.js";
 import { OtherRocket } from "@heathmont/moon-icons-tw";
 import AISuggestions from "../components/AISuggestions.js";
+import axios from "axios";
 
 export default function Notes() {
   const [heading, setHeading] = useState("ProdWizard");
+  useEffect(() => {
+    axios.post("http://localhost:5000/post/getByUserId",{
+        userId:"65645f987aa073e675de9071"
+    }).then((res) => {
+      console.log(res.data);
+      setPosts(res.data);
+    }).catch((err) => {
+        console.log(err);
+    });
+  }, []);
+  const [posts,setPosts] = useState([
+    {
+        title:"ProdWizard",
+        isPublished:true,
+    },
+    {
+        title:"helloWorld",
+        isPublished:true,
+    },
+  ]);
   return (
     <>
       <Navbar />
       <div className="flex flex-row px-16 py-4 container w-[100%] h-[100%] gap-5">
         <div className=" w-1/3 h-[100%]">
-            <NoteList />
+            <NoteList posts={posts}/>
         </div>
         <div className="container mx-auto my-auto h-[100%] shadow-xl border border-neutral-200 rounded-lg">
             <div className="h-[50px] w-[100%] p-4 border-neutral-200 flex gap-4 items-center" >

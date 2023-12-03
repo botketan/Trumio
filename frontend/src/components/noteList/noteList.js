@@ -1,13 +1,9 @@
 import { GenericPlus } from '@heathmont/moon-icons-tw';
 import Note from './note';
-const NoteList=()=>{
+const NoteList=({posts})=>{
 
     const createTrunote=()=>{
         
-    }
-    const props={
-        isPublished:true,
-        title:"PizzaWizard hello world my name is Manas me hu kon ho aap ",
     }
     return <>
         <div className="container mx-auto shadow-xl rounded-lg p-4 border-2 " style={{width:"360px",height:"616px"}}>
@@ -20,9 +16,9 @@ const NoteList=()=>{
                     </button>
                 </div>
             </div>
-            {/* map Notes here */}
-            <Note props={props}/>
-            <Note props={props}/>
+                {posts.map((post)=>{
+                    return <Note props={post}/>
+                })}
         </div>
     </>
 }

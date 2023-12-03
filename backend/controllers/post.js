@@ -53,7 +53,6 @@ const deletePostRecursive = async (post_id) => {
 export const create=async(req,res)=>{
     const {userId,community}=req.body;
     const parentPost = req.body.parentPost;
-
     try{
         const userExisted=await user.findById(userId);
         if(userExisted){
@@ -162,4 +161,14 @@ export const uploadIcon = async (req, res) => {
        );
    
     streamifier.createReadStream(req.file.buffer).pipe(cld_upload_stream);
+};
+
+export const getByUserId = async (req,res) =>{
+    const {userId} = req.body;
+    const userExisted=await user.findById(userId);
+    if(!userExisted){
+        return res.status(404).send("User not found");
+    }
+    const data = await post.find({userId:userExisted._id});
+    res.status(200).json(data);
 };
