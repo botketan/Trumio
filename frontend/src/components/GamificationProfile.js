@@ -4,7 +4,7 @@ import React from 'react';
 
 const GamificationProfile = () => {
   // Define your gradient colors and other style-related constants
-  const gradientBlue = 'bg-gradient-to-r from-blue-300 to-blue-100';
+  const gradientBlue = 'bg-gradient-to-r from-blue-200 via-blue-100 to-blue-50';
   const gradientPurple = 'bg-gradient-to-r from-purple-300 to-purple-100';
   const boxShadow = 'shadow-lg'; // Tailwind class for shadow
 
@@ -18,11 +18,11 @@ const GamificationProfile = () => {
       </div>
     </div>
   );
-
+// bg-gradient-to-r from-blue-200 via-blue-100 to-blue-50
   // Card component for tier and sparks
   const Card = ({ title, value, text }) => (
     <div className='h-28 border border-neutral-200 border-solid rounded-xl flex flex-col items-start'>
-        <div className={`w-56 h-20 px-4 pt-2.5 pb-3.5 bg-gradient-to-r from-blue-200 via-blue-100 to-blue-50 rounded-xl border border-blue-300 border-opacity-40 justify-between items-center inline-flex gap-4`}>
+        <div className={`w-56 h-20 px-4 pt-2.5 pb-3.5 ${gradientBlue} rounded-xl border border-blue-300 border-opacity-40 justify-between items-center inline-flex gap-4`}>
             <div className='flex flex-col gap-2'>
                 <div className="text-sm">{title}</div>
                 <div className='inline-flex gap-2'>
