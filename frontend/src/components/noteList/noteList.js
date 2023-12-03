@@ -1,6 +1,6 @@
 import { GenericPlus } from '@heathmont/moon-icons-tw';
 import Note from './note';
-const noteList=()=>{
+const NoteList=()=>{
 
     const createTrunote=()=>{
         
@@ -27,4 +27,4 @@ const noteList=()=>{
     </>
 }
 
-export default noteList;
+export default NoteList;
