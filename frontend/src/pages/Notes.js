@@ -7,13 +7,14 @@ import AISuggestions from "../components/AISuggestions.js";
 import axios from "axios";
 
 export default function Notes() {
-  const [heading, setHeading] = useState("ProdWizard");
+  const [heading, setHeading] = useState("Untitled");
+  const [post, setPost] = useState({});
   useEffect(() => {
     axios.post("http://localhost:5000/post/getByUserId",{
         userId:"65645f987aa073e675de9071"
     }).then((res) => {
-      console.log(res.data);
       setPosts(res.data);
+      setPost(res.data[0]);
     }).catch((err) => {
         console.log(err);
     });
@@ -47,7 +48,7 @@ export default function Notes() {
               </div>
             </div>
             <div className="w-[100%] h-[65vh] overflow-y-scroll p-2 border-b-2 border-t-2 border-neutral-200">
-                <Post />
+                <Post post={post} />
             </div>
             <div className="px-3">
               <AISuggestions />

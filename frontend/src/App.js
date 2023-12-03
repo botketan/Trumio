@@ -9,6 +9,7 @@ import MentorCard from './components/Mentor/MentorCard.js';
 import ProfileCard from './components/ProfileCard';
 import Mentor from './pages/Mentor.js';
 import Home from './pages/Home.js';
+import ExpertAgents from './components/expertAgents.js';
 import Notes from './pages/Notes.js';
 import Gamification from './pages/Gamification.js';
 
@@ -19,10 +20,14 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* {/* <Route exact path="/mentor" element={<Mentor />} /> */}
         <Route exact path="/Notes" element={<Notes />} />
         <Route exact path="/Gamification" element={<Gamification  />} />
         <Route exact path="/Mentor" element={<Mentor />} /> 
+        <Route path="/expert" element={<ExpertAgents/>} />
+        {/* <Route exact path="/mentor" element={<Mentor />} />
+        <Route exact path="/development" element={<Mentor />} />
+        <Route exact path="/design" element={<AchievementCarousel items={items1} />} />
+        <Route exact path="/marketing" element={<ProfileCard props={props}/>} /> */}
       </Routes>
     
     </Router>

@@ -4,9 +4,14 @@ import {
   ReactSlashMenuItem,
   lightDefaultTheme,
   useBlockNote,
+  PartialBlock,
 } from "@blocknote/react";
 import "@blocknote/core/style.css";
 import { HiOutlineGlobeAlt } from "react-icons/hi";
+import { json } from "react-router-dom";
+import { useEffect,useState } from "react";
+import axios from "axios";
+
 
 // Command to insert an Embed of a post in a new block below.
 const insertEmbed = (editor) => {
@@ -58,20 +63,34 @@ function traverse(blocks){
 
 }
 
-export default function Post() {
+
+export default function Post({post}) {
+  const [timer,setTimer] = useState(1);
   // Creates a new editor instance.
   const editor = useBlockNote({
+    initialContent: post && post.content ? JSON.parse(post.content) : "",
     slashMenuItems: customSlashMenuItemList,
     onEditorContentChange: (editor) => {
-      // editor.forEachBlock((block) => {
-      //   block.content.forEach((content) => {
-      //     console.log(content.text)
-      //   });
-      // });
-      console.log(traverse(editor.topLevelBlocks))
-      console.log(editor.topLevelBlocks);
+      setTimer(100000);
     }
   });
+  useEffect(() => {
+    const interval = setInterval(() => {
+      axios.put("http://localhost:5000/post/update",{id:post._id,content:JSON.stringify(editor.topLevelBlocks)}).then((res) => {}).catch((err) => {console.log(err);});
+      if(timer>1)
+      {
+        setTimer(timer/10);
+      }
+    }, 200000/timer);
+    return () => clearInterval(interval);
+  }, [timer,post]);
+
+  // if(post && post.content)
+  // {
+  //   editor.initialContent= JSON.parse(post.content);
+  //   console.log("here")
+  //   console.log(editor.initialContent);
+  // }
   console.log(editor);
   // Renders the editor instance.
   return <BlockNoteView editor={editor}  theme={lightDefaultTheme} className="h-[100%] w-[100%]" />;
