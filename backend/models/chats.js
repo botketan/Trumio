@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 
 const chatsSchema = mongoose.Schema({
+    botname:{
+        type:String
+    },
   // schema of content model
   messages: [{
     // storing the content scraped

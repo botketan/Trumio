@@ -49,6 +49,12 @@ const userSchema = mongoose.Schema({
           ref: 'project'
         }
       ],
+      chatIds:[
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'chats'
+        }
+      ]
 });
 
 export const user = mongoose.model("user", userSchema);
