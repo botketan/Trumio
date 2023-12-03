@@ -27,6 +27,6 @@ const GamificationAchievements = ({ achievements }) => (
       <AchievementItem key={index} {...achievement} />
     ))}
   </div>
-);
+)
 
 export default GamificationAchievements;
