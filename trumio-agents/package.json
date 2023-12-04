@@ -14,55 +14,59 @@
   "contributes": {
     "viewsContainers": {
       "activitybar": [
-          {
-              "id": "CustomContainer",
-              "title": "Trumio Chat Bot",
-              "icon": "media/icon.svg"
-          },
-          {
-              "id": "MileStoneTrack",
-              "title": "Milestone Tracker",
-              "icon": "media/icon.svg"
-          }
+        {
+          "id": "CustomContainer",
+          "title": "Trumio Chat Bot",
+          "icon": "media/icon.svg"
+        },
+        {
+          "id": "MileStoneTrack",
+          "title": "Milestone Tracker",
+          "icon": "media/icon.svg"
+        }
       ]
     },
     "views": {
       "CustomContainer": [
-          {
-              "type": "webview",
-              "id": "chatView",
-              "name": "Chat",
-              "canToggleVisibility": true
-          }
+        {
+          "type": "webview",
+          "id": "chatView",
+          "name": "Chat",
+          "canToggleVisibility": true
+        }
       ],
       "MileStoneTrack": [
         {
-            "type": "webview",
-            "id": "mileStoneView",
-            "name": "Milestone Tracker",
-            "canToggleVisibility": true
+          "type": "webview",
+          "id": "mileStoneView",
+          "name": "Milestone Tracker",
+          "canToggleVisibility": true
         }
       ]
     },
-    "commands": [{
-      "command": "trumio.CodeExplanation",
-      "title": "Code Explanation"
-    },
-    {
-      "command": "trumio.AddComments",
-      "title": "Add Commments"
-    }],
+    "commands": [
+      {
+        "command": "trumio.CodeExplanation",
+        "title": "Code Explanation"
+      },
+      {
+        "command": "trumio.AddComments",
+        "title": "Add Commments"
+      }
+    ],
     "menus": {
-      "editor/context": [{
+      "editor/context": [
+        {
           "when": "editorTextFocus",
           "command": "trumio.CodeExplanation",
           "group": "navigation"
-      },
-      {
+        },
+        {
           "when": "editorTextFocus",
           "command": "trumio.AddComments",
           "group": "navigation"
-      }]
+        }
+      ]
     }
   },
   "scripts": {
@@ -71,17 +75,22 @@
     "test": "node ./test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.84.0",
     "@types/mocha": "^10.0.3",
     "@types/node": "18.x",
+    "@types/vscode": "^1.84.0",
+    "@vscode/test-electron": "^2.3.6",
     "eslint": "^8.52.0",
     "glob": "^10.3.10",
     "mocha": "^10.2.0",
-    "typescript": "^5.2.2",
-    "@vscode/test-electron": "^2.3.6"
+    "typescript": "^5.2.2"
   },
   "dependencies": {
+    "cross-fetch": "^4.0.0",
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "node-fetch": "^3.3.2",
     "openai": "^4.0.0",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "axios": "^1.6.2"
   }
 }
