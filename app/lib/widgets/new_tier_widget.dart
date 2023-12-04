@@ -1,8 +1,10 @@
+import 'package:app/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class NextTierWidget extends StatelessWidget {
+  final UserModel userModel;
   const NextTierWidget({
-    super.key,
+    super.key, required this.userModel,
   });
 
   @override
@@ -10,11 +12,11 @@ class NextTierWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Row(
             children: [
-              Text(
+              const Text(
                 "Your journey to the Next Tier",
                 style: TextStyle(
                   fontFamily: "DMSans",
@@ -23,10 +25,10 @@ class NextTierWidget extends StatelessWidget {
                   color: Color(0xFF595D62),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
-                "350/500 Points",
-                style: TextStyle(
+                "${userModel.points}/500 Points",
+                style: const TextStyle(
                   fontFamily: "DMSans",
                   fontWeight: FontWeight.w500,
                   fontSize: 12.0,
@@ -55,7 +57,7 @@ class NextTierWidget extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  flex: 7,
+                  flex: calculateFlexValues(userModel.points, 500)[0],
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20.0),
@@ -70,7 +72,7 @@ class NextTierWidget extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  flex: 3,
+                  flex: calculateFlexValues(userModel.points, 500)[1],
                   child: Container(),
                 ),
               ],
@@ -119,4 +121,20 @@ class NextTierWidget extends StatelessWidget {
       ],
     );
   }
+
+  List<int> calculateFlexValues(int progress, int totalProgress) {
+    if (totalProgress <= 0) {
+      throw ArgumentError("Total progress must be greater than zero.");
+    }
+    if (progress < 0 || progress > totalProgress) {
+      throw ArgumentError("Progress must be between 0 and totalProgress.");
+    }
+
+    double progressPercentage = (progress / totalProgress) * 100;
+    int progressFlex = progressPercentage.round();
+    int remainingFlex = 100 - progressFlex;
+
+    return [progressFlex, remainingFlex];
+  }
+
 }

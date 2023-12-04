@@ -1,11 +1,13 @@
+import 'package:app/models/cia_chat_model.dart';
 import 'package:app/widgets/ci_agent_window_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moon_design/moon_design.dart';
 
 class CIAgentsListWidget extends StatelessWidget {
+  final List<CIAChatModel> ciaChats;
   const CIAgentsListWidget({
-    super.key,
+    super.key, required this.ciaChats,
   });
 
   @override
@@ -61,23 +63,32 @@ class CIAgentsListWidget extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.zero,
-            children: const [
-              SizedBox(
-                width: 12.0,
-              ),
-              CIAgentWindowWidget(),
-              SizedBox(
-                width: 12.0,
-              ),
-              CIAgentWindowWidget(),
-              SizedBox(
-                width: 12.0,
-              ),
-            ],
+            children: getListContents(),
           ),
         ),
       ],
     );
+  }
+
+  List<Widget> getListContents() {
+    List<Widget> listContents = [
+      const SizedBox(
+        width: 12.0,
+      ),
+    ];
+    for (var i = 0; i < ciaChats.length; i++) {
+      listContents.add(
+        CIAgentWindowWidget(
+          ciaChat: ciaChats[i],
+        ),
+      );
+      listContents.add(
+        const SizedBox(
+          width: 12.0,
+        ),
+      );
+    }
+    return listContents;
   }
 }
 

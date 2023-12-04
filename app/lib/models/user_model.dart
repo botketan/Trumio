@@ -59,7 +59,8 @@ class UserModel {
       description: json['description'],
       points: json['points'] ?? 0,
       sparks: json['sparks'] ?? 0,
-      badges: json['badges'] ?? [],
+      // badges: json['badges'] as List<String> ?? [],
+      badges: [],
       projects: (json['projects'] as List<dynamic>)
           .map((e) => ProjectModel.fromJson(e))
           .toList(),
