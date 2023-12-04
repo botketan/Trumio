@@ -22,8 +22,6 @@ export const createChat=  async (req, res) => {
         messages: mesg,
         model: "gpt-3.5-turbo",
     });
-    console.log(req.body.ques);
-    console.log(chatCompletion);
     let newchat = new chats();
     newchat.messages.push({role: "system", content: chatCompletion.choices[0].message.content});
     newchat.botname=String(req.body.botname);

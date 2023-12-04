@@ -56,16 +56,37 @@
 
 // export default Chat;
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Accordion } from '@heathmont/moon-core-tw';
 import { ControlsChevronDownSmall } from '@heathmont/moon-icons-tw';
+import axios from 'axios';
+import { set } from 'mongoose';
 
-const handleMessage= async(Messages,setMessages,id,setMessageId)=>{
+
+
+const handleNewChat= async(botname,setMessages,setMessageId,setChatData,chatData)=>{
+  axios.post("http://localhost:5000/cia/createChat",{botname:botname,userId:"65645f987aa073e675de9071"}).then((res) => {
+    console.log(res);
+    setMessageId(res.data.id);
+    setMessages(Array({role:"system",content: res.data.message}));
+    let objIndex = chatData.findIndex((obj => obj.botname === botname));
+    console.log(objIndex);
+    let newChatData = chatData
+    newChatData[objIndex].messagesArray.push({botname:botname,messages:Array({role:"system",message: res.data.message}),_id:res.data.id});
+    setChatData(newChatData);
+  }).catch((err) => {
+    console.log(err);
+  });
+};
+
+const Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,setBotname,setIndex}) => {
+  const handleMessage= async(Messages,id,botname,index)=>{
     setMessageId(id);
     setMessages(Messages);
-}
-
-const Chatleft = ({ chatData,setMessages ,setMessageId}) => {
+    setBotname(botname);
+    setIndex(index);
+  }
+  useEffect(()=>{},[messages])
   return(
   <Accordion>
     <div className='bg-white rounded-xl shadow border border-neutral-200' style={{ width: "%", padding : '10px 10px 10px 10px'}}>
@@ -95,13 +116,13 @@ const Chatleft = ({ chatData,setMessages ,setMessageId}) => {
               </Accordion.Header>
               <Accordion.Content>
                 <div style={{ display: "flex", flexDirection: "column", justifyContent: 'center', alignItems: 'center' }}>
-                  <button className="self-stretch pl-2 pr-4 py-2 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-2 inline-flex" style={{margin : '10px 10px 10px 10px'}}>
+                  <button className="self-stretch pl-2 pr-4 py-2 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-2 inline-flex" style={{margin : '10px 10px 10px 10px'}} onClick={()=>handleNewChat(data.botname,setMessages,setMessageId,setChatData,chatData)}>
                     <img src={require("../Assets/Plus.png")} alt="" className="w-6 h-6 relative" />
-                    <div className="text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal" >New Chat with {data.botname}</div>
+                    <div className="text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal"  >New Chat with {data.botname}</div>
                   </button>
                       {data.messagesArray.map((chat, chatIndex) => (
-                        <button className="w-[284px] h-10 px-3 py-2 bg-neutral-100 rounded-lg justify-between items-center inline-flex" key={`chat-${chatIndex}`} onClick={()=>handleMessage(chat.messages,setMessages,chat._id,setMessageId)}>
-                        <div className="text-black text-sm font-normal font-['DM Sans'] leading-normal">{chat.messages[chat.messages.length-1].content.slice(0,20)+"..."}</div>
+                        <button className="w-[284px] h-10 px-3 py-2 bg-neutral-100 rounded-lg justify-between items-center inline-flex" key={`chat-${chatIndex}`} onClick={()=>handleMessage(chat.messages,chat._id,data.botname,chatIndex)}>
+                        <div className="text-black text-sm font-normal font-['DM Sans'] leading-normal">{chat.messages.length>1? chat.messages[1].content.slice(0,20)+"...":"New Chat"}</div>
                         <div className="w-6 h-6 relative" />
                       </button>
                       ))}
