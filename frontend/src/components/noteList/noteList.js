@@ -6,7 +6,7 @@ function sleep(ms) {
 }
 
 const NoteList=({posts,setPost,setPosts})=>{
-
+    
     const createTrunote=()=>{
         axios.post("http://localhost:5000/post/create",{userId:"65645f987aa073e675de9071"}).then((res) => {
             window.location.reload(true)})
