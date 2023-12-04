@@ -19,7 +19,12 @@ function Mentor() {
   return (
     <>
         <Navbar selected={selected} setSelected= {setSelected}/>
+        <div className="flex justify-center px-16 gap-4">
         <MentorCard cardData={cardObject} />
+        <MentorCard cardData={cardObject} />
+        <MentorCard cardData={cardObject} />
+        <MentorCard cardData={cardObject} />
+        </div>
     </>
       
   )
