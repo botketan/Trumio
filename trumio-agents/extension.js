@@ -1,5 +1,6 @@
 const vscode = require("vscode");
 const generate = require("./API/LLMChain"); // For the Chat Bot
+const axios = require("axios");
 
 function activate(context) {
   const chatprovider = new ChatViewProvider(context.extensionUri); // Link Chat View Provider
@@ -19,6 +20,12 @@ function activate(context) {
       msprovider
     )
   );
+
+
+
+
+
+
 
     // Code Explanation Functionality
 
@@ -53,6 +60,13 @@ function activate(context) {
     }
   );
 
+
+
+
+
+
+
+
     // Add Comments Functionality
 
   let disposable2 = vscode.commands.registerCommand(
@@ -84,6 +98,17 @@ function activate(context) {
   context.subscriptions.push(disposable2);
 }
 
+
+
+
+
+
+
+
+
+
+
+
 // CODE SUMMARIZER FUNCTIONALITY
 
 function getWebviewContent(gpt_summary, gpt_error, webstyleUri) {
@@ -106,6 +131,17 @@ function getWebviewContent(gpt_summary, gpt_error, webstyleUri) {
     </body>
     </html>`;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 // ADD COMMENT FUNCTIONALITY
 
@@ -166,6 +202,16 @@ async function writeToEditor(readobj,text) { // Write the whole text to the edit
     }
   }
 };
+
+
+
+
+
+
+
+
+
+
 
 // CHAT BOT FUNCTIONALITY
 
@@ -255,6 +301,14 @@ class ChatViewProvider {
 
 ChatViewProvider.viewType = "chatView";
 
+
+
+
+
+
+
+
+
 // MILE STONES TRACKER
 
 class MileStoneProvider {
@@ -291,6 +345,7 @@ class MileStoneProvider {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="${styleUri}" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script nonce="${nonce}" src="${scriptUri}"></script>
         <title>Milestone Tracker</title>
     </head>
@@ -302,10 +357,7 @@ class MileStoneProvider {
             </div>
             <div class="project-dropdown">
                 <select name="project" id="project">
-                    <ul class="project-list">
-                        <option value="devrev-research">DevRev Research</option>
-                        <!-- Other projects will be added here -->
-                    </ul>
+                  <!-- option id="DevRev Research">DevRev Research</option -->
                 </select>
                 <div class="progress">
                     <div class="progress-bar" style="width: 75%;"></div>
