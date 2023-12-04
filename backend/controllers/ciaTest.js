@@ -47,7 +47,6 @@ export const postChat = async (req, res) => {
           };
       })
       mes.push({role: "user", content: req.body.ques});
-      console.log(mes);
       const chatCompletion = await openai.chat.completions.create({
         messages: mes,
         model: "gpt-3.5-turbo",

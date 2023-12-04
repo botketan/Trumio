@@ -4,7 +4,7 @@ import Post from '../components/Post'
 import AchievementCarousel from '../components/Crousel_Achievements/AchievementCarousel'
 import AchievementExpand from '../components/Crousel_Achievements/AchievementExpand'
 import ProfileCard from '../components/ProfileCard'
-import Chat from '../components/chat.js'
+import Chatleft from '../components/chatleft.js'
 import GamificationAchievements from '../components/GamificationAchievements'
 import GamificationProfile from '../components/GamificationProfile'
 import NoteList from '../components/noteList/noteList'
@@ -188,7 +188,7 @@ function Home() {
          
          {/* <Chat chatData={[{ heading: 'Today', chat: [{ message: 'Chat content for today1', points: 2 }, { message: 'Chat content for today2', points: 1 }] }, { heading: 'Last 7 days', chat: [{ message: 'Chat content for last 7 days1', points: 3 }, { message: 'Chat content for last 7 days2', points: 2 }] }]} /> */}
          {/* <Chat chatData={[{ heading: 'Today', chat: [{ message: 'Chat content for today1', points: 2 }, { message: 'Chat content for today2', points: 1 }, { message: 'Chat content for today3', points: 1 }] }, { heading: 'Last 7 days', chat: [{ message: 'Chat content for last 7 days1', points: 3 }, { message: 'Chat content for last 7 days2', points: 2 }, { message: 'Chat content for last 7 days3', points: 2 }] }]} /> */}
-         <Chat chatData={[{ heading: 'ProdWizard', chat: [{ message: 'Chat content for today1', days: 1 }, { message: 'Chat content for today2', days: 1 }, { message: 'Chat content for today3', days: 4 }, { message: 'Chat content for today4', days: 8 }] }, 
+         <Chatleft chatData={[{ heading: 'ProdWizard', chat: [{ message: 'Chat content for today1', days: 1 }, { message: 'Chat content for today2', days: 1 }, { message: 'Chat content for today3', days: 4 }, { message: 'Chat content for today4', days: 8 }] }, 
                           { heading: 'ProdWizard', chat: [{ message: 'Chat content for last 7 days1', days: 3 }, { message: 'Chat content for last 7 days2', days: 2 }, { message: 'Chat content for last 7 days3', days: 2 }, { message: 'Chat content for last 7 days4', days: 9 }] },
                           { heading: 'ProdWizard', chat: [{ message: 'Chat content for today1', days: 1 }, { message: 'Chat content for today2', days: 1 }, { message: 'Chat content for today3', days: 2 }, { message: 'Chat content for today4', days: 8 }] }]} />
 
