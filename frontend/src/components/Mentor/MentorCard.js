@@ -1,6 +1,5 @@
 import { FilesCase ,ChatChat} from '@heathmont/moon-icons-tw';
 import React from 'react';
-import './MentorCard.css';
 
 const MentorCard = ({cardData}) => {
     return ( 
