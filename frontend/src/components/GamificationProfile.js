@@ -49,16 +49,19 @@ const GamificationProfile = () => {
         handle="@vidya2242" 
         avatar="/Avatar.png" // Replace with actual image path
       />
-      <Card 
-        title="Tier" 
-        value="Pioneer" 
-        text="350/500 Points to Level Up"
-      />
-      <Card 
-        title="Sparks" 
-        value="2458 Sparks" 
-        text="Institute Rank: 293"
-      />
+      <div className='flex justify-end items-center gap-10'>
+        <Card 
+            title="Tier" 
+            value="Pioneer" 
+            text="350/500 Points to Level Up"
+        />
+        <Card 
+            title="Sparks" 
+            value="2458 Sparks" 
+            text="Institute Rank: 293"
+        />
+
+      </div>
     </div>
   );
 };
