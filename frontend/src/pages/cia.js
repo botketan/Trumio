@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Chats from "../components/CIA/chats.js";
 import Chatleft from "../components/chatleft.js";
 import axios from "axios";
-import { set } from "mongoose";
 
 export default function Cia(){
     const [messages,setMessages] =useState([]);
