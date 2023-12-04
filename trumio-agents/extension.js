@@ -234,7 +234,6 @@ class ChatViewProvider {
             <div class="chatbot">
                 <header>
                     <h2>ChatBot</h2>
-                    <span class="material-symbols-outlined">close</span>
                 </header>
     
                 <ul class="chatbox">
@@ -245,7 +244,7 @@ class ChatViewProvider {
                 </ul>
     
                 <div class="chat-input">
-                    <textarea placeholder="Enter a messege... " required></textarea>
+                    <textarea placeholder="Enter a message... " required></textarea>
                     <span id="send-btn" class="material-symbols-outlined">send</span>
                 </div>
             </div>
