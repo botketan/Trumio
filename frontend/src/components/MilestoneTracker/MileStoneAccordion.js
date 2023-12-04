@@ -23,8 +23,8 @@ const MileStoneAccordion = (props) => {
                                 <div className= 'text-left text-moon-16 text-zinc-600'>Milestone {index+1} : {milestone.title}</div>
                                 <div className="font-semibold font-['DM Sans']">
                                     {
-                                        milestone.tasks.filter(task => task.isCompleted).length
-                                    }/{milestone.tasks.length} tasks
+                                        milestone.task.filter(Task => Task.isCompleted).length
+                                    }/{milestone.task.length} tasks
                                 </div>
                                 <Tag className='text-green-700 bg-green-700 bg-opacity-10'>ON TRACK</Tag>
                             </Accordion.Button>
