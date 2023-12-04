@@ -5,24 +5,30 @@ import { Link } from 'react-router-dom';
 
 // Sample data for carousel items
 
-const ExpertAgents = () => {
-  const carouselItems = [
-    { id: 1, name: 'Item 1' },
-    { id: 2, name: 'Item 2' },
-    { id: 3, name: 'Item 3' },
-    { id: 4, name: 'Item 4' },
-    { id: 5, name: 'Item 5' },
-  ];
-
-  const [messages, setMessages] = useState([
-    { id: 1, text: "Hey Vidya! How may I assist you?", sender: "2ndPerson",
-  }
-  ]);
+const ExpertAgents = ({chatIds}) => {
+  // const carouselItems = [
+  //   { id: 1, name: 'Item 1' },
+  //   { id: 2, name: 'Item 2' },
+  //   { id: 3, name: 'Item 3' },
+  //   { id: 4, name: 'Item 4' },
+  //   { id: 5, name: 'Item 5' },
+  // ];
+  const carouselItems = chatIds.map((chat, index)=>{
+    return {id: index+1, name: chat.botname}
+  });
+  const initialMessages= chatIds.map((chat, index)=>{
+    const items= chat.messages.filter((message)=> message.role!='system').map((message)=>{
+      return {id: index+1, content: message.content, role: message.role}
+    })
+    return items;
+  })
+  const [messages, setMessages] = useState(initialMessages.flat());
+  console.log(messages);
   const [newMessage, setNewMessage] = useState('');
 
   const handleSendMessage = () => {
     if (newMessage.trim()) {
-      const nextMessages = [...messages, { id: Date.now(), text: newMessage, sender: "user" }];
+      const nextMessages = [...messages, { id: 1, content: newMessage, role: "user" }];
       setMessages(nextMessages);
       setNewMessage('');
     }
@@ -62,9 +68,9 @@ const ExpertAgents = () => {
                         <div className='h-[192px] w-[356px] border border-2ndPersontom grey-200 overflow-y-auto overflow-x-hidden'>
 
                         {messages.map(message => (
-                          <div key={message.id} className={`flex ${message.sender === '2ndPerson' ? 'justify-start p-[8px] ml-[5px]' : 'justify-end p-[8px] mr-[5px]'}`}>
-                            <div className={`flex ${message.sender === "2ndPerson" ? 'rounded-b-xl rounded-tr-xl px-4 max-w-[300px] py-2 bg-blue-100 lg:max-w-md':'rounded-b-xl rounded-tl-xl px-4 max-w-[300px] py-2 bg-blue-100 lg:max-w-md'}`}>
-                              {message.text}
+                          <div key={message.id} className={`flex ${message.role === 'assistant' ? 'justify-start p-[8px] ml-[5px]' : 'justify-end p-[8px] mr-[5px]'}`}>
+                            <div className={`flex ${message.role === "assistant" ? 'rounded-b-xl rounded-tr-xl px-4 max-w-[300px] py-2 bg-blue-100 lg:max-w-[300px]':'rounded-b-xl rounded-tl-xl px-4 max-w-[300px] py-2 bg-blue-100 lg:max-w-md'}`} style= {{overflowWrap: "break-word"}}>
+                              {message.content}
                             </div>
                           </div>
                         ))}

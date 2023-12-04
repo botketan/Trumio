@@ -20,19 +20,19 @@ const MileStoneAccordion = (props) => {
                         <Accordion.Header className='moon-open:[&_svg]:rotate-90'>
                             <Accordion.Button>
                                 <ControlsChevronRightSmall className='className="text-trunks text-moon-24 transition duration-200 moon-open:text-bulma'/>
-                                <div className= 'text-left text-moon-16 text-zinc-600'>Milestone {index+1} : {milestone.title}</div>
-                                <div className="font-semibold font-['DM Sans']">
+                                <div className= 'text-left text-moon-16 text-zinc-600 w-[14vw]'>Milestone {index+1} : {milestone.title}</div>
+                                <div className="font-semibold font-['DM Sans'] w-[4vw]">
                                     {
                                         milestone.task.filter(Task => Task.isCompleted).length
                                     }/{milestone.task.length} tasks
                                 </div>
-                                <Tag className='text-green-700 bg-green-700 bg-opacity-10'>ON TRACK</Tag>
+                                <Tag className='text-green-700 bg-green-700 bg-opacity-10 w-[70px]'>ON TRACK</Tag>
                             </Accordion.Button>
                         </Accordion.Header>
                         <Accordion.Content className='flex-col border-t-0'>
                             {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio culpa quidem, libero, eaque ullam quia ratione atque voluptatem blanditiis nulla officia aliquam. Assumenda amet minima tempore et alias consequuntur mollitia! */}
                             {
-                                milestone.tasks.map((task,index) => {
+                                milestone.task.map((task,index) => {
                                     return (
                                         <div key={index+1} className=' ml-[6%] relative flex items-center gap-2 text-moon-16 text-bulma'>
                                             <input type="checkbox" className="cursor-pointer" label={task.title} defaultChecked={task.isCompleted} onChange={handleChange}/>
