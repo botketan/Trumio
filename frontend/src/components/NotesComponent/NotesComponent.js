@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import NotesCard from "./NotesCard";
 
 
@@ -12,7 +13,7 @@ export default function NotesComponent({noteslist}) {
                         <button className="text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">Compose</button>
                         </div>
                         <div className="px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
-                        <button className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">View All</button>
+                        <Link to="/Notes"><button className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">View All</button></Link>
                         </div>
                     </div>
             </div>

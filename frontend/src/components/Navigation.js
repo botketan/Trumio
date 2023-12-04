@@ -62,7 +62,18 @@ const Navigation = ({ click, setClick }) => {
               : "flex flex-col items-center duration-100 hover:cursor-pointer"
           }
         >
-          <span className={click === "MyTeam"?`${classSelect}`:`${classUnselect}`}>MyTeam</span>
+          <span className={click === "MyTeam"?`${classSelect}`:`${classUnselect}`}>My Team</span>
+        </Link>
+        <Link
+          to="/Community"
+          onClick={() => handleClick("Community")}
+          className={
+            click === "Community"
+              ? "flex flex-col items-center hover:cursor-pointer"
+              : "flex flex-col items-center duration-100 hover:cursor-pointer"
+          }
+        >
+          <span className={click === "Community"?`${classSelect}`:`${classUnselect}`}>Community</span>
         </Link>
         <Link
           to="/Truspace"

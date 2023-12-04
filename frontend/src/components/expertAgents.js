@@ -22,13 +22,15 @@ const ExpertAgents = ({chatIds}) => {
     })
     return items;
   })
+  console.log(carouselItems)
+  console.log(initialMessages)
   const [messages, setMessages] = useState(initialMessages.flat());
   console.log(messages);
   const [newMessage, setNewMessage] = useState('');
 
-  const handleSendMessage = () => {
+  const handleSendMessage = (itemid) => {
     if (newMessage.trim()) {
-      const nextMessages = [...messages, { id: 1, content: newMessage, role: "user" }];
+      const nextMessages = [...messages, { id: itemid, content: newMessage, role: "user" }, {id:itemid, content: "Hello! How can I assist you today?", role: "assistant"}];
       setMessages(nextMessages);
       setNewMessage('');
     }
@@ -40,9 +42,11 @@ const ExpertAgents = ({chatIds}) => {
       
       <div className="w-[26.88vw] h-8 pl-2 justify-between items-center inline-flex mt-[16px] mb-[10px]">
         <h1 className="text-zinc-600 text-base font-normal font-['DM Sans'] leading-normal">Your Go-To Expert Agents</h1>
+        <Link to="/cia">
         <button className="px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
           <div className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">View All</div>
         </button>
+        </Link>
       </div>
 
       <Carousel step={1} className="">
@@ -67,8 +71,8 @@ const ExpertAgents = ({chatIds}) => {
                         </div>
                         <div className='h-[192px] w-[356px] border border-2ndPersontom grey-200 overflow-y-auto overflow-x-hidden'>
 
-                        {messages.map(message => (
-                          <div key={message.id} className={`flex ${message.role === 'assistant' ? 'justify-start p-[8px] ml-[5px]' : 'justify-end p-[8px] mr-[5px]'}`}>
+                        {messages.filter((message)=>message.id==item.id).map(message => (
+                          <div className={`flex ${message.role === 'assistant' ? 'justify-start p-[8px] ml-[5px]' : 'justify-end p-[8px] mr-[5px]'}`}>
                             <div className={`flex ${message.role === "assistant" ? 'rounded-b-xl rounded-tr-xl px-4 max-w-[300px] py-2 bg-blue-100 lg:max-w-[300px]':'rounded-b-xl rounded-tl-xl px-4 max-w-[300px] py-2 bg-blue-100 lg:max-w-md'}`} style= {{overflowWrap: "break-word"}}>
                               {message.content}
                             </div>
@@ -78,11 +82,12 @@ const ExpertAgents = ({chatIds}) => {
                         </div>
                         <div className="w-[356px] pl-[16px] pr-[16px] mt-4 mb-[18px] flex items-center justify-between">
                             <input
-                            className="form-input text-sm rounded"
+                            className="w-full h-full form-input text-sm rounded focus:outline-none"
                             placeholder={`Reply to ${item.name}`}
+                            value={newMessage}
                             onChange={(e) => setNewMessage(e.target.value)}
                             />
-                            <button className="w-5 h-5 relative" onClick={handleSendMessage}>
+                            <button className="w-5 h-5 relative" onClick={()=>handleSendMessage(item.id)}>
                               <img src="sendSVG.svg" alt="Send SVG" className="w-full h-full"/>
                             </button>
                         </div>                

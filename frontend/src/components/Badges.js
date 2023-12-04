@@ -86,9 +86,10 @@ const Badges = ({badges}) => {
       
       <div className="w-96 h-8 pl-2 justify-between items-center inline-flex mt-[16px] mb-[10px]">
         <h1 className="text-zinc-600 text-base font-normal font-['DM Sans'] leading-normal">Your Badges</h1>
-        <button className="px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
+        <Link to="/Gamification"><button className="px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
           <div className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">View All</div>
         </button>
+        </Link>
       </div>
       <div className="h-20">
 
