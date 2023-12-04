@@ -3,19 +3,19 @@ import React, { useState } from "react";
 import MileStoneAccordion from "./MileStoneAccordion";
 
 const MileStones = ({ projects }) => {
-  console.log(projects);
+//   console.log(projects);
   const [selectedProject, setSelectedProject] = useState(projects[0].title);
   const handleProgress = (project) => {
-    console.log(project);
+    // console.log(project);
     const totalTasks = project.milestones.reduce(
-      (total, milestone) => total + milestone.tasks.length,
+      (total, milestone) => total + milestone.task.length,
       0
     );
     const completedTasks = project.milestones.reduce(
       (milestoneTotal, milestone) => {
         return (
           milestoneTotal +
-          milestone.tasks.filter((task) => task.isCompleted).length
+          milestone.task.filter((task) => task.isCompleted).length
         );
       },
       0

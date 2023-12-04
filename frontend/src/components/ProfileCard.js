@@ -13,11 +13,11 @@ import { Progress } from '@heathmont/moon-core-tw';
                 </div>
 
                 <div>
-                <butoon className="flex items-center bg-cyan-100 px-2 rounded-md cursor-pointer">
-                    {/* <img className="h-8 w-8" src="/logo192.png" alt="edit"></img> */}
-                    <GenericEdit className="h-6 w-8"/>
-                    <span className='pr-2 py-1'>Edit</span>
-                </butoon>
+                    <button className="ml-2 px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
+                        <div className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal flex items-center justify-around">
+                        <GenericEdit className="h-6 w-6"/><span>Edit</span>
+                        </div>
+                    </button>
                 </div>
             </div>
 
@@ -28,7 +28,7 @@ import { Progress } from '@heathmont/moon-core-tw';
             </div>
 
             <div className="flex items-center pb-4">
-                <img className="h-8 w-8 " src="/logo192.png" alt="cap"></img>
+                <img className="h-8 w-8 " src="/school.png" alt="cap"></img>
                 <span className='ml-1'>{props.education}</span>
             </div>
             <hr></hr>
@@ -59,7 +59,7 @@ import { Progress } from '@heathmont/moon-core-tw';
                     <div className='flex items-center '>
                         <span className="mr-2 font-light">Advance towards</span>
                         <img className="h-6 w-5" src={props.nextTierPic} alt="advance towards"></img>
-                        <span className='ml-2'>{props.advanceTowards}</span>
+                        <span className='ml-2 font-medium'>{props.advanceTowards}</span>
                     </div>
                     <div className="flex items-center">
                         <span>{props.points}/500 Points</span>
