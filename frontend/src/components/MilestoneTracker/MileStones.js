@@ -7,9 +7,9 @@ const MileStones = ({projects}) => {
     const [selectedProject, setSelectedProject] = useState(projects[0].title);
     const handleProgress = (project) => {
         console.log(project);
-        const totalTasks = project.milestones.reduce((total, milestone) => total + milestone.tasks.length, 0);
+        const totalTasks = project.milestones.reduce((total, milestone) => total + milestone.task.length, 0);
         const completedTasks = project.milestones.reduce((milestoneTotal, milestone) => {
-                return milestoneTotal + milestone.tasks.filter(task => task.isCompleted).length;
+                return milestoneTotal + milestone.task.filter(task => task.isCompleted).length;
             }, 0);
 
         const completionPercentage = (completedTasks / totalTasks) * 100;

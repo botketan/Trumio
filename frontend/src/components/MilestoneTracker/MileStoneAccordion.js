@@ -23,8 +23,8 @@ const MileStoneAccordion = (props) => {
                                 <div className=' text-zinc-600'>Milestone {index+1} : {milestone.title}</div>
                                 <div class="font-semibold font-['DM Sans']">
                                     {
-                                        milestone.tasks.filter(task => task.isCompleted).length
-                                    }/{milestone.tasks.length} tasks
+                                        milestone.task.filter(Task => Task.isCompleted).length
+                                    }/{milestone.task.length} tasks
                                 </div>
                                 <Tag className='text-green-700 bg-green-700 bg-opacity-10'>ON TRACK</Tag>
                             </Accordion.Button>
@@ -32,9 +32,9 @@ const MileStoneAccordion = (props) => {
                         <Accordion.Content className='flex-col'>
                             {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio culpa quidem, libero, eaque ullam quia ratione atque voluptatem blanditiis nulla officia aliquam. Assumenda amet minima tempore et alias consequuntur mollitia! */}
                             {
-                                milestone.tasks.map((task) => {
+                                milestone.task.map((Task) => {
                                     return (
-                                        <Checkbox label={task.title} checked={task.isCompleted} onChange={handleChange} className='border rounded-sm'/>
+                                        <Checkbox label={Task.title} checked={Task.isCompleted} onChange={handleChange} className='border rounded-sm'/>
                                     )
                                 })
                             }

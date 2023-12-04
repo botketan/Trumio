@@ -1,12 +1,24 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import ExpertAgents from "../components/expertAgents";
 import MileStones from "../components/MilestoneTracker/MileStones";
 import NotesComponent from "../components/NotesComponent/NotesComponent";
 import Navigation from "../components/Navigation";
 import ProfileCard from "../components/ProfileCard";
 import Badges from "../components/Badges";
+import axios from "axios";
 
 export default function Truspace() {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    axios.post("http://localhost:5000/user/getUser",{
+        userId:"65645f987aa073e675de9071"
+    }).then((res) => {
+      setData(res.data);
+      console.log(res.data);
+    }).catch((err) => {
+        console.log(err);
+    });
+  }, []);
   let projects =[
       {
       title: "DevRev",
@@ -14,7 +26,7 @@ export default function Truspace() {
       milestones:[
       {
           title: "Fuck Trumio",
-          tasks:[
+          task:[
               {
                   title:"Fuck trumio",
                   isCompleted:true,
@@ -66,11 +78,13 @@ export default function Truspace() {
 
   return (
     <>
+      {
+        data?
       <div className="flex flex-row px-16 py-4 gap-4 justify-center">
         <div className="flex flex-col w-[59vw] gap-4">
           <div className="flex w-full justify-between">
             <ExpertAgents />
-            <MileStones projects={projects}/>
+            <MileStones projects={data.projects}/>
           </div>
           <NotesComponent noteslist={Noteslist}/>
         </div>
@@ -78,7 +92,8 @@ export default function Truspace() {
           <ProfileCard props={props}/>
           <Badges />
         </div>
-      </div>
+      </div> : <div>Loading</div>
+      }
     </>
   );
 }
