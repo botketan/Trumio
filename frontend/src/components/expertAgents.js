@@ -30,7 +30,7 @@ const ExpertAgents = () => {
 
   return (
 
-    <div className="w-[416px] h-[318px] relative bg-white rounded-xl shadow border border-neutral-200 pl-[16px] pr-[16px]">
+    <div className="w-[28.88vw] h-[318px] relative bg-white rounded-xl shadow-md border border-neutral-200 pl-[16px] pr-[16px]">
       
       <div className="w-96 h-8 pl-2 justify-between items-center inline-flex mt-[16px] mb-[10px]">
         <h1 className="text-zinc-600 text-base font-normal font-['DM Sans'] leading-normal">Your Go-To Expert Agents</h1>

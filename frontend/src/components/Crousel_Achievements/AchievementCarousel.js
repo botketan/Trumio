@@ -6,7 +6,7 @@ import { ControlsChevronLeftSmall, ControlsChevronRightSmall } from '@heathmont/
 
 const AchievementCarousel = ({ items }) => {
     return (
-        <Carousel step={3}>
+        <Carousel step={1}>
           <Carousel.LeftArrow>
             <ControlsChevronLeftSmall />
           </Carousel.LeftArrow>

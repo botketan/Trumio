@@ -11,6 +11,7 @@ import NoteList from '../components/noteList/noteList'
 import Leaderboard from '../components/Leaderboard/Leaderboard.js'
 import NotesComponent from '../components/NotesComponent/NotesComponent.js'
 import Navigation from '../components/Navigation.js'
+import Chats from '../components/CIA/chats.js'
 
 function Home() {
   const cardInfo = [
@@ -191,6 +192,9 @@ function Home() {
                           { heading: 'ProdWizard', chat: [{ message: 'Chat content for last 7 days1', days: 3 }, { message: 'Chat content for last 7 days2', days: 2 }, { message: 'Chat content for last 7 days3', days: 2 }, { message: 'Chat content for last 7 days4', days: 9 }] },
                           { heading: 'ProdWizard', chat: [{ message: 'Chat content for today1', days: 1 }, { message: 'Chat content for today2', days: 1 }, { message: 'Chat content for today3', days: 2 }, { message: 'Chat content for today4', days: 8 }] }]} />
 
+
+         <NotesComponent noteslist={Noteslist}/>
+         <Chats/>
     </>
   )
 }

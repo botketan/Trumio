@@ -14,7 +14,7 @@ const NoteList=({posts,setPost,setPosts})=>{
             console.log(err);});
     }
     return <>
-        <div className="container mx-auto shadow-xl rounded-lg p-4 border-2 " style={{width:"360px",height:"616px"}}>
+        <div className="container mx-auto shadow-xl rounded-lg p-4 border-2 overflow-y-scroll" style={{width:"360px",height:"616px"}}>
             <div className='flex justify-between items-center'>
                 <span className='py-6 ml-2 font-light'>Your Trunotes</span>
                 <div>

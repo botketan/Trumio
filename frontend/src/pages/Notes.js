@@ -33,9 +33,8 @@ export default function Notes() {
   ]);
   return (
     <>
-      <Navbar />
       <div className="flex flex-row px-16 py-4 container w-[100%] h-[100%] gap-5">
-        <div className=" w-1/3 h-[100%]">
+        <div className=" w-[40vw] h-[65vh] ">
             <NoteList posts={posts} setPost={setPost} setPosts={setPosts}/>
         </div>
         <div className="container mx-auto my-auto h-[100%] shadow-xl border border-neutral-200 rounded-lg">
