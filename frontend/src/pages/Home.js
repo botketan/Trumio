@@ -10,6 +10,7 @@ import NoteList from '../components/noteList/noteList'
 import Leaderboard from '../components/Leaderboard/Leaderboard.js'
 import NotesComponent from '../components/NotesComponent/NotesComponent.js'
 import Navigation from '../components/Navigation.js'
+import Chats from '../components/CIA/chats.js'
 
 function Home() {
   const cardInfo = [
@@ -180,6 +181,7 @@ function Home() {
         <AchievementExpand items={items1} />
          <Leaderboard cardInfo={cardInfo} />
          <NotesComponent noteslist={Noteslist}/>
+         <Chats/>
     </>
   )
 }
