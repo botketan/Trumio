@@ -1,9 +1,17 @@
 import { GenericPlus } from '@heathmont/moon-icons-tw';
 import Note from './note';
-const NoteList=({posts})=>{
+import axios from 'axios';
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const NoteList=({posts,setPost,setPosts})=>{
 
     const createTrunote=()=>{
-        
+        axios.post("http://localhost:5000/post/create",{userId:"65645f987aa073e675de9071"}).then((res) => {
+            window.location.reload(true)})
+            .catch((err) => {
+            console.log(err);});
     }
     return <>
         <div className="container mx-auto shadow-xl rounded-lg p-4 border-2 " style={{width:"360px",height:"616px"}}>
@@ -17,7 +25,17 @@ const NoteList=({posts})=>{
                 </div>
             </div>
                 {posts.map((post)=>{
-                    return <Note props={post}/>
+                    return <button  onClick ={async()=>{setPost(); 
+                        await sleep(50); 
+                        setPost(post); 
+                        axios.post("http://localhost:5000/post/getByUserId",{
+                            userId:"65645f987aa073e675de9071"
+                        }).then((res) => {
+                        setPosts(res.data.reverse());
+                        }).catch((err) => {
+                            console.log(err);
+                        });
+                    }}><Note props={post}/></button>
                 })}
         </div>
     </>

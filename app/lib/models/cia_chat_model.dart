@@ -13,7 +13,7 @@ class CIAChatModel {
 
   Map<String, dynamic> toJson() => {
       "messages": messages.map((e) => e.toJson()).toList(),
-      "botName": botName,
+      "botname": botName,
   };
 
   factory CIAChatModel.fromJson(Map<String, dynamic> json) {
@@ -22,7 +22,7 @@ class CIAChatModel {
       messages: (json["messages"] as List<dynamic>)
           .map((e) => CIAMessageModel.fromJson(e))
           .toList(),
-      botName: json["botName"] ?? "",
+      botName: json["botname"] ?? "",
     );
   }
 }

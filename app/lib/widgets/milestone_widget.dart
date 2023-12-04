@@ -1,9 +1,14 @@
+import 'package:app/models/milestone_model.dart';
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
 
 class MilestoneWidget extends StatefulWidget {
+  final MilestoneModel milestoneModel;
+  final int index;
   const MilestoneWidget({
     super.key,
+    required this.milestoneModel,
+    required this.index,
   });
 
   @override
@@ -11,7 +16,7 @@ class MilestoneWidget extends StatefulWidget {
 }
 
 class _MilestoneWidgetState extends State<MilestoneWidget> {
-  bool _isExpanded = true;
+  bool _isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,19 +52,24 @@ class _MilestoneWidgetState extends State<MilestoneWidget> {
                   iconSize: 20.0,
                   color: const Color(0xFF707070),
                 ),
-                const Text(
-                  "Milestone 1: UI Design",
-                  style: TextStyle(
-                    fontFamily: "DMSans",
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14.0,
-                    color: Color(0xFF595D62),
+                Expanded(
+                  child: Text(
+                    "Milestone ${widget.index}: ${widget.milestoneModel.title}",
+                    overflow: TextOverflow.visible,
+                    style: const TextStyle(
+                      fontFamily: "DMSans",
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14.0,
+                      color: Color(0xFF595D62),
+                    ),
                   ),
                 ),
-                const Spacer(),
-                const Text(
-                  "3/4 Tasks",
-                  style: TextStyle(
+                const SizedBox(
+                  width: 8.0,
+                ),
+                Text(
+                  "${widget.milestoneModel.tasks.where((element) => element.isCompleted).toList().length}/${widget.milestoneModel.tasks.length} Tasks",
+                  style: const TextStyle(
                     fontFamily: "DMSans",
                     fontWeight: FontWeight.w600,
                     fontSize: 14.0,
@@ -91,36 +101,74 @@ class _MilestoneWidgetState extends State<MilestoneWidget> {
             const SizedBox(
               height: 8.0,
             ),
-            if(_isExpanded) Column(
-              children: [
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 24.0,
-                    ),
-                    MoonCheckbox(
-                      value: true,
-                      onChanged: (val) {},
-                      activeColor: const Color(0xFF4E46B4),
-                      tapAreaSizeValue: 24.0,
-                    ),
-                    const SizedBox(
-                      width: 8.0,
-                    ),
-                    const Text(
-                      "Finalize App Wireframes",
-                      style: TextStyle(
-                        fontFamily: "DMSans",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.0,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
+            if (_isExpanded)
+              Column(
+                children: _buildTasks(),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _buildTasks() {
+    List<Widget> tasks = [];
+    for (var element in widget.milestoneModel.tasks) {
+      tasks.add(
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              width: 24.0,
+            ),
+            MoonCheckbox(
+              value: element.isCompleted,
+              onChanged: (val) {
+                setState(() {
+                  element.isCompleted = val ?? false;
+                });
+              },
+              activeColor: const Color(0xFF4E46B4),
+              tapAreaSizeValue: 24.0,
+            ),
+            const SizedBox(
+              width: 8.0,
+            ),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 1.0),
+                child: Text(
+                  element.title,
+                  style: const TextStyle(
+                    fontFamily: "DMSans",
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16.0,
+                    color: Colors.black,
+                  ),
                 ),
-                const SizedBox(
-                  height: 8.0,
-                ),
+              ),
+            ),
+          ],
+        ),
+      );
+      tasks.add(
+        const SizedBox(
+          height: 8.0,
+        ),
+      );
+    }
+
+    tasks.add(
+      const SizedBox(
+        height: 4.0,
+      ),
+    );
+
+    return tasks;
+  }
+}
+
+
                 // Row(
                 //   children: [
                 //     const SizedBox(
@@ -178,67 +226,3 @@ class _MilestoneWidgetState extends State<MilestoneWidget> {
                 // const SizedBox(
                 //   height: 44.0,
                 // ),
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 24.0,
-                    ),
-                    MoonCheckbox(
-                      value: true,
-                      onChanged: (val) {},
-                      activeColor: const Color(0xFF4E46B4),
-                      tapAreaSizeValue: 24.0,
-                    ),
-                    const SizedBox(
-                      width: 8.0,
-                    ),
-                    const Text(
-                      "Finalize App Wireframes",
-                      style: TextStyle(
-                        fontFamily: "DMSans",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.0,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 8.0,
-                ),
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 24.0,
-                    ),
-                    MoonCheckbox(
-                      value: false,
-                      onChanged: (val) {},
-                      activeColor: const Color(0xFF4E46B4),
-                      tapAreaSizeValue: 24.0,
-                    ),
-                    const SizedBox(
-                      width: 8.0,
-                    ),
-                    const Text(
-                      "Finalize App Wireframes",
-                      style: TextStyle(
-                        fontFamily: "DMSans",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.0,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 12.0,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

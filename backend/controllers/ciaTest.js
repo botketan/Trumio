@@ -52,11 +52,27 @@ export const postChat = async (req, res) => {
         messages: mes,
         model: "gpt-3.5-turbo",
     });
+    chat.messages.push({role: "user", content: req.body.ques});
     chat.messages.push({role: "assistant", content: chatCompletion.choices[0].message.content});
     chat.save();
-    res.status(200).json({message: chatCompletion.choices[0].message.content});
+    res.status(200).json({message: chatCompletion.choices[0].message});
 };
 
-
+export const postHelper = async(req,res)=>{
+    mesg.push({ role: "user", content: String(req.body.botname) });
+    const chatCompletion = await openai.chat.completions.create({
+        messages: mesg,
+        model: "gpt-3.5-turbo",
+    });
+    let newmsg=[];
+    newmsg.push({role: "system", content: chatCompletion.choices[0].message.content});
+    newmsg.push({role:"user",content :req.body.content});
+    const chatCompletion2 = await openai.chat.completions.create({
+        messages: newmsg,
+        model: "gpt-3.5-turbo",
+    });
+    console.log(chatCompletion2.choices[0].message.content);
+    return res.status(200).json(chatCompletion2.choices[0].message.content)
+};
 
 

@@ -64,26 +64,44 @@ function traverse(blocks){
 }
 
 
-export default function Post({post}) {
+export default function Post({post,setPost,ai,setAi}) {
   const [timer,setTimer] = useState(1);
   // Creates a new editor instance.
-  const editor = useBlockNote({
+  let editor = useBlockNote({
+    editable:post && post.isPublished?false:true,
     initialContent: post && post.content ? JSON.parse(post.content) : "",
     slashMenuItems: customSlashMenuItemList,
     onEditorContentChange: (editor) => {
+      if(timer<1000)
       setTimer(100000);
     }
   });
   useEffect(() => {
     const interval = setInterval(() => {
-      axios.put("http://localhost:5000/post/update",{id:post._id,content:JSON.stringify(editor.topLevelBlocks)}).then((res) => {}).catch((err) => {console.log(err);});
+      axios.put("http://localhost:5000/post/update",{id:post._id,content:JSON.stringify(editor.topLevelBlocks)}).then((res) => {console.log(res);setPost({_id:post._id, content:JSON.stringify(editor.topLevelBlocks)}) }).catch((err) => {console.log(err);});
       if(timer>1)
       {
         setTimer(timer/10);
       }
     }, 200000/timer);
     return () => clearInterval(interval);
-  }, [timer,post]);
+  }, [timer]);
+
+  useEffect(() => {
+    if(ai)
+    {
+      axios.post("http://localhost:5000/cia/postHelper",{botname:ai,content:traverse(editor.topLevelBlocks)}).then((res)=>{
+        console.log(res); 
+        setAi();
+        editor.insertBlocks(
+          [{ content: String(res.data) }],
+          editor.getTextCursorPosition().block,
+          "after"
+        )
+      })
+      .catch((err)=>console.log(err));
+    }
+  }, [ai]);
 
   // if(post && post.content)
   // {
@@ -93,5 +111,5 @@ export default function Post({post}) {
   // }
   console.log(editor);
   // Renders the editor instance.
-  return <BlockNoteView editor={editor}  theme={lightDefaultTheme} className="h-[100%] w-[100%]" />;
+  return <BlockNoteView editor={editor}  theme={lightDefaultTheme} className="h-[100%] w-[inherit] max-w-[52vw]" />;
 }

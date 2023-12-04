@@ -25,17 +25,17 @@ const projectSchema = mongoose.Schema({
                     },
                 }
             ],
-            progress:{
-                type: Number,
-                default:0,
-            },
         }
     ],
     userId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'user',
         required: true,
-    }
+    },
+    progress:{
+        type: Number,
+        default:0,
+    },
 });
 
 export const project = mongoose.model("project", projectSchema);

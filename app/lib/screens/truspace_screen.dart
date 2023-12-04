@@ -1,3 +1,5 @@
+import 'package:app/models/user_model.dart';
+import 'package:app/requests/user_api_service.dart';
 import 'package:app/widgets/achievements_list_widget.dart';
 import 'package:app/widgets/badges_widget.dart';
 import 'package:app/widgets/ci_agents_list_widget.dart';
@@ -8,11 +10,37 @@ import 'package:app/widgets/notes_list_widget.dart';
 import 'package:app/widgets/profile_card.dart';
 import 'package:flutter/material.dart';
 
-class TruspaceScreen extends StatelessWidget {
+class TruspaceScreen extends StatefulWidget {
   const TruspaceScreen({super.key});
 
   @override
+  State<TruspaceScreen> createState() => _TruspaceScreenState();
+}
+
+class _TruspaceScreenState extends State<TruspaceScreen> {
+  bool _loading = true;
+  late UserModel _userModel;
+  final String _userId = "65645f987aa073e675de9071";
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _userModel = await UserService().getUserData(_userId);
+      setState(() {
+        _loading = false;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (_loading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
     return Scaffold(
       body: ListView(
         children: [
@@ -24,54 +52,62 @@ class TruspaceScreen extends StatelessWidget {
                 height: 195.0,
                 width: double.infinity,
               ),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 112.0,
                   ),
-                  ProfileCard(),
-                  SizedBox(
+                  ProfileCard(
+                    userModel: _userModel,
+                  ),
+                  const SizedBox(
                     height: 24.0,
                   ),
-                  NextTierWidget(),
-                  SizedBox(
+                  NextTierWidget(
+                    userModel: _userModel,
+                  ),
+                  const SizedBox(
                     height: 24.0,
                   ),
-                  DividerWidget(),
-                  SizedBox(
+                  const DividerWidget(),
+                  const SizedBox(
                     height: 24.0,
                   ),
-                  BadgesWidget(),
-                  SizedBox(
+                  const BadgesWidget(),
+                  const SizedBox(
                     height: 24.0,
                   ),
-                  AchievementsListWidget(),
-                  SizedBox(
+                  const AchievementsListWidget(),
+                  const SizedBox(
                     height: 24.0,
                   ),
-                  DividerWidget(),
-                  SizedBox(
+                  const DividerWidget(),
+                  const SizedBox(
                     height: 24.0,
                   ),
-                  CIAgentsListWidget(),
-                  SizedBox(
+                  CIAgentsListWidget(
+                    ciaChats: _userModel.chats,
+                  ),
+                  const SizedBox(
                     height: 24.0,
                   ),
-                  DividerWidget(),
-                  SizedBox(
+                  const DividerWidget(),
+                  const SizedBox(
                     height: 24.0,
                   ),
-                  NotesListWidget(),
-                  SizedBox(
+                  const NotesListWidget(),
+                  const SizedBox(
                     height: 24.0,
                   ),
-                  DividerWidget(),
-                  SizedBox(
+                  const DividerWidget(),
+                  const SizedBox(
                     height: 24.0,
                   ),
-                  MilestoneTrackerWidget(),
-                  SizedBox(
+                  if (_userModel.projects.isNotEmpty) MilestoneTrackerWidget(
+                    projects: _userModel.projects,
+                  ),
+                  const SizedBox(
                     height: 200.0,
                   ),
                 ],
