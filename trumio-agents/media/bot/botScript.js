@@ -32,8 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         chatInput.value = '';
     }
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault(); 
+            handleChat();
+        }
+    }
     
     sendChatBtn.addEventListener("click", handleChat);
+    chatInput.addEventListener("keypress", handleKeyPress);
     window.addEventListener('message', event => {
         const message = event.data; // The JSON data our extension sent
         switch (message.command) {

@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Mukta&family=Poppins&family=Quicksand:wght@300;400;500;600;700&display=swap');
 /* font-family: 'Poppins', sans-serif; */
 :root{
-  --themecolor1 : #724ae8;
-  --themecolor2 : #fff;
+
+  /* --themecolor1 : #007acc;
+  --themecolor2 : #1e1e1e;
+   */
+  --themecolor1 : #050301;
+  --themecolor2 : #222222;
 }
 *{
   margin: 0;
@@ -11,7 +15,7 @@
   font-family: 'Poppins', sans-serif;
 }
 body{
-  background: #E3F3FD;
+  background: #cfd8dc;
 }
 .chatbot-toggler{
   position: fixed;
@@ -61,13 +65,13 @@ body{
   pointer-events: auto;
 }
 .chatbot header{
-  background:var(--themecolor1);
+  background: #3486eb;
   padding: 16px 0;
   text-align: center;
   position: relative;
 }
 .chatbot header h2{
-  color:var(--themecolor2);
+  color:#f2f2f2;
   font-size: 1.4rem;
 
 }
@@ -93,9 +97,9 @@ body{
 .chatbox .incoming span {
   height:32px;
   width: 32px;
-  background-color:var(--themecolor1);
+  background-color:#3486eb;
   align-self: flex-end;
-  color: var(--themecolor2);
+  color: #f2f2f2;
    text-align: center;
    line-height: 32px;
    border-radius: 4px;
@@ -109,13 +113,14 @@ body{
   padding: 12px 16px ;
   border-radius: 10px 10px 0 10px ;
   color: var(--themecolor2);
-  background: var(--themecolor1);
+  background:#cfd8dc;;
   font-size: 0.95rem;
   max-width: 75%;
 }
 .chatbox .incoming p {
-  color: #000;
+  
   background: #f2f2f2;
+  color:#000;
   border-radius: 10px 10px 10px 0;
 
 }
@@ -128,30 +133,43 @@ body{
   width: 100%;
   background-color:var(--themecolor2);
   padding: 5px 20px ;
-  border-top: 1px solid #ccc;
+ /* border-top: 1px solid var(--themecolor1);*/
 
 }
 .chat-input textarea{
-  border: none;
+  
+  border-color: #3486eb;
   outline: none;
-  height: 55px;
+  height: 50px;
   width: 100%;
+  border-radius: 25px;
   font-size: 0.95rem;
+  background-color:#f2f2f2;
   resize:none;
   padding: 16px 15px 16px 0;
+  overflow: hidden;
+  color:#000;
+  padding-left: 15px;
 }
+
+
 .chat-input span {
   align-self: flex-end;
   color: var(--themecolor1);
   font-size: 1.35rem;
+ 
   cursor: pointer;
   /* background-color: red; */
-  height: 55px;
-  line-height: 55px;
+  height: 50px;
+  line-height: 50px;
   visibility: hidden;
 }
 .chat-input textarea:valid ~ span {
   visibility: visible;
+ 
+}
+#send-btn {
+  color: #cfd8dc;
 }
 
 @media(max-width:490px){

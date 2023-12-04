@@ -1,32 +1,60 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dropdown Menus with Checkboxes</title>
-        <link href="${styleUri}" rel="stylesheet">
-        <script src="${scriptUri}" defer></script>
-    </head>
-    <body>
-        <div class="dropdown" id="projects">
-            <button class="dropbtn">Project</button>
-            <div class="dropdown-content">
-                <label><input type="checkbox"> Project-1</label>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Milestone Tracker</title>
+</head>
+<body>
+    <div class="milestone-tracker">
+        <div class="header">
+            <h2>Milestone Tracker</h2>
+            <button>View All</button>
+        </div>
+        <div class="project-section">
+            <div class="project-dropdown">
+                <label for="project">Project</label>
+                <select name="project" id="project">
+                    <option value="devrev-research">DevRev Research</option>
+                    <!-- Other projects will be added here -->
+                </select>
+            </div>
+            <div class="project-progress">
+                <label for="progress">Progress</label>
+                <span id="progress">75%</span>
             </div>
         </div>
-    
-        <ul class="milestones-list">
-            <li class="milestone-dropdown">
-                <div class="dropdown">
-                    <button class="dropbtn">Milestone-1</button>
-                    <div class="dropdown-content">
-                        <label>
-                            <input type="checkbox" onclick="handleCheckbox('Milestone-1 Option 1')">Finalise App Wireframes
-                        </label>
-                    </div>
-                </div>
+        <ul class="milestone-list">
+            <li class="milestone">
+                <details>
+                    <summary>Milestone 1: Foundations</summary>
+                    <ul>
+                        <label><input type="checkbox" name="task1"> Task 1</label>
+                        <label><input type="checkbox" name="task2"> Task 2</label>
+                        <label><input type="checkbox" name="task3"> Task 3</label>
+                        <!-- More tasks can be added here -->
+                    </ul>
+                </details>
+                <span>3/4 tasks</span>
+                <span class="on-track">ON TRACK</span>
             </li>
+            <li class="milestone">
+                <details>
+                    <summary>Milestone 2: Backend</summary>
+                    <ul>
+                        <label><input type="checkbox" name="task1"> Task 1</label>
+                        <label><input type="checkbox" name="task2"> Task 2</label>
+                        <label><input type="checkbox" name="task3"> Task 3</label>
+                        <!-- More tasks can be added here -->
+                    </ul>
+                </details>
+                <span>3/4 tasks</span>
+                <span class="on-track">ON TRACK</span>
+            </li>
+            <!-- More milestones can be added here -->
         </ul>
-    
-    </body>
-    </html>
+    </div>
+</body>
+</html>
