@@ -52,9 +52,10 @@ export const postChat = async (req, res) => {
         messages: mes,
         model: "gpt-3.5-turbo",
     });
+    chat.messages.push({role: "user", content: req.body.ques});
     chat.messages.push({role: "assistant", content: chatCompletion.choices[0].message.content});
     chat.save();
-    res.status(200).json({message: chatCompletion.choices[0].message.content});
+    res.status(200).json({message: chatCompletion.choices[0].message});
 };
 
 export const postHelper = async(req,res)=>{
