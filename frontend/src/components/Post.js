@@ -64,7 +64,7 @@ function traverse(blocks){
 }
 
 
-export default function Post({post,setPost,ai,setAi}) {
+export default function Post({post,setPost,ai,setAi,heading}) {
   const [timer,setTimer] = useState(1);
   // Creates a new editor instance.
   let editor = useBlockNote({
@@ -78,7 +78,7 @@ export default function Post({post,setPost,ai,setAi}) {
   });
   useEffect(() => {
     const interval = setInterval(() => {
-      axios.put("http://localhost:5000/post/update",{id:post._id,content:JSON.stringify(editor.topLevelBlocks)}).then((res) => {console.log(res);setPost({_id:post._id, content:JSON.stringify(editor.topLevelBlocks)}) }).catch((err) => {console.log(err);});
+      axios.put("http://localhost:5000/post/update",{id:post._id,content:JSON.stringify(editor.topLevelBlocks),title:heading?heading:"Untitled"}).then((res) => {console.log(res);setPost({_id:post._id, content:JSON.stringify(editor.topLevelBlocks)}) }).catch((err) => {console.log(err);});
       if(timer>1)
       {
         setTimer(timer/10);
@@ -102,6 +102,11 @@ export default function Post({post,setPost,ai,setAi}) {
       .catch((err)=>console.log(err));
     }
   }, [ai]);
+
+  useEffect(() => {
+    if(timer<1000)
+    setTimer(100000);
+  }, [heading]);
 
   // if(post && post.content)
   // {
