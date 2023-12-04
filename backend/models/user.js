@@ -42,9 +42,23 @@ const userSchema = mongoose.Schema({
         default: 0
       },
     badges: [
-        {
-          type: String
-        }
+      {
+          heading: {
+              type: String
+          },
+          description: {
+              type: String
+          },
+          status: {
+              type: String
+          },
+          image: {
+              type: String
+          },
+          sparks: {
+              type: String
+          },
+      }
       ],
     projects: [
         {
