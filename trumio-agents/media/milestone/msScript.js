@@ -30,6 +30,42 @@ const getMilestones = (projectName) => {
     });
 }
 
+const setMilestones = async (action,state) => {
+    const path = action.split('-');
+    // console.log(path);
+
+    const projectName = path[0];
+    const milestoneName = path[1];
+    const taskName = path[2];
+
+    let projects = await getProjects();
+    let changedProject = undefined
+    
+    for (project of projects) {
+        if (project.title == projectName){
+            for (ms of project.milestones) {
+                if (ms.title == milestoneName){
+                    for(tasks of ms.task){
+                        if (tasks.title == taskName){
+                            tasks.isCompleted = state;
+                        }
+                    }
+                }
+            };
+            changedProject = project;
+        }
+    };
+
+    axios.post('http://localhost:5000/project/updateProject', {projectId:changedProject._id,projectIncoming:changedProject}).
+        then((response) => {
+            console.log(response.data);
+        }).
+        catch((error) => {
+            console.log(error);
+        });
+
+}
+
 document.addEventListener('DOMContentLoaded',async () => {
 
     const projectBtn = document.getElementById('project');
@@ -51,7 +87,7 @@ document.addEventListener('DOMContentLoaded',async () => {
         projects.forEach(project => {
             // Create a new option element
             const option = document.createElement('option');
-            option.value = project.title // Convert project name to a suitable value
+            option.value = project.title 
             option.textContent = project.title; // Set the display text as the project name
     
             // Append the option to the select button
@@ -62,7 +98,7 @@ document.addEventListener('DOMContentLoaded',async () => {
         projects = []
     }
 
-    const createMilestone = (milestone) => {
+    const createMilestone = (projectName,milestone) => {
         const li = document.createElement('li');
         li.classList.add("milestone");
 
@@ -72,12 +108,39 @@ document.addEventListener('DOMContentLoaded',async () => {
         const ul = document.createElement('ul');
         ul.classList.add("subTasks");
         
+        let totalTasks = 0;
+        let setTasks = 0;
+
+        const span1 = document.createElement('span');
+
         milestone.task.forEach(task => {
+            totalTasks++;
+
             const label = document.createElement('label');
-            const input = document.createElement('input');
-            input.type = "checkbox";
-            input.name = task.title;
-            label.append(input);
+            const box = document.createElement('input');
+            box.type = "checkbox";
+            box.name = `${projectName}-${milestone.title}-${task.title}`;
+            if (task.isCompleted){
+                box.checked = true;
+                setTasks++;
+            }
+
+            box.addEventListener('click', function() {
+                // console.log('Checkbox clicked:', this.name);
+
+                if (box.checked){
+                    setTasks++;
+                    setMilestones(this.name,true);
+                }
+                else{
+                    setTasks--;
+                    setMilestones(this.name,false);
+                }
+                span1.textContent = `${setTasks}/${totalTasks} tasks`;
+                
+            });
+
+            label.append(box);
             label.append(document.createTextNode(task.title));
             ul.append(label);
         });
@@ -85,9 +148,7 @@ document.addEventListener('DOMContentLoaded',async () => {
         details.append(summary);
         details.append(ul);
 
-        const span1 = document.createElement('span');
-        span1.textContent = "3/4 tasks";
-
+        span1.textContent = `${setTasks}/${totalTasks} tasks`;
         const span2 = document.createElement('span');
         span2.textContent = "ON TRACK";
         span2.classList.add("on-track");
@@ -112,7 +173,7 @@ document.addEventListener('DOMContentLoaded',async () => {
         milestoneList.innerHTML = '';
 
         milestones.forEach(milestone => { // Each milestone is an onject     
-            li = createMilestone(milestone);
+            li = createMilestone(projectName,milestone);
             milestoneList.appendChild(li);
         });
 
