@@ -16,11 +16,16 @@ export default function Notes() {
     }).then((res) => {
       setPosts(res.data.reverse());
       if(!post)
-      setPost(res.data[0]);
+      {
+        setPost(res.data[0]);
+        setHeading(res.data[0].title);
+      }
     }).catch((err) => {
         console.log(err);
     });
   }, []);
+  // useEffect(() => {
+  // }, [heading]);
   const [posts,setPosts] = useState([
     {
         title:"ProdWizard",
@@ -33,16 +38,17 @@ export default function Notes() {
   ]);
   return (
     <>
-      <Navbar />
       <div className="flex flex-row px-16 py-4 container w-[100%] h-[100%] gap-5">
-        <div className=" w-1/3 h-[100%]">
-            <NoteList posts={posts} setPost={setPost} setPosts={setPosts}/>
+        <div className=" w-[40vw] h-[65vh] ">
+            <NoteList posts={posts} setPost={setPost} setPosts={setPosts} setHeading={setHeading}/>
         </div>
         <div className="container mx-auto my-auto h-[100%] shadow-xl border border-neutral-200 rounded-lg">
             <div className="h-[50px] w-[100%] p-4 border-neutral-200 flex gap-4 items-center" >
               <div className="flex justify-center gap-4 items-center w-[90%]">
                 <span className={`h-8 text-yellow-500 bg-yellow-100 px-2 py-1 rounded-md font-medium`}>{"DRAFT"}</span>
-                <span className="font-medium">{heading}</span>
+                <input type="text" onChange={(e)=>{
+                  setHeading(e.target.value)
+                  }} value={heading} className="font-medium focus:outline-none w-[fit-content]"></input>
               </div>
               <button className="w-[92px] h-8 pl-1 pr-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-1 inline-flex" onClick={()=>{
                 axios.post("http://localhost:5000/post/publish",{
@@ -59,7 +65,7 @@ export default function Notes() {
               </button>
             </div>
             <div className="w-[100%] h-[65vh] overflow-y-scroll p-2 border-b-2 border-t-2 border-neutral-200 overflow-x-hidden">
-                {post && <Post post={post}  setPost={setPost} ai={ai} setAi={setAi}/>}
+                {post && <Post post={post}  setPost={setPost} ai={ai} setAi={setAi} heading={heading}/>}
             </div>
             <div className="px-3">
               <AISuggestions setAi={setAi}/>

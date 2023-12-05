@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import NotesCard from "./NotesCard";
 
 
 export default function NotesComponent({noteslist}) {
     return (
-    <div className="container mx-auto my-auto h-[478px] bg-white rounded-xl shadow border border-neutral-200 p-4">
-            <div className="w-[816px] h-8 pl-2 justify-between items-center inline-flex">
+    <div className="container mx-auto my-auto bg-white rounded-xl shadow-md border border-neutral-200 p-4">
+            <div className="w-[55vw] h-8 pl-2 justify-between items-center inline-flex">
                 <div className="text-zinc-600 text-base font-normal font-['DM Sans'] ">Notes</div>
                     <div className="justify-start items-center gap-2 flex">
                         <div className="pl-1 pr-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-1 flex">
@@ -12,17 +13,17 @@ export default function NotesComponent({noteslist}) {
                         <button className="text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">Compose</button>
                         </div>
                         <div className="px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
-                        <button className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">View All</button>
+                        <Link to="/Notes"><button className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">View All</button></Link>
                         </div>
                     </div>
             </div>
-            <div className="w-[816px] h-[172px] bg-gradient-to-r from-blue-400 via-blue-200 to-blue-0 rounded-xl border border-blue-600 justify-center items-center flex gap-[15px] my-4" >
+            <div className="w-[55vw] h-[172px] bg-gradient-to-r from-blue-400 via-blue-200 to-blue-0 rounded-xl border border-blue-300 justify-center items-center flex gap-[15px] my-4" >
                     <div className="w-[464px] h-[156px] relative bg-white rounded-lg border border-neutral-200">
                         <div className="w-[436px] left-[16px] top-[16px] absolute text-black text-base font-medium font-['DM Sans'] leading-normal">{noteslist[0].title}</div>
                         <div className="w-[436px] h-[59px] left-[16px] top-[44px] absolute text-zinc-600 text-sm font-normal font-['DM Sans'] leading-tight">{noteslist[0].description.slice(0,150)+"..."}.</div>
                         <div className="left-[16px] top-[118px] absolute text-black text-opacity-60 text-xs font-normal font-['DM Sans'] leading-none">Updated 2 days ago</div>
                     </div>
-                    <div className="w-[290px] h-[150px] bg-transparent rounded-lg border border-neutral-200">
+                    <div className="w-[290px] h-[150px] bg-transparent rounded-lg ">
                     <div className="text-zinc-600 text-sm font-normal font-['DM Sans'] leading-tight">Continue Writing...</div>
                     <div className="container mx-auto my-2 flex flex-row flex-wrap gap-1 ">
                         <button className="w-[226px] h-8 pl-1 pr-3 py-1 bg-blue-600 rounded-lg justify-center items-center gap-1 inline-flex">
@@ -44,7 +45,7 @@ export default function NotesComponent({noteslist}) {
                     </div>
             </div>
         </div>
-        <div className="container my-5 mx-auto inline-flex overflow-x-scroll gap-2">
+        <div className="container w-[55vw] my-5 mx-auto inline-flex gap-2">
             {noteslist.map((notesCardData) => {
                 return(
                     NotesCard({notesCardData})

@@ -5,24 +5,32 @@ import { Link } from 'react-router-dom';
 
 // Sample data for carousel items
 
-const ExpertAgents = () => {
-  const carouselItems = [
-    { id: 1, name: 'Item 1' },
-    { id: 2, name: 'Item 2' },
-    { id: 3, name: 'Item 3' },
-    { id: 4, name: 'Item 4' },
-    { id: 5, name: 'Item 5' },
-  ];
-
-  const [messages, setMessages] = useState([
-    { id: 1, text: "Hey Vidya! How may I assist you?", sender: "2ndPerson",
-  }
-  ]);
+const ExpertAgents = ({chatIds}) => {
+  // const carouselItems = [
+  //   { id: 1, name: 'Item 1' },
+  //   { id: 2, name: 'Item 2' },
+  //   { id: 3, name: 'Item 3' },
+  //   { id: 4, name: 'Item 4' },
+  //   { id: 5, name: 'Item 5' },
+  // ];
+  const carouselItems = chatIds.map((chat, index)=>{
+    return {id: index+1, name: chat.botname}
+  });
+  const initialMessages= chatIds.map((chat, index)=>{
+    const items= chat.messages.filter((message)=> message.role!='system').map((message)=>{
+      return {id: index+1, content: message.content, role: message.role}
+    })
+    return items;
+  })
+  console.log(carouselItems)
+  console.log(initialMessages)
+  const [messages, setMessages] = useState(initialMessages.flat());
+  console.log(messages);
   const [newMessage, setNewMessage] = useState('');
 
-  const handleSendMessage = () => {
+  const handleSendMessage = (itemid) => {
     if (newMessage.trim()) {
-      const nextMessages = [...messages, { id: Date.now(), text: newMessage, sender: "user" }];
+      const nextMessages = [...messages, { id: itemid, content: newMessage, role: "user" }, {id:itemid, content: "Hello! How can I assist you today?", role: "assistant"}];
       setMessages(nextMessages);
       setNewMessage('');
     }
@@ -30,13 +38,15 @@ const ExpertAgents = () => {
 
   return (
 
-    <div className="w-[416px] h-[318px] relative bg-white rounded-xl shadow border border-neutral-200 pl-[16px] pr-[16px]">
+    <div className="w-[28.88vw] h-[318px] relative bg-white rounded-xl shadow-md border border-neutral-200 pl-[16px] pr-[16px]">
       
-      <div className="w-96 h-8 pl-2 justify-between items-center inline-flex mt-[16px] mb-[10px]">
+      <div className="w-[26.88vw] h-8 pl-2 justify-between items-center inline-flex mt-[16px] mb-[10px]">
         <h1 className="text-zinc-600 text-base font-normal font-['DM Sans'] leading-normal">Your Go-To Expert Agents</h1>
+        <Link to="/cia">
         <button className="px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
           <div className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">View All</div>
         </button>
+        </Link>
       </div>
 
       <Carousel step={1} className="">
@@ -61,10 +71,10 @@ const ExpertAgents = () => {
                         </div>
                         <div className='h-[192px] w-[356px] border border-2ndPersontom grey-200 overflow-y-auto overflow-x-hidden'>
 
-                        {messages.map(message => (
-                          <div key={message.id} className={`flex ${message.sender === '2ndPerson' ? 'justify-start p-[8px] ml-[5px]' : 'justify-end p-[8px] mr-[5px]'}`}>
-                            <div className={`flex ${message.sender === "2ndPerson" ? 'rounded-b-xl rounded-tr-xl px-4 max-w-[300px] py-2 bg-blue-100 lg:max-w-md':'rounded-b-xl rounded-tl-xl px-4 max-w-[300px] py-2 bg-blue-100 lg:max-w-md'}`}>
-                              {message.text}
+                        {messages.filter((message)=>message.id==item.id).map(message => (
+                          <div className={`flex ${message.role === 'assistant' ? 'justify-start p-[8px] ml-[5px]' : 'justify-end p-[8px] mr-[5px]'}`}>
+                            <div className={`flex ${message.role === "assistant" ? 'rounded-b-xl rounded-tr-xl px-4 max-w-[300px] py-2 bg-blue-100 lg:max-w-[300px]':'rounded-b-xl rounded-tl-xl px-4 max-w-[300px] py-2 bg-blue-100 lg:max-w-md'}`} style= {{overflowWrap: "break-word"}}>
+                              {message.content}
                             </div>
                           </div>
                         ))}
@@ -72,11 +82,12 @@ const ExpertAgents = () => {
                         </div>
                         <div className="w-[356px] pl-[16px] pr-[16px] mt-4 mb-[18px] flex items-center justify-between">
                             <input
-                            className="form-input text-sm rounded"
+                            className="w-full h-full form-input text-sm rounded focus:outline-none"
                             placeholder={`Reply to ${item.name}`}
+                            value={newMessage}
                             onChange={(e) => setNewMessage(e.target.value)}
                             />
-                            <button className="w-5 h-5 relative" onClick={handleSendMessage}>
+                            <button className="w-5 h-5 relative" onClick={()=>handleSendMessage(item.id)}>
                               <img src="sendSVG.svg" alt="Send SVG" className="w-full h-full"/>
                             </button>
                         </div>                

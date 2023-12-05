@@ -1,5 +1,6 @@
 const vscode = require("vscode");
 const generate = require("./API/LLMChain"); // For the Chat Bot
+const axios = require("axios");
 
 function activate(context) {
   const chatprovider = new ChatViewProvider(context.extensionUri); // Link Chat View Provider
@@ -19,6 +20,12 @@ function activate(context) {
       msprovider
     )
   );
+
+
+
+
+
+
 
     // Code Explanation Functionality
 
@@ -53,6 +60,13 @@ function activate(context) {
     }
   );
 
+
+
+
+
+
+
+
     // Add Comments Functionality
 
   let disposable2 = vscode.commands.registerCommand(
@@ -84,6 +98,17 @@ function activate(context) {
   context.subscriptions.push(disposable2);
 }
 
+
+
+
+
+
+
+
+
+
+
+
 // CODE SUMMARIZER FUNCTIONALITY
 
 function getWebviewContent(gpt_summary, gpt_error, webstyleUri) {
@@ -106,6 +131,17 @@ function getWebviewContent(gpt_summary, gpt_error, webstyleUri) {
     </body>
     </html>`;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 // ADD COMMENT FUNCTIONALITY
 
@@ -166,6 +202,16 @@ async function writeToEditor(readobj,text) { // Write the whole text to the edit
     }
   }
 };
+
+
+
+
+
+
+
+
+
+
 
 // CHAT BOT FUNCTIONALITY
 
@@ -234,7 +280,6 @@ class ChatViewProvider {
             <div class="chatbot">
                 <header>
                     <h2>ChatBot</h2>
-                    <span class="material-symbols-outlined">close</span>
                 </header>
     
                 <ul class="chatbox">
@@ -245,7 +290,7 @@ class ChatViewProvider {
                 </ul>
     
                 <div class="chat-input">
-                    <textarea placeholder="Enter a messege... " required></textarea>
+                    <textarea placeholder="Enter a message... " required></textarea>
                     <span id="send-btn" class="material-symbols-outlined">send</span>
                 </div>
             </div>
@@ -255,6 +300,14 @@ class ChatViewProvider {
 }
 
 ChatViewProvider.viewType = "chatView";
+
+
+
+
+
+
+
+
 
 // MILE STONES TRACKER
 
@@ -271,27 +324,9 @@ class MileStoneProvider {
     };
 
     webviewView.webview.html = this.getMSTrackerWebview(webviewView.webview); // Link HTML
-
-    webviewView.webview.onDidReceiveMessage(
-      // Linking frontend to backend (If webview got some message)
-      async (message) => {
-        switch (message.command) {
-          case "submit":
-            console.log(`Message from You: ${message.text}`);
-
-            const gpt = await generate(message.text); // GPT Response (Promise)
-            webviewView.webview.postMessage({command:"response",text:gpt}); // Send GPT Response to webview
-            console.log(`Message from GPT : ${gpt}`);
-            break;
-        }
-      },
-      undefined,
-      context.subscriptions
-    );
   }
 
   getMSTrackerWebview(webview) {
-    // HTML for the chatbot's view
 
     // Link Script and Style files.
 
@@ -309,31 +344,55 @@ class MileStoneProvider {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dropdown Menus with Checkboxes</title>
         <link href="${styleUri}" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script nonce="${nonce}" src="${scriptUri}"></script>
+        <title>Milestone Tracker</title>
     </head>
     <body>
-        <div class="dropdown" id="projects">
-            <button class="dropbtn">Project</button>
-            <div class="dropdown-content">
-                <label><input type="checkbox"> Project-1</label>
+        <div class="milestone-tracker">
+            <div class="header">
+                <h2>Milestone Tracker</h2>
+                <button>View All</button>
             </div>
-        </div>
-    
-        <ul class="milestones-list">
-            <li class="milestone-dropdown">
-                <div class="dropdown">
-                    <button class="dropbtn">Milestone-1</button>
-                    <div class="dropdown-content">
-                        <label>
-                            <input type="checkbox" onclick="handleCheckbox('Milestone-1 Option 1')">Finalise App Wireframes
-                        </label>
-                    </div>
+            <div class="project-dropdown">
+                <select name="project" id="project">
+                  <option id="dummy">Project</option>
+                </select>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 75%;"></div>
                 </div>
-            </li>
-        </ul>
-    
+            </div>
+            <ul class="milestone-list">
+                <li class="milestone">
+                    <details>
+                        <summary>Milestone 1: Foundations</summary>
+                        <ul class = "subTasks">
+                            <label><input type="checkbox" name="task1"> Task 1</label>
+                            <label><input type="checkbox" name="task2"> Task 2</label>
+                            <label><input type="checkbox" name="task3"> Task 3</label>
+                            <!-- More tasks can be added here -->
+                        </ul>
+                    </details>
+                    <span>3/4 tasks</span>
+                    <span class="on-track">ON TRACK</span>
+                </li>
+                <li class="milestone">
+                    <details>
+                        <summary>Milestone 2: Backend</summary>
+                        <ul class = "subTasks">
+                            <label><input type="checkbox" name="task1"> Task 1</label>
+                            <label><input type="checkbox" name="task2"> Task 2</label>
+                            <label><input type="checkbox" name="task3"> Task 3</label>
+                            <!-- More tasks can be added here -->
+                        </ul>
+                    </details>
+                    <span>3/4 tasks</span>
+                    <span class="on-track">ON TRACK</span>
+                </li>
+                <!-- More milestones can be added here -->
+            </ul>
+        </div>
     </body>
     </html>`;
   }

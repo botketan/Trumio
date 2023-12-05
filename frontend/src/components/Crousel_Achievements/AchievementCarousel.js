@@ -6,8 +6,8 @@ import { ControlsChevronLeftSmall, ControlsChevronRightSmall } from '@heathmont/
 
 const AchievementCarousel = ({ items }) => {
     return (
-        <Carousel step={3}>
-          <Carousel.LeftArrow>
+        <Carousel step={1}>
+          <Carousel.LeftArrow className='w-12 h-12 p-3 ml-2 bg-white rounded-full shadow border border-neutral-200 justify-center items-center inline-flex'>
             <ControlsChevronLeftSmall />
           </Carousel.LeftArrow>
             <Carousel.Reel>
@@ -16,7 +16,7 @@ const AchievementCarousel = ({ items }) => {
                 <Achievements
                     key={index}
                     heading={item.heading}
-                    description={item.description}
+                    description={item.description.slice(0,40)+"..."}
                     status={item.status}
                     image={item.image}
                     sparks={item.sparks}
@@ -25,8 +25,8 @@ const AchievementCarousel = ({ items }) => {
               </Carousel.Item>
             ))}
             </Carousel.Reel>
-            <Carousel.RightArrow>
-              <ControlsChevronRightSmall />
+            <Carousel.RightArrow className='w-12 h-12 p-3 mr-2 bg-white rounded-full shadow border border-neutral-200 justify-center items-center inline-flex'>
+            <ControlsChevronRightSmall />
             </Carousel.RightArrow>
       </Carousel>
     );

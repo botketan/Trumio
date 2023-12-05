@@ -1,36 +1,33 @@
 import { FilesCase ,ChatChat} from '@heathmont/moon-icons-tw';
 import React from 'react';
-import './MentorCard.css';
 
 const MentorCard = ({cardData}) => {
     return ( 
-        <div className="Card p-2 rounded-xl" >
-                <div className='cardImage'>
-                    <img src={cardData.imageUrl}  className='rounded-lg' alt="" />
-
+        <div className="w-[250px] p-2 rounded-xl border border-neutral-200 shadow-lg overflow-hidden" >
+                <div className='flex justify-center'>
+                    <img src={cardData.imageUrl}  className='rounded-lg h-56 w-full' alt="" />
                 </div>
-                <div className="Card-content my-2" >
-                <h3 className="text-moon-16 font-medium transition-colors">{cardData.name} &nbsp; {cardData.country}</h3>
+                <div className="Card-content flex flex-col gap-1 p-2" >
+                <h3 className="text-moon-16 font-medium transition-colors"><span>{cardData.name}</span><span className='opacity-75 text-xs ml-1'>{cardData.country}</span></h3>
                         
-                    <span className='text text-cyan-950 font-medium'>
+                    <span className='text text-cyan-950 font-medium text-sm flex justify-start items-center gap-1'>
                         <FilesCase className='otherFrame text-moon-20'/> 
-                        <h3>{cardData.job} at {cardData.jobLocation}</h3>
+                        <h3 className='text-gray-600 text-xs'>{cardData.job} at {cardData.jobLocation}</h3>
                     </span>
-                    <span className='text-cyan-950 font-medium'>
+                    <span className='text text-cyan-950 font-medium text-sm flex justify-start items-center gap-1'>
                         <ChatChat className='text-moon-20'/>
-                        <h3>{cardData.noOfSessions +" sessions"} { "(" + cardData.reviews +" reviews)" }</h3>
+                        <h3 className='text-gray-500 text-xs'>{cardData.noOfSessions +" sessions"} { "(" + cardData.reviews +" reviews)" }</h3>
                     </span>
                 </div>
-                <div className='m-2 rounded-xl flex justify-between'>
-                    <div className='py-3'>
-                        <h4 className='cc text-cyan-700 font-medium '>Experience</h4>
-                        <h3 className='font-medium text-cyan-950'>{cardData.experience} years</h3>
+                <div className='rounded-xl flex justify-between bg-gray-10 w-full mt-5'>
+                    <div className='py-3 pl-4'>
+                        <h4 className='cc text-#A9A9A9 font-medium opacity-50 text-moon-10'>Experience</h4>
+                        <h3 className='font-bold text-xs opacity-60'>{cardData.experience} years</h3>
 
                     </div>
-                    <div className='py-3'>
-                        <h4 className='text-cyan-700 font-medium '>Avg. Attendance</h4>
-                        <h3 className='font-medium text-cyan-950'>{cardData.avgAttendance}%</h3>
-
+                    <div className='py-3 pr-4'>
+                        <h4 className='text-#A9A9A9 font-medium opacity-50 text-moon-10'>Avg. Attendance</h4>
+                        <h3 className='font-bold text-xs opacity-60'>{cardData.avgAttendance}%</h3>
                     </div>
                 </div>
         </div>

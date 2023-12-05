@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
-import GamificationProfile from '../components/GamificationProfile'
-import GamificationAchievements from '../components/GamificationAchievements'
-import AchievementExpand from '../components/Crousel_Achievements/AchievementExpand'
-import Navbar from '../components/Navbar'
-import Leaderboard from '../components/Leaderboard/Leaderboard'
-import Navigation from '../components/Navigation'
+import React, { useState } from "react";
+import { Carousel } from '@heathmont/moon-core-tw';
+import { ControlsChevronLeftSmall, ControlsChevronRightSmall} from '@heathmont/moon-icons-tw';
+import { Link } from 'react-router-dom';
+import AchievementCarousel from "./Crousel_Achievements/AchievementCarousel";
 
-const Gamification = () => {
+// Sample data for carousel items
+
+const Badges = ({badges}) => {
     const items1 = [
         {
           heading: "Badge 1",
@@ -79,57 +79,25 @@ const Gamification = () => {
           sparks: "25 Sparks"
         }
       ];
-      
-      const achievements= [
-        {
-            title: "Badge 7 Earned",
-            date: "12th Dec 2023",
-            description: "Congratulations on earning Badge 7!",
-            points: 100
-        },
-        {
-            title: "Badge 7 Earned",
-            date: "12th Dec 2023",
-            description: "Congratulations on earning Badge 7!",
-            points: 100
-        },
-        {
-            title: "Badge 7 Earned",
-            date: "12th Dec 2023",
-            description: "Congratulations on earning Badge 7!",
-            points: 100
-        }
-    ]
-    const cardInfo = [
-        { Name: "Priyansh Mathur", rank: "1", sparks: "265", imageLink: "/Avatar.png" },
-        { Name: "Priyansh Mathur", rank: "2", sparks: "265", imageLink: "/Avatar.png" },
-        { Name: "Priyansh Mathur", rank: "3", sparks: "265", imageLink: "/Avatar.png" },
-        { Name: "Priyansh Mathur", rank: "4", sparks: "265", imageLink: "/Avatar.png" },
-        { Name: "Priyansh Mathur", rank: "1", sparks: "265", imageLink: "/Avatar.png" },
-        { Name: "Priyansh Mathur", rank: "2", sparks: "265", imageLink: "/Avatar.png" },
-        { Name: "Priyansh Mathur", rank: "3", sparks: "265", imageLink: "/Avatar.png" },
-        { Name: "Priyansh Mathur", rank: "4", sparks: "265", imageLink: "/Avatar.png" },
-        { Name: "Priyansh Mathur", rank: "1", sparks: "265", imageLink: "/Avatar.png" },
-        { Name: "Priyansh Mathur", rank: "2", sparks: "265", imageLink: "/Avatar.png" },
-        { Name: "Priyansh Mathur", rank: "3", sparks: "265", imageLink: "/Avatar.png" },
-        { Name: "Priyansh Mathur", rank: "4", sparks: "265", imageLink: "/Avatar.png" },
-      ];
+      console.log(badges);
   return (
-    <>
-        <div className='px-20 flex justify-around gap-4 py-4'>
-            <div className='flex flex-col gap-4 w-[60vw] py-4'>
-                <GamificationProfile />
-                <AchievementExpand items={items1}/>
-                <GamificationAchievements achievements={achievements}/>
-            </div>
-            <div className='w-[28vw]'>
-                <Leaderboard cardInfo={cardInfo} />
-            </div>
 
-        </div>
-    
-    </>
-  )
-}
+    <div className="w-[416px] relative bg-white rounded-xl shadow-md border border-neutral-200 pl-[16px] pr-[16px] pb-4">
+      
+      <div className="w-96 h-8 pl-2 justify-between items-center inline-flex mt-[16px] mb-[10px]">
+        <h1 className="text-zinc-600 text-base font-normal font-['DM Sans'] leading-normal">Your Badges</h1>
+        <Link to="/Gamification"><button className="px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
+          <div className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">View All</div>
+        </button>
+        </Link>
+      </div>
+      <div className="h-20">
 
-export default Gamification
+      </div>
+      <AchievementCarousel items={badges} />
+      
+    </div>
+  );
+};
+
+export default Badges;
