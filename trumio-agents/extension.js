@@ -357,7 +357,7 @@ class MileStoneProvider {
             </div>
             <div class="project-dropdown">
                 <select name="project" id="project">
-                  <!-- option id="DevRev Research">DevRev Research</option -->
+                  <option id="dummy">Project</option>
                 </select>
                 <div class="progress">
                     <div class="progress-bar" style="width: 75%;"></div>
@@ -367,7 +367,7 @@ class MileStoneProvider {
                 <li class="milestone">
                     <details>
                         <summary>Milestone 1: Foundations</summary>
-                        <ul>
+                        <ul class = "subTasks">
                             <label><input type="checkbox" name="task1"> Task 1</label>
                             <label><input type="checkbox" name="task2"> Task 2</label>
                             <label><input type="checkbox" name="task3"> Task 3</label>
@@ -380,7 +380,7 @@ class MileStoneProvider {
                 <li class="milestone">
                     <details>
                         <summary>Milestone 2: Backend</summary>
-                        <ul>
+                        <ul class = "subTasks">
                             <label><input type="checkbox" name="task1"> Task 1</label>
                             <label><input type="checkbox" name="task2"> Task 2</label>
                             <label><input type="checkbox" name="task3"> Task 3</label>

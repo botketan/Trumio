@@ -15,11 +15,13 @@ const getMilestones = (projectName) => {
     then(response => {
         let projects = response.data.projects;
         
-        projects.forEach(project => {
+        for (const project of projects) {
             if (project.title == projectName){
                 return project.milestones;
             }
-        });
+        };
+
+        return [];
 
     }).
     catch(error => {
@@ -31,18 +33,20 @@ const getMilestones = (projectName) => {
 document.addEventListener('DOMContentLoaded',async () => {
 
     const projectBtn = document.getElementById('project');
-    // const milestoneList = document.querySelector('.milestone-list');
+    const milestoneList = document.querySelector('.milestone-list');
 
     console.log('DOM loaded');
 
     let projects = await getProjects();
-    console.log(projects);
+    // console.log(projects);
 
     const handleProjects = () => {
 
         if (projects.length == 0){
             return;
         }
+
+        projectBtn.innerHTML = '';
 
         projects.forEach(project => {
             // Create a new option element
@@ -58,36 +62,57 @@ document.addEventListener('DOMContentLoaded',async () => {
         projects = []
     }
 
+    const createMilestone = (milestone) => {
+        const li = document.createElement('li');
+        li.classList.add("milestone");
+
+        const details = document.createElement('details');
+        const summary = document.createElement('summary');
+        summary.textContent = milestone.title;
+        const ul = document.createElement('ul');
+        ul.classList.add("subTasks");
+        
+        milestone.task.forEach(task => {
+            const label = document.createElement('label');
+            const input = document.createElement('input');
+            input.type = "checkbox";
+            input.name = task.title;
+            label.append(input);
+            label.append(document.createTextNode(task.title));
+            ul.append(label);
+        });
+
+        details.append(summary);
+        details.append(ul);
+
+        const span1 = document.createElement('span');
+        span1.textContent = "3/4 tasks";
+
+        const span2 = document.createElement('span');
+        span2.textContent = "ON TRACK";
+        span2.classList.add("on-track");
+
+        li.append(details);
+        li.append(span1);
+        li.append(span2);
+
+        return li;
+    }
+
     const handleMilestones = async () => {
         const projectName = projectBtn.value;
+        console.log(projectName);
         let milestones = await getMilestones(projectName);
+
+        console.log(milestones);
 
         if (milestones.length == 0){
             return;
         }
+        milestoneList.innerHTML = '';
 
-        milestones.forEach(milestone => { // Each milestone is an onject.
-            // Create a new option element
-            const li = document.createElement('li');
-            li.classList.add("milestone");
-
-            const details = document.createElement('details');
-            const summary = document.createElement('summary');
-            summary.textContent = milestone.title;
-            details.append(summary);
-
-            const span1 = document.createElement('span');
-            span1.textContent = "3/4 tasks";
-
-            const span2 = document.createElement('span');
-            span2.textContent = "ON TRACK";
-            span2.classList.add("on-track");
-
-            li.append(details);
-            li.append(span1);
-            li.append(span2);
-            
-            // Append the option to the select button
+        milestones.forEach(milestone => { // Each milestone is an onject     
+            li = createMilestone(milestone);
             milestoneList.appendChild(li);
         });
 
@@ -95,5 +120,5 @@ document.addEventListener('DOMContentLoaded',async () => {
     }
 
     projectBtn.addEventListener("click", handleProjects);
-    // projectBtn.addEventListener('change', handleMilestones);
+    projectBtn.addEventListener('change', handleMilestones);
 });
