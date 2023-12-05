@@ -100,7 +100,7 @@ export default function Truspace() {
     <>
       {
         (data&&notes)?
-      <div className="flex flex-row px-16 py-4 gap-4 justify-center">
+      <div className="flex flex-row py-4 gap-4 justify-center">
         <div className="flex flex-col w-[59vw] gap-4">
           <div className="flex w-full justify-between">
             <ExpertAgents chatIds={data.chatIds} />
