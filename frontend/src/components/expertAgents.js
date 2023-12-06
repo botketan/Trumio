@@ -69,10 +69,10 @@ const ExpertAgents = ({chatIds}) => {
     <div className="w-[28.88vw] h-[318px] relative bg-white rounded-xl shadow-md border border-neutral-200 pl-[16px] pr-[16px]">
       
       <div className="w-[26.88vw] h-8 pl-2 justify-between items-center inline-flex mt-[16px] mb-[10px]">
-        <h1 className="text-zinc-600 text-base font-normal font-['DM Sans'] leading-normal">Your Go-To Expert Agents</h1>
+        <h1 className="text-zinc-600 text-base font-normal font-dmsans leading-normal">Your Go-To Expert Agents</h1>
         <Link to="/cia">
         <button className="px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
-          <div className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">View All</div>
+          <div className="text-center text-blue-600 text-sm font-medium font-dmsans leading-normal">View All</div>
         </button>
         </Link>
       </div>
@@ -88,8 +88,8 @@ const ExpertAgents = ({chatIds}) => {
                         
                         <div className='flex w-[356px] h-[52px] relative bg-blue-600 rounded-t-xl justify-between'>
                           <div className='flex'>
-                            <div className="ml-[12px] mt-[10px] mb-[10px] mr-[12px] w-8 h-8 relative bg-white rounded-full"><div className="w-6 h-6 left-[4px] top-[8px] absolute text-center text-black text-xs font-medium font-['DM Sans'] leading-none">CI</div></div>
-                            <div className="mt-[15px]  text-white text-sm font-medium font-['DM Sans'] leading-normal">{item.name}</div>
+                            <div className="ml-[12px] mt-[10px] mb-[10px] mr-[12px] w-8 h-8 relative bg-white rounded-full"><div className="w-6 h-6 left-[4px] top-[8px] absolute text-center text-black text-xs font-medium font-dmsans leading-none">CI</div></div>
+                            <div className="mt-[15px]  text-white text-sm font-medium font-dmsans leading-normal">{item.name}</div>
                           </div>
                           <div>
                           <Link to="/cia">
