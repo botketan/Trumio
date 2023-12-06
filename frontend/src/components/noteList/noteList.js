@@ -20,7 +20,7 @@ const NoteList=({posts,setPost,setPosts,setHeading, searchParams, setSearchParam
                 <div>
                     <button className='flex items-center bg-blue-600 bg-opacity-10 rounded-lg p-1' onClick={createTrunote}>
                         <GenericPlus className='h-6 w-6 mr-1 text-blue-600'/>
-                        <span className="text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal pb-1 pr-1">New Trunote</span>
+                        <span className="text-blue-600 text-sm font-medium font-dmsans leading-normal pb-1 pr-1">New Trunote</span>
                     </button>
                 </div>
             </div>

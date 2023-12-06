@@ -86,7 +86,7 @@ export default function Notes() {
                 });
                 }}>
                 <OtherRocket className="w-6 h-6 relative text-blue-600" />
-                <div className="text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">Publish</div>
+                <div className="text-blue-600 text-sm font-medium font-dmsans leading-normal">Publish</div>
               </button>
             </div>
             <div className="w-[100%] h-[65vh] overflow-y-scroll p-2 border-b-2 border-t-2 border-neutral-200 overflow-x-hidden">

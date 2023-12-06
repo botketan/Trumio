@@ -5,7 +5,11 @@ module.exports = {
     './node_modules/@heathmont/moon-core-tw/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'dmsans': ['DM Sans']
+      },
+    },
   },
   plugins: [],
   presets: [

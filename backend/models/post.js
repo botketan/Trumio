@@ -76,6 +76,10 @@ const postSchema = mongoose.Schema({
             }]
         }
     ],
+    likes: {
+      type: Number,
+      default: 0,
+    },
 });
 
 export const post = mongoose.model("post", postSchema);

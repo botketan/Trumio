@@ -22,7 +22,7 @@ const MileStoneAccordion = ({project, setProject}) => {
                             <Accordion.Button>
                                 <ControlsChevronRightSmall className='className="text-trunks text-moon-24 transition duration-200 moon-open:text-bulma'/>
                                 <div className= 'text-left text-moon-16 text-zinc-600 w-[14vw]'>Milestone {index+1} : {milestone.title}</div>
-                                <div className="font-semibold font-['DM Sans'] w-[4vw]">
+                                <div className="font-semibold font-dmsans w-[4vw]">
                                     {
                                         milestone.task.filter(Task => Task.isCompleted).length
                                     }/{milestone.task.length} tasks

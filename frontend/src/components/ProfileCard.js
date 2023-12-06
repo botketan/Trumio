@@ -14,7 +14,7 @@ import { Progress } from '@heathmont/moon-core-tw';
 
                 <div>
                     <button className="ml-2 px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
-                        <div className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal flex items-center justify-around">
+                        <div className="text-center text-blue-600 text-sm font-medium font-dmsans leading-normal flex items-center justify-around">
                         <GenericEdit className="h-6 w-6"/><span>Edit</span>
                         </div>
                     </button>

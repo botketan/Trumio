@@ -17,14 +17,15 @@ const Chats = ({messages,setMessages,messageId,chatData,setChatData,botname,inde
         console.log(objIndex);
         setMessages((prevMessages)=>[...prevMessages,newMessage])
         let newChatData = chatData
-        newChatData[objIndex].messagesArray[index].messages.push({role:"system",message:chats});
+        newChatData[objIndex].messagesArray[index].messages.push(newMessage);
         setChatData(newChatData);
+        console.log(chatData);
         axios.post("http://localhost:5000/cia/postChat",{chatId:messageId,ques:chats}).then((res) => {
             console.log(res);
             setMessages((prevMessages)=>[...prevMessages,res.data.message])
             let objIndex = chatData.findIndex((obj => obj.botname === botname));
             let newChatData = chatData
-            newChatData[objIndex].messagesArray[index].messages.push({role:"system",message:res.data.message});
+            newChatData[objIndex].messagesArray[index].messages.push(res.data.message);
             setChatData(newChatData);
         }).catch((err) => {
             console.log(err);
