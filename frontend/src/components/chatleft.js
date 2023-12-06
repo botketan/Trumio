@@ -138,7 +138,7 @@ const Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,setB
                   </button>
                       {data.messagesArray.map((chat, chatIndex) => (
                         <button className="w-[284px] h-10 px-3 py-2 bg-neutral-100 rounded-lg justify-between items-center inline-flex my-1" key={`chat-${chatIndex}`} onClick={()=>handleMessage(chat.messages,chat._id,data.botname,chatIndex)}>
-                        <div className="text-black text-sm font-normal font-['DM Sans'] leading-normal ">{chat.messages.length>1? chat.messages[1].content.slice(0,20)+"...":"New Chat"}</div>
+                        <div className="text-black text-sm font-normal font-['DM Sans'] leading-normal ">{chat.messages.length>1&&chat.messages[1].content? chat.messages[1].content.slice(0,20)+"...":"New Chat"}</div>
                         <div className="w-6 h-6 relative" />
                       </button>
                       ))}
