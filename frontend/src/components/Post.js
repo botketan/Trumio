@@ -118,5 +118,5 @@ export default function Post({post,setPost,ai,setAi,heading}) {
   // }
   console.log(editor);
   // Renders the editor instance.
-  return <BlockNoteView editor={editor}  theme={lightDefaultTheme} className="h-[100%] w-[inherit] max-w-[52vw]" />;
+  return <BlockNoteView editor={editor}  theme={lightDefaultTheme} className={`h-[100%] w-[inherit] max-w-[52vw] `} />;
 }

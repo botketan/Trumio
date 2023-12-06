@@ -53,51 +53,11 @@ export default function Truspace() {
         console.log(err);
     });
   }, []);
-  // let projects =[
-  //     {
-  //     title: "DevRev",
-  //     description: "The only PS we are going to win in this inter IIT",
-  //     milestones:[
-  //     {
-  //         title: "Fuck Trumio",
-  //         task:[
-  //             {
-  //                 title:"Fuck trumio",
-  //                 isCompleted:true,
-  //             },
-  //             {
-  //               title:"Fuck trumio again",
-  //               isCompleted:false,
-  //           }
-  //         ],
-  //         progress:50,
-  //     }
-  //   ]
-  // }
-  // ]
-
-  // const Noteslist=[
-  //   {
-  //       title:"Exploring ML",
-  //       description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
-  //   },
-  //   {
-  //     title:"Exploring ML",
-  //     description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
-  // },
-  // {
-  //     title:"Exploring ML",
-  //     description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
-  // },
-  // {
-  //   title:"Exploring ML",
-  //   description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
-  // },
-  // ]
+  
   const badges= data&& data.badges;
   const props=";"
   const Noteslist= notes&& notes.map((note)=>{
-    return {title: note.title, description: traverse(JSON.parse(note.content)), days: 3}
+    return {title: note.title, description: note.content?traverse(JSON.parse(note.content)):"", days: 3, id: note._id}
   })
   // console.log(badges);
   return (

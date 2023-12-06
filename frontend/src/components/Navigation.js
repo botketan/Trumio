@@ -148,7 +148,7 @@ const Navigation = ({ click, setClick }) => {
       
       <div className="flex flex-col gap-0 justify-center items-end">
         <h4 className="justify-start">Vidya Sagar</h4>
-        <span className="text-xs justify-end"> Noob </span>
+        <span className="text-xs justify-end"> Talent </span>
       </div>
       <img
         className="ml-4 rounded-full h-10 w-10"

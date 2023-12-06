@@ -5,7 +5,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const NoteList=({posts,setPost,setPosts,setHeading})=>{
+const NoteList=({posts,setPost,setPosts,setHeading, searchParams, setSearchParams})=>{
 
     const createTrunote=()=>{
         axios.post("http://localhost:5000/post/create",{userId:"65645f987aa073e675de9071"}).then((res) => {
@@ -29,10 +29,12 @@ const NoteList=({posts,setPost,setPosts,setHeading})=>{
                         await sleep(50);
                         setHeading(post.title); 
                         setPost(post); 
+                        setSearchParams({id:post._id});
                         axios.post("http://localhost:5000/post/getByUserId",{
                             userId:"65645f987aa073e675de9071"
                         }).then((res) => {
                         setPosts(res.data.reverse());
+
                         }).catch((err) => {
                             console.log(err);
                         });
