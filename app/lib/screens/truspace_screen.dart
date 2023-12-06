@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app/models/user_model.dart';
 import 'package:app/requests/user_api_service.dart';
 import 'package:app/widgets/achievements_list_widget.dart';
@@ -9,6 +11,7 @@ import 'package:app/widgets/new_tier_widget.dart';
 import 'package:app/widgets/notes_list_widget.dart';
 import 'package:app/widgets/profile_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class TruspaceScreen extends StatefulWidget {
   const TruspaceScreen({super.key});
@@ -21,12 +24,24 @@ class _TruspaceScreenState extends State<TruspaceScreen> {
   bool _loading = true;
   late UserModel _userModel;
   final String _userId = "65645f987aa073e675de9071";
+  final FlutterSecureStorage storage = FlutterSecureStorage();
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      String? check = await storage.read(key: "user");
+
+      if (check != null) {
+        _userModel = UserModel.fromJson(jsonDecode(check));
+        setState(() {
+          _loading = false;
+        });
+      }
+
       _userModel = await UserService().getUserData(_userId);
+      await storage.write(key: "user", value: json.encode(_userModel.toJson()));
+      
       setState(() {
         _loading = false;
       });
