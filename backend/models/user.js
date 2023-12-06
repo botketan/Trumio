@@ -71,7 +71,13 @@ const userSchema = mongoose.Schema({
           type: mongoose.Schema.Types.ObjectId,
           ref: 'chats'
         }
-      ]
+      ],
+      communityIds:[
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'community'
+        }
+      ],
 });
 
 export const user = mongoose.model("user", userSchema);

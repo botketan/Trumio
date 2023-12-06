@@ -15,16 +15,19 @@ export const createCommunity = async (req, res) => {
         return res.status(400).send("User id is required");
     }
     newCommunity.userAdmins.push(req.body.user_id);
+    const userExisting = await user.findById(req.body.user_id);
     if(req.body.islocal){
         newCommunity.islocal = true;
     }
     await newCommunity.save();
+    userExisting.communityIds.push(newCommunity._id);
+    await userExisting.save();
     return res.status(201).json({ message: "Community created successfully" });
 };
 
 export const getCommunity = async (req, res) => {
     const { community_id } = req.body;
-    const communityget = await community.findById(community_id).populate("chatsChannel");
+    const communityget = await community.findById(community_id).populate("chatsChannel").populate("postChannels");
     if (!communityget) {
         return res.status(404).send("Community not found");
     }
@@ -75,4 +78,32 @@ export const createPostChannel = async (req, res) => {
     communityget.postChannels.push(newPostChannel._id);
     await communityget.save();
     return res.status(201).json({ message: "Post Channel created successfully" });
+};
+
+export const publishPost = async (req, res) => {
+    const { postId,communityId } = req.body;
+    try{
+        const communityExisted = await community.findById(communityId);
+        if(!communityExisted){
+            return res.status(404).send("Community not found");
+        }
+        await post.findByIdAndUpdate(postId,{isPublished:true,community:communityId});
+        communityExisted.postChannels.push(postId);
+        await communityExisted.save();
+        return res.status(200).send("Post published successfully");
+    }
+    catch(e){
+        console.log(e);
+        return res.status(400).send("Post not found");
+    }
+    
+};
+
+export const getCommunityByUserId = async (req, res) => {
+    const { userId } = req.body;
+    const userExisted = await user.findById(userId).populate('communityIds');
+    if(!userExisted){
+        return res.status(404).send("User not found");
+    }
+    return res.status(200).json(userExisted.communityIds);
 };
