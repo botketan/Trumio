@@ -78,14 +78,18 @@ const handleNewChat= async(botname,setMessages,setMessageId,setChatData,chatData
   });
 };
 
+
+
 const Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,setBotname,setIndex}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState('');
+  const [selectedChatId, setSelectedChatId] = useState(0);
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
 
   const handleMessage= async(Messages,id,botname,index)=>{
     setMessageId(id);
+    setSelectedChatId(id);
     setMessages(Messages);
     setBotname(botname);
     setIndex(index);
@@ -104,11 +108,11 @@ const Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,setB
 
   return(
     <>
-  <Accordion>
-    <div className='bg-white rounded-xl shadow border border-neutral-200' style={{ width: "%", padding : '10px 10px 10px 10px'}}>
-      <div className="w-[336px] pl-2 left-[12px] top-[16px] justify-between items-center inline-flex" style={{paddingBottom : '10px'}}>
+  <Accordion className='w-[22.5vw]'>
+    <div className='bg-white rounded-xl shadow border border-neutral-200' style={{ padding : '10px 10px 10px 10px'}}>
+      <div className="w-[22.5vw] pl-2 left-[12px] top-[16px] items-center inline-flex" style={{paddingBottom : '10px'}}>
         <div className="text-zinc-600 text-base font-normal font-dmsans leading-normal">Your Chats</div>
-        <div className="justify-start items-center gap-2 flex">
+        <div className="justify-start items-center gap-2 mr-6 flex ml-auto">
           <button className="pl-1 pr-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-1 flex" onClick={openModal}>
             <img src={require("../Assets/Plus.png")} alt="" className="w-6 h-6 relative" />
             <div className="text-blue-600 text-sm font-medium font-dmsans leading-normal">New CI Agent</div>
@@ -117,12 +121,12 @@ const Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,setB
       </div>
       {chatData.map((data, index) => {
         return (
-          <Accordion.Item value={`item-${index}`}>
+          <Accordion.Item key={index} value={`item-${index}`}>
             <div className='bg-white rounded-lg border border-neutral-200 px-2 py-3 ' style={{ marginBottom: '10px' }}>
               <Accordion.Header className="moon-open:[&_svg]:rotate-180">
                 <Accordion.Button >
                   <div className="w-8 h-8 relative rounded-full">
-                    <img className="w-8 h-8  absolute rounded-[99px]" src="https://via.placeholder.com/32x32" />
+                    <img alt='' className="w-8 h-8  absolute rounded-[99px]" src="https://via.placeholder.com/32x32" />
                   </div>
                   <div className="flex-col justify-start items-start inline-flex">
                     <div className="text-black text-sm font-medium font-dmsans leading-normal">{data.botname}</div>
@@ -130,14 +134,14 @@ const Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,setB
                   <ControlsChevronDownSmall className="text-trunks text-moon-24 transition duration-200 moon-open:text-bulma" />
                 </Accordion.Button>
               </Accordion.Header>
-              <Accordion.Content>
+              <Accordion.Content className='border-0'>
                 <div style={{ display: "flex", flexDirection: "column", justifyContent: 'center', alignItems: 'center' }}>
-                  <button className="self-stretch pl-2 pr-4 py-2 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-2 inline-flex" style={{margin : '10px 10px 10px 10px'}} onClick={()=>handleNewChat(data.botname,setMessages,setMessageId,setChatData,chatData)}>
+                  <button className="w-[19vw] self-stretch pl-2 pr-4 py-2 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-2 inline-flex m-[10px]" onClick={()=>handleNewChat(data.botname,setMessages,setMessageId,setChatData,chatData)}>
                     <img src={require("../Assets/Plus.png")} alt="" className="w-6 h-6 relative" />
                     <div className="text-blue-600 text-sm font-medium font-dmsans leading-normal"  >New Chat with {data.botname}</div>
                   </button>
                       {data.messagesArray.map((chat, chatIndex) => (
-                        <button className="w-[284px] h-10 px-3 py-2 bg-neutral-100 rounded-lg justify-between items-center inline-flex my-1" key={`chat-${chatIndex}`} onClick={()=>handleMessage(chat.messages,chat._id,data.botname,chatIndex)}>
+                        <button className={"w-[19vw] h-10 px-3 py-2rounded-lg justify-between items-center inline-flex my-1 rounded hover:bg-neutral-50 " + ((chat._id===selectedChatId)?"bg-neutral-100 hover:bg-neutral-200":"")} key={`chat-${chatIndex}`} onClick={()=>handleMessage(chat.messages,chat._id,data.botname,chatIndex)}>
                         <div className="text-black text-sm font-normal font-dmsans leading-normal ">{chat.messages.length>1&&chat.messages[1].content? chat.messages[1].content.slice(0,20)+"...":"New Chat"}</div>
                         <div className="w-6 h-6 relative" />
                       </button>
@@ -152,24 +156,24 @@ const Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,setB
   </Accordion>
   <Modal open={isOpen} onClose={closeModal}>
   <Modal.Backdrop />
-        <Modal.Panel className="border border-solid border-gray-500 px-4 py-2">
-          <div className="border-b-[0.063rem] border-beerus pt-5 pb-4 px-6 relative">
-            <h3 className="text-moon-18 text-bulma font-medium">Create new Cia</h3>
+        <Modal.Panel className="w-[300px] bg-white border border-solid border-gray-500 px-4 py-2">
+          <div className="border-b py-3 relative">
+            <h3 className="text-moon-18 text-bulma font-dm-sans">Create new Cia</h3>
             <IconButton
               variant="ghost"
               size="sm"
-              className="absolute top-4 end-5"
+              className="absolute top-1 end-1"
               onClick={closeModal}
             >
               <ControlsCloseSmall className="text-moon-24" />
             </IconButton>
           </div>
-          <input className="w-[100%] h-10 px-3 py-2 bg-neutral-100 rounded-lg justify-between items-center inline-flex my-4" placeholder="Enter Botname" value={name} onChange={(e)=>{setName(e.target.value);}}/>
-          <div className="flex gap-2 p-4 justify-end pt-2">
-            <Button variant="outline" onClick={closeModal}>
+          <input className="w-[100%] h-10 px-4 py-2 bg-neutral-100 rounded-lg justify-between items-center inline-flex my-4" placeholder="Enter Botname" value={name} onChange={(e)=>{setName(e.target.value);}}/>
+          <div className="flex gap-2 p-3 justify-end pr-0">
+            <Button className='border rounded-xl bg-blue-600 bg-opacity-10 text-blue-600' variant="outline" onClick={closeModal}>
               Cancel
             </Button>
-            <Button onClick={()=>handleNewCia()}>Create</Button>
+            <Button className='border rounded-xl bg-blue-600 bg-opacity-10 text-blue-600' onClick={()=>handleNewCia()}>Create</Button>
           </div>
         </Modal.Panel>
 </Modal>
