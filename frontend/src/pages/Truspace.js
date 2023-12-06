@@ -29,11 +29,15 @@ function traverse(blocks){
 export default function Truspace() {
   const [data, setData] = useState(null);
   const [notes, setNotes] = useState(null);
+  const [projects, setProjects] = useState(null);
+  const [chats, setChats] = useState(null);
   useEffect(() => {
     axios.post("http://localhost:5000/user/getUser",{
         userId:"65645f987aa073e675de9071"
     }).then((res) => {
       setData(res.data);
+      setProjects(res.data.projects);
+      setChats(res.data.chatIds);
       console.log(res.data);
     }).catch((err) => {
         console.log(err);
@@ -44,7 +48,7 @@ export default function Truspace() {
         userId:"65645f987aa073e675de9071"
     }).then((res) => {
       setNotes(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     }).catch((err) => {
         console.log(err);
     });
@@ -95,16 +99,16 @@ export default function Truspace() {
   const Noteslist= notes&& notes.map((note)=>{
     return {title: note.title, description: traverse(JSON.parse(note.content)), days: 3}
   })
-  console.log(badges);
+  // console.log(badges);
   return (
     <>
       {
-        (data&&notes)?
+        (data&&notes)&&
       <div className="flex flex-row py-4 gap-4 justify-center">
         <div className="flex flex-col w-[59vw] gap-4">
           <div className="flex w-full justify-between">
-            <ExpertAgents chatIds={data.chatIds} />
-            <MileStones projects={data.projects}/>
+            <ExpertAgents chatIds={chats} />
+            <MileStones projects={projects} setProjects={setProjects} />
           </div>
           <NotesComponent noteslist={Noteslist.slice(0,4)}/>
         </div>
@@ -124,8 +128,7 @@ export default function Truspace() {
   }}/>
           <Badges badges={data.badges}/>
         </div>
-      </div> : <div>Loading</div>
-      }
+      </div>}
     </>
   );
 }

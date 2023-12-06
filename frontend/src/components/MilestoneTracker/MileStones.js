@@ -1,10 +1,20 @@
 import { Button, InsetNativeSelect } from "@heathmont/moon-core-tw";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MileStoneAccordion from "./MileStoneAccordion";
 
-const MileStones = ({ projects }) => {
+const MileStones = ({ projects, setProjects }) => {
 //   console.log(projects);
-  const [selectedProject, setSelectedProject] = useState(projects[0].title);
+  const [selectedProject, setSelectedProject] = useState(projects[0]);
+  useEffect(()=>{
+    // console.log(selectedProject);
+    handleProgress(
+        projects[
+          projects.findIndex(
+            (project) => project.title === selectedProject.title
+          )
+        ]
+      )
+  }, [selectedProject])
   const handleProgress = (project) => {
     // console.log(project);
     const totalTasks = project.milestones.reduce(
@@ -42,7 +52,11 @@ const MileStones = ({ projects }) => {
         <div className="grow shrink basis-0 h-[60px] px-1 pb-1 bg-white rounded border border-neutral-200 justify-start items-center flex">
           <InsetNativeSelect
             onChange={(e) => {
-              setSelectedProject(e.target.value);
+              setSelectedProject(projects[
+                  projects.findIndex(
+                    (project) => project.title === e.target.value
+                  )
+                ])
             }}
             label="Project"
             className="[&_select]:text-black [&_select]:font-semibold text-zinc-600"
@@ -61,7 +75,7 @@ const MileStones = ({ projects }) => {
               {handleProgress(
                 projects[
                   projects.findIndex(
-                    (project) => project.title === selectedProject
+                    (project) => project.title === selectedProject.title
                   )
                 ]
               )}
@@ -74,9 +88,10 @@ const MileStones = ({ projects }) => {
         <MileStoneAccordion
           project={
             projects[
-              projects.findIndex((project) => project.title === selectedProject)
+              projects.findIndex((project) => project.title === selectedProject.title)
             ]
           }
+          setProject= {setSelectedProject}
         />
       </div>
     </div>

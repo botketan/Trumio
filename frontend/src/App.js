@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Post from './components/Post.js';
 import Navbar from './components/Navbar.js';
-import { BrowserRouter as Router,Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router,Route, Routes, useLocation } from 'react-router-dom';
 import Achievements from "./components/Crousel_Achievements/Achievements";
 import AchievementCarousel from "./components/Crousel_Achievements/AchievementCarousel"
 import MentorCard from './components/Mentor/MentorCard.js';

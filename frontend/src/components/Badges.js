@@ -79,7 +79,7 @@ const Badges = ({badges}) => {
           sparks: "25 Sparks"
         }
       ];
-      console.log(badges);
+      // console.log(badges);
   return (
 
     <div className="w-[416px] relative bg-white rounded-xl shadow-md border border-neutral-200 pl-[16px] pr-[16px] pb-4">

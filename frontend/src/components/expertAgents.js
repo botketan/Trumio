@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Carousel } from '@heathmont/moon-core-tw';
 import { ControlsChevronLeftSmall, ControlsChevronRightSmall} from '@heathmont/moon-icons-tw';
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
 // Sample data for carousel items
 
@@ -22,19 +23,46 @@ const ExpertAgents = ({chatIds}) => {
     })
     return items;
   })
-  console.log(carouselItems)
-  console.log(initialMessages)
+  // console.log(carouselItems)
+  // console.log(initialMessages)
   const [messages, setMessages] = useState(initialMessages.flat());
-  console.log(messages);
+  // console.log(messages);
   const [newMessage, setNewMessage] = useState('');
 
-  const handleSendMessage = (itemid) => {
+  const handleSendMessage = async (itemid) => {
     if (newMessage.trim()) {
-      const nextMessages = [...messages, { id: itemid, content: newMessage, role: "user" }, {id:itemid, content: "Hello! How can I assist you today?", role: "assistant"}];
-      setMessages(nextMessages);
+      setMessages((prevMessages)=> [...prevMessages, { id: itemid, content: newMessage, role: "user" }]);
       setNewMessage('');
     }
   };
+
+  const sendChat=async(itemid)=>{
+    // if(chats.trim() !== ""){
+    // const newMessage= {role:"user",content:chats}
+    // let objIndex = chatData.findIndex((obj => obj.botname === botname));
+    // console.log(objIndex);
+    // setMessages((prevMessages)=>[...prevMessages,newMessage])
+    // let newChatData = chatData
+    // newChatData[objIndex].messagesArray[index].messages.push({role:"system",message:chats});
+    // setChatData(newChatData);
+    // axios.post("http://localhost:5000/cia/postChat",{chatId:messageId,ques:chats}).then((res) => {
+    //     console.log(res);
+    //     setMessages((prevMessages)=>[...prevMessages,res.data.message])
+    //     let objIndex = chatData.findIndex((obj => obj.botname === botname));
+    //     let newChatData = chatData
+    //     newChatData[objIndex].messagesArray[index].messages.push({role:"system",message:res.data.message});
+    //     setChatData(newChatData);
+    // }).catch((err) => {
+    //     console.log(err);
+    // });
+    // }
+    // setChat('');
+  }
+  const handleKeyDown = (e, itemid) => {
+    if(e.key == 'Enter'){
+      handleSendMessage(itemid);
+    }
+  }
 
   return (
 
@@ -64,7 +92,7 @@ const ExpertAgents = ({chatIds}) => {
                             <div className="mt-[15px]  text-white text-sm font-medium font-['DM Sans'] leading-normal">{item.name}</div>
                           </div>
                           <div>
-                          <Link to="/sampleChat*********">
+                          <Link to="/cia">
                             <img src="expandSVG.svg" alt="Expand SVG" className="h-[11.87px] w-[11.87px] ml-[12px] mt-[20px] mb-[10px] mr-[20px]"/>
                           </Link>  
                           </div>
@@ -86,6 +114,7 @@ const ExpertAgents = ({chatIds}) => {
                             placeholder={`Reply to ${item.name}`}
                             value={newMessage}
                             onChange={(e) => setNewMessage(e.target.value)}
+                            onKeyDown={(e) => handleKeyDown(e, item.id)}
                             />
                             <button className="w-5 h-5 relative" onClick={()=>handleSendMessage(item.id)}>
                               <img src="sendSVG.svg" alt="Send SVG" className="w-full h-full"/>
