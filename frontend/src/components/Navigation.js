@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   GenericSearch,
   ChatComment,
   NotificationsBell,
 } from "@heathmont/moon-icons-tw";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 
 const Navigation = ({ click, setClick }) => {
+  const location = useLocation();
+  useEffect(()=>{
+    setClick(location.pathname)
+  }, [location.pathname])
   const handleClick = (data) => {
    setClick(data);
   };
@@ -22,89 +27,89 @@ const Navigation = ({ click, setClick }) => {
         />
         <Link
           to="/Dashboard"
-          onClick={() => handleClick("Dashboard")}
+          // onClick={() => handleClick("Dashboard")}
           className={
-            click === "Dashboard"
+            click === "/Dashboard"
               ? "flex flex-col items-center ml-4 transition-transform duration-100 ease-in-out transform  hover:cursor-pointer "
               : "flex flex-col items-center ml-4  duration-100 hover:cursor-pointer"
           }
         >
-          <span className={click === "Dashboard"?`${classSelect}`:`${classUnselect}`}>Dashboard</span>
+          <span className={click === "/Dashboard"?`${classSelect}`:`${classUnselect}`}>Dashboard</span>
         </Link>
         <Link
           to="/Marketplace"
-          onClick={() => handleClick("Marketplace")}
+          // onClick={() => handleClick("Marketplace")}
           className={
-            click === "Marketplace"
+            click === "/Marketplace"
               ? "flex flex-col items-center hover:cursor-pointer"
               : "flex flex-col items-center hover:cursor-pointer"
           }
         >
-          <span className={click === "Marketplace"?`${classSelect}`:`${classUnselect}`}>Marketplace</span>
+          <span className={click === "/Marketplace"?`${classSelect}`:`${classUnselect}`}>Marketplace</span>
         </Link>
         <Link
           to="/Projects"
-          onClick={() => handleClick("Projects")}
+          // onClick={() => handleClick("Projects")}
           className={
-            click === "Projects"
+            click === "/Projects"
               ? "flex flex-col items-center hover:cursor-pointer"
               : "flex flex-col items-center hover:cursor-pointer"
           }
         >
-          <span className={click === "Projects"?`${classSelect}`:`${classUnselect}`}>Projects</span>
+          <span className={click === "/Projects"?`${classSelect}`:`${classUnselect}`}>Projects</span>
         </Link>
         <Link
           to="/MyTeam"
-          onClick={() => handleClick("MyTeam")}
+          // onClick={() => handleClick("MyTeam")}
           className={
-            click === "MyTeam"
+            click === "/MyTeam"
               ? "flex flex-col items-center hover:cursor-pointer"
               : "flex flex-col items-center duration-100 hover:cursor-pointer"
           }
         >
-          <span className={click === "MyTeam"?`${classSelect}`:`${classUnselect}`}>My Team</span>
+          <span className={click === "/MyTeam"?`${classSelect}`:`${classUnselect}`}>My Team</span>
         </Link>
         <Link
           to="/Community"
-          onClick={() => handleClick("Community")}
+          // onClick={() => handleClick("Community")}
           className={
-            click === "Community"
+            click === "/Community"
               ? "flex flex-col items-center hover:cursor-pointer"
               : "flex flex-col items-center duration-100 hover:cursor-pointer"
           }
         >
-          <span className={click === "Community"?`${classSelect}`:`${classUnselect}`}>Community</span>
+          <span className={click === "/Community"?`${classSelect}`:`${classUnselect}`}>Community</span>
         </Link>
         <Link
           to="/Truspace"
-          onClick={() => handleClick("Truspace")}
+          // onClick={() => handleClick("Truspace")}
           className={
-            click === "Truspace"
+            click === "/Truspace"
               ? "flex flex-col items-center hover:cursor-pointer"
               : "flex flex-col items-center hover:cursor-pointer"
           }
         >
-          <span className={click === "Truspace"?`${classSelect}`:`${classUnselect}`}>Truspace</span>
+          <span className={click === "/Truspace"?`${classSelect}`:`${classUnselect}`}>Truspace</span>
         </Link>
         <Link
           to="/Mentor"
-          onClick={() => handleClick("Mentor")}
+          // onClick={() => handleClick("Mentor")}
           className={
-            click === "Mentor"
+            click === "/Mentor"
               ? "flex flex-col items-center mr-4 hover:cursor-pointer"
               : "flex flex-col items-center mr-4 hover:cursor-pointer"
           }
         >
-          <span className={click === "Mentor"?`${classSelect}`:`${classUnselect}`}>Mentorship</span>
+          <span className={click === "/Mentor"?`${classSelect}`:`${classUnselect}`}>Mentorship</span>
         </Link>
       </div>
 
       <div className="flex justify-start items-center pl-24 ">
         <span
           to="/SearchChat"
-          onClick={() => handleClick("SearchChat")}
+          // onClick={() => handleClick("SearchChat")}
           className={
-            click === "SearchChat"
+            click === "/SearchChat"
               ? "flex flex-col items-center mr-4 border-b border-solid border-cyan-800 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer"
               : "flex flex-col items-center mr-4 hover:scale-105 duration-100 hover:cursor-pointer"
           }
