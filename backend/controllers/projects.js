@@ -42,3 +42,21 @@ export const createProject = async (req, res) => {
         res.status(409).json({ message: error.message });
     }
 };
+
+export const updateProject = async (req, res) => {
+    const {projectId}= req.body;
+    const projectExisting = await project.findById(projectId);
+    if(!projectExisting){
+        return res.status(404).json({message: "Project not found"});
+    }
+    const {projectIncoming} = req.body;
+    projectExisting.title = projectIncoming.title;
+    projectExisting.description = projectIncoming.description;
+    projectExisting.milestones = projectIncoming.milestones;
+    try {
+        await projectExisting.save();
+        res.status(201).json(projectExisting);
+    } catch (error) {
+        res.status(409).json({ message: error.message });
+    }
+};

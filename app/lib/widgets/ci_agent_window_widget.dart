@@ -1,13 +1,15 @@
 import 'package:app/models/cia_chat_model.dart';
 import 'package:app/models/cia_message_model.dart';
 import 'package:app/requests/cia_api_service.dart';
+import 'package:app/screens/cia_full_screen.dart';
+import 'package:app/utils/get_initials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moon_design/moon_design.dart';
 
 class CIAgentWindowWidget extends StatefulWidget {
-  final CIAChatModel ciaChat;
-  const CIAgentWindowWidget({
+  CIAChatModel ciaChat;
+  CIAgentWindowWidget({
     super.key,
     required this.ciaChat,
   });
@@ -46,44 +48,66 @@ class _CIAgentWindowWidgetState extends State<CIAgentWindowWidget> {
                   const SizedBox(
                     width: 12.0,
                   ),
-                  MoonAvatar(
-                    backgroundColor: Colors.white,
-                    height: 32.0,
-                    width: 32.0,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(32.0),
-                    ),
-                    content: Text(
-                      getInitials(widget.ciaChat.botName),
-                      style: const TextStyle(
-                        fontFamily: "DMSans",
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12.0,
-                        color: Colors.black,
+                  Hero(
+                    tag: "cia-avatar-${widget.ciaChat.id}",
+                    child: Material(
+                      color: Colors.transparent,
+                      child: MoonAvatar(
+                        backgroundColor: Colors.white,
+                        height: 32.0,
+                        width: 32.0,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(32.0),
+                        ),
+                        content: Text(
+                          getInitials(widget.ciaChat.botName),
+                          style: const TextStyle(
+                            fontFamily: "DMSans",
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12.0,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                   const SizedBox(
                     width: 12.0,
                   ),
-                  Text(
-                    widget.ciaChat.botName,
-                    style: const TextStyle(
-                      fontFamily: "DMSans",
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14.0,
-                      color: Colors.white,
+                  Hero(
+                    tag: "cia-title-${widget.ciaChat.id}",
+                    child: Material(
+                      color: Colors.transparent,
+                      child: Text(
+                        widget.ciaChat.botName,
+                        style: const TextStyle(
+                          fontFamily: "DMSans",
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14.0,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                   const Spacer(),
-                  SvgPicture.asset(
-                    "assets/full_screen_icon.svg",
-                    width: 24.0,
-                    height: 24.0,
-                    color: Colors.white,
+                  IconButton(
+                    onPressed: () async {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (_) {
+                        return CIAFullScreen(
+                          ciaChat: widget.ciaChat,
+                        );
+                      }));
+                    },
+                    icon: SvgPicture.asset(
+                      "assets/full_screen_icon.svg",
+                      width: 24.0,
+                      height: 24.0,
+                      color: Colors.white,
+                    ),
                   ),
                   const SizedBox(
-                    width: 12.0,
+                    width: 2.0,
                   ),
                 ],
               ),
@@ -115,62 +139,81 @@ class _CIAgentWindowWidgetState extends State<CIAgentWindowWidget> {
                   width: 16.0,
                 ),
                 Expanded(
-                  child: TextField(
-                    controller: _textEditingController,
-                    decoration: const InputDecoration(
-                      hintText: "Reply to ProdWizard",
-                      hintStyle: TextStyle(
-                        fontFamily: "DMSans",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12.0,
-                        color: Color(0xFF595D62),
+                  child: Hero(
+                    tag: "cia-text-field-${widget.ciaChat.id}",
+                    child: Material(
+                      color: Colors.transparent,
+                      child: TextField(
+                        controller: _textEditingController,
+                        decoration: InputDecoration(
+                          hintText: "Reply to ${widget.ciaChat.botName}...",
+                          hintStyle: const TextStyle(
+                            fontFamily: "DMSans",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12.0,
+                            color: Color(0xFF595D62),
+                          ),
+                          border: InputBorder.none,
+                        ),
+                        style: const TextStyle(
+                          fontFamily: "DMSans",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12.0,
+                          color: Colors.black,
+                        ),
                       ),
-                      border: InputBorder
-                          .none,
-                    ),
-                    style: const TextStyle(
-                      fontFamily: "DMSans",
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.0,
-                      color: Colors.black,
                     ),
                   ),
                 ),
                 const SizedBox(
                   width: 16.0,
                 ),
-                MoonTextButton(
-                  onTap: () async {
-                    String message = _textEditingController.text.trim();
-                    if (message.isEmpty) return;
-                    _textEditingController.clear();
-                    setState(() {
-                      widget.ciaChat.messages.add(
-                        CIAMessageModel(
-                          role: "user",
-                          content: message,
+                Hero(
+                  tag: "cia-send-button-${widget.ciaChat.id}",
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      child: Container(
+                        width: 32.0,
+                        height: 32.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          color: const Color(0xFFE1EEFE),
                         ),
-                      );
-                    });
-
-                    CIAMessageModel response = await CIAService().sendMessage(
-                      widget.ciaChat.id,
-                      message,
-                    );
-
-                    setState(() {
-                      widget.ciaChat.messages.add(response);
-                    });
-                  },
-                  height: 24.0,
-                  leading: SvgPicture.asset(
-                    'assets/share_icon.svg',
-                    color: const Color(0xFF3448F0),
-                    width: 16.0,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4.0),
-                    color: const Color(0xFFE6E9FD),
+                        child: IconButton(
+                          onPressed: () async {
+                            String message = _textEditingController.text.trim();
+                            if (message.isEmpty) return;
+                            _textEditingController.clear();
+                            setState(() {
+                              widget.ciaChat.messages.add(
+                                CIAMessageModel(
+                                  role: "user",
+                                  content: message,
+                                ),
+                              );
+                            });
+                                  
+                            CIAMessageModel response =
+                                await CIAService().sendMessage(
+                              widget.ciaChat.id,
+                              message,
+                            );
+                                  
+                            setState(() {
+                              widget.ciaChat.messages.add(response);
+                            });
+                          },
+                          icon: SvgPicture.asset(
+                            "assets/share_icon.svg",
+                            width: 24.0,
+                            height: 24.0,
+                            color: const Color(0xFF0578FB),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -187,7 +230,8 @@ class _CIAgentWindowWidgetState extends State<CIAgentWindowWidget> {
     );
   }
 
-  Row getMessageWidget(String message, bool isUser, bool isFirst, bool isLast) {
+  Row getMessageWidget(
+      String message, bool isUser, bool isFirst, bool isLast, int ind) {
     double topLeft, bottomLeft, topRight, bottomRight;
     if (isUser) {
       topLeft = 12.0;
@@ -230,26 +274,33 @@ class _CIAgentWindowWidgetState extends State<CIAgentWindowWidget> {
         ),
         if (isUser) const SizedBox(width: 64.0),
         Flexible(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(topLeft),
-                bottomRight: Radius.circular(bottomRight),
-                topRight: Radius.circular(topRight),
-                bottomLeft: Radius.circular(bottomLeft),
-              ),
-              color:
-                  (isUser) ? const Color(0xFF3448F0) : const Color(0xFFE6E9FD),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                message,
-                style: TextStyle(
-                  fontFamily: "DMSans",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12.0,
-                  color: (isUser) ? Colors.white : Colors.black,
+          child: Hero(
+            tag: "cia-message-${widget.ciaChat.id}-$ind",
+            child: Material(
+              color: Colors.transparent,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(topLeft),
+                    bottomRight: Radius.circular(bottomRight),
+                    topRight: Radius.circular(topRight),
+                    bottomLeft: Radius.circular(bottomLeft),
+                  ),
+                  color: (isUser)
+                      ? const Color(0xFF3448F0)
+                      : const Color(0xFFE6E9FD),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    message,
+                    style: TextStyle(
+                      fontFamily: "DMSans",
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12.0,
+                      color: (isUser) ? Colors.white : Colors.black,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -294,6 +345,7 @@ class _CIAgentWindowWidgetState extends State<CIAgentWindowWidget> {
           messagesList[i].role == "user",
           isFirst,
           isLast,
+          i,
         ),
       );
 
@@ -305,18 +357,5 @@ class _CIAgentWindowWidgetState extends State<CIAgentWindowWidget> {
     }
 
     return messagesWidgets;
-  }
-
-  String getInitials(String name) {
-    List<String> names = name.split(" ");
-    String initials = "";
-    int numWords = 2;
-    if (names.length < 2) {
-      numWords = names.length;
-    }
-    for (int i = 0; i < numWords; i++) {
-      initials += names[i][0];
-    }
-    return initials;
   }
 }

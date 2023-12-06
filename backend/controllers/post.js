@@ -14,15 +14,21 @@ cloudinary.config({
 
 export const updatePost=async(req,res)=>{
     const Post=await post.findById(req.body.id);
-    if(!Post){
-        res.status(404).send("Post not found");
+    if(!Post || Post.isPublished){
+        return res.status(404).send("Post not found or already published");
     }
     if (req.body.content) Post.content = req.body.content;
     if (req.body.coverImage) Post.coverImage = req.body.coverImage;
     if (req.body.icon) Post.icon = req.body.icon;
     if (req.body.title) Post.title = req.body.title;
-    await Post.save();
-    res.status(200).json(Post);
+    try{
+        await Post.save();
+        res.status(200).json(Post);
+    }
+    catch(e){
+        console.log(e);
+        return res.status(400).send("Error");
+    }
 };
 
 

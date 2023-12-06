@@ -9,23 +9,23 @@ const AISuggestions = ({setAi}) => {
                 setAi('Suggest Content expansion');
             }}>
                 <img src={require("../Assets/star.png")} alt="" className="w-6 h-6 relative" />
-                <div className="text-white text-sm font-medium font-['DM Sans'] leading-normal">Suggest Content Expansion</div>
+                <div className="text-white text-sm font-medium font-dmsans leading-normal">Suggest Content Expansion</div>
             </button>
             <button className="w-[132px] h-8 pl-1 pr-3 py-1 bg-blue-600 rounded-lg justify-center items-center gap-1 inline-flex" onClick={()=>{
                 setAi('Fact Checker');
             }}>
                 <img src={require("../Assets/star.png")} alt="" className="w-6 h-6 relative" />
-                <div className="text-white text-sm font-medium font-['DM Sans'] leading-normal">Fact Checker</div>
+                <div className="text-white text-sm font-medium font-dmsans leading-normal">Fact Checker</div>
             </button>
             <button className="w-[130px] h-8 pl-1 pr-3 py-1 bg-blue-600 rounded-lg justify-center items-center gap-1 inline-flex" onClick={()=>{
                 setAi('Change tone');
             }}>
                 <img src={require("../Assets/star.png")} alt="" className="w-6 h-6 relative" />
-                <div className="text-white text-sm font-medium font-['DM Sans'] leading-normal">Change Tone</div>
+                <div className="text-white text-sm font-medium font-dmsans leading-normal">Change Tone</div>
             </button>
             <button className="w-[125px] h-8 pl-1 pr-3 py-1 bg-blue-600 rounded-lg justify-center items-center gap-1 inline-flex">
                 <img src={require("../Assets/star.png")} alt="" className="w-6 h-6 relative" />
-                <div className="text-white text-sm font-medium font-['DM Sans'] leading-normal">Chat with AI</div>
+                <div className="text-white text-sm font-medium font-dmsans leading-normal">Chat with AI</div>
             </button>
         </div>
         <div className='h-12'>

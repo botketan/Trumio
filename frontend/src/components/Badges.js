@@ -6,7 +6,7 @@ import AchievementCarousel from "./Crousel_Achievements/AchievementCarousel";
 
 // Sample data for carousel items
 
-const Badges = () => {
+const Badges = ({badges}) => {
     const items1 = [
         {
           heading: "Badge 1",
@@ -79,20 +79,22 @@ const Badges = () => {
           sparks: "25 Sparks"
         }
       ];
+      // console.log(badges);
   return (
 
-    <div className="w-[416px] relative bg-white rounded-xl shadow-md border border-neutral-200 pl-[16px] pr-[16px]">
+    <div className="w-[416px] relative bg-white rounded-xl shadow-md border border-neutral-200 pl-[16px] pr-[16px] pb-4">
       
       <div className="w-96 h-8 pl-2 justify-between items-center inline-flex mt-[16px] mb-[10px]">
-        <h1 className="text-zinc-600 text-base font-normal font-['DM Sans'] leading-normal">Your Badges</h1>
-        <button className="px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
-          <div className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">View All</div>
+        <h1 className="text-zinc-600 text-base font-normal font-dmsans leading-normal">Your Badges</h1>
+        <Link to="/Gamification"><button className="px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
+          <div className="text-center text-blue-600 text-sm font-medium font-dmsans leading-normal">View All</div>
         </button>
+        </Link>
       </div>
       <div className="h-20">
 
       </div>
-      <AchievementCarousel items={items1} />
+      <AchievementCarousel items={badges} />
       
     </div>
   );

@@ -15,97 +15,136 @@ class MilestoneWidget extends StatefulWidget {
   State<MilestoneWidget> createState() => _MilestoneWidgetState();
 }
 
-class _MilestoneWidgetState extends State<MilestoneWidget> {
+class _MilestoneWidgetState extends State<MilestoneWidget> with SingleTickerProviderStateMixin {
   bool _isExpanded = false;
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(
+        milliseconds: 300,
+      ),
+      vsync: this,
+    );
+    _animation = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_controller);
+  }
+
+  @override
+  dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4.0),
-          border: Border.all(
-            color: const Color(0xFFE2E2E2),
-          ),
-        ),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 8.0,
+      child: AnimatedSize(
+        duration: const Duration(milliseconds: 150),
+        curve: Curves.easeIn,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4.0),
+            border: Border.all(
+              color: const Color(0xFFE2E2E2),
             ),
-            Row(
-              children: [
-                IconButton(
-                  padding: const EdgeInsets.all(0),
-                  onPressed: () {
-                    setState(() {
-                      _isExpanded = !_isExpanded;
-                    });
-                  },
-                  icon: Icon(
-                    (_isExpanded)
-                        ? Icons.keyboard_arrow_down
-                        : Icons.keyboard_arrow_right,
-                    size: 20.0,
+          ),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 8.0,
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    padding: const EdgeInsets.all(0),
+                    onPressed: () {
+                      if (_isExpanded) {
+                        _controller.reverse().then((value) => {
+                          setState(() {
+                            _isExpanded = !_isExpanded;
+                          })
+                        });
+                      } else {
+                        setState(() {
+                          _isExpanded = !_isExpanded;
+                        });
+                        _controller.forward();
+                      }
+                    },
+                    icon: Icon(
+                      (_isExpanded)
+                          ? Icons.keyboard_arrow_down
+                          : Icons.keyboard_arrow_right,
+                      size: 20.0,
+                    ),
+                    iconSize: 20.0,
+                    color: const Color(0xFF707070),
                   ),
-                  iconSize: 20.0,
-                  color: const Color(0xFF707070),
-                ),
-                Expanded(
-                  child: Text(
-                    "Milestone ${widget.index}: ${widget.milestoneModel.title}",
-                    overflow: TextOverflow.visible,
+                  Expanded(
+                    child: Text(
+                      "Milestone ${widget.index}: ${widget.milestoneModel.title}",
+                      overflow: TextOverflow.visible,
+                      style: const TextStyle(
+                        fontFamily: "DMSans",
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14.0,
+                        color: Color(0xFF595D62),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Text(
+                    "${widget.milestoneModel.tasks.where((element) => element.isCompleted).toList().length}/${widget.milestoneModel.tasks.length} Tasks",
                     style: const TextStyle(
                       fontFamily: "DMSans",
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       fontSize: 14.0,
-                      color: Color(0xFF595D62),
+                      color: Colors.black,
                     ),
                   ),
-                ),
-                const SizedBox(
-                  width: 8.0,
-                ),
-                Text(
-                  "${widget.milestoneModel.tasks.where((element) => element.isCompleted).toList().length}/${widget.milestoneModel.tasks.length} Tasks",
-                  style: const TextStyle(
-                    fontFamily: "DMSans",
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14.0,
-                    color: Colors.black,
+                  const SizedBox(
+                    width: 8.0,
                   ),
-                ),
-                const SizedBox(
-                  width: 8.0,
-                ),
-                MoonTag(
-                  borderRadius: BorderRadius.circular(4.0),
-                  backgroundColor: const Color(0xFFE5EFE6),
-                  height: 24.0,
-                  label: const Text(
-                    "ON TRACK",
-                    style: TextStyle(
-                      fontFamily: "DMSans",
-                      fontWeight: FontWeight.w700,
-                      fontSize: 10.0,
-                      color: Color(0xFF2E7D32),
+                  MoonTag(
+                    borderRadius: BorderRadius.circular(4.0),
+                    backgroundColor: const Color(0xFFE5EFE6),
+                    height: 24.0,
+                    label: const Text(
+                      "ON TRACK",
+                      style: TextStyle(
+                        fontFamily: "DMSans",
+                        fontWeight: FontWeight.w700,
+                        fontSize: 10.0,
+                        color: Color(0xFF2E7D32),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  width: 8.0,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 8.0,
-            ),
-            if (_isExpanded)
-              Column(
-                children: _buildTasks(),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                ],
               ),
-          ],
+              const SizedBox(
+                height: 8.0,
+              ),
+              (_isExpanded) ?
+                FadeTransition(
+                  opacity: _animation,
+                  child: Column(
+                    children: _buildTasks(),
+                  ),
+                ) : Container(),
+            ],
+          ),
         ),
       ),
     );

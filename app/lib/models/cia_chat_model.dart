@@ -12,6 +12,7 @@ class CIAChatModel {
   });
 
   Map<String, dynamic> toJson() => {
+      "_id": id,
       "messages": messages.map((e) => e.toJson()).toList(),
       "botname": botName,
   };

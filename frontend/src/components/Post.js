@@ -73,17 +73,19 @@ export default function Post({post,setPost,ai,setAi,heading}) {
     slashMenuItems: customSlashMenuItemList,
     onEditorContentChange: (editor) => {
       if(timer<1000)
-      setTimer(100000);
+      setTimer(10000);
     }
   });
   useEffect(() => {
+    let c=0;
     const interval = setInterval(() => {
-      axios.put("http://localhost:5000/post/update",{id:post._id,content:JSON.stringify(editor.topLevelBlocks),title:heading?heading:"Untitled"}).then((res) => {console.log(res);setPost({_id:post._id, content:JSON.stringify(editor.topLevelBlocks)}) }).catch((err) => {console.log(err);});
       if(timer>1)
       {
         setTimer(timer/10);
       }
-    }, 200000/timer);
+      axios.put("http://localhost:5000/post/update",{id:post._id,content:JSON.stringify(editor.topLevelBlocks),title:heading?heading:"Untitled"}).then((res) => {console.log(res);setPost({_id:post._id, content:JSON.stringify(editor.topLevelBlocks)}) }).catch((err) => {console.log(err);});
+      
+    }, (2000000/timer));
     return () => clearInterval(interval);
   }, [timer]);
 
@@ -116,5 +118,5 @@ export default function Post({post,setPost,ai,setAi,heading}) {
   // }
   console.log(editor);
   // Renders the editor instance.
-  return <BlockNoteView editor={editor}  theme={lightDefaultTheme} className="h-[100%] w-[inherit] max-w-[52vw]" />;
+  return <BlockNoteView editor={editor}  theme={lightDefaultTheme} className={`h-[100%] w-[inherit] max-w-[52vw] `} />;
 }
