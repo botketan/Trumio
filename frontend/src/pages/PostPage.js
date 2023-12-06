@@ -44,7 +44,7 @@ export default function PostPage() {
     const handleNewReply= async(name)=>{
         axios.post("http://localhost:5000/cia/postHelper",{botname:name,content:traverse(JSON.parse(post.content))}).then((res)=>{
         console.log(res); 
-        setReply(String(res.data));
+        setReply(res.data);
       })
       .catch((err)=>console.log(err));
     };
@@ -133,7 +133,7 @@ export default function PostPage() {
                 <div className="text-white text-sm font-medium font-dmsans leading-normal">Summarize the post</div>
             </button>
             </div>
-            <div className=" text-zinc-600 text-base font-normal font-dmsans leading-tight">{reply}</div>
+            <pre className=" text-zinc-600 text-base font-normal font-dmsans leading-tight flex flex-row flex-wrap max-w-[25vw]">{reply}</pre>
         </div>
     </div>
   )

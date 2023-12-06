@@ -2,16 +2,23 @@ import React, { useState,useEffect } from "react";
 import NoteList from "../components/noteList/noteList.js";
 import Post from "../components/Post.js";
 import Navbar from "../components/Navbar.js";
-import { OtherRocket } from "@heathmont/moon-icons-tw";
+import { ControlsCloseSmall, OtherRocket } from "@heathmont/moon-icons-tw";
 import AISuggestions from "../components/AISuggestions.js";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
+import { Button, Dropdown, IconButton, MenuItem, Modal } from "@heathmont/moon-core-tw";
 
 export default function Notes() {
   const [heading, setHeading] = useState("Untitled");
   const [post, setPost] = useState();
   const [ai,setAi]= useState();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isOpen, setIsOpen] = useState(false);
+  const closeModal = () => setIsOpen(false);
+  const openModal = () => setIsOpen(true);
+  const [communities,setCommunities] = useState();
+  const [community,setCommunity] = useState();
+
   console.log(searchParams.get("id"));
   useEffect(() => {
     axios.post("http://localhost:5000/post/getByUserId",{
@@ -48,6 +55,12 @@ export default function Notes() {
     }).catch((err) => {
         console.log(err);
     });
+    axios.post("http://localhost:5000/community/getByUserId",{userId:"65645f987aa073e675de9071"}).then((res) => {
+      console.log(res);
+      setCommunities(res.data);
+    }).catch((err) => {
+      console.log(err);
+    })
   }, []);
   // useEffect(() => {
   // }, [heading]);
@@ -61,6 +74,17 @@ export default function Notes() {
         isPublished:true,
     },
   ]);
+
+  const handlePublish= async()=>{
+    closeModal();
+    axios.post("http://localhost:5000/community/publish",{postId:post._id,communityId:community._id}).then((res) => {
+      console.log(res);
+      window.location.reload();
+    }).catch((err) => {
+      console.log(err);
+    }); 
+  }
+
   return (
     <>
       <div className="flex flex-row px-16 py-4 container w-[100%] h-[100%] gap-5">
@@ -76,14 +100,7 @@ export default function Notes() {
                   }} value={heading} className="font-medium focus:outline-none w-[fit-content]"></input>
               </div>
               <button className="w-[92px] h-8 pl-1 pr-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-1 inline-flex" onClick={()=>{
-                axios.post("http://localhost:5000/post/publish",{
-                  postId:post._id
-                }).then((res) => {
-                  // console.log(res);
-                  window.location.reload(true)
-                }).catch((err) => {
-                    console.log(err);
-                });
+                openModal();
                 }}>
                 <OtherRocket className="w-6 h-6 relative text-blue-600" />
                 <div className="text-blue-600 text-sm font-medium font-dmsans leading-normal">Publish</div>
@@ -97,6 +114,56 @@ export default function Notes() {
             </div>
         </div>
       </div>
+      <Modal open={isOpen} onClose={closeModal}>
+      <Modal.Backdrop />
+        <Modal.Panel className="border border-solid border-gray-500 px-4 py-2 bg-white">
+          <div className="border-b-[0.063rem] border-neutral-200 pt-5 pb-4 px-6 relative">
+            <h3 className="text-moon-18 text-black font-medium">Publish Post</h3>
+            <IconButton
+              variant="ghost"
+              size="sm"
+              className="absolute top-4 end-5"
+              onClick={closeModal}
+            >
+              <ControlsCloseSmall className="text-moon-24" />
+            </IconButton>
+          </div>
+          <div className="flex gap-2 p-4 justify-end pt-2">
+          <Dropdown value={community} onChange={setCommunity} size="xl">
+              {({ open }) => (
+                <>
+                  <Dropdown.Select
+                    open={open}
+                    label="Community"
+                    placeholder="Choose community..."
+                    data-test="data-test"
+                  >
+                    {community?.title}
+                  </Dropdown.Select>
+
+                  <Dropdown.Options className="bg-white">
+                    {communities.map((community, index) => (
+                      <Dropdown.Option value={community} key={index}>
+                        {({ selected, active }) => (
+                          <MenuItem isActive={active} isSelected={selected}>
+                            {community.title}
+                          </MenuItem>
+                        )}
+                      </Dropdown.Option>
+                    ))}
+                  </Dropdown.Options>
+                </>
+              )}
+            </Dropdown>
+            </div>
+          <div className="flex gap-2 p-4 justify-end pt-2">
+            <Button variant="outline" onClick={closeModal}>
+              Cancel
+            </Button>
+            <Button onClick={()=>handlePublish()}>Create</Button>
+          </div>
+        </Modal.Panel>
+    </Modal>
     </>
   );
 }
