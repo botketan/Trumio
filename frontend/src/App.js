@@ -17,6 +17,7 @@ import Navigation from './components/Navigation.js';
 import { useState } from 'react';
 import Cia from './pages/cia.js';
 import PostPage from './pages/PostPage.js';
+import Community from './pages/Community.js';
 
 function App() {
   const [click, setClick] = useState("")
@@ -30,6 +31,7 @@ function App() {
         <Route exact path="/Gamification" element={<Gamification  />} />
         <Route exact path="/Mentor" element={<Mentor />} /> 
         <Route exact path="/Truspace" element={<Truspace />} /> 
+        <Route exact path="/Community" element={<Community />} /> 
         <Route path="/expert" element={<ExpertAgents/>} />
         <Route path="/cia" element={<Cia/>} />
         <Route path="/postpage/:id" element={<PostPage/>} />

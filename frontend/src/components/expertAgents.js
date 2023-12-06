@@ -14,12 +14,13 @@ const ExpertAgents = ({chatIds}) => {
   //   { id: 4, name: 'Item 4' },
   //   { id: 5, name: 'Item 5' },
   // ];
+  console.log(chatIds);
   const carouselItems = chatIds.map((chat, index)=>{
-    return {id: index+1, name: chat.botname}
+    return {id: chat._id, name: chat.botname}
   });
   const initialMessages= chatIds.map((chat, index)=>{
     const items= chat.messages.filter((message)=> message.role!='system').map((message)=>{
-      return {id: index+1, content: message.content, role: message.role}
+      return {id: chat._id, content: message.content, role: message.role}
     })
     return items;
   })
@@ -32,6 +33,17 @@ const ExpertAgents = ({chatIds}) => {
   const handleSendMessage = async (itemid) => {
     if (newMessage.trim()) {
       setMessages((prevMessages)=> [...prevMessages, { id: itemid, content: newMessage, role: "user" }]);
+      
+      axios.post("http://localhost:5000/cia/postChat",{chatId:itemid,ques:newMessage}).then((res) => {
+          console.log(res.data.message);
+          setMessages((prevMessages)=>[...prevMessages,{id: itemid, ...res.data.message}])
+          // let objIndex = chatData.findIndex((obj => obj.botname === botname));
+          // let newChatData = chatData
+          // newChatData[objIndex].messagesArray[index].messages.push({role:"system",message:res.data.message});
+          // setChatData(newChatData);
+      }).catch((err) => {
+          console.log(err);
+      });
       setNewMessage('');
     }
   };

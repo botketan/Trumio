@@ -82,7 +82,7 @@ const Badges = ({badges}) => {
       // console.log(badges);
   return (
 
-    <div className="w-[416px] relative bg-white rounded-xl shadow-md border border-neutral-200 pl-[16px] pr-[16px] pb-4">
+    <div className="w-full relative bg-white rounded-xl shadow-md border border-neutral-200 pl-[16px] pr-[16px] pb-4">
       
       <div className="w-96 h-8 pl-2 justify-between items-center inline-flex mt-[16px] mb-[10px]">
         <h1 className="text-zinc-600 text-base font-normal font-dmsans leading-normal">Your Badges</h1>
