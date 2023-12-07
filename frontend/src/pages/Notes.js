@@ -93,18 +93,18 @@ export default function Notes() {
         </div>
         <div className="container mx-auto my-auto h-[100%] shadow-xl border border-neutral-200 rounded-lg">
             <div className="h-[50px] w-[100%] p-4 border-neutral-200 flex gap-4 items-center" >
-              <div className="flex justify-center gap-4 items-center w-[90%]">
-                <span className={`h-8 text-yellow-500 bg-yellow-100 px-2 py-1 rounded-md font-medium`}>{"DRAFT"}</span>
+              <div className={"flex justify-center gap-4 items-center" + ((post && !post.isPublished)?" w-[90%]":" w-[100%]")}>
+                <span className={`h-8 px-2 py-1 rounded-md font-medium ` + ((post)?((post.isPublished)?" text-purple-500 bg-purple-100":" text-yellow-500 bg-yellow-100"):"")}>{(post)?((post.isPublished)?"PUBLISHED":"DRAFT"):""}</span>
                 <input type="text" onChange={(e)=>{
                   setHeading(e.target.value)
                   }} value={heading} className="font-medium focus:outline-none w-[fit-content]"></input>
               </div>
-              <button className="w-[92px] h-8 pl-1 pr-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-1 inline-flex" onClick={()=>{
+              {post && !post.isPublished && <button className="w-[92px] h-8 pl-1 pr-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-1 inline-flex" onClick={()=>{
                 openModal();
                 }}>
                 <OtherRocket className="w-6 h-6 relative text-blue-600" />
                 <div className="text-blue-600 text-sm font-medium font-dmsans leading-normal">Publish</div>
-              </button>
+              </button>}
             </div>
             <div className="w-[100%] h-[65vh] overflow-y-scroll p-2 border-b-2 border-t-2 border-neutral-200 overflow-x-hidden">
                 {post && <Post post={post}  setPost={setPost} ai={ai} setAi={setAi} heading={heading}/>}
