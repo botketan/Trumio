@@ -10,7 +10,7 @@ UniConnect is a standalone application built on Trumio's base platform to enhanc
 * CIA
 * Communities Page 
 
-* Mentorship Availability
+* Mentorship Availability: Students can explore mentor profiles and view their availability.They can book sessions, connect for personalised guidance and rate their experiences for a transparent learning journey.
      
 * Leaderboard
   
