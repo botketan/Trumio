@@ -178,3 +178,19 @@ export const getByUserId = async (req,res) =>{
     const data = await post.find({userId:userExisted._id});
     res.status(200).json(data);
 };
+
+export const comment = async (req,res) =>{
+    const {postId,userId,content} = req.body;
+    const userExisted=await user.findById(userId);
+    if(!userExisted){
+        return res.status(404).send("User not found");
+    }
+    const postExisted=await post.findById(postId);
+    if(!postExisted){
+        return res.status(404).send("Post not found");
+    }
+    const newComment = {userId,content,username:userExisted.username,icon:userExisted.icon};
+    postExisted.comments.push(newComment);
+    await postExisted.save();
+    return res.status(200).json(postExisted);
+};
