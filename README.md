@@ -6,7 +6,7 @@ Standalone applications that can be run on Trumio's base platform.
 
 ---
 
-##Features
+## Features
 * CIA
 * Extensions:
     * ChatBot
@@ -18,9 +18,9 @@ Standalone applications that can be run on Trumio's base platform.
 
 
 
-##Installation
+## Installation
 
-##Directory Structure
+## Directory Structure
 ```
 ├───.vscode
 ├───app
