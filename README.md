@@ -2,12 +2,18 @@
 ### AI Powered University Based Ecosystem
 ---
 
-Standalone applications that can be run on Trumio's base platform.
+UniConnect is a standalone application built on Trumio's base platform to enhance its ecosystem, upskill student talent, and engage alumni.
 
 ---
 
-## Features
+## Main Features
 * CIA
+* Communities Page 
+
+* Mentorship Availability
+     
+* Leaderboard
+  
 * Extensions:
     * ChatBot
     * Milestone Tracker
