@@ -18,7 +18,8 @@ const Navigation = ({ click, setClick }) => {
   const classSelect="px-3 h-16 flex items-center justify-center border-b-2 border-solid border-blue-500 font-medium text-blue-500 transition-all duration-100 ease-in-out";
   const classUnselect= "px-3 h-16 flex items-center justify-center transition-all duration-100 ease-in-out";
   return (
-    <nav className="flex h-16 items-center justify-between my-1 shadow-lg bg-white-800 text-gray-500 px-2">
+    <>
+    {(!location.pathname.startsWith("/postwebview"))&&<nav className="flex h-16 items-center justify-between my-1 shadow-lg bg-white-800 text-gray-500 px-2">
       <div className="flex justify-start items-center">
         <img
           className="w-[120px] ml-5 h-12"
@@ -156,7 +157,8 @@ const Navigation = ({ click, setClick }) => {
         alt="image"
       />
       </div>
-    </nav>
+    </nav>}
+    </>
   );
 };
 

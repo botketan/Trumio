@@ -18,6 +18,7 @@ import { useState } from 'react';
 import Cia from './pages/cia.js';
 import PostPage from './pages/PostPage.js';
 import Community from './pages/Community.js';
+import PostWebView from './pages/PostWebView.js';
 
 function App() {
   const [click, setClick] = useState("")
@@ -35,6 +36,7 @@ function App() {
         <Route path="/expert" element={<ExpertAgents/>} />
         <Route path="/cia" element={<Cia/>} />
         <Route path="/postpage/:id" element={<PostPage/>} />
+        <Route path="/postwebview/:id" element={<PostWebView />} />
         {/* <Route exact path="/mentor" element={<Mentor />} />
         <Route exact path="/development" element={<Mentor />} />
         <Route exact path="/design" element={<AchievementCarousel items={items1} />} />
