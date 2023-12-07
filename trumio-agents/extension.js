@@ -353,7 +353,6 @@ class MileStoneProvider {
         <div class="milestone-tracker">
             <div class="header">
                 <h2>Milestone Tracker</h2>
-                <button>View All</button>
             </div>
             <div class="project-dropdown" style="display: flex;">
                 <select name="project" id="project">
