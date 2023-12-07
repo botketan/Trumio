@@ -57,6 +57,22 @@ Move to the clonned repository in your local environment
 ### Steps to Set up Backend
 * Move to backend folder - `cd backend `
 * Install the required nodes modules package - `npm i`
+* Create a .env file as follows with the required APIs- MongoDB, Cloudinary, OpenAI
+   
+  ```
+   PORT=5000
+   MONGODB_URI=
+   DB_NAME=
+   ADMIN_EMAIL=
+   ADMIN_PASS=
+   SESSION_SECRET=
+   CLOUD_NAME=
+   API_KEY=
+   API_SECRET=
+   OPENAI_API_KEY=
+
+  ```
+  
 * Start the development server - ` npm start `
 
 ### Steps to Set up Frontend
