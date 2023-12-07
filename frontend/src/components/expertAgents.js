@@ -4,17 +4,7 @@ import { ControlsChevronLeftSmall, ControlsChevronRightSmall} from '@heathmont/m
 import { Link } from 'react-router-dom';
 import axios from "axios";
 
-// Sample data for carousel items
-
 const ExpertAgents = ({chatIds}) => {
-  // const carouselItems = [
-  //   { id: 1, name: 'Item 1' },
-  //   { id: 2, name: 'Item 2' },
-  //   { id: 3, name: 'Item 3' },
-  //   { id: 4, name: 'Item 4' },
-  //   { id: 5, name: 'Item 5' },
-  // ];
-  console.log(chatIds);
   const carouselItems = chatIds.map((chat, index)=>{
     return {id: chat._id, name: chat.botname}
   });
@@ -24,10 +14,7 @@ const ExpertAgents = ({chatIds}) => {
     })
     return items;
   })
-  // console.log(carouselItems)
-  // console.log(initialMessages)
   const [messages, setMessages] = useState(initialMessages.flat());
-  // console.log(messages);
   const [newMessage, setNewMessage] = useState('');
 
   const handleSendMessage = async (itemid) => {
@@ -37,10 +24,6 @@ const ExpertAgents = ({chatIds}) => {
       axios.post("http://localhost:5000/cia/postChat",{chatId:itemid,ques:newMessage}).then((res) => {
           console.log(res.data.message);
           setMessages((prevMessages)=>[...prevMessages,{id: itemid, ...res.data.message}])
-          // let objIndex = chatData.findIndex((obj => obj.botname === botname));
-          // let newChatData = chatData
-          // newChatData[objIndex].messagesArray[index].messages.push({role:"system",message:res.data.message});
-          // setChatData(newChatData);
       }).catch((err) => {
           console.log(err);
       });
@@ -48,28 +31,6 @@ const ExpertAgents = ({chatIds}) => {
     }
   };
 
-  const sendChat=async(itemid)=>{
-    // if(chats.trim() !== ""){
-    // const newMessage= {role:"user",content:chats}
-    // let objIndex = chatData.findIndex((obj => obj.botname === botname));
-    // console.log(objIndex);
-    // setMessages((prevMessages)=>[...prevMessages,newMessage])
-    // let newChatData = chatData
-    // newChatData[objIndex].messagesArray[index].messages.push({role:"system",message:chats});
-    // setChatData(newChatData);
-    // axios.post("http://localhost:5000/cia/postChat",{chatId:messageId,ques:chats}).then((res) => {
-    //     console.log(res);
-    //     setMessages((prevMessages)=>[...prevMessages,res.data.message])
-    //     let objIndex = chatData.findIndex((obj => obj.botname === botname));
-    //     let newChatData = chatData
-    //     newChatData[objIndex].messagesArray[index].messages.push({role:"system",message:res.data.message});
-    //     setChatData(newChatData);
-    // }).catch((err) => {
-    //     console.log(err);
-    // });
-    // }
-    // setChat('');
-  }
   const handleKeyDown = (e, itemid) => {
     if(e.key == 'Enter'){
       handleSendMessage(itemid);
@@ -98,7 +59,7 @@ const ExpertAgents = ({chatIds}) => {
 
                     <Carousel.Item key={item.id} className="flex flex-col w-[356px] h-[244px] relative bg-white rounded-xl border border-neutral-200">
                         
-                        <div className='flex w-[356px] h-[52px] relative bg-blue-600 rounded-t-xl justify-between'>
+                        <div className='flex max-w-[356px] w-[356px] h-[52px] relative bg-blue-600 rounded-t-xl justify-between'>
                           <div className='flex'>
                             <div className="ml-[12px] mt-[10px] mb-[10px] mr-[12px] w-8 h-8 relative bg-white rounded-full"><div className="w-6 h-6 left-[4px] top-[8px] absolute text-center text-black text-xs font-medium font-dmsans leading-none">CI</div></div>
                             <div className="mt-[15px]  text-white text-sm font-medium font-dmsans leading-normal">{item.name}</div>
@@ -109,13 +70,13 @@ const ExpertAgents = ({chatIds}) => {
                           </Link>  
                           </div>
                         </div>
-                        <div className='h-[192px] w-[356px] border border-2ndPersontom grey-200 overflow-y-auto overflow-x-hidden'>
+                        <div className='h-[192px] w-[356px] max-w-[356px] border border-2ndPersontom grey-200 overflow-y-auto overflow-x-hidden'>
 
                         {messages.filter((message)=>message.id==item.id).map(message => (
                           <div className={`flex ${message.role === 'assistant' ? 'justify-start p-[8px] ml-[5px]' : 'justify-end p-[8px] mr-[5px]'}`}>
-                            <div className={`flex ${message.role === "assistant" ? 'rounded-b-xl rounded-tr-xl px-4 max-w-[300px] py-2 bg-blue-100 lg:max-w-[300px]':'rounded-b-xl rounded-tl-xl px-4 max-w-[300px] py-2 bg-blue-100 lg:max-w-md'}`} style= {{overflowWrap: "break-word"}}>
+                            <p className={`flex ${message.role === "assistant" ? 'rounded-b-xl rounded-tr-xl px-4 max-w-[300px] py-2 bg-blue-100 lg:max-w-[300px] overflow-x-hidden':'rounded-b-xl rounded-tl-xl px-4 max-w-[300px] py-2 bg-blue-100 overflow-x-hidden lg:max-w-md'}`} style= {{overflowWrap: "break-word"}}>
                               {message.content}
-                            </div>
+                            </p>
                           </div>
                         ))}
 

@@ -1,13 +1,13 @@
 import { GenericPlus } from '@heathmont/moon-icons-tw';
 import Note from './note';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 const NoteList=({posts,setPost,setPosts,setHeading, searchParams, setSearchParams, place})=>{
-
+    const navigate=useNavigate();
     const createTrunote=()=>{
         axios.post("http://localhost:5000/post/create",{userId:"65645f987aa073e675de9071"}).then((res) => {
             window.location.reload(true)})
@@ -18,7 +18,7 @@ const NoteList=({posts,setPost,setPosts,setHeading, searchParams, setSearchParam
         posts=posts.filter((post)=>post.isPublished===false).slice(0,3);
     }
     return <>
-        <div className={`container mx-auto shadow-xl rounded-xl p-4 border-2 overflow-y-scroll ${"h-full"}`} style={{width:"100%"}}>
+        <div className={`container mx-auto shadow-xl rounded-xl p-4 border-2 overflow-y-scroll ${place==="Notes"?"h-full":""}`} style={{width:"100%"}}>
             <div className='flex justify-between items-center pt-2 pb-3'>
                 <span className='ml-2 font-light'>Your {place==="Notes"?"Trunotes":"Drafts"}</span>
                 <div>
@@ -32,7 +32,9 @@ const NoteList=({posts,setPost,setPosts,setHeading, searchParams, setSearchParam
                 </div>
             </div>
                 {posts.map((post)=>{
-                    return <button className='w-full' onClick ={async()=>{setPost(); 
+                    return <button className='w-full' onClick ={async()=>{
+                        if(place==="Notes"){
+                        setPost();
                         await sleep(50);
                         setHeading(post.title); 
                         setPost(post); 
@@ -45,6 +47,10 @@ const NoteList=({posts,setPost,setPosts,setHeading, searchParams, setSearchParam
                         }).catch((err) => {
                             console.log(err);
                         });
+                        }
+                        else{
+                            navigate("../Notes?id="+post._id);
+                        }
                     }}><Note props={post}/></button>
                 })}
         </div>

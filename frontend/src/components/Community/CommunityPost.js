@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
+import PostReadOnly from '../PostReadonly'
 
-const CommunityPost = ({owner, post, setPost}) => {
+const CommunityPost = ({owner, post, setPost, complete}) => {
   return (
     <div>
-        {owner&&<div className="flex gap-3 items-center my-[1vw] justify-start">
+        {owner&&<div className="w-[100%] flex gap-3 items-center my-[1vw] justify-start">
             <img className="h-16 w-16 rounded-full" src={owner.icon ? owner.icon : "/logo192.png"} alt="image"></img>
             <div>
                 <h2 className='font-medium font-dmsans'>{owner.name}</h2>
@@ -11,7 +12,7 @@ const CommunityPost = ({owner, post, setPost}) => {
             </div>
         </div>}
         {post &&<div className="ml-[-3.5vw] bg-transparent"> <PostReadOnly post={post}  setPost={setPost}  /></div>}
-        <div className="flex flex-row w-[inherit] gap-[0.5vw] ">
+        <div className="flex flex-row w-[inherit] gap-[0.5vw] justify-center">
             <div className="w-[196px] h-10 pl-2 pr-4 py-2 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-2 inline-flex">
                 <div className="w-6 h-6 relative" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
