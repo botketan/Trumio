@@ -9,7 +9,7 @@ const AchievementExpand = ({ items }) => {
 
     return (
         <div className="relative bg-white rounded-xl shadow-lg border border-neutral-200" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', width: '100%', padding: '20px 20px 20px 20px' }}>
-            <div className="w-[816px] h-8 pl-2 justify-between items-center inline-flex" style={{paddingBottom : "10px"}}>
+            <div className="w-[97.5%] h-8 px-4 justify-between items-center inline-flex" style={{paddingBottom : "10px"}}>
                 <div className="text-black text-base font-normal font-dmsans leading-normal">Your Badges</div>
                 <div className="px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
                 <button onClick={() => setIsExpanded(!isExpanded)}><div className="text-center text-blue-600 text-sm font-medium font-dmsans leading-normal">{isExpanded ? 'Close' : 'View All'}</div></button>
