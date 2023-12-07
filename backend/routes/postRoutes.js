@@ -8,7 +8,8 @@ import { getByCommunity,
     create,
     published,
     uploadCoverImage,
-    uploadIcon } from "../controllers/post.js";
+    uploadIcon, 
+    comment} from "../controllers/post.js";
 import multer from "multer";
 
 const storage = multer.memoryStorage();
@@ -26,6 +27,7 @@ router.post('/publish', published);
 router.post('/getByUserId', getByUserId);
 router.post('/uploadCover', upload.single('file'),uploadCoverImage);
 router.post('/uploadIcon', upload.single('file'),uploadIcon);
+router.post('/comment',comment);
 
 
 export default router;
