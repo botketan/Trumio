@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CommentInput from './CommentInput';
 
 // const comments = [
@@ -43,14 +43,17 @@ import CommentInput from './CommentInput';
 // }
 const Comment = ({ comment, user, post }) => {
   const [commentClick,setCommentClick]=useState(0);
+  useEffect(() => {
+    console.log(user?.icon);
+},[user]);
   return (
     <>
-    <div className='flex'>
+    <div className='flex '>
         <div className="flex-shrink-0 mr-3 mt-3">
             <img className="w-10 h-10 rounded-full" src={comment.icon} alt="Profile pic" />
         </div>
-        <div className=''>
-        <div className="bg-white border border-neutral-200 rounded-lg p-4">
+        <div className='w-[100%]'>
+        <div className="bg-white border border-neutral-200 rounded-lg p-4 w-[100%]">
             <div className="flex items-center text-sm text-gray-600 justify-between">
             <div>
             <p className="font-bold text-black text-sm">{comment.username}</p>
@@ -85,8 +88,8 @@ const Comment = ({ comment, user, post }) => {
             </div>
             <div>
 
-            {commentClick===1 && <CommentInput comment={comment} user={user} />}
-            {comment.reply&&<CommentsList comments={comment.reply}/>}
+            {commentClick===1 && user &&user.icon && <CommentInput  user={user} />}
+            {comment.reply&& user && <CommentsList comments={comment.reply}/>}
             </div>
         </div>
     </div>
@@ -94,11 +97,14 @@ const Comment = ({ comment, user, post }) => {
   );
 };
 
-const CommentsList = ({comments}) => {
+const CommentsList = ({comments,user}) => {
+//   useEffect(() => {
+//     console.log(user?.icon);
+// },[user]);
   return (
     <div className="p-1">
-      {comments&&comments.map((comment, index) => (
-        <Comment key={index} comment={comment} />
+      {user && comments&&comments.map((comment, index) => (
+         <Comment key={index} comment={comment} user={user} />
       ))}
     </div>
   );

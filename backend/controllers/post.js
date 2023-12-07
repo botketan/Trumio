@@ -3,6 +3,7 @@ import { post } from "../models/post.js";
 import dotenv from "dotenv";
 import {v2 as cloudinary} from "cloudinary";
 import streamifier from "streamifier";
+import { comments } from "../models/comments.js";
 
 
 cloudinary.config({ 
@@ -90,13 +91,17 @@ export const getbyparent = async (req, res) => {
 
 export const getById = async (req,res) =>{
     const {postId,userId}=req.body;
-    const data = await post.findById(postId);
+    const data = await post.findById(postId).populate("comments");
     if (!data) {
         res.status(404).send("Post not found.");
         return;
     }
     if (data.isPublished || data.userId.equals(userId)){
-        res.status(200).send(data);
+        return res.status(200).send(data);
+    }
+    else
+    {
+        return res.status(401).send("Unauthorized");
     }
 }
 export const getByCommunity = async (req,res) =>{
@@ -189,8 +194,9 @@ export const comment = async (req,res) =>{
     if(!postExisted){
         return res.status(404).send("Post not found");
     }
-    const newComment = {userId,content,username:userExisted.username,icon:userExisted.icon};
-    postExisted.comments.push(newComment);
+    const newComment = new comments({userId,content,username:userExisted.username,icon:userExisted.icon,position:userExisted.position});
+    postExisted.comments.push(newComment._id);
+    await newComment.save();
     await postExisted.save();
     return res.status(200).json(postExisted);
 };

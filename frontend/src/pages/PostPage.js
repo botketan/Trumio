@@ -2,6 +2,46 @@ import { useEffect, useState } from 'react';
 import {useParams} from 'react-router-dom';
 import PostReadOnly from '../components/PostReadonly.js';
 import axios from 'axios';
+import CommentsList from '../components/Comments/Comments.js';
+import CommentInput from '../components/Comments/CommentInput.js';
+
+const comments = [
+  {
+    id: 1,
+    username: "Waleed Irfan",
+    position: "Sr. UX Architect | Product Designer | Chief Creative Officer",
+    content: "You shouldn't add any such images without adding caution. Automatic movement can trigger vertigo, headaches, and nausea in people with vestibular disorders and seizures in people with conditions like photosensitive epilepsy. It's the biggest accessibility issue.",
+    likes: 2,
+    reply: [
+      {
+        icon: "/Avatar.png",
+        username: "Vidya Sagar",
+        position: "Sr. UX Architect | Product Designer | Chief Creative Officer",
+        content: "You shouldn't add any such images without adding caution. Automatic movement ca",
+        likes: 2,
+      }
+   ],
+    icon: "/Avatar.png"
+  },
+  {
+    id: 2,
+    username: "Waleed Irfan",
+    position: "Sr. UX Architect | Product Designer | Chief Creative Officer",
+    content: "You shouldn't add any such images without adding caution. Automatic movement can trigger vertigo, headaches, and nausea in people with vestibular disorders and seizures in people with conditions like photosensitive epilepsy. It's the biggest accessibility issue.",
+    likes: 2,
+    reply: [
+      {
+        icon: "/Avatar.png",
+        username: "Vidya Sagar",
+        position: "Sr. UX Architect | Product Designer | Chief Creative Officer",
+        content: "You shouldn't add any such images without adding caution. Automatic movement ca",
+        likes: 2,
+      }
+   ],
+    icon: "/Avatar.png"
+  }
+];
+
 
 function traverse(blocks){
     let s ="";
@@ -27,6 +67,7 @@ export default function PostPage() {
     const [post, setPost] = useState();
     const [owner,setOwner] = useState();
     const [reply,setReply] = useState();
+    const [user ,setUser] = useState();
     useEffect(() => {
         axios.post("http://localhost:5000/post/getById",{
             postId:id ,userId:"65645f987aa073e675de9071"
@@ -39,6 +80,10 @@ export default function PostPage() {
         }).catch((err) => {
             console.log(err);
         });
+        axios.post("http://localhost:5000/user/getUser",{userId:"65645f987aa073e675de9071"}).then((res) => {
+            console.log(res.data);
+            setUser(res.data);
+        }).catch((err) => {console.log(err);});
     },[]);
 
     const handleNewReply= async(name)=>{
@@ -96,6 +141,7 @@ export default function PostPage() {
                     <div className="text-blue-600 text-sm font-medium font-dmsans leading-normal">1.1k</div>
                 </div>
             </div>
+            {post &&user&&<CommentsList comments={post.comments} user={user}/>}
         </div>
         <div className='w-[30vw] conatiner h-fit p-[32px] flex flex-col flex-wrap gap-[4px] bg-white rounded-xl shadow border border-neutral-200 '>
             <div className=" text-zinc-600 text-sm font-normal font-dmsans leading-tight">Make the most of this post with AI</div>
