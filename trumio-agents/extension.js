@@ -47,15 +47,21 @@ function activate(context) {
         // Here you would typically set the HTML content for your webview
         // For React, you'd link to your bundled JS file
 
-        const gpt_summary = await generate(
+        const gptSummary = await generate(
           `Summarize this piece of code : ${selectedText}`
         ); // GPT Response
-        const gpt_error = await generate(
+        const gptError = await generate(
           `Let me know if there are any syntactical errors in this peice of code : ${selectedText}`
+        );
+        const gptInput = await generate(
+          `Check for any possible inputs that this code takes and display them : ${selectedText}`
+        ); // GPT Response
+        const gptOutput = await generate(
+          `Check for any possible outputs that this code gives and display them : ${selectedText}`
         );
         const webstyleUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(context.extensionUri, 'media','web','webStyle.css'));
         // console.log(webstyleUri);
-        panel.webview.html = getWebviewContent(gpt_summary, gpt_error, webstyleUri);
+        panel.webview.html = getWebviewContent(gptSummary,gptError,gptInput,gptOutput,webstyleUri);
       }
     }
   );
@@ -111,7 +117,7 @@ function activate(context) {
 
 // CODE SUMMARIZER FUNCTIONALITY
 
-function getWebviewContent(gpt_summary, gpt_error, webstyleUri) {
+function getWebviewContent(gptSummary, gptError, gptInput, gptOutput, webstyleUri) {
   // HTML for webview
 
     return `<!DOCTYPE html>
@@ -124,9 +130,13 @@ function getWebviewContent(gpt_summary, gpt_error, webstyleUri) {
     </head>
     <body>
         <h1>Code Summary</h1>
-        <p>${gpt_summary}</p>
+        <p>${gptSummary}</p>
         <h1>Errors</h1>
-        <p>${gpt_error}</p>
+        <p>${gptError}</p>
+        <h1>Input</h1>
+        <p>${gptInput}</p>
+        <h1>Output</h1>
+        <p>${gptOutput}</p>
         <!-- Include your React bundle here -->
     </body>
     </html>`;
