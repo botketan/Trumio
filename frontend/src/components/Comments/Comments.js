@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CommentInput from './CommentInput';
+import { set } from 'mongoose';
 
 // const comments = [
 //   {
@@ -41,7 +42,7 @@ import CommentInput from './CommentInput';
 // const user = {
 //   icon: "/Avatar.png"
 // }
-const Comment = ({ comment, user, post }) => {
+const Comment = ({ comment, user, post ,setPost}) => {
   const [commentClick,setCommentClick]=useState(0);
   useEffect(() => {
     console.log(user?.icon);
@@ -88,8 +89,8 @@ const Comment = ({ comment, user, post }) => {
             </div>
             <div>
 
-            {commentClick===1 && user &&user.icon && <CommentInput  user={user} />}
-            {comment.reply&& user && <CommentsList comments={comment.reply}/>}
+            {commentClick===1 && user &&user.icon && <CommentInput  user={user} comment={comment} post={post} setPost={setPost}/>}
+            {comment.reply&& user && <CommentsList comments={comment.reply} post={post}/>}
             </div>
         </div>
     </div>
@@ -97,14 +98,14 @@ const Comment = ({ comment, user, post }) => {
   );
 };
 
-const CommentsList = ({comments,user}) => {
-//   useEffect(() => {
-//     console.log(user?.icon);
-// },[user]);
+const CommentsList = ({comments,user,post,setPost}) => {
+  useEffect(() => {
+    console.log("rerender");
+},[post]);
   return (
     <div className="p-1">
       {user && comments&&comments.map((comment, index) => (
-         <Comment key={index} comment={comment} user={user} />
+         <Comment key={index} comment={comment} user={user} post={post} setPost={setPost} />
       ))}
     </div>
   );
