@@ -1,5 +1,6 @@
 import { Accordion, Checkbox, Tag } from '@heathmont/moon-core-tw';
 import { ControlsChevronRightSmall } from '@heathmont/moon-icons-tw';
+import axios from 'axios';
 import React from 'react';
 
 const MileStoneAccordion = ({project, setProject}) => {
@@ -9,6 +10,13 @@ const MileStoneAccordion = ({project, setProject}) => {
         let project1= {...project}
         project1.milestones[index1].task[index].isCompleted=!(project1.milestones[index1].task[index].isCompleted)
         setProject(project1);
+        console.log("fbahk")
+        console.log({projectId: project1._id, ...project1})
+        axios.post("http://localhost:5000/project/updateProject",{projectId: project1._id, projectIncoming:project1}).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
     }
   return (
     <div>
@@ -20,9 +28,9 @@ const MileStoneAccordion = ({project, setProject}) => {
                     <Accordion.Item value={index+1} key={index+1} className='w-[25.88vw] rounded-xl border border-neutral-200'> 
                         <Accordion.Header className='moon-open:[&_svg]:rotate-90'>
                             <Accordion.Button>
-                                <ControlsChevronRightSmall className='className="text-trunks text-moon-24 transition duration-200 moon-open:text-bulma'/>
-                                <div className= 'text-left text-moon-16 text-zinc-600 w-[14vw]'>Milestone {index+1} : {milestone.title}</div>
-                                <div className="font-semibold font-dmsans w-[4vw]">
+                                <ControlsChevronRightSmall className='text-trunks text-moon-24 transition duration-200 moon-open:text-bulma'/>
+                                <div className= 'text-left text-moon-16 text-zinc-600 w-[13vw]'>Milestone {index+1} : {milestone.title}</div>
+                                <div className="font-semibold font-dmsans w-[4.5vw]">
                                     {
                                         milestone.task.filter(Task => Task.isCompleted).length
                                     }/{milestone.task.length} tasks
@@ -58,6 +66,6 @@ const MileStoneAccordion = ({project, setProject}) => {
       </Accordion>
     </div>
   );
-};
+    }
 
 export default MileStoneAccordion;
