@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Post from './components/Post.js';
 import Navbar from './components/Navbar.js';
-import { BrowserRouter as Router,Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router,Route, Routes, useLocation } from 'react-router-dom';
 import Achievements from "./components/Crousel_Achievements/Achievements";
 import AchievementCarousel from "./components/Crousel_Achievements/AchievementCarousel"
 import MentorCard from './components/Mentor/MentorCard.js';
@@ -16,6 +16,9 @@ import Truspace from './pages/Truspace.js';
 import Navigation from './components/Navigation.js';
 import { useState } from 'react';
 import Cia from './pages/cia.js';
+import PostPage from './pages/PostPage.js';
+import Community from './pages/Community.js';
+import PostWebView from './pages/PostWebView.js';
 
 function App() {
   const [click, setClick] = useState("")
@@ -29,8 +32,11 @@ function App() {
         <Route exact path="/Gamification" element={<Gamification  />} />
         <Route exact path="/Mentor" element={<Mentor />} /> 
         <Route exact path="/Truspace" element={<Truspace />} /> 
+        <Route exact path="/Community" element={<Community />} /> 
         <Route path="/expert" element={<ExpertAgents/>} />
         <Route path="/cia" element={<Cia/>} />
+        <Route path="/postpage/:id" element={<PostPage/>} />
+        <Route path="/postwebview/:id" element={<PostWebView />} />
         {/* <Route exact path="/mentor" element={<Mentor />} />
         <Route exact path="/development" element={<Mentor />} />
         <Route exact path="/design" element={<AchievementCarousel items={items1} />} />

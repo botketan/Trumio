@@ -9,10 +9,10 @@ const AchievementExpand = ({ items }) => {
 
     return (
         <div className="relative bg-white rounded-xl shadow-lg border border-neutral-200" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', width: '100%', padding: '20px 20px 20px 20px' }}>
-            <div className="w-[816px] h-8 pl-2 justify-between items-center inline-flex" style={{paddingBottom : "10px"}}>
-                <div className="text-black text-base font-normal font-['DM Sans'] leading-normal">Your Badges</div>
+            <div className="w-[97.5%] h-8 px-4 justify-between items-center inline-flex" style={{paddingBottom : "10px"}}>
+                <div className="text-black text-base font-normal font-dmsans leading-normal">Your Badges</div>
                 <div className="px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
-                <button onClick={() => setIsExpanded(!isExpanded)}><div className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">{isExpanded ? 'Close' : 'View All'}</div></button>
+                <button onClick={() => setIsExpanded(!isExpanded)}><div className="text-center text-blue-600 text-sm font-medium font-dmsans leading-normal">{isExpanded ? 'Close' : 'View All'}</div></button>
                 </div>
             </div>
             
@@ -32,7 +32,7 @@ const AchievementExpand = ({ items }) => {
             <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
             <div className={"w-[100%] h-[0px] left-0 bottom-[56px] absolute border border-neutral-200 flex items-center justify-center"}></div>
                 <button onClick={() => setIsExpanded(!isExpanded)}>
-                <div className="text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal">{isExpanded ? 'Collapse' : 'Expand'}</div>
+                <div className="text-blue-600 text-sm font-medium font-dmsans leading-normal">{isExpanded ? 'Collapse' : 'Expand'}</div>
                 </button>
             </div>
         </div>

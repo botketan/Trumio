@@ -2,7 +2,7 @@ import { FilesCase,GenericEdit } from '@heathmont/moon-icons-tw';
 import { Progress } from '@heathmont/moon-core-tw';
  const ProfileCard=({props})=>{
     return <>
-       <div className="container border border-neutral-200 mx-auto h-1/4  p-4 shadow-md rounded-lg" style={{width:"416px",height:'318px'}}>
+       <div className="container border border-neutral-200 h-1/4 w-full p-4 px-6 shadow-md rounded-lg" style={{height:'318px'}}>
             <div className="flex justify-between items-center">
                 <div className="flex gap-3 items-center">
                     <img className="h-16 w-16 rounded-full" src={props.profilePic ? props.profilePic : "/logo192.png"} alt="image"></img>
@@ -14,14 +14,14 @@ import { Progress } from '@heathmont/moon-core-tw';
 
                 <div>
                     <button className="ml-2 px-3 py-1 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center flex">
-                        <div className="text-center text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal flex items-center justify-around">
+                        <div className="text-center text-blue-600 text-sm font-medium font-dmsans leading-normal flex items-center justify-around">
                         <GenericEdit className="h-6 w-6"/><span>Edit</span>
                         </div>
                     </button>
                 </div>
             </div>
 
-            <div className="flex items-center py-4">
+            <div className="flex items-center pt-4 pb-1">
                 {/* <img className="h-8 w-8 " src="/logo192.png" alt="bag"></img> */}
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
 <mask id="mask0_30862_6065" style={{maskType: "alpha"}} maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16">
@@ -34,7 +34,7 @@ import { Progress } from '@heathmont/moon-core-tw';
                 <span className='ml-1'>{props.work}</span>
             </div>
 
-            <div className="flex items-center pb-4">
+            <div className="flex items-center pb-6">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16" fill="none">
 <mask id="mask0_30862_6070" style={{maskType: "alpha"}} maskUnits="userSpaceOnUse" x="0" y="0" width="18" height="18">
 <rect width="18" height="18" fill="#D9D9D9"/>

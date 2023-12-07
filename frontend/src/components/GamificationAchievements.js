@@ -12,7 +12,7 @@ const AchievementItem = ({ title, description, date, points }) => (
       </div>
     </div>
     <div className='flex-col justify-end items-end'>
-        <div className="text-blue-600 text-sm font-medium font-['DM Sans'] leading-normal flex justify-end">{points} Sparks</div>
+        <div className="text-blue-600 text-sm font-medium font-dmsans leading-normal flex justify-end">{points} Sparks</div>
         <div className="text-sm text-gray-500 self-start md:self-center">{date}</div>
     </div>
   </div>
@@ -20,7 +20,7 @@ const AchievementItem = ({ title, description, date, points }) => (
 
 const GamificationAchievements = ({ achievements }) => (
   <div className=" bg-white rounded-lg shadow-lg overflow-hidden p-4 border">
-    <div className="text-black text-base font-normal font-['DM Sans'] leading-normal">
+    <div className="text-black text-base font-normal font-dmsans leading-normal">
       Activity
     </div>
     {achievements.map((achievement, index) => (

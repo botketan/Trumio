@@ -70,26 +70,30 @@ document.addEventListener('DOMContentLoaded',async () => {
 
     const projectBtn = document.getElementById('project');
     const milestoneList = document.querySelector('.milestone-list');
-
+    const dummy = document.getElementById('dummy');
+    const progressBar = document.getElementById('progress-bar');
+    var completedProjectTasks = 0;
+    var totalProjectTasks = 0;
     console.log('DOM loaded');
 
     let projects = await getProjects();
     // console.log(projects);
 
+    
     const handleProjects = () => {
-
+        
         if (projects.length == 0){
             return;
         }
-
+        
         projectBtn.innerHTML = '';
-
+        
         projects.forEach(project => {
             // Create a new option element
             const option = document.createElement('option');
             option.value = project.title 
             option.textContent = project.title; // Set the display text as the project name
-    
+            
             // Append the option to the select button
             projectBtn.appendChild(option);
 
@@ -97,7 +101,7 @@ document.addEventListener('DOMContentLoaded',async () => {
 
         projects = []
     }
-
+    
     const createMilestone = (projectName,milestone) => {
         const li = document.createElement('li');
         li.classList.add("milestone");
@@ -110,12 +114,12 @@ document.addEventListener('DOMContentLoaded',async () => {
         
         let totalTasks = 0;
         let setTasks = 0;
-
+        
         const span1 = document.createElement('span');
-
+        
         milestone.task.forEach(task => {
             totalTasks++;
-
+            
             const label = document.createElement('label');
             const box = document.createElement('input');
             box.type = "checkbox";
@@ -127,36 +131,39 @@ document.addEventListener('DOMContentLoaded',async () => {
 
             box.addEventListener('click', function() {
                 // console.log('Checkbox clicked:', this.name);
-
+                
                 if (box.checked){
                     setTasks++;
+                    completedProjectTasks++; 
                     setMilestones(this.name,true);
                 }
                 else{
                     setTasks--;
+                    completedProjectTasks--;
                     setMilestones(this.name,false);
                 }
+                progressBar.innerText = `Progress: ${(completedProjectTasks/totalProjectTasks*100).toFixed(0)}%`;
                 span1.textContent = `${setTasks}/${totalTasks} tasks`;
                 
             });
-
+            
             label.append(box);
             label.append(document.createTextNode(task.title));
             ul.append(label);
         });
-
+        
         details.append(summary);
         details.append(ul);
-
+        
         span1.textContent = `${setTasks}/${totalTasks} tasks`;
         const span2 = document.createElement('span');
         span2.textContent = "ON TRACK";
         span2.classList.add("on-track");
-
+        
         li.append(details);
         li.append(span1);
         li.append(span2);
-
+        
         return li;
     }
 
@@ -164,22 +171,32 @@ document.addEventListener('DOMContentLoaded',async () => {
         const projectName = projectBtn.value;
         console.log(projectName);
         let milestones = await getMilestones(projectName);
-
         console.log(milestones);
 
+        completedProjectTasks = 0;
+        totalProjectTasks = 0;
+        
         if (milestones.length == 0){
             return;
         }
         milestoneList.innerHTML = '';
-
-        milestones.forEach(milestone => { // Each milestone is an onject     
+        
+        milestones.forEach(milestone => { // Each milestone is an onject 
+            milestone.task.forEach(task => {
+                totalProjectTasks++;
+                if (task.isCompleted){
+                    completedProjectTasks++;
+                }
+            });
             li = createMilestone(projectName,milestone);
             milestoneList.appendChild(li);
         });
-
+        progressBar.innerText = `Progress: ${(completedProjectTasks/totalProjectTasks*100).toFixed(0)}%`;
         milestones = [];
     }
-
+    
+    dummy.innerText = projects[0].title;     //Initialise the project button with the first project
+    handleMilestones();
     projectBtn.addEventListener("click", handleProjects);
     projectBtn.addEventListener('change', handleMilestones);
 });

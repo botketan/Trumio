@@ -29,11 +29,15 @@ function traverse(blocks){
 export default function Truspace() {
   const [data, setData] = useState(null);
   const [notes, setNotes] = useState(null);
+  const [projects, setProjects] = useState(null);
+  const [chats, setChats] = useState(null);
   useEffect(() => {
     axios.post("http://localhost:5000/user/getUser",{
         userId:"65645f987aa073e675de9071"
     }).then((res) => {
       setData(res.data);
+      setProjects(res.data.projects);
+      setChats(res.data.chatIds);
       console.log(res.data);
     }).catch((err) => {
         console.log(err);
@@ -44,67 +48,27 @@ export default function Truspace() {
         userId:"65645f987aa073e675de9071"
     }).then((res) => {
       setNotes(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     }).catch((err) => {
         console.log(err);
     });
   }, []);
-  // let projects =[
-  //     {
-  //     title: "DevRev",
-  //     description: "The only PS we are going to win in this inter IIT",
-  //     milestones:[
-  //     {
-  //         title: "Fuck Trumio",
-  //         task:[
-  //             {
-  //                 title:"Fuck trumio",
-  //                 isCompleted:true,
-  //             },
-  //             {
-  //               title:"Fuck trumio again",
-  //               isCompleted:false,
-  //           }
-  //         ],
-  //         progress:50,
-  //     }
-  //   ]
-  // }
-  // ]
-
-  // const Noteslist=[
-  //   {
-  //       title:"Exploring ML",
-  //       description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
-  //   },
-  //   {
-  //     title:"Exploring ML",
-  //     description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
-  // },
-  // {
-  //     title:"Exploring ML",
-  //     description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
-  // },
-  // {
-  //   title:"Exploring ML",
-  //   description:"Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tincidunt neque sit amet metus ullamcorper aliquam.",
-  // },
-  // ]
+  
   const badges= data&& data.badges;
   const props=";"
   const Noteslist= notes&& notes.map((note)=>{
-    return {title: note.title, description: traverse(JSON.parse(note.content)), days: 3}
+    return {title: note.title, description: note.content?traverse(JSON.parse(note.content)):"", days: 3, id: note._id}
   })
-  console.log(badges);
+  // console.log(badges);
   return (
     <>
       {
-        (data&&notes)?
+        (data&&notes)&&
       <div className="flex flex-row py-4 gap-4 justify-center">
         <div className="flex flex-col w-[59vw] gap-4">
           <div className="flex w-full justify-between">
-            <ExpertAgents chatIds={data.chatIds} />
-            <MileStones projects={data.projects}/>
+            <ExpertAgents chatIds={chats} />
+            <MileStones projects={projects} setProjects={setProjects} />
           </div>
           <NotesComponent noteslist={Noteslist.slice(0,4)}/>
         </div>
@@ -124,8 +88,7 @@ export default function Truspace() {
   }}/>
           <Badges badges={data.badges}/>
         </div>
-      </div> : <div>Loading</div>
-      }
+      </div>}
     </>
   );
 }

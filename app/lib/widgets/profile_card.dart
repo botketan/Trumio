@@ -1,4 +1,5 @@
 import 'package:app/models/user_model.dart';
+import 'package:app/utils/get_initials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moon_design/moon_design.dart';
@@ -288,16 +289,4 @@ class ProfileCard extends StatelessWidget {
     );
   }
 
-  String getInitials(String name) {
-    List<String> names = name.split(" ");
-    String initials = "";
-    int numWords = 2;
-    if (names.length < 2) {
-      numWords = names.length;
-    }
-    for (int i = 0; i < numWords; i++) {
-      initials += names[i][0];
-    }
-    return initials;
-  }
 }

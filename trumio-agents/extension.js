@@ -363,20 +363,19 @@ class MileStoneProvider {
         <div class="milestone-tracker">
             <div class="header">
                 <h2>Milestone Tracker</h2>
-                <button>View All</button>
             </div>
-            <div class="project-dropdown">
+            <div class="project-dropdown" style="display: flex;">
                 <select name="project" id="project">
                   <option id="dummy">Project</option>
                 </select>
-                <div class="progress">
-                    <div class="progress-bar" style="width: 75%;"></div>
+                <div class="progress" style:"margin-left:auto;">
+                    <div id="progress-bar" class="progress-bar">Progress</div>
                 </div>
             </div>
             <ul class="milestone-list">
                 <li class="milestone">
                     <details>
-                        <summary>Milestone 1: Foundations</summary>
+                        <summary>Milestone 1</summary>
                         <ul class = "subTasks">
                             <label><input type="checkbox" name="task1"> Task 1</label>
                             <label><input type="checkbox" name="task2"> Task 2</label>
@@ -389,7 +388,7 @@ class MileStoneProvider {
                 </li>
                 <li class="milestone">
                     <details>
-                        <summary>Milestone 2: Backend</summary>
+                        <summary>Milestone 2</summary>
                         <ul class = "subTasks">
                             <label><input type="checkbox" name="task1"> Task 1</label>
                             <label><input type="checkbox" name="task2"> Task 2</label>

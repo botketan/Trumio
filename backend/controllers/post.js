@@ -3,6 +3,7 @@ import { post } from "../models/post.js";
 import dotenv from "dotenv";
 import {v2 as cloudinary} from "cloudinary";
 import streamifier from "streamifier";
+import { comments } from "../models/comments.js";
 
 
 cloudinary.config({ 
@@ -14,15 +15,21 @@ cloudinary.config({
 
 export const updatePost=async(req,res)=>{
     const Post=await post.findById(req.body.id);
-    if(!Post){
-        res.status(404).send("Post not found");
+    if(!Post || Post.isPublished){
+        return res.status(404).send("Post not found or already published");
     }
     if (req.body.content) Post.content = req.body.content;
     if (req.body.coverImage) Post.coverImage = req.body.coverImage;
     if (req.body.icon) Post.icon = req.body.icon;
     if (req.body.title) Post.title = req.body.title;
-    await Post.save();
-    res.status(200).json(Post);
+    try{
+        await Post.save();
+        res.status(200).json(Post);
+    }
+    catch(e){
+        console.log(e);
+        return res.status(400).send("Error");
+    }
 };
 
 
@@ -84,18 +91,22 @@ export const getbyparent = async (req, res) => {
 
 export const getById = async (req,res) =>{
     const {postId,userId}=req.body;
-    const data = await post.findById(postId);
+    const data = await post.findById(postId).populate("comments");
     if (!data) {
         res.status(404).send("Post not found.");
         return;
     }
     if (data.isPublished || data.userId.equals(userId)){
-        res.status(200).send(data);
+        return res.status(200).send(data);
+    }
+    else
+    {
+        return res.status(401).send("Unauthorized");
     }
 }
 export const getByCommunity = async (req,res) =>{
     const {communityId} = req.body;
-    const data = await post.find({community:communityId,parentPost:null});
+    const data = await post.find({community:communityId,parentPost:null, isPublished:true});
     res.status(200).send(data);
 }
 
@@ -171,4 +182,21 @@ export const getByUserId = async (req,res) =>{
     }
     const data = await post.find({userId:userExisted._id});
     res.status(200).json(data);
+};
+
+export const comment = async (req,res) =>{
+    const {postId,userId,content} = req.body;
+    const userExisted=await user.findById(userId);
+    if(!userExisted){
+        return res.status(404).send("User not found");
+    }
+    const postExisted=await post.findById(postId);
+    if(!postExisted){
+        return res.status(404).send("Post not found");
+    }
+    const newComment = new comments({userId,content,username:userExisted.username,icon:userExisted.icon,position:userExisted.position});
+    postExisted.comments.push(newComment._id);
+    await newComment.save();
+    await postExisted.save();
+    return res.status(200).json(postExisted);
 };
