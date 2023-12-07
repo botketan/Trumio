@@ -64,12 +64,20 @@ import {
   }
   
   
-  export default function PostReadOnly({post,setPost,ai,setAi,heading}) {
+  export default function PostReadOnly({post,setPost,ai,setAi,heading, complete}) {
     const [timer,setTimer] = useState(1);
+    let content = post && post.content ? JSON.parse(post.content):"";
+    if(content){
+      if(!complete){
+        content=content.slice(0,2);
+        content[0].content[0].text+="..."
+        console.log(content);
+      }
+    }
     // Creates a new editor instance.
     let editor = useBlockNote({
       editable:post && post.isPublished?false:true,
-      initialContent: post && post.content ? JSON.parse(post.content) : "",
+      initialContent: content,
       slashMenuItems: customSlashMenuItemList,
       onEditorContentChange: (editor) => {
         if(timer<1000)

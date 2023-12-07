@@ -101,7 +101,7 @@ export const getById = async (req,res) =>{
 }
 export const getByCommunity = async (req,res) =>{
     const {communityId} = req.body;
-    const data = await post.find({community:communityId,parentPost:null});
+    const data = await post.find({community:communityId,parentPost:null, isPublished:true});
     res.status(200).send(data);
 }
 

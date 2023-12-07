@@ -1,0 +1,6 @@
+.bgimg{
+
+}
+.bggrad{
+    background: linear-gradient(180deg, rgba(248, 248, 250, 0.00) 19.15%, #F8F8FA 85.7%), lightgray 50% / cover no-repeat;
+}
