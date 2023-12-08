@@ -107,7 +107,7 @@ export default function PostPage() {
                         <span className='font-light font-dmsans'>{owner.position}</span>
                     </div>
             </div>}
-            {post &&<div className="ml-[-3.5vw] bg-transparent"> <PostReadOnly post={post}  setPost={setPost}  /></div>}
+            {post &&<div className="ml-[-3.5vw] bg-transparent"> <PostReadOnly post={post}  setPost={setPost} complete={true} /></div>}
             <div className="flex flex-row w-[inherit] gap-[0.5vw] ">
                 <div className="w-[196px] h-10 pl-2 pr-4 py-2 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-2 inline-flex">
                     <div className="w-6 h-6 relative" >

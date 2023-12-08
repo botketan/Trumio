@@ -45,7 +45,6 @@ import { set } from 'mongoose';
 const Comment = ({ comment, user, post ,setPost}) => {
   const [commentClick,setCommentClick]=useState(0);
   useEffect(() => {
-    console.log(user?.icon);
 },[user]);
   return (
     <>
@@ -90,7 +89,7 @@ const Comment = ({ comment, user, post ,setPost}) => {
             <div>
 
             {commentClick===1 && user &&user.icon && <CommentInput  user={user} comment={comment} post={post} setPost={setPost}/>}
-            {comment.reply&& user && <CommentsList comments={comment.reply} post={post}/>}
+            {comment.reply&& user && <CommentsList comments={comment.reply} post={post} user={user} setPost={setPost}/>}
             </div>
         </div>
     </div>
@@ -100,8 +99,8 @@ const Comment = ({ comment, user, post ,setPost}) => {
 
 const CommentsList = ({comments,user,post,setPost}) => {
   useEffect(() => {
-    console.log("rerender");
-},[post]);
+    console.log(comments[1]?.reply);
+},[post,comments]);
   return (
     <div className="p-1">
       {user && comments&&comments.map((comment, index) => (
