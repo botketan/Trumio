@@ -43,10 +43,6 @@ const Navbar = () => {
         {/* <GenericBrowser className="text-moon-20"/> */}
         <span className="text-moon-14">Content Writing</span>
       </span>
-
-      
-
-
       <span onClick={()=>handleClick("data-science")} className={selected==='data-science'?"flex flex-col items-center ml-4 border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center ml-4 hover:scale-105 duration-100 hover:cursor-pointer"} >
         {/* <GenericBrowser className="text-moon-20"/> */}
         <span className="text-moon-14">Data Science</span>
@@ -72,7 +68,8 @@ const Navbar = () => {
         <span className="text-moon-14">Product</span>
       </span>
       </div>
-      <span to="/other" onClick={()=>handleClick("other")} className={selected==='other'?"flex flex-col items-center mr-4 border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : " flex flex-col items-center hover:scale-105 duration-100 hover:cursor-pointer w-9 h-9 bg-[#0578FB1F] text-[#0578FB] rounded-md items-center justify-center "} >
+
+      <span to="/other" onClick={()=>handleClick("other")} className={selected==='other'?"flex flex-col items-center  border-b text-blue-600 border-solid  transition-transform duration-100 ease-in-out transform  hover:cursor-pointer   w-9 h-9 bg-[#0578FB1F] text-[#0578FB] rounded-md items-center justify-center" : " flex flex-col items-center duration-100 w-9 h-9 bg-[#0578FB1F] text-[#0578FB] rounded-md items-center justify-center  "} >
         {/* <GenericBurgerRegular className="text-moon-20"/> */}
         <ControlsChevronRight className="font-bold text-blue-600 text-moon-24"/>
         {/* <span className="text-moon-14">Other</span> */}
