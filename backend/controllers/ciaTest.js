@@ -20,7 +20,7 @@ export const createChat=  async (req, res) => {
         return res.status(404).json({message:"User Not found"});
     }
     mesg.push({ role: "user", content: String(req.body.botname) });
-    for(let i=0;i<2;i++)
+    for(let i=0;i<1;i++)
     {
         const chatCompletion = await openai.chat.completions.create({
             messages: mesg,

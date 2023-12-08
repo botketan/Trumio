@@ -16,7 +16,6 @@ cloudinary.config({
     let s ="";
     if (Array.isArray(blocks) && blocks.length) {
       blocks.map((block)=>{
-        console.log(block);
         if(block.content)
         {
           block.content.forEach((content) => {

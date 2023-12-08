@@ -14,23 +14,23 @@ import axios from "axios";
 
 
 // Command to insert an Embed of a post in a new block below.
-const insertEmbed = (editor, res) => {
+const insertEmbed = (editor, newContent, newTitle) => {
   // Block that the text cursor is currently in.
   const currentBlock = editor.getTextCursorPosition().block;
   console.log(currentBlock);
   // New block we want to insert.
   const embedBlock0 = {
     type: "paragraph",
-    content: [{ type: "text", text: `----Embedded Post----`, styles: {bold: true} }],
+    content: [{ type: "link", content : [{type: "text", text:`${newTitle}`, styles:{bold: true}}], href: "http://localhost:3000/postpage/65685a40e1c8a3ea4b5fef7b" }],
   };
   const embedBlock = {
     type: "paragraph",
-    content: [{ type: "text", text: `${JSON.parse(res.data.contentPublished)[0].content[0].text}`, styles: {} }],
+    content: [{ type: "link", content : [{type: "text", text:`${newContent+"..."}`, styles:{}}], href: "http://localhost:3000/postpage/65685a40e1c8a3ea4b5fef7b" }],
   };
 
   // Inserting the new block before the current one.
-  editor.insertBlocks([embedBlock0], currentBlock, "before");
-  editor.insertBlocks([embedBlock, embedBlock0], currentBlock, "after");
+  // editor.insertBlocks([embedBlock0], currentBlock, "before");
+  editor.insertBlocks([embedBlock0,embedBlock], currentBlock, "after");
 };
 
 // Custom Slash Menu item which executes the above function.
@@ -42,9 +42,10 @@ const insertEmbedPostItem = {
     console.log(postId);
     await axios.post("http://localhost:5000/post/getById",{postId:postId,userId:"65645f987aa073e675de9071"
   }).then((res) => {
-      console.log(JSON.parse(res.data.contentPublished)[0].content[0].text);
-      link&&editor.createLink(link, `${res.data.title}`);
-      link&&insertEmbed(editor,res)
+    const newContent=JSON.parse(res.data.content)[0].content[0].text;
+    const newTitle= res.data.title;
+      console.log(JSON.parse(res.data.content)[0].content[0].text);
+      link&&insertEmbed(editor,newContent, newTitle)
 
     }).catch((err) => {
       console.log(err);
