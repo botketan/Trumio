@@ -305,7 +305,7 @@ export const getAllPosts = async (req,res) =>{
     try{
     const {userId} = req.body;
     const userExisted=await user.findById(userId);
-    const data = await post.find({});
+    const data = await post.find({}).populate('comments');
     const data2 = data.filter((d)=>{
         let bool = false;
         userExisted.communityIds.forEach((c)=>{
