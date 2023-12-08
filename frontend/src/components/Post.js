@@ -14,27 +14,42 @@ import axios from "axios";
 
 
 // Command to insert an Embed of a post in a new block below.
-const insertEmbed = (editor) => {
+const insertEmbed = (editor, res) => {
   // Block that the text cursor is currently in.
   const currentBlock = editor.getTextCursorPosition().block;
-
+  console.log(currentBlock);
   // New block we want to insert.
+  const embedBlock0 = {
+    type: "paragraph",
+    content: [{ type: "text", text: `----Embedded Post----`, styles: {bold: true} }],
+  };
   const embedBlock = {
-    type: "link",
-    content: [{ type: "text", text: "Embedded post here", styles: { bold: true } }],
-    href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    type: "paragraph",
+    content: [{ type: "text", text: `${JSON.parse(res.data.contentPublished)[0].content[0].text}`, styles: {} }],
   };
 
   // Inserting the new block before the current one.
-  editor.insertBlocks([embedBlock], currentBlock, "before");
+  editor.insertBlocks([embedBlock0], currentBlock, "before");
+  editor.insertBlocks([embedBlock, embedBlock0], currentBlock, "after");
 };
 
 // Custom Slash Menu item which executes the above function.
 const insertEmbedPostItem = {
   name: "Embed Post",
-  execute: (editor)=>{
+  execute: async (editor)=>{
     const link=prompt("Enter the link of the post you want to embed");
-    editor.createLink(link, "Example Link")
+    const postId= link&&link.split("/")[4];
+    console.log(postId);
+    await axios.post("http://localhost:5000/post/getById",{postId:postId,userId:"65645f987aa073e675de9071"
+  }).then((res) => {
+      console.log(JSON.parse(res.data.contentPublished)[0].content[0].text);
+      link&&editor.createLink(link, `${res.data.title}`);
+      link&&insertEmbed(editor,res)
+
+    }).catch((err) => {
+      console.log(err);
+    });
+    
   },
   aliases: ["embed", "ed"],
   group: "Other",
@@ -52,7 +67,7 @@ function traverse(blocks){
   let s ="";
   if (Array.isArray(blocks) && blocks.length) {
     blocks.map((block)=>{
-      console.log(block);
+      // console.log(block);
       if(block.content)
       {
         block.content.forEach((content) => {
@@ -87,7 +102,7 @@ export default function Post({post,setPost,ai,setAi,heading}) {
       {
         setTimer(timer/10);
       }
-      axios.put("http://localhost:5000/post/update",{id:post._id,content:JSON.stringify(editor.topLevelBlocks),title:heading?heading:"Untitled"}).then((res) => {console.log(res);setPost({_id:post._id, content:JSON.stringify(editor.topLevelBlocks)}) }).catch((err) => {console.log(err);});
+      axios.put("http://localhost:5000/post/update",{id:post._id,content:JSON.stringify(editor.topLevelBlocks),title:heading?heading:"Untitled"}).then((res) => {setPost({_id:post._id, content:JSON.stringify(editor.topLevelBlocks)}) }).catch((err) => {console.log(err);});
       
     }, (2000000/timer));
     return () => clearInterval(interval);
@@ -97,7 +112,7 @@ export default function Post({post,setPost,ai,setAi,heading}) {
     if(ai)
     {
       axios.post("http://localhost:5000/cia/postHelper",{botname:ai,content:traverse(editor.topLevelBlocks)}).then((res)=>{
-        console.log(res); 
+        // console.log(res); 
         setAi();
         editor.insertBlocks(
           [{ content: String(res.data) }],
@@ -120,7 +135,7 @@ export default function Post({post,setPost,ai,setAi,heading}) {
   //   console.log("here")
   //   console.log(editor.initialContent);
   // }
-  console.log(editor);
+  // console.log(editor);
   // Renders the editor instance.
   return <BlockNoteView editor={editor}  theme={lightDefaultTheme} className={`h-[100%] w-[inherit] max-w-[52vw] `} />;
 }
