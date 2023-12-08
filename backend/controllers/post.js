@@ -41,6 +41,7 @@ export const updatePost=async(req,res)=>{
     if (req.body.icon) Post.icon = req.body.icon;
     if (req.body.title) Post.title = req.body.title;
     if(req.body.content) Post.stringContent = traverse(JSON.parse(req.body.content));
+    if(req.body.parentId) Post.parentPost = req.body.parentId;
     try{
         await Post.save();
         res.status(200).json(Post);
@@ -292,6 +293,31 @@ export const reply = async (req,res) =>{
     commentExisted.reply.push(newReply);
     await commentExisted.save();
     return res.status(200).json("replied");
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
+};
+
+export const getAllPosts = async (req,res) =>{
+    try{
+    const {userId} = req.body;
+    const userExisted=await user.findById(userId);
+    const data = await post.find({}).populate('comments');
+    const data2 = data.filter((d)=>{
+        let bool = false;
+        userExisted.communityIds.forEach((c)=>{
+            if(c.equals(d.community)){
+                bool = true;
+            }
+        })
+        if(bool&&d.isPublished){
+            return d;
+        }
+    })
+    res.status(200).json(data2);
     }
     catch(e)
     {
