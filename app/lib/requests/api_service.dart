@@ -11,7 +11,7 @@ class ApiService {
     try {
       final response = await _dio.get(endpoint);
       return response;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw e;
     }
   }
@@ -20,7 +20,7 @@ class ApiService {
     try {
       final response = await _dio.post(endpoint, data: data);
       return response;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw e;
     }
   }
