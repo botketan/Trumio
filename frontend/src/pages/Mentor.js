@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import MentorCard from "../components/Mentor/MentorCard";
+import MentorSearch from "../components/MentorSearch";
 
 function Mentor() {
     const [selected,setSelected]=useState("")
@@ -18,12 +19,17 @@ function Mentor() {
       }
   return (
     <>
-        <Navbar selected={selected} setSelected= {setSelected}/>
+      <div className="bg-gray-50">
+      <div className="flex flex-col justify-start border border-grey-800 rounded-xl bg-white mx-[10vw] mb-5">
+          <MentorSearch></MentorSearch>
+          <Navbar selected={selected} setSelected= {setSelected}/>
+        </div>
         <div className="flex justify-center px-16 gap-4 flex-wrap">
-        <MentorCard cardData={cardObject} />
-        <MentorCard cardData={cardObject} />
-        <MentorCard cardData={cardObject} />
-        <MentorCard cardData={cardObject} />
+          <MentorCard cardData={cardObject} />
+          <MentorCard cardData={cardObject} />
+          <MentorCard cardData={cardObject} />
+          <MentorCard cardData={cardObject} />
+        </div>
         </div>
     </>
       
