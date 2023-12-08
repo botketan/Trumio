@@ -48,7 +48,7 @@ import {
     let s ="";
     if (Array.isArray(blocks) && blocks.length) {
       blocks.map((block)=>{
-        console.log(block);
+        // console.log(block);
         if(block.content)
         {
           block.content.forEach((content) => {
@@ -71,7 +71,7 @@ import {
       if(!complete){
         content=content.slice(0,2);
         content[0].content[0].text+="..."
-        console.log(content);
+        // console.log(content);
       }
     }
     // Creates a new editor instance.
@@ -92,7 +92,7 @@ import {
       if(ai)
       {
         axios.post("http://localhost:5000/cia/postHelper",{botname:ai,content:traverse(editor.topLevelBlocks)}).then((res)=>{
-          console.log(res); 
+          // console.log(res); 
           setAi();
           editor.insertBlocks(
             [{ content: String(res.data) }],
@@ -115,7 +115,7 @@ import {
     //   console.log("here")
     //   console.log(editor.initialContent);
     // }
-    console.log(editor);
+    // console.log(editor);
     // Renders the editor instance.
     return <BlockNoteView editor={editor}  theme={lightDefaultTheme} className="h-[100%] w-[inherit] max-w-[inherit]" />;
   }

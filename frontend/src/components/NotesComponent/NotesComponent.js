@@ -53,7 +53,7 @@ export default function NotesComponent({noteslist}) {
         <div className="container w-[55vw] my-5 mx-auto inline-flex gap-2 overflow-hidden">
             {noteslist.map((notesCardData) => {
                 return(
-                    NotesCard({notesCardData})
+                    <NotesCard notesCardData={notesCardData} />
                 )
             })}
         </div>

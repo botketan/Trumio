@@ -23,8 +23,8 @@ const Community = () => {
             userId:"65645f987aa073e675de9071"
         }).then((res) => {
         setUser(res.data);
-        console.log("user");
-        console.log(res.data);
+        // console.log("user");
+        // console.log(res.data);
         }).catch((err) => {
             console.log(err);
         });
@@ -33,8 +33,8 @@ const Community = () => {
             userId:"65645f987aa073e675de9071"
         }).then((res) => {
             setNotes(res.data);
-            console.log("Notes");
-            console.log(res.data);
+            // console.log("Notes");
+            // console.log(res.data);
         }).catch((err) => {
             console.log(err);
         });
@@ -55,16 +55,18 @@ const Community = () => {
     }, []);
 
     useEffect(() => {
+        console.log("COmmmunity")
+        console.log(community)
         axios.post("http://localhost:5000/post/community",{
-            communityId:"656857f3b127a857fe39ecc5"
+            communityId:`${community?community._id:""}`
         }).then((res) => {
             setPosts(res.data.reverse());
-            console.log("posts");
-            console.log(res.data);
+            // console.log("posts");
+            // console.log(res.data);
         }).catch((err) => {
             console.log(err);
         });
-    }, []);
+    }, [community]);
 
     const handleSelect =(e)=>{
         console.log(e.target);
@@ -75,12 +77,12 @@ const Community = () => {
     {posts&&user&&communities&&<div className='flex justify-center gap-4 py-8 '>
         <div className='w-[55vw] flex flex-col items-start gap-4'>
             <div>
-                {communities&&<CommunityHeader communityName={communities[0].title}/>}
+                {communities&&<CommunityHeader communityName={community.title}/>}
             </div>
             <div className='flex items-center justify-normal gap-4'>
 
                 <div className='flex items-center justify-normal gap-4'>
-                    <Dropdown value={community} onChange={setCommunity} size="lg" className='bg-blue-600 text-white rounded-lg'>
+                    <Dropdown value={community.title} onChange={setCommunity} size="lg" className='bg-blue-600 text-white rounded-lg'>
                     {({ open }) => (
                     <>
                         <Dropdown.Select
@@ -90,7 +92,7 @@ const Community = () => {
                         {community?.title}
                         </Dropdown.Select>
                         <Dropdown.Options>
-                            <Dropdown.Option value={"Recommended"} key={0} className="bg-white text-black">
+                            <Dropdown.Option value={{title:"Recommended"}} key={0} className="bg-white text-black">
                             {({ selected, active }) => (
                                 <MenuItem isActive={active} isSelected={selected} className="bg-white text-black w-40">
                                 <MenuItem.Title>Recommended</MenuItem.Title>
@@ -98,11 +100,11 @@ const Community = () => {
                                 </MenuItem>
                             )}
                             </Dropdown.Option>
-                        {user&&communities&&communities.filter(community=> user.communityIds.includes(community._id)).map((person, index)=> (
-                            <Dropdown.Option value={person} key={index} className="bg-white text-black">
+                        {user&&communities&&communities.filter(community=> user.communityIds.includes(community._id)).map((Community, index)=> (
+                            <Dropdown.Option value={Community} key={index} className="bg-white text-black">
                             {({ selected, active }) => (
                                 <MenuItem isActive={active} isSelected={selected} className="bg-white text-black w-40">
-                                <MenuItem.Title>{person.title}</MenuItem.Title>
+                                <MenuItem.Title>{Community.title}</MenuItem.Title>
                                 <MenuItem.Radio isSelected={selected} />
                                 </MenuItem>
                             )}
@@ -130,7 +132,7 @@ const Community = () => {
             </div>
             <div className='flex flex-col gap-6'>
             {posts&&user&&communities&&posts.map((post)=>{
-                console.log(post);
+                {/* console.log(post); */}
                 return (<Link to={"/postpage/"+post._id}><div className='w-[55vw] border border-neutral-200 shadow-md rounded-xl p-6 overflow-hidden'><CommunityPost key={post._id} 
                     owner={user}
                     post={post}
@@ -140,7 +142,7 @@ const Community = () => {
             </div>
             
         </div>
-        <div className='w-[29vw] flex flex-col gap-4'>
+        <div className='w-[29vw] flex flex-col gap-4 sticky'>
         {user&&<ProfileCard props={{
             name:user.name,
             userId:`@${user.userName}`,
