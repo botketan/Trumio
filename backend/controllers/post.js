@@ -299,3 +299,28 @@ export const reply = async (req,res) =>{
         res.status(400).json({message: "Error"});
     }
 };
+
+export const getAllPosts = async (req,res) =>{
+    try{
+    const {userId} = req.body;
+    const userExisted=await user.findById(userId);
+    const data = await post.find({});
+    const data2 = data.map((d)=>{
+        let bool = false;
+        userExisted.communityIds.forEach((c)=>{
+            if(c.equals(d.community)){
+                bool = true;
+            }
+        })
+        if(bool){
+            return d;
+        }
+    })
+    res.status(200).json(data2);
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
+};

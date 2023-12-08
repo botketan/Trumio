@@ -10,7 +10,8 @@ import { getByCommunity,
     uploadCoverImage,
     uploadIcon, 
     comment,
-    reply} from "../controllers/post.js";
+    reply,
+    getAllPosts} from "../controllers/post.js";
 import multer from "multer";
 
 const storage = multer.memoryStorage();
@@ -30,5 +31,6 @@ router.post('/uploadCover', upload.single('file'),uploadCoverImage);
 router.post('/uploadIcon', upload.single('file'),uploadIcon);
 router.post('/comment',comment);
 router.post('/reply',reply);
+router.post('/getAllPost',getAllPosts)
 
 export default router;
