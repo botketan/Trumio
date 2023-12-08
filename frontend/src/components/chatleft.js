@@ -124,25 +124,25 @@ const Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,setB
           <Accordion.Item key={index} value={`item-${index}`}>
             <div className='bg-white rounded-lg border border-neutral-200 px-2 py-3 ' style={{ marginBottom: '10px' }}>
               <Accordion.Header className="moon-open:[&_svg]:rotate-180">
-                <Accordion.Button >
+                <Accordion.Button className=' justify-normal' >
+                  <ControlsChevronDownSmall className="text-trunks text-moon-24 transition duration-200 moon-open:text-bulma" />
                   <div className="w-8 h-8 relative rounded-full">
-                    <img alt='' className="w-8 h-8  absolute rounded-[99px]" src="https://via.placeholder.com/32x32" />
+                    <img alt='' className="w-8 h-8 absolute rounded-[99px]" src="https://icons.iconarchive.com/icons/pictogrammers/material/256/robot-happy-icon.png" />
                   </div>
-                  <div className="flex-col justify-start items-start inline-flex">
+                  <div className="flex-col ml-2 mr-auto inline-flex">
                     <div className="text-black text-sm font-medium font-dmsans leading-normal">{data.botname}</div>
                   </div>
-                  <ControlsChevronDownSmall className="text-trunks text-moon-24 transition duration-200 moon-open:text-bulma" />
                 </Accordion.Button>
               </Accordion.Header>
               <Accordion.Content className='border-0'>
-                <div style={{ display: "flex", flexDirection: "column", justifyContent: 'center', alignItems: 'center' }}>
-                  <button className="w-[19vw] self-stretch pl-2 pr-4 py-2 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-2 inline-flex m-[10px]" onClick={()=>handleNewChat(data.botname,setMessages,setMessageId,setChatData,chatData)}>
+                <div className='' style={{ display: "flex", flexDirection: "column"}}>
+                  <button className="w-[19vw] px-3 py-2 bg-blue-600 justify-center bg-opacity-10 rounded-lg gap-2 inline-flex my-2 mr-2" onClick={()=>handleNewChat(data.botname,setMessages,setMessageId,setChatData,chatData)}>
                     <img src={require("../Assets/Plus.png")} alt="" className="w-6 h-6 relative" />
                     <div className="text-blue-600 text-sm font-medium font-dmsans leading-normal"  >New Chat with {data.botname}</div>
                   </button>
                       {data.messagesArray.map((chat, chatIndex) => (
-                        <button className={"w-[19vw] h-10 px-3 py-2rounded-lg justify-between items-center inline-flex my-1 rounded hover:bg-neutral-50 " + ((chat._id===selectedChatId)?"bg-neutral-100 hover:bg-neutral-200":"")} key={`chat-${chatIndex}`} onClick={()=>handleMessage(chat.messages,chat._id,data.botname,chatIndex)}>
-                        <div className="text-black text-sm font-normal font-dmsans leading-normal ">{chat.messages.length>1&&chat.messages[1].content? chat.messages[1].content.slice(0,20)+"...":"New Chat"}</div>
+                        <button className={"w-[97%] h-10 px-3 py-2 rounded-lg justify-between items-center inline-flex my-1 " + ((chat._id===selectedChatId)?"bg-neutral-300 hover:bg-neutral-400":" hover:bg-neutral-200")} key={`chat-${chatIndex}`} onClick={()=>handleMessage(chat.messages,chat._id,data.botname,chatIndex)}>
+                        <div className="text-black text-center w-[100%] font-normal font-dmsans leading-normal">{chat.messages.length>1&&chat.messages[1].content? chat.messages[1].content.slice(0,20)+"...":"New Chat"}</div>
                         <div className="w-6 h-6 relative" />
                       </button>
                       ))}
