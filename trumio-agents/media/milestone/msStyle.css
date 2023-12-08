@@ -1,8 +1,8 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'DM Sans', 'DM Sans';
     margin: 0;
     padding: 0;
-    background-color: #aaa;
+    background-color: #E2E2E2;
 }
 
 .milestone-tracker {
@@ -37,14 +37,6 @@ body {
     margin: 10px;
 }
 
-.project-dropdown, .project-progress {
-    flex-basis: 48%; /* Adjusts the width to be less than half to fit side by side */
-}
-
-.project-progress {
-    text-align: right; /* Aligns the progress text to the right */
-}
-
 .milestone-list {
     list-style: none;
     padding: 0;
@@ -62,20 +54,25 @@ body {
 
 .milestone summary {
     font-weight: bold;
+    font-size: 14px;
+    width: 220px;
+    padding-bottom: 10px;
 }
 
-.milestone span {
+.milestone .tasks {
     display: block;
-    margin-top: 5px;
+    margin-left: 8px;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .on-track {
     display: inline-block;
-    background-color: #28a745;
+    background-color: #2E7D32;
     color: white;
-    padding: 2px 8px;
+    padding: 6px 10px;
     border-radius: 4px;
-    font-size: 0.8em;
+    font-size: 10px;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -98,3 +95,41 @@ input[type='checkbox'] {
 body, button, input[type='checkbox'] + label {
     color: #000; /* Sets the text color to black */
 }
+
+.subTasks label{
+    display: block;
+}
+
+.flex-container {
+    display: flex;
+    border: 1px solid #ddd;
+    padding: 10px;
+    align-items: center;
+}
+
+.project-dropdown{
+    margin: 5px;
+    width: 232px;
+    /* padding: 10px; */
+    border: 1px solid #ddd;
+}
+
+select{
+    width:232px;
+    height:40px;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 20px;
+    font-weight:bold ;
+    font-size: 14px;
+}
+
+.progress {
+    margin: 5px;
+    width: 144px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-weight:bold ;
+    font-size: 14px;
+}
+
