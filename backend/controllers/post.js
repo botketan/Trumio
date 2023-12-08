@@ -194,9 +194,25 @@ export const comment = async (req,res) =>{
     if(!postExisted){
         return res.status(404).send("Post not found");
     }
-    const newComment = new comments({userId,content,username:userExisted.username,icon:userExisted.icon,position:userExisted.position});
+    const newComment = new comments({userId,content,username:userExisted.userName,icon:userExisted.icon,position:userExisted.position});
     postExisted.comments.push(newComment._id);
     await newComment.save();
     await postExisted.save();
     return res.status(200).json(postExisted);
+};
+
+export const reply = async (req,res) =>{
+    const {userId,content,commentId} = req.body;
+    const userExisted=await user.findById(userId);
+    if(!userExisted){
+        return res.status(404).send("User not found");
+    }
+    const commentExisted=await comments.findById(commentId);
+    if(!commentExisted){
+        return res.status(404).send("Comment not found");
+    }
+    const newReply = {userId,content,username:userExisted.userName,icon:userExisted.icon,position:userExisted.position};
+    commentExisted.reply.push(newReply);
+    await commentExisted.save();
+    return res.status(200).json("replied");
 };

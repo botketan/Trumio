@@ -30,7 +30,7 @@ export default function Cia(){
             <div className="w-[30vw] h-[80vh] overflow-y-scroll">
                 {chatData && <Chatleft chatData={chatData} setMessages={setMessages} setMessageId={setMessageId} setChatData={setChatData} messages={messages} setBotname={setBotname} setIndex={setIndex}/>}
             </div>
-            <div className="w-[65vw] h-[80vh] overflow-y-scroll">
+            <div className="w-[65vw] h-[80vh] overflow-hidden">
                 {messages && <Chats messages={messages} setMessages={setMessages} messageId={messageId} chatData={chatData} setChatData={setChatData} botname={botname} index={index}/>}
             </div>
         </div>
