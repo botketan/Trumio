@@ -1,3 +1,5 @@
+import 'package:app/models/post_model.dart';
+import 'package:app/utils/app_data_layer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moon_design/moon_design.dart';
@@ -10,7 +12,9 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
+  final String _userId = "65645f987aa073e675de9071";
   int selectedIndex = 0;
+  List<PostModel> posts = [];
 
   void setSelectedIndex(int ind) {
     if (selectedIndex != ind) {
@@ -23,6 +27,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      posts = await AppDataLayer().getUserExplorePosts(_userId);
+      setState(() { });
+    });
   }
 
   @override

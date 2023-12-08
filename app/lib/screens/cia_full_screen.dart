@@ -1,6 +1,6 @@
 import 'package:app/models/cia_chat_model.dart';
 import 'package:app/models/cia_message_model.dart';
-import 'package:app/requests/cia_api_service.dart';
+import 'package:app/utils/app_data_layer.dart';
 import 'package:app/utils/get_initials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -180,7 +180,7 @@ class _CIAFullScreenState extends State<CIAFullScreen> {
                                   });
                                               
                                   CIAMessageModel response =
-                                      await CIAService().sendMessage(
+                                      await AppDataLayer().sendMessage(
                                     widget.ciaChat.id,
                                     message,
                                   );

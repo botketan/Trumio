@@ -1,7 +1,5 @@
-import 'dart:convert';
-
 import 'package:app/models/user_model.dart';
-import 'package:app/requests/user_api_service.dart';
+import 'package:app/utils/app_data_layer.dart';
 import 'package:app/widgets/achievements_list_widget.dart';
 import 'package:app/widgets/badges_widget.dart';
 import 'package:app/widgets/ci_agents_list_widget.dart';
@@ -30,18 +28,7 @@ class _TruspaceScreenState extends State<TruspaceScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      String? check = await storage.read(key: "user");
-
-      if (check != null) {
-        _userModel = UserModel.fromJson(jsonDecode(check));
-        setState(() {
-          _loading = false;
-        });
-      }
-
-      _userModel = await UserService().getUserData(_userId);
-      await storage.write(key: "user", value: json.encode(_userModel.toJson()));
-      
+      _userModel = await AppDataLayer().getUserData(_userId);
       setState(() {
         _loading = false;
       });
