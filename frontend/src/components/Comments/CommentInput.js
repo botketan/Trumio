@@ -1,5 +1,4 @@
 import axios from "axios";
-import { set } from "mongoose";
 import { useEffect, useState } from "react";
 
 const CommentInput = ({comment, user,post ,setPost}) => {

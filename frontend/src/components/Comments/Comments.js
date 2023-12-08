@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import CommentInput from './CommentInput';
-import { set } from 'mongoose';
-
 // const comments = [
 //   {
 //     id: 1,

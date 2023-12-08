@@ -71,7 +71,8 @@ const Community = () => {
     }
 
   return (
-    <div className='flex justify-center gap-4 py-8 '>
+    <>
+    {posts&&user&&communities&&<div className='flex justify-center gap-4 py-8 '>
         <div className='w-[55vw] flex flex-col items-start gap-4'>
             <div>
                 {communities&&<CommunityHeader communityName={communities[0].title}/>}
@@ -156,6 +157,8 @@ const Community = () => {
         {notes&&<NoteList posts={notes} place={"Community"}/>}
         </div>
     </div>
+    }
+    </>
   )
 }
 
