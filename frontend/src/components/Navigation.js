@@ -90,7 +90,7 @@ const Navigation = ({ click, setClick }) => {
               : "flex flex-col items-center hover:cursor-pointer"
           }
         >
-          <span className={(click === "/Truspace" || click === "/cia" || click === "/Gamification")?`${classSelect}`:`${classUnselect}`}>Truspace</span>
+          <span className={(click === "/Truspace" || click === "/cia" || click === "/Gamification" || click.startsWith("/Notes"))?`${classSelect}`:`${classUnselect}`}>Truspace</span>
         </Link>
         <Link
           to="/Mentor"
