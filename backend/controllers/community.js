@@ -4,6 +4,7 @@ import { chatchannel } from "../models/chatchannel.js";
 import { post } from "../models/post.js";
 
 export const createCommunity = async (req, res) => {
+    try{
     const { title} = req.body;
     if(!title){
         return res.status(400).send("Title is required");
@@ -23,18 +24,32 @@ export const createCommunity = async (req, res) => {
     userExisting.communityIds.push(newCommunity._id);
     await userExisting.save();
     return res.status(201).json({ message: "Community created successfully" });
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
 };
 
 export const getCommunity = async (req, res) => {
+    try{
     const { community_id } = req.body;
     const communityget = await community.findById(community_id).populate("chatsChannel").populate("postChannels");
     if (!communityget) {
         return res.status(404).send("Community not found");
     }
     return res.status(200).json({ communityget });
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
 };
 
 export const createChatChannel = async (req, res) => {
+    try {
     const { community_id,user_id } = req.body;
     const communityget = await community.findById(community_id );
     if (!communityget) {
@@ -55,9 +70,16 @@ export const createChatChannel = async (req, res) => {
     communityget.chatsChannel.push(newChatChannel._id);
     await communityget.save();
     return res.status(201).json({ message: "Chat Channel created successfully" });
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
 };
 
 export const createPostChannel = async (req, res) => {
+    try{
     const { community_id,user_id } = req.body;
     const communityget = await community.findById(community_id );
     if (!communityget) {
@@ -78,6 +100,12 @@ export const createPostChannel = async (req, res) => {
     communityget.postChannels.push(newPostChannel._id);
     await communityget.save();
     return res.status(201).json({ message: "Post Channel created successfully" });
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
 };
 
 export const publishPost = async (req, res) => {
@@ -100,10 +128,17 @@ export const publishPost = async (req, res) => {
 };
 
 export const getCommunityByUserId = async (req, res) => {
+    try{
     const { userId } = req.body;
     const userExisted = await user.findById(userId).populate('communityIds');
     if(!userExisted){
         return res.status(404).send("User not found");
     }
     return res.status(200).json(userExisted.communityIds);
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
 };

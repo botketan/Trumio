@@ -12,6 +12,24 @@ cloudinary.config({
     api_secret: process.env.API_SECRET 
   });
 
+  function traverse(blocks){
+    let s ="";
+    if (Array.isArray(blocks) && blocks.length) {
+      blocks.map((block)=>{
+        console.log(block);
+        if(block.content)
+        {
+          block.content.forEach((content) => {
+            s+=content.text +" ";
+          });
+        }
+        s+= traverse(block.children);
+      });
+      return s;
+    }
+    return "";
+  
+  }
 
 export const updatePost=async(req,res)=>{
     const Post=await post.findById(req.body.id);
@@ -22,6 +40,7 @@ export const updatePost=async(req,res)=>{
     if (req.body.coverImage) Post.coverImage = req.body.coverImage;
     if (req.body.icon) Post.icon = req.body.icon;
     if (req.body.title) Post.title = req.body.title;
+    if(req.body.content) Post.stringContent = traverse(JSON.parse(req.body.content));
     try{
         await Post.save();
         res.status(200).json(Post);
@@ -44,6 +63,7 @@ export const deletePost = async (req, res) => {
 }
 
 const deletePostRecursive = async (post_id) => {
+    try{
     const postget = await post.findById(post_id);
     if (!postget) {
       throw new Error("Post not found");
@@ -54,6 +74,13 @@ const deletePostRecursive = async (post_id) => {
         console.log(element._id);
     });
     await post.findByIdAndDelete(post_id);
+    return res.status(200).json({ message: "Post deleted successfully" }); 
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
 }
 
 
@@ -75,6 +102,7 @@ export const create=async(req,res)=>{
 }
 
 export const getbyparent = async (req, res) => {
+    try{
     const { parentId} = req.body ;
     const parent = await post.findById(parentId)
     const userId = req.body.userid;
@@ -86,7 +114,13 @@ export const getbyparent = async (req, res) => {
         document.userId.equals(userId) || document.isPublished;
     })
     
-    res.send(newArray);
+    return res.status(200).send(newArray);
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
   };
 
 export const getById = async (req,res) =>{
@@ -105,13 +139,21 @@ export const getById = async (req,res) =>{
     }
 }
 export const getByCommunity = async (req,res) =>{
+    try{
     const {communityId} = req.body;
     const data = await post.find({community:communityId,parentPost:null, isPublished:true});
     res.status(200).send(data);
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
 }
 
 
 export const published = async(req,res)=>{
+    try{
     const  {postId} = req.body;
 
     const update = await post.findById(postId)
@@ -123,10 +165,17 @@ export const published = async(req,res)=>{
     update.contentPublished = update.content;
     await update.save();
     res.status(200).json({update});
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
 }
 
 
 export const uploadCoverImage = async (req, res) => {
+    try{
     const { postId } = req.body;
     const file = req.file;
     const postUpdate = await post.findById(postId);
@@ -148,9 +197,16 @@ export const uploadCoverImage = async (req, res) => {
        );
    
     streamifier.createReadStream(req.file.buffer).pipe(cld_upload_stream);
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
 };
 
 export const uploadIcon = async (req, res) => {
+    try{
     const { postId } = req.body;
     const file = req.file;
     const postUpdate = await post.findById(postId);
@@ -172,9 +228,16 @@ export const uploadIcon = async (req, res) => {
        );
    
     streamifier.createReadStream(req.file.buffer).pipe(cld_upload_stream);
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
 };
 
 export const getByUserId = async (req,res) =>{
+    try{
     const {userId} = req.body;
     const userExisted=await user.findById(userId);
     if(!userExisted){
@@ -182,9 +245,16 @@ export const getByUserId = async (req,res) =>{
     }
     const data = await post.find({userId:userExisted._id});
     res.status(200).json(data);
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
 };
 
 export const comment = async (req,res) =>{
+    try{
     const {postId,userId,content} = req.body;
     const userExisted=await user.findById(userId);
     if(!userExisted){
@@ -199,9 +269,16 @@ export const comment = async (req,res) =>{
     await newComment.save();
     await postExisted.save();
     return res.status(200).json(postExisted);
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
 };
 
 export const reply = async (req,res) =>{
+    try{
     const {userId,content,commentId} = req.body;
     const userExisted=await user.findById(userId);
     if(!userExisted){
@@ -215,4 +292,10 @@ export const reply = async (req,res) =>{
     commentExisted.reply.push(newReply);
     await commentExisted.save();
     return res.status(200).json("replied");
+    }
+    catch(e)
+    {
+        console.log(e);
+        res.status(400).json({message: "Error"});
+    }
 };

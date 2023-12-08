@@ -36,6 +36,9 @@ const postSchema = mongoose.Schema({
   icon: {
     type: String,
     },
+  stringContent: {
+      type: String,
+      },
     comments: [
         {
           type: mongoose.Schema.Types.ObjectId,
