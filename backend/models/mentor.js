@@ -21,6 +21,22 @@ const mentorSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    noOfSessions:{
+        type: Number,
+        default: 0,
+    },
+    reviews:{
+        type: Number,
+        default: 0,
+    },
+    experience:{
+        type: Number,
+        default: 0,
+    },
+    avgAttendance:{
+        type: Number,
+        default: 0,
+    },
     icon:{
         type: String,
     },

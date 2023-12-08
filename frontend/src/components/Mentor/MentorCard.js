@@ -5,13 +5,13 @@ const MentorCard = ({cardData}) => {
     return ( 
         <div className="flex-1 max-w-[250px] min-w-[220px] p-2 rounded-xl border border-neutral-200 shadow-lg overflow-hidden" >
                 <div className='flex justify-center'>
-                    <img src={cardData.imageUrl}  className='rounded-lg h-56 w-full' alt="" />
+                    <img src={cardData.icon}  className='rounded-lg h-56 w-full' alt="" />
                 </div>
                 <div className="Card-content flex flex-col gap-1 p-2" >
                 <h3 className="text-moon-16 font-medium transition-colors"><span>{cardData.name}</span><span className='opacity-75 text-xs ml-1'>{cardData.country}</span></h3>
                     <span className='text text-cyan-950 font-medium text-sm flex justify-start items-center gap-1'>
                         <FilesCase className='otherFrame text-moon-20'/> 
-                        <h3 className='text-gray-600 text-xs'>{cardData.job} at {cardData.jobLocation}</h3>
+                        <h3 className='text-gray-600 text-xs'>{cardData.role} at {cardData.company}</h3>
                     </span>
                     <span className='text text-cyan-950 font-medium text-sm flex justify-start items-center gap-1'>
                         <ChatChat className='text-moon-20'/>
