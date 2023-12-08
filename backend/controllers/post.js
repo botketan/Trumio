@@ -306,14 +306,14 @@ export const getAllPosts = async (req,res) =>{
     const {userId} = req.body;
     const userExisted=await user.findById(userId);
     const data = await post.find({});
-    const data2 = data.map((d)=>{
+    const data2 = data.filter((d)=>{
         let bool = false;
         userExisted.communityIds.forEach((c)=>{
             if(c.equals(d.community)){
                 bool = true;
             }
         })
-        if(bool){
+        if(bool&&d.isPublished){
             return d;
         }
     })
