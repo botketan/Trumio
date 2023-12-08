@@ -41,6 +41,7 @@ export const updatePost=async(req,res)=>{
     if (req.body.icon) Post.icon = req.body.icon;
     if (req.body.title) Post.title = req.body.title;
     if(req.body.content) Post.stringContent = traverse(JSON.parse(req.body.content));
+    if(req.body.parentId) Post.parentPost = req.body.parentId;
     try{
         await Post.save();
         res.status(200).json(Post);
