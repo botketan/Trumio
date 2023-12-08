@@ -5,6 +5,9 @@ import NoteList from '../components/noteList/noteList';
 import "./pages.css"
 import CommunityPost from '../components/Community/CommunityPost';
 import CommunityHeader from '../components/Community/CommunityHeader';
+import { Dropdown, MenuItem, NativeSelect } from '@heathmont/moon-core-tw';
+import { ControlsChevronDown } from '@heathmont/moon-icons-tw';
+import { Link } from 'react-router-dom';
 
 
 const Community = () => {
@@ -63,46 +66,75 @@ const Community = () => {
         });
     }, []);
 
-
+    const handleSelect =(e)=>{
+        console.log(e.target);
+    }
 
   return (
     <div className='flex justify-center gap-4 py-8 '>
-        <div className='w-[55vw] flex flex-col items-center'>
+        <div className='w-[55vw] flex flex-col items-start gap-4'>
             <div>
-                <CommunityHeader communityName={communities[0].title}/>
+                {communities&&<CommunityHeader communityName={communities[0].title}/>}
+            </div>
+            <div className='flex items-center justify-normal gap-4'>
+
+                <div className='flex items-center justify-normal gap-4'>
+                    <Dropdown value={community} onChange={setCommunity} size="lg" className='bg-blue-600 text-white rounded-lg'>
+                    {({ open }) => (
+                    <>
+                        <Dropdown.Select
+                        open={open}
+                        placeholder="Recommended"
+                        >
+                        {community?.title}
+                        </Dropdown.Select>
+                        <Dropdown.Options>
+                            <Dropdown.Option value={"Recommended"} key={0} className="bg-white text-black">
+                            {({ selected, active }) => (
+                                <MenuItem isActive={active} isSelected={selected} className="bg-white text-black w-40">
+                                <MenuItem.Title>Recommended</MenuItem.Title>
+                                <MenuItem.Radio isSelected={selected} />
+                                </MenuItem>
+                            )}
+                            </Dropdown.Option>
+                        {user&&communities&&communities.filter(community=> user.communityIds.includes(community._id)).map((person, index)=> (
+                            <Dropdown.Option value={person} key={index} className="bg-white text-black">
+                            {({ selected, active }) => (
+                                <MenuItem isActive={active} isSelected={selected} className="bg-white text-black w-40">
+                                <MenuItem.Title>{person.title}</MenuItem.Title>
+                                <MenuItem.Radio isSelected={selected} />
+                                </MenuItem>
+                            )}
+                            </Dropdown.Option>
+                        ))}
+                        </Dropdown.Options>
+                    </>
+                    )}
+                    </Dropdown>
+                
+                    {/* <option value="Recommended" className='bg-white text-black'>Recommended</option>
+                    {
+                        user&&communities&&communities.filter(community=> user.communityIds.includes(community._id)).map((community)=>{
+                            return <option value={community.title} className='bg-white text-black'>{community.title}</option>
+                        })
+                    } */}
+                {/* </Dropdown> */}
+                <div>
+                <div className='w-40 bg-yellow-100 rounded-lg flex justify-center items-center h-12 font-medium'>
+                    {community?community.isLocal?"Local ":"Global ":"Global "} Community
+                </div>
+            </div>
+
+            </div>
             </div>
             <div className='flex flex-col gap-6'>
             {posts&&user&&communities&&posts.map((post)=>{
                 console.log(post);
-                return (<div className='w-[55vw] border border-neutral-200 shadow-md rounded-xl p-6 overflow-hidden'><CommunityPost key={post._id} 
+                return (<Link to={"/postpage/id="+post._id}><div className='w-[55vw] border border-neutral-200 shadow-md rounded-xl p-6 overflow-hidden'><CommunityPost key={post._id} 
                     owner={user}
                     post={post}
                     complete={false}
-                    /></div>)
-            })}
-            {posts&&user&&communities&&posts.map((post)=>{
-                console.log(post);
-                return (<div className='w-[55vw] border border-neutral-200 shadow-md rounded-xl p-6 overflow-hidden'><CommunityPost key={post._id} 
-                    owner={user}
-                    post={post}
-                    complete={false}
-                    /></div>)
-            })}
-            {posts&&user&&communities&&posts.map((post)=>{
-                console.log(post);
-                return (<div className='w-[55vw] border border-neutral-200 shadow-md rounded-xl p-6 overflow-hidden'><CommunityPost key={post._id} 
-                    owner={user}
-                    post={post}
-                    complete={false}
-                    /></div>)
-            })}
-            {posts&&user&&communities&&posts.map((post)=>{
-                console.log(post);
-                return (<div className='w-[55vw] border border-neutral-200 shadow-md rounded-xl p-6 overflow-hidden'><CommunityPost key={post._id} 
-                    owner={user}
-                    post={post}
-                    complete={false}
-                    /></div>)
+                    /></div></Link>)
             })}
             </div>
             
