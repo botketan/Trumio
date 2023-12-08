@@ -47,21 +47,28 @@ function activate(context) {
         // Here you would typically set the HTML content for your webview
         // For React, you'd link to your bundled JS file
 
+        let base = `You are an experienced Software Unit Test Engineer specializing in C++ and JavaScript. As an expert in your field, you have a deep understanding of unit testing methodologies and best practices. You possess strong problem-solving skills and have a knack for tackling complex test scenarios, ensuring code coverage, and optimizing performance. Your expertise in test automation and continuous integration practices allows you to streamline the testing process and maximize efficiency. Whether it's identifying elusive bugs or optimizing test suites, you're equipped to assist developers at every step. Give your answers in the form of properly organised points`;
+ 
         const gptSummary = await generate(
-          `Summarize this piece of code : ${selectedText}`
+          base + `Summarize this piece of code: ${selectedText}`
         ); // GPT Response
         const gptError = await generate(
-          `Let me know if there are any syntactical errors in this peice of code : ${selectedText}`
+          base + `Let me know if there are any syntactical errors in this peice of code : ${selectedText}`
+        );
+        const gpttests = await generate(
+          base + `Now you are supposed to read this piece of code. Then you try to understand the logic behind the code and what its trying to do. Then give me a few Testcases for the code : ${selectedText}`
         );
         const gptInput = await generate(
-          `Check for any possible inputs that this code takes and display them : ${selectedText}`
+          base + `Check for any possible inputs that this code takes and display them : ${selectedText}`
         ); // GPT Response
         const gptOutput = await generate(
-          `Check for any possible outputs that this code gives and display them : ${selectedText}`
+          base + `Check for any possible outputs that this code gives and display them : ${selectedText}`
         );
+
+        
         const webstyleUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(context.extensionUri, 'media','web','webStyle.css'));
         // console.log(webstyleUri);
-        panel.webview.html = getWebviewContent(gptSummary,gptError,gptInput,gptOutput,webstyleUri);
+        panel.webview.html = getWebviewContent(gptSummary,gptError,gptInput,gptOutput,gpttests,webstyleUri);
       }
     }
   );
@@ -95,6 +102,7 @@ function activate(context) {
 
         console.log(gpt);
 
+        writeToEditor(readobj,'\n');
         writeToEditor(readobj,gpt+'\n');
       }
     }
@@ -117,7 +125,7 @@ function activate(context) {
 
 // CODE SUMMARIZER FUNCTIONALITY
 
-function getWebviewContent(gptSummary, gptError, gptInput, gptOutput, webstyleUri) {
+function getWebviewContent(gptSummary, gptError, gptInput, gptOutput, gptTests, webstyleUri) {
   // HTML for webview
 
     return `<!DOCTYPE html>
@@ -137,6 +145,8 @@ function getWebviewContent(gptSummary, gptError, gptInput, gptOutput, webstyleUr
         <p>${gptInput}</p>
         <h1>Output</h1>
         <p>${gptOutput}</p>
+        <h1>Unit Tests</h1>
+        <p>${gptTests}</p>
         <!-- Include your React bundle here -->
     </body>
     </html>`;
@@ -364,27 +374,33 @@ class MileStoneProvider {
             <div class="header">
                 <h2>Milestone Tracker</h2>
             </div>
-            <div class="project-dropdown" style="display: flex;">
-                <select name="project" id="project">
-                  <option id="dummy">Project</option>
-                </select>
-                <div class="progress" style:"margin-left:auto;">
+
+            <div class = "flex-container">
+                <div class="project-dropdown">
+                    <select name="project" id="project">
+                      <option id="dummy">Project</option>
+                    </select>
+                </div>
+                <div class="progress">
                     <div id="progress-bar" class="progress-bar">Progress</div>
                 </div>
             </div>
+
             <ul class="milestone-list">
                 <li class="milestone">
-                    <details>
-                        <summary>Milestone 1</summary>
-                        <ul class = "subTasks">
-                            <label><input type="checkbox" name="task1"> Task 1</label>
-                            <label><input type="checkbox" name="task2"> Task 2</label>
-                            <label><input type="checkbox" name="task3"> Task 3</label>
-                            <!-- More tasks can be added here -->
-                        </ul>
-                    </details>
-                    <span>3/4 tasks</span>
-                    <span class="on-track">ON TRACK</span>
+                    <div class = "flex-container">
+                        <details>
+                            <summary>Milestone 1</summary>
+                            <ul class = "subTasks">
+                                <label><input type="checkbox" name="task1"> Task 1</label>
+                                <label><input type="checkbox" name="task2"> Task 2</label>
+                                <label><input type="checkbox" name="task3"> Task 3</label>
+                                <!-- More tasks can be added here -->
+                            </ul>
+                        </details>
+                        <span class="tasks">3/4 tasks</span>
+                        <span class="on-track">ON TRACK</span>
+                    </div>
                 </li>
                 <li class="milestone">
                     <details>

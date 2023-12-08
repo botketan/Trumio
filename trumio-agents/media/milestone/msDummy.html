@@ -12,33 +12,38 @@
         <div class="milestone-tracker">
             <div class="header">
                 <h2>Milestone Tracker</h2>
-                <button>View All</button>
             </div>
-            <div class="project-dropdown">
-                <select name="project" id="project">
-                  <option id="dummy">Project</option>
-                </select>
+
+            <div class = "flex-container">
+                <div class="project-dropdown">
+                    <select name="project" id="project">
+                      <option id="dummy">Project</option>
+                    </select>
+                </div>
                 <div class="progress">
-                    <div class="progress-bar" style="width: 75%;"></div>
+                    <div id="progress-bar" class="progress-bar">Progress</div>
                 </div>
             </div>
+
             <ul class="milestone-list">
                 <li class="milestone">
-                    <details>
-                        <summary>Milestone 1: Foundations</summary>
-                        <ul class = "subTasks">
-                            <label><input type="checkbox" name="task1"> Task 1</label>
-                            <label><input type="checkbox" name="task2"> Task 2</label>
-                            <label><input type="checkbox" name="task3"> Task 3</label>
-                            <!-- More tasks can be added here -->
-                        </ul>
-                    </details>
-                    <span>3/4 tasks</span>
-                    <span class="on-track">ON TRACK</span>
+                    <div class = "flex-container">
+                        <details>
+                            <summary>Milestone 1</summary>
+                            <ul class = "subTasks">
+                                <label><input type="checkbox" name="task1"> Task 1</label>
+                                <label><input type="checkbox" name="task2"> Task 2</label>
+                                <label><input type="checkbox" name="task3"> Task 3</label>
+                                <!-- More tasks can be added here -->
+                            </ul>
+                        </details>
+                        <span>3/4 tasks</span>
+                        <span class="on-track">ON TRACK</span>
+                    </div>
                 </li>
                 <li class="milestone">
                     <details>
-                        <summary>Milestone 2: Backend</summary>
+                        <summary>Milestone 2</summary>
                         <ul class = "subTasks">
                             <label><input type="checkbox" name="task1"> Task 1</label>
                             <label><input type="checkbox" name="task2"> Task 2</label>
@@ -46,7 +51,7 @@
                             <!-- More tasks can be added here -->
                         </ul>
                     </details>
-                    <span>3/4 tasks</span>
+                    <span class="tasks">3/4 tasks</span>
                     <span class="on-track">ON TRACK</span>
                 </li>
                 <!-- More milestones can be added here -->

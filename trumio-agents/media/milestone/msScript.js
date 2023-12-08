@@ -156,14 +156,19 @@ document.addEventListener('DOMContentLoaded',async () => {
         details.append(ul);
         
         span1.textContent = `${setTasks}/${totalTasks} tasks`;
+        span1.classList.add("tasks");
         const span2 = document.createElement('span');
         span2.textContent = "ON TRACK";
         span2.classList.add("on-track");
         
-        li.append(details);
-        li.append(span1);
-        li.append(span2);
-        
+        flex = document.createElement('div');
+        flex.classList.add("flex-container");
+
+        flex.append(details);
+        flex.append(span1);
+        flex.append(span2);
+        li.append(flex);
+
         return li;
     }
 
