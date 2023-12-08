@@ -9,10 +9,10 @@ cloudinary.config({
   });
 
 export const createMentor = async (req, res) => {
-    const { email, name, password, description, skills } = req.body;
+    const { email, name, password, company, role, description, skills } = req.body;
     const file = req.file;
     try {
-        const newMentor = new mentor({ email, name, password, description, skills });
+        const newMentor = new mentor({ email, name, password, company, role, description, skills });
         if(file){
             const uploadStream = cloudinary.uploader.upload_stream(
                 async (error, result) => {

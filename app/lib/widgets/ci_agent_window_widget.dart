@@ -92,12 +92,17 @@ class _CIAgentWindowWidgetState extends State<CIAgentWindowWidget> {
                   const Spacer(),
                   IconButton(
                     onPressed: () async {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (_) {
-                        return CIAFullScreen(
-                          ciaChat: widget.ciaChat,
-                        );
-                      }));
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(milliseconds: 500),
+                          reverseTransitionDuration: const Duration(milliseconds: 500),
+                          pageBuilder: (_, __, ___) {
+                            return CIAFullScreen(
+                              ciaChat: widget.ciaChat,
+                            );
+                          },
+                        ),
+                      );
                     },
                     icon: SvgPicture.asset(
                       "assets/full_screen_icon.svg",
@@ -194,13 +199,13 @@ class _CIAgentWindowWidgetState extends State<CIAgentWindowWidget> {
                                 ),
                               );
                             });
-                                  
+
                             CIAMessageModel response =
                                 await CIAService().sendMessage(
                               widget.ciaChat.id,
                               message,
                             );
-                                  
+
                             setState(() {
                               widget.ciaChat.messages.add(response);
                             });
