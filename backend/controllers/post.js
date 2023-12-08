@@ -32,6 +32,12 @@ cloudinary.config({
 
 export const updatePost=async(req,res)=>{
     const Post=await post.findById(req.body.id);
+    if(req.body.parentId&& Post) 
+    {
+        Post.parentPost = req.body.parentId;
+        await Post.save();
+        return res.status(200).json(Post);
+    }
     if(!Post || Post.isPublished){
         return res.status(404).send("Post not found or already published");
     }
@@ -40,7 +46,7 @@ export const updatePost=async(req,res)=>{
     if (req.body.icon) Post.icon = req.body.icon;
     if (req.body.title) Post.title = req.body.title;
     if(req.body.content) Post.stringContent = traverse(JSON.parse(req.body.content));
-    if(req.body.parentId) Post.parentPost = req.body.parentId;
+    
     try{
         await Post.save();
         res.status(200).json(Post);

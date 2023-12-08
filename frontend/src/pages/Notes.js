@@ -19,13 +19,11 @@ export default function Notes() {
   const [communities,setCommunities] = useState();
   const [community,setCommunity] = useState();
   const navigate = useNavigate();
-  console.log(searchParams.get("id"));
   useEffect(() => {
     axios.post("http://localhost:5000/post/getByUserId",{
         userId:"65645f987aa073e675de9071"
     }).then((res) => {
       setPosts(res.data.reverse());
-      console.log(searchParams.get("new"));
       if(searchParams.get("new")){
         setSearchParams({});
         axios.post("http://localhost:5000/post/create",{userId:"65645f987aa073e675de9071"}).then((res) => {
@@ -35,15 +33,12 @@ export default function Notes() {
       }
       if(!post)
       {
-        console.log(res.data)
         let check=0;
         for(let note in res.data){
           if(res.data[note]._id==searchParams.get("id")){
             setPost(res.data[note]);
             setHeading(res.data[note].title);
             check=1;
-            console.log("here is some data");
-            console.log(res.data[note]);
           }
         }
         if(check==0){
@@ -56,7 +51,6 @@ export default function Notes() {
         console.log(err);
     });
     axios.post("http://localhost:5000/community/getByUserId",{userId:"65645f987aa073e675de9071"}).then((res) => {
-      console.log(res);
       setCommunities(res.data);
     }).catch((err) => {
       console.log(err);
@@ -78,7 +72,6 @@ export default function Notes() {
   const handlePublish= async()=>{
     closeModal();
     axios.post("http://localhost:5000/community/publish",{postId:post._id,communityId:community._id}).then((res) => {
-      console.log(res);
       window.location.reload();
     }).catch((err) => {
       console.log(err);

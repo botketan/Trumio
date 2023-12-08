@@ -34,35 +34,7 @@ const insertEmbed = (editor, newContent, newTitle) => {
 };
 
 // Custom Slash Menu item which executes the above function.
-const insertEmbedPostItem = {
-  name: "Embed Post",
-  execute: async (editor)=>{
-    const link=prompt("Enter the link of the post you want to embed");
-    const postId= link&&link.split("/")[4];
-    console.log(postId);
-    await axios.post("http://localhost:5000/post/getById",{postId:postId,userId:"65645f987aa073e675de9071"
-  }).then((res) => {
-    const newContent=JSON.parse(res.data.content)[0].content[0].text;
-    const newTitle= res.data.title;
-      console.log(JSON.parse(res.data.content)[0].content[0].text);
-      link&&insertEmbed(editor,newContent, newTitle)
 
-    }).catch((err) => {
-      console.log(err);
-    });
-    
-  },
-  aliases: ["embed", "ed"],
-  group: "Other",
-  icon: <HiOutlineGlobeAlt size={18} />,
-  hint: "Used to embed a post below.",
-};
-
-// List containing all default Slash Menu Items, as well as our custom one.
-const customSlashMenuItemList = [
-  ...getDefaultReactSlashMenuItems(),
-  insertEmbedPostItem,
-];
 
 function traverse(blocks){
   let s ="";
@@ -85,6 +57,36 @@ function traverse(blocks){
 
 
 export default function Post({post,setPost,ai,setAi,heading}) {
+  const insertEmbedPostItem = {
+    name: "Embed Post",
+    execute: async (editor)=>{
+      const link=prompt("Enter the link of the post you want to embed");
+      const postId= link&&link.split("/")[4];
+      await axios.post("http://localhost:5000/post/getById",{postId:postId,userId:"65645f987aa073e675de9071"
+    }).then((res) => {
+      const newContent=JSON.parse(res.data.content)[0].content[0].text;
+      const newTitle= res.data.title;
+        console.log(JSON.parse(res.data.content)[0].content[0].text);
+        link&&insertEmbed(editor,newContent, newTitle)
+  
+      }).catch((err) => {
+        console.log(err);
+      });
+      console.log("parentID "+post._id);
+      await axios.put("http://localhost:5000/post/update",{id:postId,parentId:post._id}).then((res) => {}).catch((err) => {console.log(err);});
+    },
+    aliases: ["embed", "ed"],
+    group: "Other",
+    icon: <HiOutlineGlobeAlt size={18} />,
+    hint: "Used to embed a post below.",
+  };
+  
+  // List containing all default Slash Menu Items, as well as our custom one.
+  const customSlashMenuItemList = [
+    ...getDefaultReactSlashMenuItems(),
+    insertEmbedPostItem,
+  ];
+
   const [timer,setTimer] = useState(1);
   // Creates a new editor instance.
   let editor = useBlockNote({
