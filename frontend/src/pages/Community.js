@@ -43,6 +43,7 @@ const Community = () => {
             userId:"65645f987aa073e675de9071"
         }).then((res) => {
             setCommunities(res.data);
+            setCommunity(res.data[0]);
             console.log("Communities");
             console.log(res.data);
         }).catch((err) => {
@@ -68,7 +69,7 @@ const Community = () => {
     <div className='flex justify-center gap-4 py-8 '>
         <div className='w-[55vw] flex flex-col items-center'>
             <div>
-                <CommunityHeader />
+                <CommunityHeader communityName={communities[0].title}/>
             </div>
             <div className='flex flex-col gap-6'>
             {posts&&user&&communities&&posts.map((post)=>{

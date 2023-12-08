@@ -1,23 +1,28 @@
 import axios from "axios";
-import { set } from "mongoose";
 import { useEffect, useState } from "react";
 
-const CommentInput = ({comment, user,post ,setPost}) => {
-    const [content, setContent] = useState("");
-    const handleReply = () => {
-        axios.post("http://localhost:5000/post/reply",{commentId:comment._id,userId:user._id,content:content}).then((res)=>{
-            console.log(res);
-        }).catch((err)=>{console.log(err)});
-        setContent("");
-        let newpost = {...post};
-        newpost.comments.map((item)=>{
-            if(item._id===comment._id){
-                item.reply.push({username:user.userName,icon:user.icon,position:user.position,content:content,likes:0});
+const CommentBox = ({ user,post,setPost}) => {
+    const [commentContent,setCommentContent]=useState("");
+    const handleNewComment=()=>{
+        if(commentContent.length>0){
+            const newComment={
+                icon:user.icon,
+                username:user.name,
+                position:user.position,
+                content:commentContent,
+                likes:0,
+                reply:[],
             }
-        });
-        setPost(newpost);
-    };
-
+            let newpost = {...post};
+            newpost.comments.push(newComment);
+            axios.post("http://localhost:5000/post/comment",{postId:post._id,userId:user._id,content:commentContent}).then((res)=>{
+                console.log(res);
+            }).catch((err)=>{console.log(err)});
+            console.log(newpost.comments);
+            setPost(newpost);
+            setCommentContent("");
+        }
+    }
     return (
         <div className="flex items-center gap-3 p-1">
         <div className="flex flex-shrink-0 items-center">
@@ -34,9 +39,9 @@ const CommentInput = ({comment, user,post ,setPost}) => {
             <div className="flex w-full items-center justify-between">
                 <input
                 className="w-full h-full form-input text-sm focus:outline-none"
-                placeholder="Write a reply..." value={content} onChange={(e)=>{setContent(e.target.value)}}
+                placeholder="Write a reply..." value={commentContent} onChange={(e)=>{setCommentContent(e.target.value)}}
                 />
-                <button className="w-5 h-5 relative " onClick={()=> handleReply()}>
+                <button className="w-5 h-5 relative " onClick={()=>handleNewComment()}>
                     <img src="/sendSVG.svg" alt="Send SVG" className="w-full h-full"/>
                 </button>
             </div>
@@ -45,4 +50,4 @@ const CommentInput = ({comment, user,post ,setPost}) => {
     );
   }
   
-  export default CommentInput;
+  export default CommentBox;

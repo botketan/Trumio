@@ -28,7 +28,7 @@ const getMilestones = (projectName) => {
         console.log("Error", error);
         return [];
     });
-}
+};
 
 const setMilestones = async (action,state) => {
     const path = action.split('-');
