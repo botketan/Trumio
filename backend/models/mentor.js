@@ -51,7 +51,8 @@ const mentorSchema = mongoose.Schema({
     ],
     availability:[
         {
-            type:Date
+            time:Date,
+            slots:Number
         }
     ]
 });
