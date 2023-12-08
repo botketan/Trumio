@@ -17,12 +17,12 @@
         {
           "id": "CustomContainer",
           "title": "Trumio Chat Bot",
-          "icon": "media/icon.svg"
+          "icon": "media/iconChatBot.svg"
         },
         {
           "id": "MileStoneTrack",
           "title": "Milestone Tracker",
-          "icon": "media/icon.svg"
+          "icon": "media/iconMilestones.svg"
         }
       ]
     },
