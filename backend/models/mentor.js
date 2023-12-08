@@ -13,6 +13,14 @@ const mentorSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    company:{
+        type: String,
+        required: true,
+    },
+    role:{
+        type: String,
+        required: true,
+    },
     icon:{
         type: String,
     },
