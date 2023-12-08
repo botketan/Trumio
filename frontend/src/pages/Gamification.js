@@ -116,7 +116,7 @@ const Gamification = () => {
       ];
   return (
     <>
-        <div className='px-20 flex justify-around gap-4 py-4'>
+        <div className='px-20 flex justify-around gap-4 py-4 font-dmsans'>
             <div className='flex flex-col gap-4 w-[60vw] py-4'>
                 <GamificationProfile />
                 <AchievementExpand items={items1}/>

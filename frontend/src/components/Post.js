@@ -20,8 +20,9 @@ const insertEmbed = (editor) => {
 
   // New block we want to insert.
   const embedBlock = {
-    type: "paragraph",
+    type: "link",
     content: [{ type: "text", text: "Embedded post here", styles: { bold: true } }],
+    href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
   };
 
   // Inserting the new block before the current one.
@@ -31,7 +32,10 @@ const insertEmbed = (editor) => {
 // Custom Slash Menu item which executes the above function.
 const insertEmbedPostItem = {
   name: "Embed Post",
-  execute: insertEmbed,
+  execute: (editor)=>{
+    const link=prompt("Enter the link of the post you want to embed");
+    editor.createLink(link, "Example Link")
+  },
   aliases: ["embed", "ed"],
   group: "Other",
   icon: <HiOutlineGlobeAlt size={18} />,

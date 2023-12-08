@@ -131,7 +131,7 @@ const Community = () => {
             <div className='flex flex-col gap-6'>
             {posts&&user&&communities&&posts.map((post)=>{
                 console.log(post);
-                return (<Link to={"/postpage/id="+post._id}><div className='w-[55vw] border border-neutral-200 shadow-md rounded-xl p-6 overflow-hidden'><CommunityPost key={post._id} 
+                return (<Link to={"/postpage/"+post._id}><div className='w-[55vw] border border-neutral-200 shadow-md rounded-xl p-6 overflow-hidden'><CommunityPost key={post._id} 
                     owner={user}
                     post={post}
                     complete={false}

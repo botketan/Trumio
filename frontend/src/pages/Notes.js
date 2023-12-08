@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar.js";
 import { ControlsCloseSmall, OtherRocket } from "@heathmont/moon-icons-tw";
 import AISuggestions from "../components/AISuggestions.js";
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button, Dropdown, IconButton, MenuItem, Modal } from "@heathmont/moon-core-tw";
 
 export default function Notes() {
@@ -18,7 +18,7 @@ export default function Notes() {
   const openModal = () => setIsOpen(true);
   const [communities,setCommunities] = useState();
   const [community,setCommunity] = useState();
-
+  const navigate = useNavigate();
   console.log(searchParams.get("id"));
   useEffect(() => {
     axios.post("http://localhost:5000/post/getByUserId",{
@@ -29,7 +29,7 @@ export default function Notes() {
       if(searchParams.get("new")){
         setSearchParams({});
         axios.post("http://localhost:5000/post/create",{userId:"65645f987aa073e675de9071"}).then((res) => {
-        window.location.reload(true)})
+        setSearchParams({id: res.data.newPost._id});window.location.reload(true)})
         .catch((err) => {
         console.log(err);});
       }

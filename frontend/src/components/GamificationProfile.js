@@ -36,7 +36,7 @@ const GamificationProfile = () => {
             </div>
         </div>
         <div className='px-2 flex items-center justify-normal'>
-            <p className='text-moon-14 font-["DM-Sans"]'>{text}</p>
+            <p className='text-moon-14 '>{text}</p>
         </div>
     </div>
   );
