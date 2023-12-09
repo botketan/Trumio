@@ -6,15 +6,17 @@
         <link href="${webstyleUri}" rel="stylesheet">
         <title>WebView</title>
     </head>
+
+    <script>
+        sum = document.getElementById("summary");
+        content = document.createElement("p");
+        content.innerHTM = gptSummary;
+    </script>
+
     <body>
         <h1>Code Summary</h1>
-        <p>${gptSummary}</p>
         <h1>Errors</h1>
-        <p>${gptError}</p>
-        <h1>Input</h1>
-        <p>${gptInput}</p>
-        <h1>Output</h1>
-        <p>${gptOutput}</p>
+        <h1>Tests</h1>
         <!-- Include your React bundle here -->
     </body>
     </html>
