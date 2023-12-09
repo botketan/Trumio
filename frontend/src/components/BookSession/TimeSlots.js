@@ -4,8 +4,13 @@ import React from 'react';
 const TimeSlots = (props) => {
 
     const displayTimes = props.times;
+    const closeModal = props.closeModal;
 
     const handleClick = (e) => {
+        alert(
+            "Congratulations on booking 10 sessions. You gained 100 sparks and levelled up!"
+        );
+        closeModal();
     };
 
     return (
