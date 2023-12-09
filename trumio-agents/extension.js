@@ -163,11 +163,11 @@ function getWebviewContent(gptSummary, gptError, gptTests, webstyleUri) {
 
     <body>
         <h1>Code Summary</h1>
-        <span>${gptSummary}</span>
+        <span class = "text">${gptSummary}</span>
         <h1>Errors</h1>
-        <span>${gptError}</span>
+        <span class = "text">${gptError}</span>
         <h1>Tests</h1>
-        <pre>${gptTests}</pre>
+        <pre class = "text">${gptTests}</pre>
         <!-- Include your React bundle here -->
     </body>
     </html>`;
