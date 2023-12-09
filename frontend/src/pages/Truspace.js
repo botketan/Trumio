@@ -83,7 +83,7 @@ export default function Truspace({userId}) {
             sparks:data.sparks,
             advanceTowards:"Visionary",
             tierPic: "/tier.png",
-            nextTierPic: "tier.png",
+            nextTierPic: "/visionary.png",
             points:data.points,
   }}/>
           <Badges badges={data.badges}/>
