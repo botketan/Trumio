@@ -6,7 +6,7 @@ import MentorCard from "../components/Mentor/MentorCard";
 import MentorSearch from "../components/MentorSearch";
 
 function Mentor() {
-    const [selected,setSelected]=useState("")
+    const [selected,setSelected]=useState("All")
     const [mentors,setMentors]=useState([]);
     const [filteredMentors,setFilteredMentors]=useState([]);
 
@@ -14,7 +14,7 @@ function Mentor() {
     useEffect(()=>{
         axios.post("http://localhost:5000/mentor/get",{
         }).then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setMentors(res.data);
         }).catch((err) => {
             console.log(err);
@@ -44,10 +44,10 @@ function Mentor() {
       setFilteredMentors(mentors);
     },[mentors])
 
-    console.log(filteredMentors);
+    // console.log(filteredMentors);
   return (
     <>
-      <div className="bg-gray-50">
+      <div className=" h-[100vh] bg-gray-50">
       <div className="flex flex-col justify-start border border-grey-800 rounded-xl bg-white mx-[10vw] mb-5">
           <MentorSearch mentors={mentors} setFilteredMentors={setFilteredMentors}></MentorSearch>
           <Navbar selected={selected} setSelected= {setSelected}/>
@@ -55,7 +55,7 @@ function Mentor() {
         <div className="flex justify-center px-16 gap-4 flex-wrap mx-[7vw]">
           {
             filteredMentors.map((mentor,index)=>{
-              console.log(mentor);
+              // console.log(mentor);
               return <><MentorCard key={index} cardData={mentor}></MentorCard></>
             })
           }

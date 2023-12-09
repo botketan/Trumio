@@ -11,7 +11,7 @@ const MentorSearch = ({ mentors, setFilteredMentors }) => {
         ||mentor.company.toLowerCase().includes(input.toLowerCase())
         ||mentor.role.toLowerCase().includes(input.toLowerCase()));
         });
-        console.log(filteredMentors);
+        // console.log(filteredMentors);
         setFilteredMentors(filteredMentors);
     };
   return (
