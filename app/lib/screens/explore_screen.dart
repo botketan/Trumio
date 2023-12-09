@@ -1,5 +1,6 @@
 import 'package:app/models/post_model.dart';
 import 'package:app/utils/app_data_layer.dart';
+import 'package:app/widgets/post_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moon_design/moon_design.dart';
@@ -29,7 +30,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       posts = await AppDataLayer().getUserExplorePosts(_userId);
-      setState(() { });
+      setState(() {});
     });
   }
 
@@ -38,8 +39,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: [
             const SizedBox(
               height: 50.0,
@@ -149,9 +150,31 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 16.0,
+            ),
+            ..._buildPosts(),
           ],
         ),
       ),
     );
   }
+
+  List<Widget> _buildPosts() {
+    List<Widget> postWidgets = [];
+    for (final post in posts) {
+      postWidgets.add(
+        PostWidget(
+          post: post,
+        ),
+      );
+      postWidgets.add(
+        const SizedBox(
+          height: 16.0,
+        ),
+      );
+    }
+    return postWidgets;
+  }
+
 }
