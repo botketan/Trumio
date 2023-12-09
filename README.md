@@ -81,6 +81,12 @@ Move to the clonned repository in your local environment
 * Start the development server - ` npm start `
   
   > The model will be served on **http://localhost:3000/**
+
+### Steps to run App
+* Move to app folder -`cd app`
+* Run `flutter pub get` to get the dependencies
+* Run `flutter run`
+ 
            
 
 ## Directory Structure
