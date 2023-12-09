@@ -68,8 +68,8 @@ const GamificationProfile = () => {
     <div className="p-6 bg-white rounded-2xl border border-neutral-200 shadow-lg flex items-center justify-between">
 
       <Profile 
-        name="Ravi Kishor"
-        handle="@rkis"
+        name="Aditya Gupta"
+        handle="@_AG_"
         avatar="https://img.freepik.com/premium-vector/avatar-man-with-beard-office-worker-wearing-glasses-it-developer-engineer-programmer_277909-144.jpg" // Replace with actual image path
       />
       <div className='flex justify-end items-center gap-10'>
