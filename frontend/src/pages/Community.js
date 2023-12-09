@@ -10,7 +10,7 @@ import { ControlsChevronDown } from '@heathmont/moon-icons-tw';
 import { Link } from 'react-router-dom';
 
 
-const Community = () => {
+const Community = ({userId}) => {
     const [user, setUser] = useState(null);
     const [notes, setNotes] = useState(null);
     const [posts, setPosts] = useState(null);
@@ -20,7 +20,7 @@ const Community = () => {
     useEffect(() => {
         document.title = "Community";
         axios.post("http://localhost:5000/user/getUser",{
-            userId:"65645f987aa073e675de9071"
+            userId:userId
         }).then((res) => {
         setUser(res.data);
         // console.log("user");
@@ -30,7 +30,7 @@ const Community = () => {
         });
 
         axios.post("http://localhost:5000/post/getByUserId",{
-            userId:"65645f987aa073e675de9071"
+            userId:userId
         }).then((res) => {
             setNotes(res.data);
             // console.log("Notes");
@@ -43,7 +43,7 @@ const Community = () => {
 
     useEffect(() => {
         axios.post("http://localhost:5000/community/getByUserId",{
-            userId:"65645f987aa073e675de9071"
+            userId:userId
         }).then((res) => {
             setCommunities(res.data);
             setCommunity(res.data[0]);
@@ -156,7 +156,7 @@ const Community = () => {
             nextTierPic: "tier.png",
             points:user.points,
         }}/>}
-        {notes&&<NoteList posts={notes} place={"Community"}/>}
+        {notes&&<NoteList posts={notes} place={"Community"} userId={userId}/>}
         </div>
     </div>
     }

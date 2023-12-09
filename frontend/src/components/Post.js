@@ -56,13 +56,13 @@ function traverse(blocks){
 }
 
 
-export default function Post({post,setPost,ai,setAi,heading}) {
+export default function Post({post,setPost,ai,setAi,heading,userId}) {
   const insertEmbedPostItem = {
     name: "Embed Post",
     execute: async (editor)=>{
       const link=prompt("Enter the link of the post you want to embed");
       const postId= link&&link.split("/")[4];
-      await axios.post("http://localhost:5000/post/getById",{postId:postId,userId:"65645f987aa073e675de9071"
+      await axios.post("http://localhost:5000/post/getById",{postId:postId,userId:userId
     }).then((res) => {
       const newContent=JSON.parse(res.data.content)[0].content[0].text;
       const newTitle= res.data.title;

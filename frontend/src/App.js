@@ -22,21 +22,22 @@ import PostWebView from './pages/PostWebView.js';
 
 function App() {
   const [click, setClick] = useState("")
+  const [userId,setUserId]=useState("65645f987aa073e675de9071");
   return (
     <>
     <Router>
       <Navigation click={click} setClick={setClick}/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route exact path="/Notes" element={<Notes />} />
-        <Route exact path="/Gamification" element={<Gamification  />} />
-        <Route exact path="/Mentor" element={<Mentor />} /> 
-        <Route exact path="/Truspace" element={<Truspace />} /> 
-        <Route exact path="/Community" element={<Community />} /> 
-        <Route path="/expert" element={<ExpertAgents/>} />
-        <Route path="/cia" element={<Cia/>} />
-        <Route path="/postpage/:id" element={<PostPage/>} />
-        <Route path="/postwebview/:id" element={<PostWebView />} />
+        <Route exact path="/Notes" element={<Notes userId={userId}/>} />
+        <Route exact path="/Gamification" element={<Gamification  userId={userId}/>} />
+        <Route exact path="/Mentor" element={<Mentor userId={userId}/>} /> 
+        <Route exact path="/Truspace" element={<Truspace userId={userId}/>} /> 
+        <Route exact path="/Community" element={<Community userId={userId}/>} /> 
+        <Route path="/expert" element={<ExpertAgents userId={userId}/>} />
+        <Route path="/cia" element={<Cia userId={userId}/>} />
+        <Route path="/postpage/:id" element={<PostPage userId={userId}/>} />
+        <Route path="/postwebview/:id" element={<PostWebView userId={userId}/>} />
         {/* <Route exact path="/mentor" element={<Mentor />} />
         <Route exact path="/development" element={<Mentor />} />
         <Route exact path="/design" element={<AchievementCarousel items={items1} />} />

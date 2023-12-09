@@ -8,7 +8,7 @@ import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button, Dropdown, IconButton, MenuItem, Modal } from "@heathmont/moon-core-tw";
 
-export default function Notes() {
+export default function Notes({userId}) {
   const [heading, setHeading] = useState("Untitled");
   const [post, setPost] = useState();
   const [ai,setAi]= useState();
@@ -21,12 +21,12 @@ export default function Notes() {
   const navigate = useNavigate();
   useEffect(() => {
     axios.post("http://localhost:5000/post/getByUserId",{
-        userId:"65645f987aa073e675de9071"
+        userId:userId
     }).then((res) => {
       setPosts(res.data.reverse());
       if(searchParams.get("new")){
         setSearchParams({});
-        axios.post("http://localhost:5000/post/create",{userId:"65645f987aa073e675de9071"}).then((res) => {
+        axios.post("http://localhost:5000/post/create",{userId:userId}).then((res) => {
         setSearchParams({id: res.data.newPost._id});window.location.reload(true)})
         .catch((err) => {
         console.log(err);});
@@ -50,7 +50,7 @@ export default function Notes() {
     }).catch((err) => {
         console.log(err);
     });
-    axios.post("http://localhost:5000/community/getByUserId",{userId:"65645f987aa073e675de9071"}).then((res) => {
+    axios.post("http://localhost:5000/community/getByUserId",{userId:userId}).then((res) => {
       setCommunities(res.data);
     }).catch((err) => {
       console.log(err);
@@ -82,7 +82,7 @@ export default function Notes() {
     <>
       <div className="flex flex-row px-16 py-4 container w-[100%] h-[100%] gap-5">
         <div className=" w-[40vw] h-[85vh] ">
-            <NoteList posts={posts} setPost={setPost} setPosts={setPosts} setHeading={setHeading} searchParams={searchParams} setSearchParams={setSearchParams} place={"Notes"}/>
+            <NoteList userId={userId} posts={posts} setPost={setPost} setPosts={setPosts} setHeading={setHeading} searchParams={searchParams} setSearchParams={setSearchParams} place={"Notes"}/>
         </div>
         <div className="container mx-auto my-auto h-[100%] shadow-xl border border-neutral-200 rounded-lg">
             <div className="h-[50px] w-[100%] p-4 border-neutral-200 flex gap-4 items-center" >
@@ -100,10 +100,10 @@ export default function Notes() {
               </button>}
             </div>
             <div className="w-[100%] h-[65vh] overflow-y-scroll p-2 border-b-2 border-t-2 border-neutral-200 overflow-x-hidden">
-                {post && <Post post={post}  setPost={setPost} ai={ai} setAi={setAi} heading={heading}/>}
+                {post && <Post userId={userId} post={post}  setPost={setPost} ai={ai} setAi={setAi} heading={heading}/>}
             </div>
             <div className="px-3">
-              <AISuggestions setAi={setAi}/>
+              <AISuggestions userId={userId} setAi={setAi}/>
             </div>
         </div>
       </div>

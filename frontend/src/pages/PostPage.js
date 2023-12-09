@@ -63,7 +63,7 @@ function traverse(blocks){
   
   }
 
-export default function PostPage() {
+export default function PostPage({userId}) {
     const {id} = useParams();
     const [post, setPost] = useState();
     const [owner,setOwner] = useState();
@@ -71,7 +71,7 @@ export default function PostPage() {
     const [user ,setUser] = useState();
     useEffect(() => {
         axios.post("http://localhost:5000/post/getById",{
-            postId:id ,userId:"65645f987aa073e675de9071"
+            postId:id ,userId:userId
         }).then((res) => {
             res.data.isPublished=true;
             setPost(res.data);
@@ -81,7 +81,7 @@ export default function PostPage() {
         }).catch((err) => {
             console.log(err);
         });
-        axios.post("http://localhost:5000/user/getUser",{userId:"65645f987aa073e675de9071"}).then((res) => {
+        axios.post("http://localhost:5000/user/getUser",{userId:userId}).then((res) => {
             console.log(res.data);
             setUser(res.data);
         }).catch((err) => {console.log(err);});
