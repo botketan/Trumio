@@ -17,7 +17,7 @@ const Navbar = ({selected, setSelected}) => {
   };
 
   return (
-    <nav className="flex items-center justify-between mr-6 ml-6 mb-1 font-semibold text-[#595D62]  bg-white ">
+    <nav className="flex items-center justify-between mr-6 ml-6 mb-1 font-semibold text-[#595D62] ">
       
 
       <nav className="flex items-center justify-between w-full m-3 flex-column " >

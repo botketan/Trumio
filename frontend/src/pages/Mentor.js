@@ -48,8 +48,10 @@ function Mentor() {
   return (
     <>
       <div className=" h-[100vh] bg-gray-50">
-      <div className="flex flex-col justify-start border border-grey-800 rounded-xl bg-white mx-[10vw] mb-5">
-          <MentorSearch mentors={mentors} setFilteredMentors={setFilteredMentors}></MentorSearch>
+      <div className="flex flex-col justify-start  mx-[10vw] mb-5">
+          <div className="border border-grey-800 rounded-xl bg-white pb-5 mt-5">
+            <MentorSearch mentors={mentors} setFilteredMentors={setFilteredMentors}></MentorSearch>
+          </div>
           <Navbar selected={selected} setSelected= {setSelected}/>
         </div>
         <div className="flex justify-center px-16 gap-4 flex-wrap mx-[7vw]">
