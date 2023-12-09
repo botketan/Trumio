@@ -26,7 +26,7 @@ function App() {
   return (
     <>
     <Router>
-      <Navigation click={click} setClick={setClick}/>
+      <Navigation userId={userId} click={click} setClick={setClick}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route exact path="/Notes" element={<Notes userId={userId}/>} />

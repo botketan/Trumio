@@ -14,18 +14,18 @@ import axios from "axios";
 
 
 // Command to insert an Embed of a post in a new block below.
-const insertEmbed = (editor, newContent, newTitle) => {
+const insertEmbed = (editor, newContent, newTitle, link) => {
   // Block that the text cursor is currently in.
   const currentBlock = editor.getTextCursorPosition().block;
   console.log(currentBlock);
   // New block we want to insert.
   const embedBlock0 = {
     type: "paragraph",
-    content: [{ type: "link", content : [{type: "text", text:`${newTitle}`, styles:{bold: true}}], href: "http://localhost:3000/postpage/65685a40e1c8a3ea4b5fef7b" }],
+    content: [{ type: "link", content : [{type: "text", text:`${newTitle}`, styles:{bold: true}}], href: link }],
   };
   const embedBlock = {
     type: "paragraph",
-    content: [{ type: "link", content : [{type: "text", text:`${newContent+"..."}`, styles:{}}], href: "http://localhost:3000/postpage/65685a40e1c8a3ea4b5fef7b" }],
+    content: [{ type: "link", content : [{type: "text", text:`${newContent+"..."}`, styles:{}}], href: link }],
   };
 
   // Inserting the new block before the current one.
@@ -67,7 +67,7 @@ export default function Post({post,setPost,ai,setAi,heading,userId}) {
       const newContent=JSON.parse(res.data.content)[0].content[0].text;
       const newTitle= res.data.title;
         console.log(JSON.parse(res.data.content)[0].content[0].text);
-        link&&insertEmbed(editor,newContent, newTitle)
+        link&&insertEmbed(editor,newContent, newTitle,link)
   
       }).catch((err) => {
         console.log(err);

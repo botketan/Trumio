@@ -1,6 +1,6 @@
 import { Input } from '@heathmont/moon-core-tw'
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 const AISuggestions = ({setAi}) => {
   return (
     <div className='flex flex-col h-24 justify-center'>
@@ -23,10 +23,10 @@ const AISuggestions = ({setAi}) => {
                 <img src={require("../Assets/star.png")} alt="" className="w-6 h-6 relative" />
                 <div className="text-white text-sm font-medium font-dmsans leading-normal">Change Tone</div>
             </button>
-            <button className="w-[125px] h-8 pl-1 pr-3 py-1 bg-blue-600 rounded-lg justify-center items-center gap-1 inline-flex">
+            <Link to="../cia"><button className="w-[125px] h-8 pl-1 pr-3 py-1 bg-blue-600 rounded-lg justify-center items-center gap-1 inline-flex">
                 <img src={require("../Assets/star.png")} alt="" className="w-6 h-6 relative" />
                 <div className="text-white text-sm font-medium font-dmsans leading-normal">Chat with AI</div>
-            </button>
+            </button></Link>
         </div>
         <div className='h-12'>
             <Input type="text" placeholder="Or ask for anything else by typing here..." id="size-sm" />

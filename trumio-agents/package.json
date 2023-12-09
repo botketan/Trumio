@@ -51,7 +51,7 @@
       },
       {
         "command": "trumio.AddComments",
-        "title": "Add Commments"
+        "title": "Add Comments"
       }
     ],
     "menus": {

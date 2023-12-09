@@ -1,14 +1,28 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import axios from 'axios'
 import PostReadOnly from '../PostReadonly'
 
 const CommunityPost = ({owner, post, setPost, complete}) => {
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        axios.post("http://localhost:5000/user/getUser",{
+            userId:post.userId
+        }).then((res) => {
+        setUser(res.data);
+        // console.log("user");
+        // console.log(res.data);
+        }).catch((err) => {
+            console.log(err);
+        }
+        );
+    }, [post])
   return (
     <div>
         {owner&&<div className="w-[100%] flex gap-3 items-center my-[1vw] justify-start">
-            <img className="h-16 w-16 rounded-full" src={owner.icon ? owner.icon : "/logo192.png"} alt="image"></img>
+            <img className="h-16 w-16 rounded-full" src={user && user.icon ? user.icon : "/logo192.png"} alt=""></img>
             <div>
-                <h2 className='font-medium font-dmsans'>{owner.name}</h2>
-                <span className='font-light font-dmsans'>{owner.position}</span>
+                <h2 className='font-medium font-dmsans'>{user && user.name}</h2>
+                <span className='font-light font-dmsans'>{user && user.position}</span>
             </div>
         </div>}
         {post &&<div className="ml-[-3.5vw] bg-transparent"> <PostReadOnly post={post}  setPost={setPost}  /></div>}

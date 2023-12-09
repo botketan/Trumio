@@ -17,10 +17,10 @@ h1 {
     margin-bottom: 20px;
 }
 
-p {
+/* p {
     color: #bdc3c7;
-    line-height: 1.6;
-}
+    line-height: 2;
+} */
 
 /* Style for highlighting code summary and errors in dark mode */
 .code-summary {
@@ -35,6 +35,10 @@ p {
     color: #fff;
     padding: 10px;
     border-radius: 5px;
+}
+
+.text {
+    font-size: 16px;
 }
 
 /* Responsive design for smaller screens */
