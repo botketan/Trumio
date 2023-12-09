@@ -1,5 +1,5 @@
 const vscode = require("vscode");
-const generate = require("./API/LLMChain"); // For the Chat Bot
+const [generate,generateJson] = require("./API/LLMChain"); // For the Chat Bot
 const axios = require("axios");
 
 function activate(context) {
@@ -47,28 +47,52 @@ function activate(context) {
         // Here you would typically set the HTML content for your webview
         // For React, you'd link to your bundled JS file
 
-        let base = `You are an experienced Software Unit Test Engineer specializing in C++ and JavaScript. As an expert in your field, you have a deep understanding of unit testing methodologies and best practices. You possess strong problem-solving skills and have a knack for tackling complex test scenarios, ensuring code coverage, and optimizing performance. Your expertise in test automation and continuous integration practices allows you to streamline the testing process and maximize efficiency. Whether it's identifying elusive bugs or optimizing test suites, you're equipped to assist developers at every step. Give your answers in the form of properly organised points`;
- 
-        const gptSummary = await generate(
-          base + `Summarize this piece of code: ${selectedText}`
-        ); // GPT Response
-        const gptError = await generate(
-          base + `Let me know if there are any syntactical errors in this peice of code : ${selectedText}`
+        let base = `You are an experienced Software Unit Test Engineer specializing in Python and JavaScript. As an expert in your field, you have a deep understanding of unit testing methodologies and best practices. You possess strong problem-solving skills and have a knack for tackling complex test scenarios, ensuring code coverage, and optimizing performance. Your expertise in test automation and continuous integration practices allows you to streamline the testing process and maximize efficiency. Whether it's identifying elusive bugs or optimizing test suites, you're equipped to assist developers at every step. Give your answers in the form of properly organised points`;
+
+        const gptSummary = await generateJson(
+          `Now you are supposed to read this piece of code. Then you try to understand the logic behind the code and what its trying to do. Then give me a single string, the summary of the code that you have generated: ${selectedText} Note: Make sure there's a '\n' tag among every 10 words that you generate`
         );
-        const gpttests = await generate(
-          base + `Now you are supposed to read this piece of code. Then you try to understand the logic behind the code and what its trying to do. Then give me a few Testcases for the code : ${selectedText}`
+         // GPT Response
+        const gptError = await generateJson(
+          `Now you are supposed to read this piece of code. Then you try to understand the logic behind the code and what its trying to do. Lets say you have generated 'x' errors. Join all of these errors together seperated by a newline and output the whole thing as a single single. ${selectedText} Note: Make sure there's a '\n' tag among every 10 words that you generate.`
         );
-        const gptInput = await generate(
-          base + `Check for any possible inputs that this code takes and display them : ${selectedText}`
-        ); // GPT Response
-        const gptOutput = await generate(
-          base + `Check for any possible outputs that this code gives and display them : ${selectedText}`
+        const gpttests = await generateJson(
+          `I will give you a piece of code. Try to understand the logic behind the code and what its trying to do. Then give me exactly 4 Testcases (input-output pairs call them input1,output1 ... ) for the code. I want you to generate a single string exactly in the following format:
+          
+          "
+            Input1  - <your input1> 
+            Output1 - <your output1>
+
+            Input2  - <your input2>
+            Output2 - <your output2>
+          
+            Input3  - <your input3> 
+            Output3 - <your output3>
+
+            Input4  - <your input4> 
+            Output4 - <your output4>
+          "
+
+          Here keep the format exactly the same. Generate newlines after every input output pair as well and do not generate any extra content apart from what is specified in the format above. Just put the inputs and outputs that you generated in the "<your input>" and "<your output>" place respectively. Remember to generate just 4 testcases and keep the input size very limited (10 characters max). Here's the code:
+
+          ${selectedText}
+          
+          Note: Make sure there's a '\n' tag among every 10 words that you generate`
         );
 
+        // const gptInput = await generateJson(
+        //   base + `Check for any possible inputs that this code takes and display them : ${selectedText}`
+        // ); // GPT Response
+        // const gptOutput = await generateJson(
+        //   base + `Check for any possible outputs that this code gives and display them : ${selectedText}`
+        // );
         
         const webstyleUri = panel.webview.asWebviewUri(vscode.Uri.joinPath(context.extensionUri, 'media','web','webStyle.css'));
-        // console.log(webstyleUri);
-        panel.webview.html = getWebviewContent(gptSummary,gptError,gptInput,gptOutput,gpttests,webstyleUri);
+        
+        // let displayObj = {Summary:gptSummary , Error:gptError , Tests:gptTests};
+        // panel.webview.postMessage({command:"DisplaySummary",text:displayObj});  
+
+        panel.webview.html = getWebviewContent(gptSummary , gptError , gpttests ,webstyleUri);
       }
     }
   );
@@ -125,7 +149,7 @@ function activate(context) {
 
 // CODE SUMMARIZER FUNCTIONALITY
 
-function getWebviewContent(gptSummary, gptError, gptInput, gptOutput, gptTests, webstyleUri) {
+function getWebviewContent(gptSummary, gptError, gptTests, webstyleUri) {
   // HTML for webview
 
     return `<!DOCTYPE html>
@@ -136,17 +160,14 @@ function getWebviewContent(gptSummary, gptError, gptInput, gptOutput, gptTests, 
         <link href="${webstyleUri}" rel="stylesheet">
         <title>WebView</title>
     </head>
+
     <body>
         <h1>Code Summary</h1>
-        <p>${gptSummary}</p>
+        <span>${gptSummary}</span>
         <h1>Errors</h1>
-        <p>${gptError}</p>
-        <h1>Input</h1>
-        <p>${gptInput}</p>
-        <h1>Output</h1>
-        <p>${gptOutput}</p>
-        <h1>Unit Tests</h1>
-        <p>${gptTests}</p>
+        <span>${gptError}</span>
+        <h1>Tests</h1>
+        <pre>${gptTests}</pre>
         <!-- Include your React bundle here -->
     </body>
     </html>`;
