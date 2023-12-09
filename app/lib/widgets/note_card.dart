@@ -1,8 +1,11 @@
+import 'package:app/models/post_model.dart';
 import 'package:flutter/material.dart';
 
 class NoteCard extends StatelessWidget {
+  final PostModel postModel;
   const NoteCard({
     super.key,
+    required this.postModel,
   });
 
   @override
@@ -15,40 +18,41 @@ class NoteCard extends StatelessWidget {
         border:
             Border.all(color: const Color(0xFFE2E2E2)),
       ),
-      child: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 12.0,
             ),
             Text(
-              "Exploring ML",
-              style: TextStyle(
+              postModel.stringContent ?? "No content",
+              maxLines: 1,
+              style: const TextStyle(
                 fontFamily: "DMSans",
                 fontWeight: FontWeight.w600,
                 fontSize: 14.0,
                 color: Colors.black,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 4.0,
             ),
             Text(
-              "Reflecting on this journey, I've grown not just as a developer but also as a problem-solver and creative thinker. Sta ...",
+              postModel.stringContent ?? "No content",
               maxLines: 6,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: "DMSans",
                 fontWeight: FontWeight.w500,
                 fontSize: 12.0,
                 color: Color(0xFF595D62),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12.0,
             ),
-            Text(
+            const Text(
               "Updated 2 days ago",
               style: TextStyle(
                 fontFamily: "DMSans",

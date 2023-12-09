@@ -1,12 +1,37 @@
+import 'package:app/models/post_model.dart';
+import 'package:app/models/user_model.dart';
+import 'package:app/utils/app_data_layer.dart';
 import 'package:app/widgets/note_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moon_design/moon_design.dart';
 
-class NotesListWidget extends StatelessWidget {
+class NotesListWidget extends StatefulWidget {
+  final UserModel userModel;
   const NotesListWidget({
     super.key,
+    required this.userModel,
   });
+
+  @override
+  State<NotesListWidget> createState() => _NotesListWidgetState();
+}
+
+class _NotesListWidgetState extends State<NotesListWidget> {
+  final List<PostModel> posts = []; 
+
+  @override
+  void initState() {
+    super.initState();
+    
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      AppDataLayer().getUserAuthoredPosts(widget.userModel.id).then((value) {
+        setState(() {
+          posts.addAll(value);
+        });
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,30 +84,31 @@ class NotesListWidget extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.zero,
-            children: const [
-              SizedBox(
+            children: [
+              const SizedBox(
                 width: 16.0,
               ),
-              NoteCard(),
-              SizedBox(
-                width: 12.0,
-              ),
-              NoteCard(),
-              SizedBox(
-                width: 12.0,
-              ),
-              NoteCard(),
-              SizedBox(
-                width: 12.0,
-              ),
-              NoteCard(),
-              SizedBox(
-                width: 16.0,
+              ..._buildNotes(),
+              const SizedBox(
+                width: 4.0,
               ),
             ],
           ),
         ),
       ],
     );
+  }
+
+  List<Widget> _buildNotes() {
+    List<Widget> notes = [];
+    for (var i = 0; i < posts.length; i++) {
+      notes.add(NoteCard(
+        postModel: posts[i],
+      ));
+      notes.add(const SizedBox(
+        width: 12.0,
+      ));
+    }
+    return notes;
   }
 }

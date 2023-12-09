@@ -1,7 +1,6 @@
 import 'package:app/models/user_model.dart';
 import 'package:app/utils/app_data_layer.dart';
-import 'package:app/widgets/achievements_list_widget.dart';
-import 'package:app/widgets/badges_widget.dart';
+import 'package:app/widgets/badges_list_widget.dart';
 import 'package:app/widgets/ci_agents_list_widget.dart';
 import 'package:app/widgets/divider_widget.dart';
 import 'package:app/widgets/milestone_tracker_widget.dart';
@@ -22,7 +21,7 @@ class _TruspaceScreenState extends State<TruspaceScreen> {
   bool _loading = true;
   late UserModel _userModel;
   final String _userId = "65645f987aa073e675de9071";
-  final FlutterSecureStorage storage = FlutterSecureStorage();
+  final FlutterSecureStorage storage = const FlutterSecureStorage();
 
   @override
   void initState() {
@@ -76,11 +75,9 @@ class _TruspaceScreenState extends State<TruspaceScreen> {
                   const SizedBox(
                     height: 24.0,
                   ),
-                  const BadgesWidget(),
-                  const SizedBox(
-                    height: 24.0,
+                  BadgesListWidget(
+                    badges: _userModel.badges,
                   ),
-                  const AchievementsListWidget(),
                   const SizedBox(
                     height: 24.0,
                   ),
@@ -98,7 +95,9 @@ class _TruspaceScreenState extends State<TruspaceScreen> {
                   const SizedBox(
                     height: 24.0,
                   ),
-                  const NotesListWidget(),
+                  NotesListWidget(
+                    userModel: _userModel,
+                  ),
                   const SizedBox(
                     height: 24.0,
                   ),
@@ -106,9 +105,10 @@ class _TruspaceScreenState extends State<TruspaceScreen> {
                   const SizedBox(
                     height: 24.0,
                   ),
-                  if (_userModel.projects.isNotEmpty) MilestoneTrackerWidget(
-                    projects: _userModel.projects,
-                  ),
+                  if (_userModel.projects.isNotEmpty)
+                    MilestoneTrackerWidget(
+                      projects: _userModel.projects,
+                    ),
                   const SizedBox(
                     height: 200.0,
                   ),

@@ -257,10 +257,15 @@ class ProfileCard extends StatelessWidget {
               border: Border.all(color: Colors.white, width: 4.0),
             ),
             child: (userModel.icon != null)
-                ? Image.network(
-                    userModel.icon!,
-                    fit: BoxFit.cover,
-                  )
+                ? ClipRRect(
+                  borderRadius: BorderRadius.circular(48.0),
+                  child: Image.network(
+                      userModel.icon!,
+                      fit: BoxFit.cover,
+                      width: 64.0,
+                      height: 64.0,
+                    ),
+                )
                 : ClipRRect(
                     borderRadius: BorderRadius.circular(48.0),
                     child: Container(

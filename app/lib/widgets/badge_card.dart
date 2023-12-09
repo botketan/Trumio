@@ -1,8 +1,11 @@
+import 'package:app/models/badge_model.dart';
 import 'package:flutter/material.dart';
 
-class AchievementCard extends StatelessWidget {
-  const AchievementCard({
+class BadgeCard extends StatelessWidget {
+  final BadgeModel badgeModel;
+  const BadgeCard({
     super.key,
+    required this.badgeModel,
   });
 
   @override
@@ -27,21 +30,24 @@ class AchievementCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(
                   horizontal: 16.0),
-              child: Container(
-                width: 48.0,
+              child: SizedBox(
                 height: 48.0,
-                color: const Color(0xFFF5F5F5),
+                child: Image.network(
+                  badgeModel.image,
+                  height: 48.0,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             const SizedBox(
-              height: 12.0,
+              height: 16.0,
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(
+            Padding(
+              padding: const EdgeInsets.symmetric(
                   horizontal: 16.0),
               child: Text(
-                "Thumbs-Up Trooper",
-                style: TextStyle(
+                badgeModel.heading,
+                style: const TextStyle(
                   fontFamily: "DMSans",
                   fontWeight: FontWeight.w600,
                   fontSize: 14.0,
@@ -49,12 +55,14 @@ class AchievementCard extends StatelessWidget {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(
+            Padding(
+              padding: const EdgeInsets.symmetric(
                   horizontal: 16.0),
               child: Text(
-                "Appreciate posts every day for 5 days.",
-                style: TextStyle(
+                badgeModel.description,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
                   fontFamily: "DMSans",
                   fontWeight: FontWeight.w500,
                   fontSize: 12.0,
@@ -65,19 +73,19 @@ class AchievementCard extends StatelessWidget {
             const SizedBox(
               height: 8.0,
             ),
-            const Row(
+            Row(
               children: [
-                Spacer(),
+                const Spacer(),
                 Text(
-                  "3 days left",
-                  style: TextStyle(
+                  badgeModel.status,
+                  style: const TextStyle(
                     fontFamily: "DMSans",
                     fontWeight: FontWeight.w500,
                     fontSize: 12.0,
                     color: Color(0xFF4E46B4),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 16.0,
                 ),
               ],

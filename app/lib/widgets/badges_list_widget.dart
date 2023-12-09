@@ -1,10 +1,13 @@
-import 'package:app/widgets/achievement_card.dart';
+import 'package:app/models/badge_model.dart';
+import 'package:app/widgets/badge_card.dart';
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
 
-class AchievementsListWidget extends StatelessWidget {
-  const AchievementsListWidget({
+class BadgesListWidget extends StatelessWidget {
+  List<BadgeModel> badges;
+  BadgesListWidget({
     super.key,
+    required this.badges,
   });
 
   @override
@@ -18,7 +21,7 @@ class AchievementsListWidget extends StatelessWidget {
           child: Row(
             children: [
               const Text(
-                "Achievements",
+                "Badges",
                 style: TextStyle(
                   fontFamily: "DMSans",
                   fontWeight: FontWeight.w500,
@@ -52,26 +55,35 @@ class AchievementsListWidget extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.zero,
-            children: const [
-              SizedBox(
+            children: [
+              const SizedBox(
                 width: 16.0,
               ),
-              AchievementCard(),
-              SizedBox(
-                width: 12.0,
-              ),
-              AchievementCard(),
-              SizedBox(
-                width: 12.0,
-              ),
-              AchievementCard(),
-              SizedBox(
-                width: 16.0,
+              ..._buildBadges(),
+              const SizedBox(
+                width: 4.0,
               ),
             ],
           ),
         ),
       ],
     );
+  }
+
+  List<Widget> _buildBadges() {
+    List<Widget> badgesList = [];
+    for (int i = 0; i < badges.length; i++) {
+      badgesList.add(
+        BadgeCard(
+          badgeModel: badges[i],
+        ),
+      );
+      badgesList.add(
+        const SizedBox(
+          width: 12.0,
+        ),
+      );
+    }
+    return badgesList;
   }
 }
