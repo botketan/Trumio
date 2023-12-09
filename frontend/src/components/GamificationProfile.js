@@ -52,9 +52,9 @@ const GamificationProfile = () => {
       <div className='flex justify-end items-center gap-10'>
         <Card 
             title="Tier" 
-            value="Pioneer" 
-            text="350/500 Points to Level Up"
-            img="/tier.png"
+            value="Visionary" 
+            text="0/750 Points to Level Up"
+            img="/visionary.png"
         />
         <Card 
             title="Sparks" 
