@@ -58,7 +58,7 @@ const GamificationProfile = () => {
         />
         <Card 
             title="Sparks" 
-            value="2458 Sparks" 
+            value="2608 Sparks" 
             text="Institute Rank: 293"
             img="/sparks.png"
         />
