@@ -35,7 +35,7 @@ const MileStoneAccordion = ({project, setProject}) => {
                                         milestone.task.filter(Task => Task.isCompleted).length
                                     }/{milestone.task.length} tasks
                                 </div>
-                                <Tag className='text-green-700 bg-green-700 bg-opacity-10 w-[70px]'>ON TRACK</Tag>
+                                <Tag className='text-green-700 rounded-sm py-4 font-semibold bg-green-700 bg-opacity-10 w-[70px]'>ON TRACK</Tag>
                             </Accordion.Button>
                         </Accordion.Header>
                         <Accordion.Content className='flex-col border-t-0'>
