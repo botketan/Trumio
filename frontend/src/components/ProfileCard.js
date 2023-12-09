@@ -52,7 +52,7 @@ import { Progress } from '@heathmont/moon-core-tw';
                     <div>
                     <span className="font-light">Tier Info</span>
                     <div className="flex items-center ">
-                        <img className="h-6 w-5" src={props.tierPic} alt="pioneer"></img>
+                        <img className="w-[21.42px] h-6" src={props.tierPic} alt="pioneer"></img>
                         <span className='font-medium ml-2'>{props.tier}</span>
                     </div>
                     </div>
@@ -61,7 +61,11 @@ import { Progress } from '@heathmont/moon-core-tw';
                     <div >
                     <span className='font-light'>Sparks</span>
                     <div className="flex items-center ">
-                        <img className="h-7 w-7" src="/logo192.png" alt="Sparks"></img>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 bg-blue-600 rounded-xl justify-center items-center gap-1 inline-flex">
+                    <g id="Other">
+                    <path id="lightning" d="M13.6869 5.77037C13.7527 5.67958 13.8303 5.59732 13.8954 5.50603C14.309 4.92611 13.9134 4.0625 13.1633 4.0625H9.51153C9.25445 4.0625 9.00972 4.17473 8.83939 4.37073L6.1645 8.4813C5.65214 9.07087 6.06334 10 6.83664 10H7.00456C7.71109 10 8.12232 10.7806 7.78229 11.3704C7.73539 11.4518 7.68458 11.5315 7.64892 11.6184L6.36799 14.7395C6.29667 14.9132 6.17755 15.0715 6.14345 15.2563C6.08217 15.5883 6.32495 15.9375 6.69982 15.9375C6.80693 15.9375 6.91182 15.9065 7.00227 15.8481L12.513 11.422C13.1534 11.0086 12.8657 10 12.1074 10C11.4542 10 11.1196 9.22409 11.5248 8.7358C11.5606 8.69266 11.5986 8.65091 11.6315 8.60552L13.6869 5.77037Z" fill="white"/>
+                    </g>
+                    </svg>
                         <span className='ml-2 font-medium'>{props.sparks} Sparks</span>
                     </div>
                     </div>
@@ -72,7 +76,7 @@ import { Progress } from '@heathmont/moon-core-tw';
                 <div className='flex justify-between'>
                     <div className='flex items-center '>
                         <span className="mr-2 font-light">Advance towards</span>
-                        <img className="h-6 w-5" src={props.nextTierPic} alt="advance towards"></img>
+                        <img className="w-[21.41px] h-6" src={props.nextTierPic} alt="advance towards"></img>
                         <span className='ml-2 font-medium'>{props.advanceTowards}</span>
                     </div>
                     <div className="flex items-center">
