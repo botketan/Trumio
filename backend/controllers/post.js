@@ -147,7 +147,7 @@ export const getById = async (req,res) =>{
 export const getByCommunity = async (req,res) =>{
     try{
     const {communityId} = req.body;
-    const data = await post.find({community:communityId,parentPost:null, isPublished:true});
+    const data = await post.find({community:communityId, isPublished:true});
     res.status(200).send(data);
     }
     catch(e)
