@@ -10,46 +10,45 @@ import {
 } from "@heathmont/moon-icons-tw";
 import { ControlsChevronRight } from '@heathmont/moon-icons-tw';
 
-const Navbar = () => {
+const Navbar = ({selected, setSelected}) => {
 
-  const [selected, setSelected] = useState('');
   const handleClick = (data) => {
     setSelected(data);
   };
 
   return (
-    <nav className="flex items-center justify-between mr-6 ml-6 mb-1 font-semibold text-[#595D62]  bg-white ">
+    <nav className="flex items-center justify-between mr-6 ml-6 mb-1 font-semibold text-[#595D62] ">
       
 
       <nav className="flex items-center justify-between w-full m-3 flex-column " >
 
       <div className="flex justify-between w-full mx-3 font-dm-sans flex-column bg-gray-100  rounded-xl">
-      <span onClick={()=>handleClick("all")} className={selected==='all'?"flex flex-col items-center ml-4 border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center ml-4 hover:scale-105 duration-100 hover:cursor-pointer"} >
+      <span onClick={()=>handleClick("All")} className={selected==='All'?"flex flex-col items-center ml-4 border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center ml-4 hover:scale-105 duration-100 hover:cursor-pointer"} >
         {/* <GenericBrowser className="text-moon-20"/> */}
         <span className="text-moon-14">All</span>
       </span>
 
-      <span onClick={()=>handleClick("development")} className={selected==='development'?"flex flex-col items-center ml-4 border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center ml-4 hover:scale-105 duration-100 hover:cursor-pointer"} >
+      <span onClick={()=>handleClick("Development")} className={selected==='Development'?"flex flex-col items-center ml-4 border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center ml-4 hover:scale-105 duration-100 hover:cursor-pointer"} >
         {/* <GenericBrowser className="text-moon-20"/> */}
         <span className="text-moon-14">Development</span>
       </span>
 
-      <span onClick={()=>handleClick("design")} className={selected==='recommendation'?"flex flex-col items-center ml-4 border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center ml-4 hover:scale-105 duration-100 hover:cursor-pointer"} >
+      <span onClick={()=>handleClick("Design")} className={selected==='Design'?"flex flex-col items-center ml-4 border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center ml-4 hover:scale-105 duration-100 hover:cursor-pointer"} >
         {/* <GenericBrowser className="text-moon-20"/> */}
-        <span className="text-moon-14">Recommendation</span>
+        <span className="text-moon-14">Design</span>
       </span>
 
-      <span onClick={()=>handleClick("marketing")} className={selected==='content-writing'?"flex flex-col items-center ml-4 border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center ml-4 hover:scale-105 duration-100 hover:cursor-pointer"} >
+      <span onClick={()=>handleClick("Marketing")} className={selected==='Marketing'?"flex flex-col items-center ml-4 border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center ml-4 hover:scale-105 duration-100 hover:cursor-pointer"} >
         {/* <GenericBrowser className="text-moon-20"/> */}
-        <span className="text-moon-14">Content Writing</span>
+        <span className="text-moon-14">Marketing</span>
       </span>
-      <span onClick={()=>handleClick("business")} className={selected==='data-science'?"flex flex-col items-center ml-4 border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center ml-4 hover:scale-105 duration-100 hover:cursor-pointer"} >
+      <span onClick={()=>handleClick("Business")} className={selected==='Business'?"flex flex-col items-center ml-4 border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center ml-4 hover:scale-105 duration-100 hover:cursor-pointer"} >
         {/* <GenericBrowser className="text-moon-20"/> */}
-        <span className="text-moon-14">Data Science</span>
+        <span className="text-moon-14">Business</span>
       </span>
-      <span to="/design" onClick={()=>handleClick("data-science")} className={selected==='design'?"flex flex-col items-center border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center hover:scale-105 duration-100 hover:cursor-pointer"} >
+      <span onClick={()=>handleClick("Data Science")} className={selected==='Data Science'?"flex flex-col items-center border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center hover:scale-105 duration-100 hover:cursor-pointer"} >
         {/* <GenericEdit className="text-moon-20"/> */}
-        <span className="text-moon-14">Design</span>
+        <span className="text-moon-14">Data Science</span>
       </span>
       </div>
 

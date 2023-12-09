@@ -2,8 +2,7 @@ import { Button } from '@heathmont/moon-core-tw';
 import { ChartFin, FilesFolderClosed, GenericSearch, GenericUser, GenericUsers } from '@heathmont/moon-icons-tw';
 import React from 'react';
 
-const MentorSearch = ({ mentors, filteredMentors, setFilteredMentors }) => {
-    console.log(filteredMentors);
+const MentorSearch = ({ mentors, setFilteredMentors }) => {
     const inputHandler = (e) => {
         const input = e.target.value;
         const filteredMentors = mentors.filter((mentor) => {
@@ -12,6 +11,7 @@ const MentorSearch = ({ mentors, filteredMentors, setFilteredMentors }) => {
         ||mentor.company.toLowerCase().includes(input.toLowerCase())
         ||mentor.role.toLowerCase().includes(input.toLowerCase()));
         });
+        // console.log(filteredMentors);
         setFilteredMentors(filteredMentors);
     };
   return (

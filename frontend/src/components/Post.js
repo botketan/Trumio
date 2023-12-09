@@ -14,54 +14,27 @@ import axios from "axios";
 
 
 // Command to insert an Embed of a post in a new block below.
-const insertEmbed = (editor, res) => {
+const insertEmbed = (editor, newContent, newTitle, link) => {
   // Block that the text cursor is currently in.
   const currentBlock = editor.getTextCursorPosition().block;
   console.log(currentBlock);
   // New block we want to insert.
   const embedBlock0 = {
     type: "paragraph",
-    content: [{ type: "text", text: `----Embedded Post----`, styles: {bold: true} }],
+    content: [{ type: "link", content : [{type: "text", text:`${newTitle}`, styles:{bold: true}}], href: link }],
   };
   const embedBlock = {
     type: "paragraph",
-    content: [{ type: "text", text: `${JSON.parse(res.data.contentPublished)[0].content[0].text}`, styles: {} }],
+    content: [{ type: "link", content : [{type: "text", text:`${newContent+"..."}`, styles:{}}], href: link }],
   };
 
   // Inserting the new block before the current one.
-  editor.insertBlocks([embedBlock0], currentBlock, "before");
-  editor.insertBlocks([embedBlock, embedBlock0], currentBlock, "after");
+  // editor.insertBlocks([embedBlock0], currentBlock, "before");
+  editor.insertBlocks([embedBlock0,embedBlock], currentBlock, "after");
 };
 
 // Custom Slash Menu item which executes the above function.
-const insertEmbedPostItem = {
-  name: "Embed Post",
-  execute: async (editor)=>{
-    const link=prompt("Enter the link of the post you want to embed");
-    const postId= link&&link.split("/")[4];
-    console.log(postId);
-    await axios.post("http://localhost:5000/post/getById",{postId:postId,userId:"65645f987aa073e675de9071"
-  }).then((res) => {
-      console.log(JSON.parse(res.data.contentPublished)[0].content[0].text);
-      link&&editor.createLink(link, `${res.data.title}`);
-      link&&insertEmbed(editor,res)
 
-    }).catch((err) => {
-      console.log(err);
-    });
-    
-  },
-  aliases: ["embed", "ed"],
-  group: "Other",
-  icon: <HiOutlineGlobeAlt size={18} />,
-  hint: "Used to embed a post below.",
-};
-
-// List containing all default Slash Menu Items, as well as our custom one.
-const customSlashMenuItemList = [
-  ...getDefaultReactSlashMenuItems(),
-  insertEmbedPostItem,
-];
 
 function traverse(blocks){
   let s ="";
@@ -83,7 +56,37 @@ function traverse(blocks){
 }
 
 
-export default function Post({post,setPost,ai,setAi,heading}) {
+export default function Post({post,setPost,ai,setAi,heading,userId}) {
+  const insertEmbedPostItem = {
+    name: "Embed Post",
+    execute: async (editor)=>{
+      const link=prompt("Enter the link of the post you want to embed");
+      const postId= link&&link.split("/")[4];
+      await axios.post("http://localhost:5000/post/getById",{postId:postId,userId:userId
+    }).then((res) => {
+      const newContent=JSON.parse(res.data.content)[0].content[0].text;
+      const newTitle= res.data.title;
+        console.log(JSON.parse(res.data.content)[0].content[0].text);
+        link&&insertEmbed(editor,newContent, newTitle,link)
+  
+      }).catch((err) => {
+        console.log(err);
+      });
+      console.log("parentID "+post._id);
+      await axios.put("http://localhost:5000/post/update",{id:postId,parentId:post._id}).then((res) => {}).catch((err) => {console.log(err);});
+    },
+    aliases: ["embed", "ed"],
+    group: "Other",
+    icon: <HiOutlineGlobeAlt size={18} />,
+    hint: "Used to embed a post below.",
+  };
+  
+  // List containing all default Slash Menu Items, as well as our custom one.
+  const customSlashMenuItemList = [
+    ...getDefaultReactSlashMenuItems(),
+    insertEmbedPostItem,
+  ];
+
   const [timer,setTimer] = useState(1);
   // Creates a new editor instance.
   let editor = useBlockNote({

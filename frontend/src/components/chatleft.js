@@ -63,8 +63,8 @@ import axios from 'axios';
 
 
 
-const handleNewChat= async(botname,setMessages,setMessageId,setChatData,chatData)=>{
-  axios.post("http://localhost:5000/cia/createChat",{botname:botname,userId:"65645f987aa073e675de9071"}).then((res) => {
+const handleNewChat= async(botname,setMessages,setMessageId,setChatData,chatData,userId)=>{
+  axios.post("http://localhost:5000/cia/createChat",{botname:botname,userId:userId}).then((res) => {
     console.log(res);
     setMessageId(res.data.id);
     setMessages(Array({role:"system",content: res.data.message}));
@@ -80,7 +80,9 @@ const handleNewChat= async(botname,setMessages,setMessageId,setChatData,chatData
 
 
 
-const  Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,setBotname,setIndex}) => {
+
+const Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,setBotname,setIndex,userId}) => {
+
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState('');
   const [selectedChatId, setSelectedChatId] = useState(0);
@@ -98,7 +100,7 @@ const  Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,set
 
   const handleNewCia= async()=>{
     closeModal();
-    axios.post("http://localhost:5000/cia/createChat",{botname:name,userId:"65645f987aa073e675de9071"}).then((res) => {
+    axios.post("http://localhost:5000/cia/createChat",{botname:name,userId:userId}).then((res) => {
       console.log(res);
       window.location.reload();
     }).catch((err) => {
@@ -137,7 +139,7 @@ const  Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,set
               </Accordion.Header>
               <Accordion.Content className='border-0'>
                 <div className='' style={{ display: "flex", flexDirection: "column"}}>
-                  <button className="w-[19vw] px-3 py-2 bg-blue-600 justify-center bg-opacity-10 rounded-lg gap-2 inline-flex my-2 mr-2" onClick={()=>handleNewChat(data.botname,setMessages,setMessageId,setChatData,chatData)}>
+                  <button className="w-[19vw] px-3 py-2 bg-blue-600 justify-center bg-opacity-10 rounded-lg gap-2 inline-flex my-2 mr-2" onClick={()=>handleNewChat(data.botname,setMessages,setMessageId,setChatData,chatData,userId)}>
                     <img src={require("../Assets/Plus.png")} alt="" className="w-6 h-6 relative" />
                     <div className="text-blue-600 text-sm font-medium font-dmsans leading-normal"  >New Chat with {data.botname}</div>
                   </button>

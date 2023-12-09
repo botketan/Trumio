@@ -10,7 +10,7 @@ import { ControlsChevronDown } from '@heathmont/moon-icons-tw';
 import { Link } from 'react-router-dom';
 
 
-const Community = () => {
+const Community = ({userId}) => {
     const [user, setUser] = useState(null);
     const [notes, setNotes] = useState(null);
     const [posts, setPosts] = useState(null);
@@ -20,7 +20,7 @@ const Community = () => {
     useEffect(() => {
         document.title = "Community";
         axios.post("http://localhost:5000/user/getUser",{
-            userId:"65645f987aa073e675de9071"
+            userId:userId
         }).then((res) => {
         setUser(res.data);
         // console.log("user");
@@ -30,7 +30,7 @@ const Community = () => {
         });
 
         axios.post("http://localhost:5000/post/getByUserId",{
-            userId:"65645f987aa073e675de9071"
+            userId:userId
         }).then((res) => {
             setNotes(res.data);
             // console.log("Notes");
@@ -43,7 +43,7 @@ const Community = () => {
 
     useEffect(() => {
         axios.post("http://localhost:5000/community/getByUserId",{
-            userId:"65645f987aa073e675de9071"
+            userId:userId
         }).then((res) => {
             setCommunities(res.data);
             setCommunity(res.data[0]);
@@ -71,7 +71,6 @@ const Community = () => {
     const handleSelect =(e)=>{
         console.log(e.target);
     }
-
   return (
     <>
     {posts&&user&&communities&&<div className='flex justify-center gap-4 py-8 '>
@@ -92,18 +91,18 @@ const Community = () => {
                         {community?.title}
                         </Dropdown.Select>
                         <Dropdown.Options>
-                            <Dropdown.Option value={{title:"Recommended"}} key={0} className="bg-white text-black">
+                            <Dropdown.Option value={{title:"Recommended"}} key={0} className=" bg-white text-black">
                             {({ selected, active }) => (
-                                <MenuItem isActive={active} isSelected={selected} className="bg-white text-black w-40">
+                                <MenuItem isActive={active} isSelected={selected} className="hover:bg-white bg-white text-black w-40">
                                 <MenuItem.Title>Recommended</MenuItem.Title>
                                 <MenuItem.Radio isSelected={selected} />
                                 </MenuItem>
                             )}
                             </Dropdown.Option>
                         {user&&communities&&communities.filter(community=> user.communityIds.includes(community._id)).map((Community, index)=> (
-                            <Dropdown.Option value={Community} key={index} className="bg-white text-black">
+                            <Dropdown.Option value={Community} key={index} className=" bg-white text-black">
                             {({ selected, active }) => (
-                                <MenuItem isActive={active} isSelected={selected} className="bg-white text-black w-40">
+                                <MenuItem isActive={active} isSelected={selected} className="hover:bg-white bg-white text-black w-40">
                                 <MenuItem.Title>{Community.title}</MenuItem.Title>
                                 <MenuItem.Radio isSelected={selected} />
                                 </MenuItem>
@@ -124,7 +123,7 @@ const Community = () => {
                 {/* </Dropdown> */}
                 <div>
                 <div className='w-40 bg-yellow-100 rounded-lg flex justify-center items-center h-12 font-medium'>
-                    {community?community.isLocal?"Local ":"Global ":"Global "} Community
+                    {community?community.islocal?"Local ":"Global ":"Global "} Community
                 </div>
             </div>
 
@@ -134,7 +133,7 @@ const Community = () => {
             {posts&&user&&communities&&posts.map((post)=>{
                 {/* console.log(post); */}
                 return (<Link to={"/postpage/"+post._id}><div className='w-[55vw] border border-neutral-200 shadow-md rounded-xl p-6 overflow-hidden'><CommunityPost key={post._id} 
-                    owner={user}
+                    owner={post.userId}
                     post={post}
                     complete={false}
                     /></div></Link>)
@@ -156,7 +155,7 @@ const Community = () => {
             nextTierPic: "tier.png",
             points:user.points,
         }}/>}
-        {notes&&<NoteList posts={notes} place={"Community"}/>}
+        {notes&&<NoteList posts={notes} place={"Community"} userId={userId}/>}
         </div>
     </div>
     }

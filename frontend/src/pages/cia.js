@@ -3,7 +3,7 @@ import Chats from "../components/CIA/chats.js";
 import Chatleft from "../components/chatleft.js";
 import axios from "axios";
 
-export default function Cia(){
+export default function Cia({userId}){
     const [messages,setMessages] =useState([]);
     const [chatData,setChatData]=useState();
     const [messageId,setMessageId]=useState();
@@ -11,7 +11,7 @@ export default function Cia(){
     const [index,setIndex]=useState(0);
     useEffect(()=>{
         axios.post("http://localhost:5000/user/getUser",{
-            userId:"65645f987aa073e675de9071"
+            userId:userId
         }).then((res) => {
             let result = Object.groupBy(res.data.chatIds,({botname})=>botname)
             let Chats = [];
@@ -28,7 +28,7 @@ export default function Cia(){
     return (
         <div className="flex flex-row px-16 py-4 container w-[100%] h-[100%] gap-5">
             <div className="w-[30vw] h-[80vh] overflow-y-scroll">
-                {chatData && <Chatleft chatData={chatData} setMessages={setMessages} setMessageId={setMessageId} setChatData={setChatData} messages={messages} setBotname={setBotname} setIndex={setIndex}/>}
+                {chatData && <Chatleft chatData={chatData} setMessages={setMessages} setMessageId={setMessageId} setChatData={setChatData} messages={messages} setBotname={setBotname} setIndex={setIndex} userId={userId}/>}
             </div>
             <div className="w-[65vw] h-[80vh] overflow-hidden">
                 {messages && <Chats messages={messages} setMessages={setMessages} messageId={messageId} chatData={chatData} setChatData={setChatData} botname={botname} index={index}/>}

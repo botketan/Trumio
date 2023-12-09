@@ -19,6 +19,7 @@ export default function NotesComponent({noteslist}) {
                         </div>
                     </div>
             </div>
+            { noteslist.length>0 &&
             <Link to={`../Notes?id=${noteslist[0].id}`}><div className="w-[55vw] h-[172px] bg-gradient-to-r from-blue-400 via-blue-200 to-blue-0 rounded-xl border border-blue-300 justify-center items-center flex gap-[15px] my-4" >
                     <div className="w-[464px] h-[156px] relative bg-white rounded-lg border border-neutral-200">
 
@@ -49,7 +50,7 @@ export default function NotesComponent({noteslist}) {
                     </div>
             </div>
         </div>
-        </Link>
+        </Link>}
         <div className="container w-[55vw] my-5 mx-auto inline-flex gap-2 overflow-hidden">
             {noteslist.map((notesCardData) => {
                 return(

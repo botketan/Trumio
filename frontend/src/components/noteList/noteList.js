@@ -6,10 +6,10 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const NoteList=({posts,setPost,setPosts,setHeading, searchParams, setSearchParams, place})=>{
+const NoteList=({posts,setPost,setPosts,setHeading, searchParams, setSearchParams, place,userId})=>{
     const navigate=useNavigate();
     const createTrunote=()=>{
-        axios.post("http://localhost:5000/post/create",{userId:"65645f987aa073e675de9071"}).then((res) => {
+        axios.post("http://localhost:5000/post/create",{userId:userId}).then((res) => {
             window.location.reload(true)})
             .catch((err) => {
             console.log(err);});
@@ -40,7 +40,7 @@ const NoteList=({posts,setPost,setPosts,setHeading, searchParams, setSearchParam
                         setPost(post); 
                         setSearchParams({id:post._id});
                         axios.post("http://localhost:5000/post/getByUserId",{
-                            userId:"65645f987aa073e675de9071"
+                            userId: userId
                         }).then((res) => {
                         setPosts(res.data.reverse());
 

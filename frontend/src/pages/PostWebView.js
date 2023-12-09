@@ -62,7 +62,7 @@ function traverse(blocks){
   
   }
 
-export default function PostWebView() {
+export default function PostWebView({userId}) {
     const {id} = useParams();
     const [post, setPost] = useState();
     const [owner,setOwner] = useState();
@@ -70,7 +70,7 @@ export default function PostWebView() {
     const [user ,setUser] = useState();
     useEffect(() => {
         axios.post("http://localhost:5000/post/getById",{
-            postId:id ,userId:"65645f987aa073e675de9071"
+            postId:id ,userId:userId
         }).then((res) => {
             res.data.isPublished=true;
             setPost(res.data);
@@ -80,7 +80,7 @@ export default function PostWebView() {
         }).catch((err) => {
             console.log(err);
         });
-        axios.post("http://localhost:5000/user/getUser",{userId:"65645f987aa073e675de9071"}).then((res) => {
+        axios.post("http://localhost:5000/user/getUser",{userId:userId}).then((res) => {
             console.log(res.data);
             setUser(res.data);
         }).catch((err) => {console.log(err);});

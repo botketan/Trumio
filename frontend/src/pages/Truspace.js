@@ -26,14 +26,14 @@ function traverse(blocks){
 
 }
 
-export default function Truspace() {
+export default function Truspace({userId}) {
   const [data, setData] = useState(null);
   const [notes, setNotes] = useState(null);
   const [projects, setProjects] = useState(null);
   const [chats, setChats] = useState(null);
   useEffect(() => {
     axios.post("http://localhost:5000/user/getUser",{
-        userId:"65645f987aa073e675de9071"
+        userId:userId
     }).then((res) => {
       setData(res.data);
       setProjects(res.data.projects);
@@ -45,7 +45,7 @@ export default function Truspace() {
   }, []);
   useEffect(() => {
     axios.post("http://localhost:5000/post/getByUserId",{
-        userId:"65645f987aa073e675de9071"
+        userId:userId
     }).then((res) => {
       setNotes(res.data);
       // console.log(res.data);

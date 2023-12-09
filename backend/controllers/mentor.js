@@ -9,10 +9,10 @@ cloudinary.config({
   });
 
 export const createMentor = async (req, res) => {
-    const { email, name, password, company, role, description, skills } = req.body;
+    const newMentor = req.body;             //changed from different seperated fields to one body
     const file = req.file;
     try {
-        const newMentor = new mentor({ email, name, password, company, role, description, skills });
+        const newMentor = new mentor(newMentor);
         if(file){
             const uploadStream = cloudinary.uploader.upload_stream(
                 async (error, result) => {
@@ -40,6 +40,7 @@ export const getMentor = async (req, res) => {
         if(skills){
             const filteredMentors = mentors.filter(mentor => mentor.skills.some(skill => skills.includes(skill)));
             res.status(200).json(filteredMentors);
+            return;
         }
         res.status(200).json(mentors);
     } catch (error) {

@@ -1,4 +1,4 @@
-import { ChatChat } from '@heathmont/moon-icons-tw';
+import { MailSendRight } from '@heathmont/moon-icons-tw';
 import { useState,useRef,useEffect } from 'react';
 import ChatComponent from './chatComponent';
 import './CIA.css';
@@ -65,13 +65,13 @@ return (
         </div>
 
         <hr className='absolute bottom-12' style={{width:"100%"}}></hr>
-        <div className="absolute bottom-0 flex items-center" style={{height:"48px",width:"100%"}}>
+        { botname && <div className="absolute bottom-0 flex items-center" style={{height:"48px",width:"100%"}}>
             
-            <input  className="pl-6 border-none outline-none" style={{width:"90%"}} placeholder='Reply to ProdWizard....' value={chats} onChange={handleChange} onKeyDown={handleKeyDown}></input>
+            <input  className="pl-6 border-none outline-none" style={{width:"90%"}} placeholder={(botname?'Reply to ' +botname:"") } value={chats} onChange={handleChange} onKeyDown={handleKeyDown}></input>
             <button className='items-center ml-3 rounded-lg bg-cyan-100' style={{width:"5%"}} onClick={sendChat}>
-                <ChatChat className='w-8 h-8 mx-auto my-auto' />
+                <MailSendRight className='w-8 h-8 mx-auto my-auto' />
             </button>
-        </div>
+        </div>}
         </div>
     </>
   )

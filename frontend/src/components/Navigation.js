@@ -5,13 +5,24 @@ import {
   NotificationsBell,
 } from "@heathmont/moon-icons-tw";
 import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
 
 
-const Navigation = ({ click, setClick }) => {
+const Navigation = ({ click, setClick, userId }) => {
+  const [user, setUser] = useState({});
   const location = useLocation();
   useEffect(()=>{
     setClick(location.pathname)
   }, [location.pathname])
+  useEffect(()=>{
+    axios.post("http://localhost:5000/user/getUser",{
+        userId:userId
+    }).then((res) => {
+        setUser(res.data);
+    }).catch((err) => {
+        console.log(err);
+    });
+},[]);
   const handleClick = (data) => {
    setClick(data);
   };
@@ -90,7 +101,7 @@ const Navigation = ({ click, setClick }) => {
               : "flex flex-col items-center hover:cursor-pointer"
           }
         >
-          <span className={(click === "/Truspace" || click === "/cia" || click === "/Gamification")?`${classSelect}`:`${classUnselect}`}>Truspace</span>
+          <span className={(click === "/Truspace" || click === "/cia" || click === "/Gamification" || click.startsWith("/Notes"))?`${classSelect}`:`${classUnselect}`}>Truspace</span>
         </Link>
         <Link
           to="/Mentor"
@@ -148,13 +159,13 @@ const Navigation = ({ click, setClick }) => {
         </span>
       
       <div className="flex flex-col gap-0 justify-center items-end">
-        <h4 className="justify-start">Vidya Sagar</h4>
+        <h4 className="justify-start">{user.name}</h4>
         <span className="text-xs justify-end"> Talent </span>
       </div>
       <img
         className="ml-4 rounded-full h-10 w-10"
-        src="/Avatar.png"
-        alt="image"
+        src={user.icon?user.icon:"https://www.w3schools.com/howto/img_avatar.png"}
+        alt="avatar"
       />
       </div>
     </nav>}
