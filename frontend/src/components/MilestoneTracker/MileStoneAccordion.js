@@ -22,7 +22,7 @@ const MileStoneAccordion = ({project, setProject}) => {
     <div>
       <Accordion singleOpen className='ml-4 mt-2'>
         {
-            project.milestones.map((milestone, index) => {
+            project && project.milestones.map((milestone, index) => {
                 let index1=index
                 return (
                     <Accordion.Item value={index+1} key={index+1} className='w-[25.88vw] rounded-xl border border-neutral-200'> 
