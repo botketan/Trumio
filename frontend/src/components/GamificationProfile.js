@@ -21,13 +21,13 @@ const GamificationProfile = () => {
   );
 // bg-gradient-to-r from-blue-200 via-blue-100 to-blue-50
   // Card component for tier and sparks
-  const Card = ({ title, value, text }) => (
+  const Card = ({ title, value, text,img }) => (
     <div className='w-56 h-24 border border-neutral-200 border-solid rounded-xl flex flex-col items-start'>
         <div className={`w-56 h-20 ml-[-12px] mt-[-12px] px-4 pt-2.5 pb-3.5 badge rounded-xl border border-blue-300 border-opacity-40 justify-between items-center inline-flex gap-4`}>
             <div className='flex flex-col gap-2'>
                 <div className="text-sm">{title}</div>
                 <div className='inline-flex gap-2'>
-                    <img className="h-8 w-8" src="/logo192.png" alt="pioneer"></img>
+                    <img className="h-8 w-8" src={img} alt="pioneer"></img>
                     <div className="font-medium">{value}</div>
                 </div>
             </div>
@@ -54,11 +54,13 @@ const GamificationProfile = () => {
             title="Tier" 
             value="Pioneer" 
             text="350/500 Points to Level Up"
+            img="/tier.png"
         />
         <Card 
             title="Sparks" 
             value="2458 Sparks" 
             text="Institute Rank: 293"
+            img="/sparks.png"
         />
 
       </div>
