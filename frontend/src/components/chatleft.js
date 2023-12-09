@@ -80,7 +80,7 @@ const handleNewChat= async(botname,setMessages,setMessageId,setChatData,chatData
 
 
 
-const Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,setBotname,setIndex}) => {
+const  Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,setBotname,setIndex}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState('');
   const [selectedChatId, setSelectedChatId] = useState(0);
@@ -125,13 +125,14 @@ const Chatleft = ({ chatData,setMessages ,setMessageId,setChatData,messages,setB
             <div className='bg-white rounded-lg border border-neutral-200 px-2 py-3 ' style={{ marginBottom: '10px' }}>
               <Accordion.Header className="moon-open:[&_svg]:rotate-180">
                 <Accordion.Button className=' justify-normal' >
-                  <ControlsChevronDownSmall className="text-trunks text-moon-24 transition duration-200 moon-open:text-bulma" />
+                  
                   <div className="w-8 h-8 relative rounded-full">
-                    <img alt='' className="w-8 h-8 absolute rounded-[99px]" src="https://icons.iconarchive.com/icons/pictogrammers/material/256/robot-happy-icon.png" />
+                    <img alt='' className="w-8 h-8 absolute rounded-[99px]" src="https://images.nightcafe.studio/jobs/NcU5udqpQTs2i7oWSlmI/NcU5udqpQTs2i7oWSlmI--150--0JBY2_2x.jpg?tr=w-1600,c-at_max" />
                   </div>
                   <div className="flex-col ml-2 mr-auto inline-flex">
-                    <div className="text-black text-sm font-medium font-dmsans leading-normal">{data.botname}</div>
+                    <div className="text-black text-moon-16 font-medium font-dmsans leading-normal">{data.botname}</div>
                   </div>
+                  <ControlsChevronDownSmall className="text-trunks text-moon-24 transition duration-200 moon-open:text-bulma" />
                 </Accordion.Button>
               </Accordion.Header>
               <Accordion.Content className='border-0'>
