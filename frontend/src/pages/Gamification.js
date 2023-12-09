@@ -9,32 +9,32 @@ import Navigation from '../components/Navigation'
 const Gamification = () => {
     const items1 = [
         {
-          heading: "Sapphire",
-          description: "Successfully completed 2 consecutive tasks",
+          heading: "Star Mentee",
+          description: "Booked 10 mentorship sessions",
           status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
+          image: "https://cdn.iconscout.com/icon/premium/png-512-thumb/star-2996120-2492152.png?f=webp&w=256",
+          sparks: "150 Sparks"
         },
         {
-          heading: "Silver",
-          description: "Completed 5 tasks in a row",
+          heading: "Finisher",
+          description: "Completed your first project",
           status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
+          image: "https://cdn.iconscout.com/icon/premium/png-512-thumb/finisher-6793663-5562502.png?f=webp&w=256",
+          sparks: "100 Sparks"
         },
         {
-          heading: "Bronze",
-          description: "Completed 3 tasks in a row",
+          heading: "Gold-rate work",
+          description: "Completed 3 tasks",
           status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
+          image: "https://lh3.googleusercontent.com/50yFntI4vajNAs2MabEB8t02Q780J_4BCTBA2uIt_WArQz87AXOfUKbcA49G5BtbU5nujCU=s85",
+          sparks: "50 Sparks"
         },
         {
-          heading: "Emerald",
-          description: "Successfully completed 1st task",
+          heading: "Upcoming Speaker",
+          description: "Posted first time in the community",
           status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
+          image: "https://us.v-cdn.net/6031588/uploads/editor/kh/4sd0ejkgv25u.png",
+          sparks: "50 Sparks"
         },
         {
           heading: "Diamond",
@@ -82,22 +82,22 @@ const Gamification = () => {
       
       const achievements= [
         {
-            title: "Silver badge earned",
-            date: "12th Dec 2023",
-            description: "Congratulations on earning Ruby badge!",
+            title: "Star Mentee badge earned",
+            date: "10th Dec 2023",
+            description: "Congratulations on earning the Star Mentee badge!",
             points: 100
         },
         {
-            title: "Bronze badge earned",
-            date: "14th Dec 2023",
-            description: "Congratulations on earning Diamond badge!",
+            title: "Finisher badge earned",
+            date: "10th Dec 2023",
+            description: "Congratulations on earning the Finisher badge!",
             points: 100
         },
         {
-            title: "Sapphire badge earned",
-            date: "15th Dec 2023",
-            description: "Congratulations on earning Bronze badge!",
-            points: 100
+            title: "Gold-rate work earned",
+            date: "10th Dec 2023",
+            description: "Congratulations on earning the badge!",
+            points: 50
         }
     ]
     const cardInfo = [

@@ -6,42 +6,6 @@ import CommentsList from '../components/Comments/Comments.js';
 import CommentInput from '../components/Comments/CommentInput.js';
 import CommentBox from '../components/Comments/CommentBox.js';
 
-const comments = [
-  {
-    id: 1,
-    username: "Waleed Irfan",
-    position: "Sr. UX Architect | Product Designer | Chief Creative Officer",
-    content: "You shouldn't add any such images without adding caution. Automatic movement can trigger vertigo, headaches, and nausea in people with vestibular disorders and seizures in people with conditions like photosensitive epilepsy. It's the biggest accessibility issue.",
-    likes: 2,
-    reply: [
-      {
-        icon: "/Avatar.png",
-        username: "Vidya Sagar",
-        position: "Sr. UX Architect | Product Designer | Chief Creative Officer",
-        content: "You shouldn't add any such images without adding caution. Automatic movement ca",
-        likes: 2,
-      }
-   ],
-    icon: "/Avatar.png"
-  },
-  {
-    id: 2,
-    username: "Waleed Irfan",
-    position: "Sr. UX Architect | Product Designer | Chief Creative Officer",
-    content: "You shouldn't add any such images without adding caution. Automatic movement can trigger vertigo, headaches, and nausea in people with vestibular disorders and seizures in people with conditions like photosensitive epilepsy. It's the biggest accessibility issue.",
-    likes: 2,
-    reply: [
-      {
-        icon: "/Avatar.png",
-        username: "Vidya Sagar",
-        position: "Sr. UX Architect | Product Designer | Chief Creative Officer",
-        content: "You shouldn't add any such images without adding caution. Automatic movement ca",
-        likes: 2,
-      }
-   ],
-    icon: "/Avatar.png"
-  }
-];
 
 
 function traverse(blocks){

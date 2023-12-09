@@ -92,7 +92,7 @@ const AvailableSessions = ({availability, closeModal}) => {
         <Carousel.Reel>
           {items.map((_, index) => (
             <Carousel.Item key={index} className="w-80">
-              <TimeSlots times={displayTimes[index]}/>
+              <TimeSlots times={displayTimes[index]} closeModal={closeModal}/>
             </Carousel.Item>
           ))}
         </Carousel.Reel>
