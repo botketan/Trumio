@@ -101,18 +101,18 @@ const Gamification = () => {
         }
     ]
     const cardInfo = [
-        { Name: "Aarav Sharma", rank: "1", sparks: "265", imageLink: "https://cdn-icons-png.flaticon.com/128/2202/2202112.png" },
-        { Name: "Kavya Patel", rank: "2", sparks: "263", imageLink: "https://cdn-icons-png.flaticon.com/128/4140/4140047.png" },
-        { Name: "Advait Singh", rank: "3", sparks: "259", imageLink: "https://cdn-icons-png.flaticon.com/128/3135/3135715.png" },
-        { Name: "Diya Kapoor", rank: "4", sparks: "256", imageLink: "https://cdn-icons-png.flaticon.com/128/4140/4140051.png" },
-        { Name: "Arjun Desai", rank: "5", sparks: "248", imageLink: "https://cdn-icons-png.flaticon.com/128/4333/4333609.png" },
-        { Name: "Vir Chopra", rank: "6", sparks: "243", imageLink: "https://cdn-icons-png.flaticon.com/128/4140/4140048.png" },
-        { Name: "Ananya Reddy", rank: "7", sparks: "240", imageLink: "https://cdn-icons-png.flaticon.com/128/11498/11498793.png" },
-        { Name: "Riya Verma", rank: "8", sparks: "238", imageLink: "https://cdn-icons-png.flaticon.com/128/706/706830.png" },
-        { Name: "Aryan Gupta", rank: "9", sparks: "233", imageLink: "https://cdn-icons-png.flaticon.com/128/236/236832.png" },
-        { Name: "Ishita Menon", rank: "10", sparks: "231", imageLink: "https://cdn-icons-png.flaticon.com/128/706/706816.png" },
-        { Name: "Rohan Khanna", rank: "11", sparks: "225", imageLink: "https://cdn-icons-png.flaticon.com/128/1999/1999625.png" },
-        { Name: "Naina Joshi", rank: "12", sparks: "219", imageLink: "https://cdn-icons-png.flaticon.com/128/1154/1154448.png" },
+        { Name: "Aarav Sharma", rank: "1", sparks: "13665", imageLink: "https://cdn-icons-png.flaticon.com/128/2202/2202112.png" },
+        { Name: "Kavya Patel", rank: "2", sparks: "12463", imageLink: "https://cdn-icons-png.flaticon.com/128/4140/4140047.png" },
+        { Name: "Advait Singh", rank: "3", sparks: "11359", imageLink: "https://cdn-icons-png.flaticon.com/128/3135/3135715.png" },
+        { Name: "Diya Kapoor", rank: "4", sparks: "11256", imageLink: "https://cdn-icons-png.flaticon.com/128/4140/4140051.png" },
+        { Name: "Arjun Desai", rank: "5", sparks: "103248", imageLink: "https://cdn-icons-png.flaticon.com/128/4333/4333609.png" },
+        { Name: "Vir Chopra", rank: "6", sparks: "9243", imageLink: "https://cdn-icons-png.flaticon.com/128/4140/4140048.png" },
+        { Name: "Ananya Reddy", rank: "7", sparks: "9240", imageLink: "https://cdn-icons-png.flaticon.com/128/11498/11498793.png" },
+        { Name: "Riya Verma", rank: "8", sparks: "9238", imageLink: "https://cdn-icons-png.flaticon.com/128/706/706830.png" },
+        { Name: "Aryan Gupta", rank: "9", sparks: "9133", imageLink: "https://cdn-icons-png.flaticon.com/128/236/236832.png" },
+        { Name: "Ishita Menon", rank: "10", sparks: "8511", imageLink: "https://cdn-icons-png.flaticon.com/128/706/706816.png" },
+        { Name: "Rohan Khanna", rank: "11", sparks: "8425", imageLink: "https://cdn-icons-png.flaticon.com/128/1999/1999625.png" },
+        { Name: "Naina Joshi", rank: "12", sparks: "8219", imageLink: "https://cdn-icons-png.flaticon.com/128/1154/1154448.png" },
       ];
   return (
     <>
