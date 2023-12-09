@@ -31,6 +31,7 @@ export const getUser = async (req, res) => {
         const userget = await user.findById(userId).populate('projects').populate('chatIds');
         if (!userget) {
             res.status(404).send("User not found");
+            return;
         }
         res.status(200).json(userget);
     } catch (error) {

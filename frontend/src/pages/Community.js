@@ -71,7 +71,6 @@ const Community = ({userId}) => {
     const handleSelect =(e)=>{
         console.log(e.target);
     }
-
   return (
     <>
     {posts&&user&&communities&&<div className='flex justify-center gap-4 py-8 '>
@@ -124,7 +123,7 @@ const Community = ({userId}) => {
                 {/* </Dropdown> */}
                 <div>
                 <div className='w-40 bg-yellow-100 rounded-lg flex justify-center items-center h-12 font-medium'>
-                    {community?community.isLocal?"Local ":"Global ":"Global "} Community
+                    {community?community.islocal?"Local ":"Global ":"Global "} Community
                 </div>
             </div>
 
