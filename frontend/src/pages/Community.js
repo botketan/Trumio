@@ -91,18 +91,18 @@ const Community = ({userId}) => {
                         {community?.title}
                         </Dropdown.Select>
                         <Dropdown.Options>
-                            <Dropdown.Option value={{title:"Recommended"}} key={0} className="bg-white text-black">
+                            <Dropdown.Option value={{title:"Recommended"}} key={0} className=" bg-white text-black">
                             {({ selected, active }) => (
-                                <MenuItem isActive={active} isSelected={selected} className="bg-white text-black w-40">
+                                <MenuItem isActive={active} isSelected={selected} className="hover:bg-white bg-white text-black w-40">
                                 <MenuItem.Title>Recommended</MenuItem.Title>
                                 <MenuItem.Radio isSelected={selected} />
                                 </MenuItem>
                             )}
                             </Dropdown.Option>
                         {user&&communities&&communities.filter(community=> user.communityIds.includes(community._id)).map((Community, index)=> (
-                            <Dropdown.Option value={Community} key={index} className="bg-white text-black">
+                            <Dropdown.Option value={Community} key={index} className=" bg-white text-black">
                             {({ selected, active }) => (
-                                <MenuItem isActive={active} isSelected={selected} className="bg-white text-black w-40">
+                                <MenuItem isActive={active} isSelected={selected} className="hover:bg-white bg-white text-black w-40">
                                 <MenuItem.Title>{Community.title}</MenuItem.Title>
                                 <MenuItem.Radio isSelected={selected} />
                                 </MenuItem>

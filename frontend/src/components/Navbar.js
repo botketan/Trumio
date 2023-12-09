@@ -46,7 +46,7 @@ const Navbar = ({selected, setSelected}) => {
         {/* <GenericBrowser className="text-moon-20"/> */}
         <span className="text-moon-14">Business</span>
       </span>
-      <span onClick={()=>handleClick("Data-science")} className={selected==='Data-science'?"flex flex-col items-center border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center hover:scale-105 duration-100 hover:cursor-pointer"} >
+      <span onClick={()=>handleClick("Data Science")} className={selected==='Data Science'?"flex flex-col items-center border-b text-blue-600 border-solid border-blue-600 transition-transform duration-100 ease-in-out transform hover:scale-105 hover:cursor-pointer p-3" : "p-3 flex flex-col items-center hover:scale-105 duration-100 hover:cursor-pointer"} >
         {/* <GenericEdit className="text-moon-20"/> */}
         <span className="text-moon-14">Data Science</span>
       </span>
