@@ -1,10 +1,19 @@
 const vscode = require("vscode");
-const [generate,generateJson] = require("./API/LLMChain"); // For the Chat Bot
+const [generate,generateJson] = require("./LLMChain"); // For the Chat Bot
 const axios = require("axios");
+
+let path_to_env = __dirname.split('\\');
+path_to_env = path_to_env.join("\\\\")
+
+require('dotenv').config({path : path_to_env+'\\.env'});
+const apiKey = process.env.OPENAI_API_KEY;
 
 function activate(context) {
   const chatprovider = new ChatViewProvider(context.extensionUri); // Link Chat View Provider
 
+  console.log("ENV Variables");
+  console.log(process.env);
+  
   context.subscriptions.push(
     vscode.window.registerWebviewViewProvider(
       ChatViewProvider.viewType,
@@ -57,7 +66,7 @@ function activate(context) {
           `Now you are supposed to read this piece of code. Then you try to understand the logic behind the code and what its trying to do. Lets say you have generated 'x' errors. Join all of these errors together seperated by a newline and output the whole thing as a single single. ${selectedText} Note: Make sure there's a '\n' tag among every 10 words that you generate.`
         );
         const gpttests = await generateJson(
-          `I will give you a piece of code. Try to understand the logic behind the code and what its trying to do. Then give me exactly 4 Testcases (input-output pairs call them input1,output1 ... ) for the code. I want you to generate a single string exactly in the following format:
+          base + `I will give you a piece of code. Try to understand the logic behind the code and what its trying to do. Then give me exactly 4 Testcases (input-output pairs call them input1,output1 ... ) for the code. I want you to generate a single string exactly in the following format:
           
           "
             Input1  - <your input1> 

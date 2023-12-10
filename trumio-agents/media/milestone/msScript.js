@@ -12,6 +12,7 @@ const getProjects = () => {
 
 const getMilestones = (projectName) => {
     return axios.post('http://localhost:5000/user/getUser', {userId: "65645f987aa073e675de9071"}).
+    // 65645f987aa073e675de9071
     then(response => {
         let projects = response.data.projects;
         

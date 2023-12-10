@@ -1,6 +1,11 @@
 const openaiapi = require("openai");
 const vscode = require("vscode");
-const apiKey = "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" // Change API Key here!
+
+let path_to_env = __dirname.split('\\');
+path_to_env = path_to_env.join("\\\\")
+
+require('dotenv').config({path : path_to_env+'\\.env'});
+const apiKey = process.env.OPENAI_API_KEY;
 
 const openai = new openaiapi.OpenAI({
   apiKey: apiKey,
