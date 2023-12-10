@@ -32,6 +32,22 @@ class AppDataLayer {
     return CIAService().sendMessage(chatId, message);
   }
 
+  Future<String> explainTerms(PostModel postModel) async {
+    return CIAService().explainTerms(postModel);
+  }
+
+  Future<String> summarizeThePost(PostModel postModel) async {
+    return CIAService().summarizeThePost(postModel);
+  }
+
+  Future<String> factChecker(PostModel postModel) async {
+    return CIAService().factChecker(postModel);
+  }
+
+  Future<String> createNotes(PostModel postModel) async {
+    return CIAService().createNotes(postModel);
+  }
+
   Future<List<PostModel>> getUserExplorePosts(String userId) async {
     try {
       await InternetAddress.lookup('example.com');

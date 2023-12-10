@@ -7,78 +7,79 @@ import AchievementCarousel from "./Crousel_Achievements/AchievementCarousel";
 // Sample data for carousel items
 
 const Badges = ({badges}) => {
-    const items1 = [
-        {
-          heading: "Badge 1",
-          description: "Description for Badge 1",
-          status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
-        },
-        {
-          heading: "Badge 2",
-          description: "Description for Badge 2",
-          status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
-        },
-        {
-          heading: "Badge 3",
-          description: "Description for Badge 3",
-          status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
-        },
-        {
-          heading: "Badge 4",
-          description: "Description for Badge 4",
-          status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
-        },
-        {
-          heading: "Badge 5",
-          description: "Description for Badge 5",
-          status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
-        },
-        {
-          heading: "Badge 6",
-          description: "Description for Badge 6",
-          status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
-        },
-        {
-          heading: "Badge 7",
-          description: "Description for Badge 7",
-          status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
-        },
-        {
-          heading: "Badge 8",
-          description: "Description for Badge 8",
-          status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
-        },
-        {
-          heading: "Badge 9",
-          description: "Description for Badge 9",
-          status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
-        },
-        {
-          heading: "Badge 10",
-          description: "Description for Badge 10",
-          status: "3 days left",
-          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
-          sparks: "25 Sparks"
-        }
-      ];
+  const items1 = [
+    {
+      heading: "Star Mentee",
+      description: "Booked 10 mentorship sessions",
+      status: "3 days left",
+      image: "https://cdn.iconscout.com/icon/premium/png-512-thumb/star-2996120-2492152.png?f=webp&w=256",
+      sparks: "150 Sparks"
+    },
+    {
+      heading: "Finisher",
+      description: "Completed your first project",
+      status: "3 days left",
+      image: "https://cdn.iconscout.com/icon/premium/png-512-thumb/finisher-6793663-5562502.png?f=webp&w=256",
+      sparks: "100 Sparks"
+    },
+    {
+      heading: "Gold-rate work",
+      description: "Completed 3 tasks",
+      status: "3 days left",
+      image: "https://lh3.googleusercontent.com/50yFntI4vajNAs2MabEB8t02Q780J_4BCTBA2uIt_WArQz87AXOfUKbcA49G5BtbU5nujCU=s85",
+      sparks: "50 Sparks"
+    },
+    {
+      heading: "Upcoming Speaker",
+      description: "Posted first time in the community",
+      status: "3 days left",
+      image: "https://us.v-cdn.net/6031588/uploads/editor/kh/4sd0ejkgv25u.png",
+      sparks: "50 Sparks"
+    },
+    {
+      heading: "Diamond",
+      description: "Description for Diamond badge",
+      status: "3 days left",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
+      sparks: "25 Sparks"
+    },
+    {
+      heading: "Crystal",
+      description: "Description for Crystal",
+      status: "3 days left",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
+      sparks: "25 Sparks"
+    },
+    {
+      heading: "Ruby",
+      description: "Description for Ruby",
+      status: "3 days left",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
+      sparks: "25 Sparks"
+    },
+    {
+      heading: "Platinum",
+      description: "Description for Platinum",
+      status: "3 days left",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
+      sparks: "25 Sparks"
+    },
+    {
+      heading: "Emerald",
+      description: "Description for Emerald",
+      status: "3 days left",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
+      sparks: "25 Sparks"
+    },
+    {
+      heading: "Topaz",
+      description: "Description for Topaz",
+      status: "3 days left",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRroBwNcmJFu3Q7gjYq18s9vaaY8-QTbOW5_Q&usqp=CAU",
+      sparks: "25 Sparks"
+    }
+  ];
+  
       // console.log(badges);
   return (
 
@@ -91,10 +92,7 @@ const Badges = ({badges}) => {
         </button>
         </Link>
       </div>
-      <div className="h-20">
-
-      </div>
-      <AchievementCarousel items={badges} />
+      <AchievementCarousel items={items1} />
       
     </div>
   );

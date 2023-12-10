@@ -25,13 +25,13 @@ function App() {
     document.title = "UniConnect";
   }, []);
   const [click, setClick] = useState("")
-  const [userId,setUserId]=useState("65645f987aa073e675de9071");
+  const [userId,setUserId]=useState("6574d117710649ce4c6b9c3b");
   return (
     <>
     <Router>
       <Navigation userId={userId} click={click} setClick={setClick}/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Truspace userId={userId}/>} />
         <Route exact path="/Notes" element={<Notes userId={userId}/>} />
         <Route exact path="/Gamification" element={<Gamification  userId={userId}/>} />
         <Route exact path="/Mentor" element={<Mentor userId={userId}/>} /> 

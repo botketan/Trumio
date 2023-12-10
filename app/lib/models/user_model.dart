@@ -1,3 +1,4 @@
+import 'package:app/models/badge_model.dart';
 import 'package:app/models/cia_chat_model.dart';
 import 'package:app/models/project_model.dart';
 
@@ -12,7 +13,7 @@ class UserModel {
   String? description;
   int points;
   int sparks;
-  List<String> badges;
+  List<BadgeModel> badges;
   List<ProjectModel> projects;
   List<CIAChatModel> chats;
 
@@ -43,7 +44,7 @@ class UserModel {
       'description': description,
       'points': points,
       'sparks': sparks,
-      'badges': badges,
+      'badges': badges.map((e) => e.toJson()).toList(),
       'projects': projects.map((e) => e.toJson()).toList(),
       'chatIds': chats.map((e) => e.toJson()).toList(),
     };
@@ -60,8 +61,9 @@ class UserModel {
       description: json['description'],
       points: json['points'] ?? 0,
       sparks: json['sparks'] ?? 0,
-      // badges: json['badges'] as List<String> ?? [],
-      badges: [],
+      badges: (json['badges'] as List<dynamic>)
+          .map((e) => BadgeModel.fromJson(e))
+          .toList(),
       projects: (json['projects'] as List<dynamic>)
           .map((e) => ProjectModel.fromJson(e))
           .toList(),

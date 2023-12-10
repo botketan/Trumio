@@ -10,6 +10,7 @@ class PostModel {
   String? content;
   String? contentPublished;
   String? stringContent;
+  String? coverImage;
   int likes;
   List<CommentModel> comments;
 
@@ -23,6 +24,7 @@ class PostModel {
     required this.content,
     required this.contentPublished,
     required this.stringContent,
+    required this.coverImage,
     required this.likes,
     required this.comments,
   });
@@ -38,6 +40,7 @@ class PostModel {
       "contentPublished": contentPublished,
       "stringContent": stringContent,
       "likes": likes,
+      "coverImage": coverImage,
       "comments": comments.map((e) => e.toJson()).toList(),
     };
 
@@ -53,6 +56,7 @@ class PostModel {
       contentPublished: json["contentPublished"],
       stringContent: json["stringContent"],
       likes: json["likes"] ?? 0,
+      coverImage: json["coverImage"],
       comments: (json["comments"] as List<dynamic>)
           .map((e) => CommentModel.fromJson(e))
           .toList(),
