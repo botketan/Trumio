@@ -23,12 +23,6 @@ function activate(context) {
     )
   );
 
-
-
-
-
-
-
     // Code Explanation Functionality
 
   let disposable1 = vscode.commands.registerCommand(
