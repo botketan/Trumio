@@ -18,7 +18,6 @@ const Community = ({userId}) => {
     const [community, setCommunity] = useState(null);
 
     useEffect(() => {
-        document.title = "Community";
         axios.post("http://localhost:5000/user/getUser",{
             userId:userId
         }).then((res) => {
