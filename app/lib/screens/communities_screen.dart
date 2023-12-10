@@ -37,10 +37,13 @@ class CommunitiesScreen extends StatelessWidget {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: CachedNetworkImage(
-                          imageUrl: "https://cdn6.f-cdn.com/contestentries/2034159/59667786/61c5ec652c69e_thumbCard.jpg",
-                          height: 32.0,
-                          width: 32.0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(32.0),
+                          child: CachedNetworkImage(
+                            imageUrl: "https://www.clipartmax.com/png/middle/307-3072101_probably-the-potential-discord-server-icon-icon.png",
+                            height: 32.0,
+                            width: 32.0,
+                          ),
                         ),
                       ),
                     ),
@@ -57,30 +60,13 @@ class CommunitiesScreen extends StatelessWidget {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: CachedNetworkImage(
-                          imageUrl: "https://www.clipartmax.com/png/middle/307-3072101_probably-the-potential-discord-server-icon-icon.png",
-                          height: 32.0,
-                          width: 32.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Card(
-                    elevation: 1.0,
-                    margin: EdgeInsets.zero,
-                    shape: const CircleBorder(),
-                    color: Colors.white,
-                    surfaceTintColor: Colors.white,
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: CachedNetworkImage(
-                          imageUrl: "https://image.emojisky.com/377/143377-middle.png",
-                          height: 32.0,
-                          width: 32.0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(32.0),
+                          child: CachedNetworkImage(
+                            imageUrl: "https://image.emojisky.com/377/143377-middle.png",
+                            height: 32.0,
+                            width: 32.0,
+                          ),
                         ),
                       ),
                     ),
@@ -104,10 +90,13 @@ class CommunitiesScreen extends StatelessWidget {
                             Center(
                               child: Padding(
                                 padding: const EdgeInsets.all(4.0),
-                                child: CachedNetworkImage(
-                                  imageUrl: "https://i.pinimg.com/236x/de/ca/41/deca414970b34fe692e62c49156c6943.jpg",
-                                  height: 32.0,
-                                  width: 32.0,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(32.0),
+                                  child: CachedNetworkImage(
+                                    imageUrl: "https://i.pinimg.com/236x/de/ca/41/deca414970b34fe692e62c49156c6943.jpg",
+                                    height: 32.0,
+                                    width: 32.0,
+                                  ),
                                 ),
                               ),
                             ),
@@ -115,7 +104,7 @@ class CommunitiesScreen extends StatelessWidget {
                               width: 8.0,
                             ),
                             const Text(
-                              "Your chip text",
+                              "Coding Club, MIT",
                               style: TextStyle(
                                 fontFamily: "DMSans",
                                 fontSize: 14,
@@ -143,10 +132,13 @@ class CommunitiesScreen extends StatelessWidget {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: CachedNetworkImage(
-                          imageUrl: "https://a0.anyrgb.com/pngimg/1318/798/ban-hammer-discord-emoji-discord-twitch-hammer-streaming-media-emoji-text-messaging-email-signage.png",
-                          height: 32.0,
-                          width: 32.0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(32.0),
+                          child: CachedNetworkImage(
+                            imageUrl: "https://a0.anyrgb.com/pngimg/1318/798/ban-hammer-discord-emoji-discord-twitch-hammer-streaming-media-emoji-text-messaging-email-signage.png",
+                            height: 32.0,
+                            width: 32.0,
+                          ),
                         ),
                       ),
                     ),
@@ -163,10 +155,13 @@ class CommunitiesScreen extends StatelessWidget {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: CachedNetworkImage(
-                          imageUrl: "https://i.imgur.com/j41uFM2.jpeg",
-                          height: 32.0,
-                          width: 32.0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(32.0),
+                          child: CachedNetworkImage(
+                            imageUrl: "https://i.imgur.com/j41uFM2.jpeg",
+                            height: 32.0,
+                            width: 32.0,
+                          ),
                         ),
                       ),
                     ),
@@ -183,10 +178,13 @@ class CommunitiesScreen extends StatelessWidget {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: CachedNetworkImage(
-                          imageUrl: "https://cdn-icons-png.flaticon.com/512/2144/2144314.png",
-                          height: 32.0,
-                          width: 32.0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(32.0),
+                          child: CachedNetworkImage(
+                            imageUrl: "https://cdn-icons-png.flaticon.com/512/2144/2144314.png",
+                            height: 32.0,
+                            width: 32.0,
+                          ),
                         ),
                       ),
                     ),
@@ -203,10 +201,13 @@ class CommunitiesScreen extends StatelessWidget {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: CachedNetworkImage(
-                          imageUrl: "https://static.wikia.nocookie.net/the-cursed-yacht/images/9/9b/REDROZ.png/revision/latest?cb=20201114213952",
-                          height: 32.0,
-                          width: 32.0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(32.0),
+                          child: CachedNetworkImage(
+                            imageUrl: "https://static.wikia.nocookie.net/the-cursed-yacht/images/9/9b/REDROZ.png/revision/latest?cb=20201114213952",
+                            height: 32.0,
+                            width: 32.0,
+                          ),
                         ),
                       ),
                     ),
@@ -223,10 +224,13 @@ class CommunitiesScreen extends StatelessWidget {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: CachedNetworkImage(
-                          imageUrl: "https://www.pngitem.com/pimgs/m/298-2986122_discord-server-icon-avatar-cryptopanic-logo-png-transparent.png",
-                          height: 32.0,
-                          width: 32.0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(32.0),
+                          child: CachedNetworkImage(
+                            imageUrl: "https://www.pngitem.com/pimgs/m/298-2986122_discord-server-icon-avatar-cryptopanic-logo-png-transparent.png",
+                            height: 32.0,
+                            width: 32.0,
+                          ),
                         ),
                       ),
                     ),
@@ -243,10 +247,13 @@ class CommunitiesScreen extends StatelessWidget {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: CachedNetworkImage(
-                          imageUrl: "https://www.clipartmax.com/png/middle/307-3072101_probably-the-potential-discord-server-icon-icon.png",
-                          height: 32.0,
-                          width: 32.0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(32.0),
+                          child: CachedNetworkImage(
+                            imageUrl: "https://www.clipartmax.com/png/middle/307-3072101_probably-the-potential-discord-server-icon-icon.png",
+                            height: 32.0,
+                            width: 32.0,
+                          ),
                         ),
                       ),
                     ),

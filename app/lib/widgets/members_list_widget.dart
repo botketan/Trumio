@@ -244,15 +244,18 @@ class MembersListWidget extends StatelessWidget {
                           width: 48.0,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(48.0),
-                            border: Border.all(
-                              color: const Color(0xFFE2E2E2),
-                              width: 1.0,
-                            ),
+                            color: const Color(0xFFE1EEFE),
                           ),
-                          child: Image.asset(
-                            "assets/avatar.png",
-                            height: 48.0,
-                            width: 48.0,
+                          child: const Center(
+                            child: Text(
+                              "KS",
+                              style: TextStyle(
+                                fontFamily: "DMSans",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF0578FB),
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -316,15 +319,18 @@ class MembersListWidget extends StatelessWidget {
                           width: 48.0,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(48.0),
-                            border: Border.all(
-                              color: const Color(0xFFE2E2E2),
-                              width: 1.0,
-                            ),
+                            color: const Color(0xFFE1EEFE),
                           ),
-                          child: Image.asset(
-                            "assets/avatar.png",
-                            height: 48.0,
-                            width: 48.0,
+                          child: const Center(
+                            child: Text(
+                              "TS",
+                              style: TextStyle(
+                                fontFamily: "DMSans",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF0578FB),
+                              ),
+                            ),
                           ),
                         ),
                       ),

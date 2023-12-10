@@ -38,7 +38,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       for (int i = 0; i < posts.length; i++) {
         users.add(await AppDataLayer().getUserData(posts[i].userId!));
       }
-      setState(() {});
+      if (mounted) setState(() {});
     });
   }
 

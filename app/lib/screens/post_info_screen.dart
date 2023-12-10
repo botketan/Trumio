@@ -361,7 +361,7 @@ class _PostInfoScreenState extends State<PostInfoScreen> {
             ),
             PostWidget(
               post: widget.post,
-              userModel: widget.userModel!,
+              userModel: widget.userModel,
               isExpanded: true,
             ),
             const SizedBox(

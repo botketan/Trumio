@@ -109,6 +109,6 @@ class _NotesListWidgetState extends State<NotesListWidget> {
         width: 12.0,
       ));
     }
-    return notes;
+    return notes.reversed.toList();
   }
 }

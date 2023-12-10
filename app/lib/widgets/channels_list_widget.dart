@@ -1,3 +1,4 @@
+import 'package:app/screens/chat_channel_screen.dart';
 import 'package:app/screens/explore_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -30,130 +31,157 @@ class ChannelsListWidget extends StatelessWidget {
           const SizedBox(
             height: 8.0,
           ),
-          MoonMenuItem(
-            menuItemPadding: const EdgeInsets.only(top: 2.0),
-            title: const Padding(
-              padding: EdgeInsets.only(left: 12.0),
-              child: Text(
-                "general",
-                style: TextStyle(
-                  fontFamily: "DMSans",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Container(
-                height: 24.0,
-                width: 24.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4.0),
-                  border: Border.all(
-                    color: const Color(0xFFD9D9D9),
-                    width: 1.0,
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ExploreScreen(
+                    channelName: "general",
+                    localCommunity: "Coding Club, MIT",
                   ),
                 ),
-                child: const Center(
+              );
+            },
+            child: Ink(
+              child: MoonMenuItem(
+                menuItemPadding: const EdgeInsets.only(top: 2.0),
+                title: const Padding(
+                  padding: EdgeInsets.only(left: 12.0),
                   child: Text(
-                    "#",
+                    "general",
                     style: TextStyle(
                       fontFamily: "DMSans",
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                       color: Colors.black,
                     ),
                   ),
                 ),
-              ),
-            ),
-            trailing: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Container(
-                height: 24.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(999.0),
-                  color: const Color(0xFFE1EEFE),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 12.0,
-                    vertical: 4.0,
+                leading: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Container(
+                    height: 24.0,
+                    width: 24.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.0),
+                      border: Border.all(
+                        color: const Color(0xFFD9D9D9),
+                        width: 1.0,
+                      ),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "#",
+                        style: TextStyle(
+                          fontFamily: "DMSans",
+                          fontSize: 10,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
-                  child: Text(
-                    "03",
-                    style: TextStyle(
-                      fontFamily: "DMSans",
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF0578FB),
+                ),
+                trailing: Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Container(
+                    height: 24.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(999.0),
+                      color: const Color(0xFFE1EEFE),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12.0,
+                        vertical: 4.0,
+                      ),
+                      child: Text(
+                        "03",
+                        style: TextStyle(
+                          fontFamily: "DMSans",
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF0578FB),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
           ),
-          MoonMenuItem(
-            menuItemPadding: const EdgeInsets.only(top: 2.0),
-            title: const Padding(
-              padding: EdgeInsets.only(left: 12.0),
-              child: Text(
-                "bug-fixes",
-                style: TextStyle(
-                  fontFamily: "DMSans",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Container(
-                height: 24.0,
-                width: 24.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4.0),
-                  border: Border.all(
-                    color: const Color(0xFFD9D9D9),
-                    width: 1.0,
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const ChatChannelScreen(
+                    channelName: "bug-fixes",
                   ),
                 ),
-                child: const Center(
+              );
+            },
+            child: Ink(
+              child: MoonMenuItem(
+                menuItemPadding: const EdgeInsets.only(top: 2.0),
+                title: const Padding(
+                  padding: EdgeInsets.only(left: 12.0),
                   child: Text(
-                    "@",
+                    "bug-fixes",
                     style: TextStyle(
                       fontFamily: "DMSans",
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                       color: Colors.black,
                     ),
                   ),
                 ),
-              ),
-            ),
-            trailing: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Container(
-                height: 24.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(999.0),
-                  color: const Color(0xFFE1EEFE),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 12.0,
-                    vertical: 4.0,
+                leading: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Container(
+                    height: 24.0,
+                    width: 24.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.0),
+                      border: Border.all(
+                        color: const Color(0xFFD9D9D9),
+                        width: 1.0,
+                      ),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "@",
+                        style: TextStyle(
+                          fontFamily: "DMSans",
+                          fontSize: 10,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
-                  child: Text(
-                    "01",
-                    style: TextStyle(
-                      fontFamily: "DMSans",
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF0578FB),
+                ),
+                trailing: Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Container(
+                    height: 24.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(999.0),
+                      color: const Color(0xFFE1EEFE),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12.0,
+                        vertical: 4.0,
+                      ),
+                      child: Text(
+                        "01",
+                        style: TextStyle(
+                          fontFamily: "DMSans",
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF0578FB),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -226,18 +254,24 @@ class ChannelWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(
-          PageRouteBuilder(
-            transitionDuration: const Duration(milliseconds: 500),
-            reverseTransitionDuration: const Duration(milliseconds: 500),
-            pageBuilder: (_, __, ___) {
-              return ExploreScreen(
+        if (isPostChannel) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ExploreScreen(
                 channelName: channelName,
                 localCommunity: "Coding Club, MIT",
-              );
-            },
-          ),
-        );
+              ),
+            ),
+          );
+        } else {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ChatChannelScreen(
+                channelName: channelName,
+              ),
+            ),
+          );
+        }
       },
       child: Ink(
         child: MoonMenuItem(
