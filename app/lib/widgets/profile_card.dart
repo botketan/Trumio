@@ -1,5 +1,6 @@
 import 'package:app/models/user_model.dart';
 import 'package:app/utils/get_initials.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moon_design/moon_design.dart';
@@ -259,8 +260,8 @@ class ProfileCard extends StatelessWidget {
             child: (userModel.icon != null)
                 ? ClipRRect(
                   borderRadius: BorderRadius.circular(48.0),
-                  child: Image.network(
-                      userModel.icon!,
+                  child: CachedNetworkImage(
+                      imageUrl: userModel.icon!,
                       fit: BoxFit.cover,
                       width: 64.0,
                       height: 64.0,

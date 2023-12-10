@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage>
                           child: IndexedStack(
                             index: _pageIndex,
                             children: [
-                              const ExploreScreen(),
+                              ExploreScreen(),
                               const TruspaceScreen(),
                               const CommunitiesScreen(),
                               const UpskillScreen(),
