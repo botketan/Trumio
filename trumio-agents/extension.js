@@ -316,10 +316,6 @@ class ChatViewProvider {
         </head>
         
         <body class="show-chatbot">
-            <button class="chatbot-toggler">
-                <span class="material-symbols-outlined">mode_comment</span>
-                <span class="material-symbols-outlined">close</span>
-            </button>
             <div class="chatbot">
                 <header>
                     <h2>ChatBot</h2>
