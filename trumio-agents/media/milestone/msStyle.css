@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta&family=DM+Sans&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 body {
     font-family: 'DM Sans', 'DM Sans';
     margin: 0;
@@ -54,7 +56,7 @@ body {
 
 .milestone summary {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     width: 220px;
     padding-bottom: 10px;
 }
@@ -63,7 +65,7 @@ body {
     display: block;
     margin-left: 8px;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .on-track {
@@ -116,12 +118,12 @@ body, button, input[type='checkbox'] + label {
 
 select{
     width:232px;
-    height:40px;
+    height:60px;
     align-items: center;
     padding-left: 15px;
     padding-right: 20px;
     font-weight:bold ;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .progress {
@@ -130,6 +132,6 @@ select{
     padding: 10px;
     border: 1px solid #ddd;
     font-weight:bold ;
-    font-size: 14px;
+    font-size: 16px;
 }
 
