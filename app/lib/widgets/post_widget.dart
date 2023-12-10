@@ -34,7 +34,7 @@ class _PostWidgetState extends State<PostWidget> {
     }
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       _userModel = await AppDataLayer().getUserData(widget.post.userId!);
-      setState(() {});
+      if (mounted) setState(() {});
     });
   }
  
@@ -153,7 +153,7 @@ class _PostWidgetState extends State<PostWidget> {
                         child: Material(
                           color: Colors.transparent,
                           child: Text(
-                            (_userModel != null) ? _userModel!.college! : "Loading",
+                            (_userModel != null) ? _userModel!.position! : "Loading",
                             style: const TextStyle(
                               fontFamily: "DMSans",
                               fontSize: 12,
@@ -195,11 +195,17 @@ class _PostWidgetState extends State<PostWidget> {
                   height: 16.0,
                 ),
               if (widget.post.coverImage != null)
-                Center(
-                  child: Image.network(
-                    widget.post.coverImage!,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
+                Hero(
+                  tag: "coverImage${widget.post.id}",
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Center(
+                      child: Image.network(
+                        widget.post.coverImage!,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
               const SizedBox(
