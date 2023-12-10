@@ -70,7 +70,7 @@ const GamificationProfile = () => {
       <Profile 
         name="Aditya Gupta"
         handle="@_AG_"
-        avatar="https://img.freepik.com/premium-vector/avatar-man-with-beard-office-worker-wearing-glasses-it-developer-engineer-programmer_277909-144.jpg" // Replace with actual image path
+        avatar="https://cdn-icons-png.flaticon.com/128/921/921071.png" // Replace with actual image path
       />
       <div className='flex justify-end items-center gap-10'>
         <Card1

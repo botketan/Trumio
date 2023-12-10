@@ -1,16 +1,19 @@
 import { Button } from '@heathmont/moon-core-tw';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const TimeSlots = (props) => {
 
     const displayTimes = props.times;
     const closeModal = props.closeModal;
+    const navigate = useNavigate();
 
     const handleClick = (e) => {
         alert(
             "Congratulations on booking 10 sessions. You gained 150 sparks and levelled up!"
         );
         closeModal();
+        navigate('/gamification');
     };
 
     return (
