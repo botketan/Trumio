@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 class ApiService {
   final Dio _dio;
 
-  static const String _baseUrl = "http://localhost:5000/";
+  static const String _baseUrl = "http://10.0.2.2:5000/";
 
   ApiService() : _dio = Dio(BaseOptions(baseUrl: _baseUrl)) {}
 

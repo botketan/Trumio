@@ -14,13 +14,16 @@ import Notes from './pages/Notes.js';
 import Gamification from './pages/Gamification.js';
 import Truspace from './pages/Truspace.js';
 import Navigation from './components/Navigation.js';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Cia from './pages/cia.js';
 import PostPage from './pages/PostPage.js';
 import Community from './pages/Community.js';
 import PostWebView from './pages/PostWebView.js';
 
 function App() {
+  useEffect(() => {
+    document.title = "UniConnect";
+  }, []);
   const [click, setClick] = useState("")
   const [userId,setUserId]=useState("6574d117710649ce4c6b9c3b");
   return (

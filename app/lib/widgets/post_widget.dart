@@ -1,19 +1,19 @@
 import 'package:app/models/post_model.dart';
 import 'package:app/models/user_model.dart';
 import 'package:app/screens/post_info_screen.dart';
-import 'package:app/utils/app_data_layer.dart';
 import 'package:app/utils/get_initials.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PostWidget extends StatefulWidget {
   final PostModel post;
-  final UserModel? userModel;
+  final UserModel userModel;
   final bool isExpanded;
   const PostWidget({
     super.key,
     required this.post,
-    this.userModel,
+    required this.userModel,
     this.isExpanded = false,
   });
 
@@ -22,27 +22,11 @@ class PostWidget extends StatefulWidget {
 }
 
 class _PostWidgetState extends State<PostWidget> {
-  UserModel? _userModel;
 
-  @override
-  void initState() {
-    super.initState();
-    if (widget.userModel != null) {
-      _userModel = widget.userModel;
-      setState(() {});
-      return;
-    }
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      _userModel = await AppDataLayer().getUserData(widget.post.userId!);
-      if (mounted) setState(() {});
-    });
-  }
- 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (_userModel == null) return;
         Navigator.of(context).push(
           PageRouteBuilder(
             transitionDuration: const Duration(milliseconds: 500),
@@ -50,7 +34,7 @@ class _PostWidgetState extends State<PostWidget> {
             pageBuilder: (_, __, ___) {
               return PostInfoScreen(
                 post: widget.post,
-                userModel: _userModel!,
+                userModel: widget.userModel,
               );
             },
           ),
@@ -80,15 +64,15 @@ class _PostWidgetState extends State<PostWidget> {
                   const SizedBox(
                     width: 16.0,
                   ),
-                  (_userModel != null && _userModel!.icon != null)
+                  (widget.userModel.icon != null)
                       ? Hero(
                         tag: "icon${widget.post.id}",
                         child: Material(
                           color: Colors.transparent,
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(46.0),
-                              child: Image.network(
-                                _userModel!.icon!,
+                              child: CachedNetworkImage(
+                                imageUrl: widget.userModel.icon!,
                                 height: 46.0,
                                 width: 46.0,
                                 fit: BoxFit.cover,
@@ -111,9 +95,7 @@ class _PostWidgetState extends State<PostWidget> {
                                 ),
                                 child: Center(
                                   child: Text(
-                                    getInitials((_userModel != null)
-                                        ? _userModel!.name
-                                        : "Harshit Seksaria"),
+                                    getInitials(widget.userModel.name),
                                     style: const TextStyle(
                                       fontFamily: "DMSans",
                                       fontSize: 16,
@@ -138,7 +120,7 @@ class _PostWidgetState extends State<PostWidget> {
                         child: Material(
                           color: Colors.transparent,
                           child: Text(
-                            (_userModel != null) ? _userModel!.name : "Loading",
+                            widget.userModel.name,
                             style: const TextStyle(
                               fontFamily: "DMSans",
                               fontSize: 16,
@@ -153,7 +135,7 @@ class _PostWidgetState extends State<PostWidget> {
                         child: Material(
                           color: Colors.transparent,
                           child: Text(
-                            (_userModel != null) ? _userModel!.position! : "Loading",
+                            widget.userModel.position!,
                             style: const TextStyle(
                               fontFamily: "DMSans",
                               fontSize: 12,
@@ -200,8 +182,8 @@ class _PostWidgetState extends State<PostWidget> {
                   child: Material(
                     color: Colors.transparent,
                     child: Center(
-                      child: Image.network(
-                        widget.post.coverImage!,
+                      child: CachedNetworkImage(
+                        imageUrl: widget.post.coverImage!,
                         width: double.infinity,
                         fit: BoxFit.cover,
                       ),

@@ -7,9 +7,9 @@ import 'package:flutter_svg/svg.dart';
 
 class PostInfoScreen extends StatefulWidget {
   final PostModel post;
-  final UserModel? userModel;
+  final UserModel userModel;
 
-  const PostInfoScreen({super.key, required this.post, this.userModel});
+  const PostInfoScreen({super.key, required this.post, required this.userModel});
 
   @override
   State<PostInfoScreen> createState() => _PostInfoScreenState();
@@ -361,7 +361,7 @@ class _PostInfoScreenState extends State<PostInfoScreen> {
             ),
             PostWidget(
               post: widget.post,
-              userModel: widget.userModel,
+              userModel: widget.userModel!,
               isExpanded: true,
             ),
             const SizedBox(

@@ -1,3 +1,4 @@
+import 'package:app/screens/explore_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moon_design/moon_design.dart';
@@ -159,205 +160,25 @@ class ChannelsListWidget extends StatelessWidget {
               ),
             ),
           ),
-          MoonMenuItem(
-            menuItemPadding: const EdgeInsets.only(top: 2.0),
-            title: const Padding(
-              padding: EdgeInsets.only(left: 12.0),
-              child: Text(
-                "bangalore",
-                style: TextStyle(
-                  fontFamily: "DMSans",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Container(
-                height: 24.0,
-                width: 24.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4.0),
-                  border: Border.all(
-                    color: const Color(0xFFD9D9D9),
-                    width: 1.0,
-                  ),
-                ),
-                child: const Center(
-                  child: Text(
-                    "#",
-                    style: TextStyle(
-                      fontFamily: "DMSans",
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          const ChannelWidget(
+            channelName: "bangalore",
+            isPostChannel: true,
           ),
-          MoonMenuItem(
-            menuItemPadding: const EdgeInsets.only(top: 2.0),
-            title: const Padding(
-              padding: EdgeInsets.only(left: 12.0),
-              child: Text(
-                "cyber-security",
-                style: TextStyle(
-                  fontFamily: "DMSans",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Container(
-                height: 24.0,
-                width: 24.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4.0),
-                  border: Border.all(
-                    color: const Color(0xFFD9D9D9),
-                    width: 1.0,
-                  ),
-                ),
-                child: const Center(
-                  child: Text(
-                    "#",
-                    style: TextStyle(
-                      fontFamily: "DMSans",
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          const ChannelWidget(
+            channelName: "cyber-security",
+            isPostChannel: true,
           ),
-          MoonMenuItem(
-            menuItemPadding: const EdgeInsets.only(top: 2.0),
-            title: const Padding(
-              padding: EdgeInsets.only(left: 12.0),
-              child: Text(
-                "freelancing",
-                style: TextStyle(
-                  fontFamily: "DMSans",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Container(
-                height: 24.0,
-                width: 24.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4.0),
-                  border: Border.all(
-                    color: const Color(0xFFD9D9D9),
-                    width: 1.0,
-                  ),
-                ),
-                child: const Center(
-                  child: Text(
-                    "@",
-                    style: TextStyle(
-                      fontFamily: "DMSans",
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          const ChannelWidget(
+            channelName: "freelancing",
+            isPostChannel: false,
           ),
-          MoonMenuItem(
-            menuItemPadding: const EdgeInsets.only(top: 2.0),
-            title: const Padding(
-              padding: EdgeInsets.only(left: 12.0),
-              child: Text(
-                "alum23",
-                style: TextStyle(
-                  fontFamily: "DMSans",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Container(
-                height: 24.0,
-                width: 24.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4.0),
-                  border: Border.all(
-                    color: const Color(0xFFD9D9D9),
-                    width: 1.0,
-                  ),
-                ),
-                child: const Center(
-                  child: Text(
-                    "#",
-                    style: TextStyle(
-                      fontFamily: "DMSans",
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          const ChannelWidget(
+            channelName: "alum23",
+            isPostChannel: true,
           ),
-          MoonMenuItem(
-            menuItemPadding: const EdgeInsets.only(top: 2.0),
-            title: const Padding(
-              padding: EdgeInsets.only(left: 12.0),
-              child: Text(
-                "all-alum",
-                style: TextStyle(
-                  fontFamily: "DMSans",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Container(
-                height: 24.0,
-                width: 24.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4.0),
-                  border: Border.all(
-                    color: const Color(0xFFD9D9D9),
-                    width: 1.0,
-                  ),
-                ),
-                child: const Center(
-                  child: Text(
-                    "#",
-                    style: TextStyle(
-                      fontFamily: "DMSans",
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          const ChannelWidget(
+            channelName: "all-alum",
+            isPostChannel: true,
           ),
           const SizedBox(
             height: 8.0,
@@ -392,3 +213,74 @@ class ChannelsListWidget extends StatelessWidget {
   }
 }
 
+class ChannelWidget extends StatelessWidget {
+  final bool isPostChannel;
+  final String channelName;
+  const ChannelWidget({
+    super.key,
+    this.isPostChannel = false,
+    required this.channelName,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          PageRouteBuilder(
+            transitionDuration: const Duration(milliseconds: 500),
+            reverseTransitionDuration: const Duration(milliseconds: 500),
+            pageBuilder: (_, __, ___) {
+              return ExploreScreen(
+                channelName: channelName,
+                localCommunity: "Coding Club, MIT",
+              );
+            },
+          ),
+        );
+      },
+      child: Ink(
+        child: MoonMenuItem(
+          menuItemPadding: const EdgeInsets.only(top: 2.0),
+          title: Padding(
+            padding: const EdgeInsets.only(left: 12.0),
+            child: Text(
+              channelName,
+              style: const TextStyle(
+                fontFamily: "DMSans",
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Container(
+              height: 24.0,
+              width: 24.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4.0),
+                border: Border.all(
+                  color: const Color(0xFFD9D9D9),
+                  width: 1.0,
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  (isPostChannel) ? "#" : "@",
+                  style: const TextStyle(
+                    fontFamily: "DMSans",
+                    fontSize: 10,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -41,7 +41,7 @@ class AnnouncementCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Vidya Sagar",
+                      "Ravi Kishor",
                       style: TextStyle(
                         fontFamily: "DMSans",
                         fontSize: 12,
@@ -71,7 +71,7 @@ class AnnouncementCard extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 12.0),
               child: Text(
-                "Morbi at nunc interdum, laoreet dolor vel, congue felis. Pellentesque pretium quam nec fringilla iaculis. Nullam lectus leo, condimentum ut iaculis facilisis,",
+                "🚀 Exciting News! MIT Coding Club presents an Overnight Hackathon! 🌙 Dive into innovation, collaboration, and coding frenzy. Join us for a night of coding, camaraderie, and creativity. Unleash your coding prowess! 🖥️🚀 #MITCodingHackathon #InnovationOvernight",
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

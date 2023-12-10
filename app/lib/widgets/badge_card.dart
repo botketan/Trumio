@@ -1,4 +1,5 @@
 import 'package:app/models/badge_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class BadgeCard extends StatelessWidget {
@@ -32,8 +33,8 @@ class BadgeCard extends StatelessWidget {
                   horizontal: 16.0),
               child: SizedBox(
                 height: 48.0,
-                child: Image.network(
-                  badgeModel.image,
+                child: CachedNetworkImage(
+                  imageUrl: badgeModel.image,
                   height: 48.0,
                   fit: BoxFit.cover,
                 ),

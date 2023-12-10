@@ -67,26 +67,6 @@ class CommunitiesScreen extends StatelessWidget {
                   const SizedBox(
                     width: 8.0,
                   ),
-                  Card(
-                    elevation: 1.0,
-                    margin: EdgeInsets.zero,
-                    shape: const CircleBorder(),
-                    color: Colors.white,
-                    surfaceTintColor: Colors.white,
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Image.asset(
-                          "assets/avatar_1.png",
-                          height: 32.0,
-                          width: 32.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
                   Center(
                     child: SizedBox(
                       height: 40.0,
@@ -114,7 +94,7 @@ class CommunitiesScreen extends StatelessWidget {
                               width: 8.0,
                             ),
                             const Text(
-                              "Your chip text",
+                              "Coding Club, MIT",
                               style: TextStyle(
                                 fontFamily: "DMSans",
                                 fontSize: 14,

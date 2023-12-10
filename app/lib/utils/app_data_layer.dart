@@ -18,7 +18,7 @@ class AppDataLayer {
       final userModel = await UserService().getUserData(userId);
       await _localStorage.storeData("getUserData\$$userId", json.encode(userModel.toJson()));
       return userModel;
-    } on SocketException catch (_) {
+    } on Exception catch (_) {
       final storedData = await _localStorage.fetchData("getUserData\$$userId");
       if (storedData != null) {
         return UserModel.fromJson(jsonDecode(storedData));
@@ -54,7 +54,7 @@ class AppDataLayer {
       final posts = await PostService().getUserExplorePosts(userId);
       await _localStorage.storeData("getUserExplorePosts\$$userId", json.encode(posts.map((e) => e.toJson()).toList()));
       return posts;
-    } on SocketException catch (_) {
+    } on Exception catch (_) {
       final storedData = await _localStorage.fetchData("getUserExplorePosts\$$userId");
       if (storedData != null) {
         return (jsonDecode(storedData) as List<dynamic>).map((e) => PostModel.fromJson(e)).toList();
@@ -70,7 +70,7 @@ class AppDataLayer {
       final posts = await PostService().getUserAuthoredPosts(userId);
       await _localStorage.storeData("getUserAuthoredPosts\$$userId", json.encode(posts.map((e) => e.toJson()).toList()));
       return posts;
-    } on SocketException catch (_) {
+    } on Exception catch (_) {
       final storedData = await _localStorage.fetchData("getUserAuthoredPosts\$$userId");
       if (storedData != null) {
         return (jsonDecode(storedData) as List<dynamic>).map((e) => PostModel.fromJson(e)).toList();
