@@ -28,7 +28,7 @@ function App() {
     <Router>
       <Navigation userId={userId} click={click} setClick={setClick}/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Truspace userId={userId}/>} />
         <Route exact path="/Notes" element={<Notes userId={userId}/>} />
         <Route exact path="/Gamification" element={<Gamification  userId={userId}/>} />
         <Route exact path="/Mentor" element={<Mentor userId={userId}/>} /> 
