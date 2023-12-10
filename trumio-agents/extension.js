@@ -1,12 +1,5 @@
 const vscode = require("vscode");
 const [generate,generateJson] = require("./LLMChain"); // For the Chat Bot
-const axios = require("axios");
-
-let path_to_env = __dirname.split('\\');
-path_to_env = path_to_env.join("\\\\")
-
-require('dotenv').config({path : path_to_env+'\\.env'});
-const apiKey = process.env.OPENAI_API_KEY;
 
 function activate(context) {
   const chatprovider = new ChatViewProvider(context.extensionUri); // Link Chat View Provider
@@ -59,11 +52,11 @@ function activate(context) {
         let base = `You are an experienced Software Unit Test Engineer specializing in Python and JavaScript. As an expert in your field, you have a deep understanding of unit testing methodologies and best practices. You possess strong problem-solving skills and have a knack for tackling complex test scenarios, ensuring code coverage, and optimizing performance. Your expertise in test automation and continuous integration practices allows you to streamline the testing process and maximize efficiency. Whether it's identifying elusive bugs or optimizing test suites, you're equipped to assist developers at every step. Give your answers in the form of properly organised points`;
 
         const gptSummary = await generateJson(
-          `Now you are supposed to read this piece of code. Then you try to understand the logic behind the code and what its trying to do. Then give me a single string, the summary of the code that you have generated: ${selectedText} Note: Make sure there's a '\n' tag among every 10 words that you generate`
+          `Now you are supposed to read this piece of code. Then you try to understand the logic behind the code and what its trying to do. Then give me a single string, the summary of the code that you have generated: ${selectedText} `
         );
          // GPT Response
         const gptError = await generateJson(
-          `Now you are supposed to read this piece of code. Then you try to understand the logic behind the code and what its trying to do. Lets say you have generated 'x' errors. Join all of these errors together seperated by a newline and output the whole thing as a single single. ${selectedText} Note: Make sure there's a '\n' tag among every 10 words that you generate.`
+          `Now you are supposed to read this piece of code. Then you try to understand the logic behind the code and what its trying to do. Lets say you have generated 'x' errors. Join all of these errors together seperated by a newline and output the whole thing as a single single. ${selectedText}`
         );
         const gpttests = await generateJson(
           base + `I will give you a piece of code. Try to understand the logic behind the code and what its trying to do. Then give me exactly 4 Testcases (input-output pairs call them input1,output1 ... ) for the code. I want you to generate a single string exactly in the following format:
