@@ -206,33 +206,6 @@ Move to the clonned repository in your local environment
 │       │   └───NotesComponent
 │       ├───hooks
 │       └───pages
-├───notion-clone
-│   ├───.trunk
-│   │   └───configs
-│   ├───app
-│   │   ├───(main)
-│   │   │   ├───(routes)
-│   │   │   │   └───documents
-│   │   │   │       └───[documentId]
-│   │   │   └───_components
-│   │   ├───(marketing)
-│   │   │   └───_components
-│   │   ├───(public)
-│   │   │   └───(routes)
-│   │   │       └───preview
-│   │   │           └───[documentId]
-│   │   └───api
-│   │       └───edgestore
-│   │           └───[...edgestore]
-│   ├───components
-│   │   ├───modals
-│   │   ├───providers
-│   │   └───ui
-│   ├───convex
-│   │   └───_generated
-│   ├───hooks
-│   ├───lib
-│   └───public
 └───trumio-agents
     ├───.vscode
     ├───API
