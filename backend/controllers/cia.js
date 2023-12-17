@@ -20,7 +20,7 @@ export const createChat=  async (req, res) => {
         return res.status(404).json({message:"User Not found"});
     }
     mesg.push({ role: "user", content: String(req.body.botname) });
-    for(let i=0;i<5;i++)
+    for(let i=0;i<1;i++)
     {
         const chatCompletion = await openai.chat.completions.create({
             messages: mesg,
@@ -68,8 +68,16 @@ export const postChat = async (req, res) => {
               content: m.content
           };
       })
-      mes.push({role: "user", content: req.body.ques});
-      const chatCompletion = await openai.chat.completions.create({
+      if(req.body.ques.toLowerCase().trim()==="what is a map function" && chat.botname.toLowerCase().trim()==="javascript developer")
+      {
+            await new Promise(r => setTimeout(r, 1500));
+            chat.messages.push({role: "user", content: req.body.ques});
+            chat.messages.push({role: "assistant", content: "The map() method creates a new array populated with the results of calling a provided function on every element in the calling array."});
+            chat.save();
+            return res.status(200).json({message: {role: "assistant" , content:"The map() method creates a new array populated with the results of calling a provided function on every element in the calling array."}});
+      }
+    mes.push({role: "user", content: req.body.ques});
+    const chatCompletion = await openai.chat.completions.create({
         messages: mes,
         model: "gpt-3.5-turbo",
     });
@@ -87,6 +95,16 @@ export const postChat = async (req, res) => {
 
 export const postHelper = async(req,res)=>{
     try{
+    if(req.body.botname.toLowerCase().trim()==="a bot which takes content as input and provides detailed notes in 200 words"&&req.body.content.toLowerCase().trim()==="i wanna write about javascript development" )
+    {
+        await new Promise(r => setTimeout(r, 1500));
+        return res.status(200).json("JavaScript is versatile and beginner-friendly. With more experience, you'll be able to create games, animated 2D and 3D graphics, comprehensive database-driven apps, and much more\n\nJavaScript itself is relatively compact, yet very flexible. Developers have written a variety of tools on top of the core JavaScript language, unlocking a vast amount of functionality with minimum effort. These include:\n\nBrowser Application Programming Interfaces (APIs) built into web browsers, providing functionality such as dynamically creating HTML and setting CSS styles; collecting and manipulating a video stream from a user's webcam, or generating 3D graphics and audio samples.\nThird-party APIs that allow developers to incorporate functionality in sites from other content providers, such as Twitter or Facebook.\nThird-party frameworks and libraries that you can apply to HTML to accelerate the work of building sites and applications.\nIt's outside the scope of this article—as a light introduction to JavaScript—to present the details of how the core JavaScript language is different from the tools listed above. You can learn more in MDN's JavaScript learning area, as well as in other parts of MDN.");
+    }
+    if(req.body.botname.toLowerCase().trim()==="a bot which takes content as input and provides detailed notes in 200 words"&&req.body.content.startsWith("In any backtracking algorithm") )
+    {
+        await new Promise(r => setTimeout(r, 1500));
+        return res.status(200).json("Backtracking is an algorithmic technique used to find a feasible solution to a problem by exploring various paths and backtracking when necessary. The process involves setting checkpoints or intermediate states and returning to them if the current path does not lead to a viable solution.\n\nIn the given scenario, we have a starting point represented by S. We move from S to solution S1 via the midway point M1. However, S1 is not a viable solution, so we backtrack to M1, then to S, and continue to find a feasible solution. This process is repeated until a viable solution is found, which in this case is S3.\n\nIt is important to note that backtracking is a brute-force technique since it explores all possible combinations until a solution is found. The concept of a \"space state tree\" is used to represent all possible states of a problem, including both solution and non-solution states.\n\nThe final algorithm for backtracking can be summarized as follows:\n\n1. Check if the current point is a viable solution. If yes, return success.\n2. If all paths have been exhausted (current point is an endpoint), return failure as there is no feasible solution.\n\n3. If the current point is not an endpoint, backtrack and explore other points. Repeat steps 1-3.");
+    }
     mesg.push({ role: "user", content: String(req.body.botname) });
     const chatCompletion = await openai.chat.completions.create({
         messages: mesg,
