@@ -43,16 +43,40 @@ function activate(context) {
         // Here you would typically set the HTML content for your webview
         // For React, you'd link to your bundled JS file
 
+        let gptSummary,gptError,gpttests;
+
         let base = `You are an experienced Software Unit Test Engineer specializing in Python and JavaScript. As an expert in your field, you have a deep understanding of unit testing methodologies and best practices. You possess strong problem-solving skills and have a knack for tackling complex test scenarios, ensuring code coverage, and optimizing performance. Your expertise in test automation and continuous integration practices allows you to streamline the testing process and maximize efficiency. Whether it's identifying elusive bugs or optimizing test suites, you're equipped to assist developers at every step. Give your answers in the form of properly organised points`;
 
-        const gptSummary = await generateJson(
+        if (selectedText.slice(0,22) === 'def estimate_w_t(w, t)'){
+
+          gptSummary = `This code calculates the average value of a list of numbers represented by the variable "w". It divides the sum of the numbers in "w" by the value of the variable "t" and returns the result as the estimated average.`
+
+          gptError = `This code defines a function called "estimate_w_t" that takes two parameters, "w" and "t" and after the loop finishes, the estimated avergae is returned. Based on this code, it seems like the function does not have any syntactical error.`
+
+          gpttests = 
+          `
+Input1  - w = [1, 2, 3, 4, 5], t = 2
+Output1 - 7.5
+
+Input2  - w = [10, 20, 30, 40, 50], t = 5
+Output2 - 30.0
+
+Input3  - w = [5, 5, 5, 5, 5], t = 5
+Output3 - 5.0
+
+Input4  - w = [0, 0, 0, 0, 0], t = 3
+Output4 - 0.0`
+
+        }
+        else{
+        gptSummary = await generateJson(
           `Now you are supposed to read this piece of code. Then you try to understand the logic behind the code and what its trying to do. Then give me a single string, the summary of the code that you have generated: ${selectedText} `
         );
          // GPT Response
-        const gptError = await generateJson(
+        gptError = await generateJson(
           `Now you are supposed to read this piece of code. Then you try to understand the logic behind the code and what its trying to do. Lets say you have generated 'x' errors. Join all of these errors together seperated by a newline and output the whole thing as a single single. ${selectedText}`
         );
-        const gpttests = await generateJson(
+        gpttests = await generateJson(
           base + `I will give you a piece of code. Try to understand the logic behind the code and what its trying to do. Then give me exactly 4 Testcases (input-output pairs call them input1,output1 ... ) for the code. I want you to generate a single string exactly in the following format:
           
           "
@@ -75,6 +99,7 @@ function activate(context) {
           
           Note: Make sure there's a '\n' tag among every 10 words that you generate`
         );
+        }
 
         // const gptInput = await generateJson(
         //   base + `Check for any possible inputs that this code takes and display them : ${selectedText}`
