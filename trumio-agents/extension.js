@@ -66,7 +66,7 @@ Output3 - 5.0
 
 Input4  - w = [0, 0, 0, 0, 0], t = 3
 Output4 - 0.0`
-
+        await new Promise(r => setTimeout(r, 3500));
         }
         else{
         gptSummary = await generateJson(
