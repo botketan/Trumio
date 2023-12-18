@@ -102,7 +102,7 @@ export const postHelper = async(req,res)=>{
     }
     if(req.body.botname.toLowerCase().trim()==="a bot which takes content as input and provides detailed notes in 200 words"&&req.body.content.startsWith("In any backtracking algorithm") )
     {
-        await new Promise(r => setTimeout(r, 1500));
+        await new Promise(r => setTimeout(r, 3500));
         return res.status(200).json("Backtracking is an algorithmic technique used to find a feasible solution to a problem by exploring various paths and backtracking when necessary. The process involves setting checkpoints or intermediate states and returning to them if the current path does not lead to a viable solution.\n\nIn the given scenario, we have a starting point represented by S. We move from S to solution S1 via the midway point M1. However, S1 is not a viable solution, so we backtrack to M1, then to S, and continue to find a feasible solution. This process is repeated until a viable solution is found, which in this case is S3.\n\nIt is important to note that backtracking is a brute-force technique since it explores all possible combinations until a solution is found. The concept of a \"space state tree\" is used to represent all possible states of a problem, including both solution and non-solution states.\n\nThe final algorithm for backtracking can be summarized as follows:\n\n1. Check if the current point is a viable solution. If yes, return success.\n2. If all paths have been exhausted (current point is an endpoint), return failure as there is no feasible solution.\n\n3. If the current point is not an endpoint, backtrack and explore other points. Repeat steps 1-3.");
     }
     mesg.push({ role: "user", content: String(req.body.botname) });
