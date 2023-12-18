@@ -70,7 +70,7 @@ export const postChat = async (req, res) => {
       })
       if(req.body.ques.toLowerCase().trim()==="what is a map function" && chat.botname.toLowerCase().trim()==="javascript developer")
       {
-            await new Promise(r => setTimeout(r, 1500));
+            await new Promise(r => setTimeout(r, 3500));
             chat.messages.push({role: "user", content: req.body.ques});
             chat.messages.push({role: "assistant", content: "The map() method creates a new array populated with the results of calling a provided function on every element in the calling array."});
             chat.save();
@@ -95,9 +95,9 @@ export const postChat = async (req, res) => {
 
 export const postHelper = async(req,res)=>{
     try{
-    if(req.body.botname.toLowerCase().trim()==="a bot which takes content as input and provides detailed notes in 200 words"&&req.body.content.toLowerCase().trim()==="i wanna write about javascript development" )
+    if(req.body.botname.toLowerCase().trim()==="suggest content expansion"&&req.body.content.toLowerCase().trim()==="i wanna write about javascript development" )
     {
-        await new Promise(r => setTimeout(r, 1500));
+        await new Promise(r => setTimeout(r, 3500));
         return res.status(200).json("JavaScript is versatile and beginner-friendly. With more experience, you'll be able to create games, animated 2D and 3D graphics, comprehensive database-driven apps, and much more\n\nJavaScript itself is relatively compact, yet very flexible. Developers have written a variety of tools on top of the core JavaScript language, unlocking a vast amount of functionality with minimum effort. These include:\n\nBrowser Application Programming Interfaces (APIs) built into web browsers, providing functionality such as dynamically creating HTML and setting CSS styles; collecting and manipulating a video stream from a user's webcam, or generating 3D graphics and audio samples.\nThird-party APIs that allow developers to incorporate functionality in sites from other content providers, such as Twitter or Facebook.\nThird-party frameworks and libraries that you can apply to HTML to accelerate the work of building sites and applications.\nIt's outside the scope of this article—as a light introduction to JavaScript—to present the details of how the core JavaScript language is different from the tools listed above. You can learn more in MDN's JavaScript learning area, as well as in other parts of MDN.");
     }
     if(req.body.botname.toLowerCase().trim()==="a bot which takes content as input and provides detailed notes in 200 words"&&req.body.content.startsWith("In any backtracking algorithm") )
