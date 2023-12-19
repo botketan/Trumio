@@ -1,5 +1,4 @@
 import 'package:app/models/cia_message_model.dart';
-import 'package:app/utils/get_initials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moon_design/moon_design.dart';

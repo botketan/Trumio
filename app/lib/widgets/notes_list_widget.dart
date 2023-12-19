@@ -101,7 +101,7 @@ class _NotesListWidgetState extends State<NotesListWidget> {
 
   List<Widget> _buildNotes() {
     List<Widget> notes = [];
-    for (var i = 0; i < posts.length; i++) {
+    for (var i = 0; i < posts.length-2; i++) {
       notes.add(NoteCard(
         postModel: posts[i],
       ));

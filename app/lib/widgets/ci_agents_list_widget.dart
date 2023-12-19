@@ -76,7 +76,7 @@ class CIAgentsListWidget extends StatelessWidget {
         width: 12.0,
       ),
     ];
-    for (var i = 0; i < ciaChats.length; i++) {
+    for (var i = 5; i < ciaChats.length; i++) {
       listContents.add(
         CIAgentWindowWidget(
           ciaChat: ciaChats[i],
