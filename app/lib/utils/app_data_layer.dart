@@ -11,7 +11,7 @@ import 'package:app/utils/local_storage_service.dart';
 
 class AppDataLayer {
   final LocalStorageService _localStorage = LocalStorageService();
-  bool demo = false;
+  bool demo = true;
 
   Future<UserModel> getUserData(String userId) async {
     if (demo) {
