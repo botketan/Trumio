@@ -21,6 +21,7 @@ class ApiService {
       final response = await _dio.post(endpoint, data: data);
       return response;
     } on DioException catch (e) {
+      print(e);
       throw e;
     }
   }
