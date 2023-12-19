@@ -9,9 +9,9 @@ const TimeSlots = (props) => {
     const navigate = useNavigate();
 
     const handleClick = (e) => {
-        alert(
-            "Congratulations on booking 10 sessions. You gained 150 sparks and levelled up!"
-        );
+        // alert(
+        //     "Congratulations on booking 10 sessions. You gained 150 sparks and levelled up!"
+        // );
         closeModal();
         navigate('/gamification');
     };

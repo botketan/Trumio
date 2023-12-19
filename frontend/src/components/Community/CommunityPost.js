@@ -33,7 +33,7 @@ const CommunityPost = ({owner, post, setPost, complete}) => {
                     <path d="M9.25279 19.125H5.89121C5.32696 19.125 4.87069 18.6645 4.87503 18.0994L4.92149 11.9923C4.92577 11.4332 5.37949 10.9821 5.93773 10.9821H9.25279M9.25279 19.125H16.2469C16.7232 19.125 17.1356 18.7937 17.239 18.3281L19.1004 11.0465C19.2414 10.4108 18.7585 9.80769 18.1083 9.80769H15.2723C14.6319 9.80769 14.129 9.37832 14.2531 8.74912L14.7776 6.09017C14.9017 5.46096 14.4209 4.875 13.7806 4.875H13.5808C13.2194 4.875 12.8852 5.06734 12.703 5.37995L9.25279 10.9821M9.25279 19.125V10.9821" stroke="#0578FB" stroke-width="1.5"/>
                     </svg>
                 </div>
-                <div className="text-blue-600 text-sm font-medium font-dmsans leading-normal">{post && post.likes}</div>
+                <div className="text-blue-600 text-sm font-medium font-dmsans leading-normal">1.3k</div>
             </div>
             <div className="w-[196px] h-10 pl-2 pr-4 py-2 bg-blue-600 bg-opacity-10 rounded-lg justify-center items-center gap-2 inline-flex">
                 <div className="w-6 h-6 relative" >

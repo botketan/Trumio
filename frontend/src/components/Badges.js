@@ -11,28 +11,28 @@ const Badges = ({badges}) => {
     {
       heading: "Star Mentee",
       description: "Booked 10 mentorship sessions",
-      status: "3 days left",
+      status: "Completed",
       image: "https://cdn.iconscout.com/icon/premium/png-512-thumb/star-2996120-2492152.png?f=webp&w=256",
       sparks: "150 Sparks"
     },
     {
       heading: "Finisher",
       description: "Completed your first project",
-      status: "3 days left",
+      status: "Completed",
       image: "https://cdn.iconscout.com/icon/premium/png-512-thumb/finisher-6793663-5562502.png?f=webp&w=256",
       sparks: "100 Sparks"
     },
     {
       heading: "Gold-rate work",
       description: "Completed 3 tasks",
-      status: "3 days left",
+      status: "Completed",
       image: "https://lh3.googleusercontent.com/50yFntI4vajNAs2MabEB8t02Q780J_4BCTBA2uIt_WArQz87AXOfUKbcA49G5BtbU5nujCU=s85",
       sparks: "50 Sparks"
     },
     {
       heading: "Upcoming Speaker",
       description: "Posted first time in the community",
-      status: "3 days left",
+      status: "Completed",
       image: "https://us.v-cdn.net/6031588/uploads/editor/kh/4sd0ejkgv25u.png",
       sparks: "50 Sparks"
     },
