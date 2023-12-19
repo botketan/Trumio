@@ -261,7 +261,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   List<Widget> _buildPosts() {
     List<Widget> postWidgets = [];
-    for (int i = 0; i < posts.length; i++) {
+    for (int i = 2; i < posts.length; i++) {
       postWidgets.add(
         PostWidget(
           post: posts[i],
