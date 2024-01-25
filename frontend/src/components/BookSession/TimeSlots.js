@@ -8,7 +8,11 @@ const TimeSlots = (props) => {
 
     const handleClick = (e) => {
         alert(
+<<<<<<< HEAD
             "Congratulations on booking 10 sessions. You gained 150 points and levelled up!"
+=======
+            "Congratulations on booking 10 sessions. You gained 100 sparks and levelled up!"
+>>>>>>> parent of 22d84ec (small fix)
         );
         closeModal();
     };
