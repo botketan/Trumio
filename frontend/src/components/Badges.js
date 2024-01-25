@@ -13,7 +13,7 @@ const Badges = ({badges}) => {
       description: "Booked 10 mentorship sessions",
       status: "3 days left",
       image: "https://cdn.iconscout.com/icon/premium/png-512-thumb/star-2996120-2492152.png?f=webp&w=256",
-      sparks: "100 Sparks"
+      sparks: "150 Sparks"
     },
     {
       heading: "Finisher",
